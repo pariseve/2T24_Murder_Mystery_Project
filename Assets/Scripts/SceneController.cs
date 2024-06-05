@@ -7,7 +7,6 @@ public class SceneController : MonoBehaviour
     [SerializeField] private string sceneName;
     [SerializeField] private GameObject fadePanel;
     [SerializeField] private float fadeDuration = 1f;
-    private bool isPlayerInTrigger = false;
 
     private void Start()
     {
