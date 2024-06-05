@@ -13,19 +13,9 @@ public class SceneController : MonoBehaviour
         // Ensure the fade panel is inactive at the start
         fadePanel.SetActive(false);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Debug.Log("what?");
-        }
-    }
 
         private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player")){
-            Debug.Log("what");
-        }
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
             GoToScene();
