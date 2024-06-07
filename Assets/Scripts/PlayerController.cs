@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -62,6 +63,11 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = (x < 0);
         }
+    }
+
+    public void InteriorMovement()
+    {
+
     }
 
 }
