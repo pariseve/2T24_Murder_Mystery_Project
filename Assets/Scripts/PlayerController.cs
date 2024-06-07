@@ -4,7 +4,6 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 8f;
     public float sprintSpeed = 12f;
-    public float jumpForce = 10f; // Added jump force
     public float gravity = 20f; // Added gravity
     public float groundDistance = 0.1f;
     public float smoothingFactor = 10f;
@@ -44,14 +43,8 @@ public class PlayerController : MonoBehaviour
             rb.velocity += Vector3.down * gravity * Time.deltaTime;
         }
 
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
-
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            // Jump if grounded and space key is pressed
-            rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-        }
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
         // Check if the player is sprinting
         isSprinting = Input.GetKey(KeyCode.LeftShift);

@@ -45,7 +45,7 @@ public class SceneController : MonoBehaviour
         }
 
         // Save the last scene before loading the new scene
-        //DetermineSpawnPoint.SaveLastScene();
+        GameManager.SaveLastScene();
 
         // Load the new scene asynchronously
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
