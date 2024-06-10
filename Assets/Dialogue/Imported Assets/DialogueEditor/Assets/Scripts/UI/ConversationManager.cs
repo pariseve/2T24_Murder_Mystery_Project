@@ -72,7 +72,7 @@ namespace DialogueEditor
         public int m_targetScrollTextCount;
         private eState m_state;
         private float m_stateTime;
-        
+
         private Conversation m_conversation;
         private SpeechNode m_currentSpeech;
         private OptionNode m_selectedOption;
@@ -81,6 +81,15 @@ namespace DialogueEditor
         private List<UIConversationButton> m_uiOptions;
         private int m_currentSelectedIndex;
 
+        // MY ADDONS
+
+        private NPCConversation npcConversation;
+        // private ToggleLookAround toggleLookAround;
+        // Add a flag to track whether the current dialogue is finished scrolling
+        public bool m_dialogueFinishedScrolling = false;
+        private bool m_conversationEnding = false;
+        private bool m_showingOption = false;
+        private float BUTTON_COOLDOWN = 2f; // 2-second cooldown for button presses
 
         //--------------------------------------
         // Awake, Start, Destroy, Update
@@ -100,6 +109,10 @@ namespace DialogueEditor
             NpcIcon.sprite = BlankSprite;
             DialogueText.text = "";
             TurnOffUI();
+
+            npcConversation = FindObjectOfType<NPCConversation>();
+            // toggleLookAround = FindObjectOfType<ToggleLookAround>();
+            BUTTON_COOLDOWN = 0;
         }
 
         private void OnDestroy()
@@ -109,34 +122,95 @@ namespace DialogueEditor
 
         private void Update()
         {
-            switch (m_state)
+            BUTTON_COOLDOWN = Mathf.Max(0, BUTTON_COOLDOWN - Time.deltaTime);
+            // Debug.Log("Remaining cooldown time: " + BUTTON_COOLDOWN.ToString("F2") + " seconds");
+            // Debug.Log("m_showingOption is: " + m_showingOption);
+            // Check for left-click input only when the current dialogue is finished scrolling
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption)
             {
-                case eState.TransitioningDialogueBoxOn:
-                    TransitioningDialogueBoxOn_Update();
-                    break;
+                // Proceed with the conversation or end it based on the current state
+                switch (m_state)
+                {
+                    case eState.TransitioningDialogueBoxOn:
+                    case eState.ScrollingText:
+                    case eState.TransitioningOptionsOn:
+                    case eState.Idle:
+                        // Check if there's a valid next dialogue node, if yes, proceed
+                        SpeechNode nextSpeech = GetValidSpeechOfNode(m_currentSpeech);
+                        if (nextSpeech != null)
+                        {
+                            SetupSpeech(nextSpeech);
+                        }
+                        else
+                        {
+                            // If no next dialogue node, end the conversation
+                            // EndConversation();
+                        }
+                        break;
 
-                case eState.ScrollingText:
-                    ScrollingText_Update();
-                    break;
+                    case eState.TransitioningOptionsOff:
+                    case eState.TransitioningDialogueOff:
+                        // Do nothing if transitioning off
+                        break;
 
-                case eState.TransitioningOptionsOn:
-                    TransitionOptionsOn_Update();
-                    break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                // Call the existing logic based on the state if not left-clicked
+                switch (m_state)
+                {
+                    case eState.TransitioningDialogueBoxOn:
+                        TransitioningDialogueBoxOn_Update();
+                        break;
 
-                case eState.Idle:
-                    Idle_Update();
-                    break;
+                    case eState.ScrollingText:
+                        ScrollingText_Update();
+                        break;
 
-                case eState.TransitioningOptionsOff:
-                    TransitionOptionsOff_Update();
-                    break;
+                    case eState.TransitioningOptionsOn:
+                        TransitionOptionsOn_Update();
+                        break;
 
-                case eState.TransitioningDialogueOff:
-                    TransitioningDialogueBoxOff_Update();
-                    break;
+                    case eState.Idle:
+                        Idle_Update();
+                        break;
+
+                    case eState.TransitioningOptionsOff:
+                        TransitionOptionsOff_Update();
+                        break;
+
+                    case eState.TransitioningDialogueOff:
+                        TransitioningDialogueBoxOff_Update();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            // If there are no more valid speech nodes and left mouse button is clicked, end the conversation
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && GetValidSpeechOfNode(m_currentSpeech) == null && !m_showingOption)
+            {
+                // Check if the conversation is not already ending
+                if (!m_conversationEnding)
+                {
+                    Debug.Log("ending conversation");
+                    // Set the conversation ending flag to true to prevent rapid toggling
+                    m_conversationEnding = true;
+
+                    // End the conversation
+                    EndConversation();
+
+                    // Set the dialogue flags
+                    npcConversation.EndDialogue();
+                    npcConversation.DestroyConversation();
+                    // toggleLookAround.EnableComponent();
+                }
             }
         }
-
 
 
         //--------------------------------------
@@ -145,6 +219,7 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            npcConversation.StartDialogue();
             m_conversation = conversation.Deserialize();
             if (OnConversationStarted != null)
                 OnConversationStarted.Invoke();
@@ -184,14 +259,16 @@ namespace DialogueEditor
 
         public void PressSelectedOption()
         {
-            if (m_state != eState.Idle) { return; }
-            if (m_currentSelectedIndex < 0) { return; }
-            if (m_currentSelectedIndex >= m_uiOptions.Count) { return; }
-            if (m_uiOptions.Count == 0) { return; }
+                // If the cooldown has expired, proceed with the action
+                if (m_state != eState.Idle) { return; }
+                if (m_currentSelectedIndex < 0) { return; }
+                if (m_currentSelectedIndex >= m_uiOptions.Count) { return; }
+                if (m_uiOptions.Count == 0) { return; }
 
-            UIConversationButton button = m_uiOptions[m_currentSelectedIndex];
-            button.OnButtonPressed();
-        }
+                UIConversationButton button = m_uiOptions[m_currentSelectedIndex];
+                button.OnButtonPressed();
+            }
+       
 
         public void AlertHover(UIConversationButton button)
         {
@@ -218,7 +295,7 @@ namespace DialogueEditor
                 LogWarning("parameter \'" + paramName + "\' does not exist.");
             }
         }
-        
+
         public void SetBool(string paramName, bool value)
         {
             eParamStatus status;
@@ -338,6 +415,7 @@ namespace DialogueEditor
             SetColorAlpha(NameText, t);
         }
 
+        // Modify the ScrollingText_Update method to set the flag when the dialogue finishes scrolling
         private void ScrollingText_Update()
         {
             const float charactersPerSecond = 1500;
@@ -353,10 +431,12 @@ namespace DialogueEditor
                 DialogueText.maxVisibleCharacters = m_scrollIndex;
                 m_scrollIndex++;
 
-                // Finished?
+                // Finished scrolling?
                 if (m_scrollIndex >= m_targetScrollTextCount)
                 {
-                    SetState(eState.TransitioningOptionsOn);
+                    // Set the flag to indicate that the dialogue has finished scrolling
+                    m_dialogueFinishedScrolling = true;
+                    SetState(eState.TransitioningOptionsOn); // Automatically transition to options once scrolling is finished
                 }
             }
         }
@@ -457,6 +537,9 @@ namespace DialogueEditor
 
         private void SetupSpeech(SpeechNode speech)
         {
+            // Reset the flag at the beginning of the method
+            m_dialogueFinishedScrolling = false;
+
             if (speech == null)
             {
                 EndConversation();
@@ -540,6 +623,13 @@ namespace DialogueEditor
                 AudioPlayer.Play();
             }
 
+            // Set the dialogue active flag and disable the component if the next node is a speech node
+            if (GetValidSpeechOfNode(speech) != null)
+            {
+                npcConversation.isDialogueActive = true;
+                // toggleLookAround.DisableComponent();
+            }
+
             if (ScrollText)
             {
                 SetState(eState.ScrollingText);
@@ -547,8 +637,10 @@ namespace DialogueEditor
             else
             {
                 SetState(eState.TransitioningOptionsOn);
-            }            
+            }
         }
+
+
 
 
 
@@ -564,11 +656,26 @@ namespace DialogueEditor
 
         public void OptionSelected(OptionNode option)
         {
+            if (BUTTON_COOLDOWN <= 0)
+            {
+                Debug.Log("selected options");
+                m_dialogueFinishedScrolling = false;
+                m_showingOption = false;
+                BUTTON_COOLDOWN = 2;
+                // Update the last button press time
+                // BUTTON_COOLDOWN -= Time.time;
             m_selectedOption = option;
-            DoParamAction(option);
-            if (option.Event != null)
-                option.Event.Invoke();
-            SetState(eState.TransitioningOptionsOff);
+                DoParamAction(option);
+                if (option.Event != null)
+                    option.Event.Invoke();
+                SetState(eState.TransitioningOptionsOff);
+            }
+
+            else
+            {
+                // If the cooldown has not expired, ignore the button press
+                Debug.Log("Button press cooldown in effect. Please wait.");
+            }
         }
 
         public void EndButtonSelected()
@@ -657,6 +764,8 @@ namespace DialogueEditor
             // Display new options
             if (m_currentSpeech.ConnectionType == Connection.eConnectionType.Option)
             {
+                Debug.Log("create options");
+                m_showingOption = true;
                 for (int i = 0; i < m_currentSpeech.Connections.Count; i++)
                 {
                     OptionConnection connection = m_currentSpeech.Connections[i] as OptionConnection;
@@ -667,8 +776,10 @@ namespace DialogueEditor
                     }
                 }
             }
+
+
             // Display Continue/End options
-            else
+            /* else
             {
                 bool notAutoAdvance = !m_currentSpeech.AutomaticallyAdvance;
                 bool allowVisibleOptionWithAuto = (m_currentSpeech.AutomaticallyAdvance && m_currentSpeech.AutoAdvanceShouldDisplayOption);
@@ -700,6 +811,7 @@ namespace DialogueEditor
                 }
 
             }
+            */
             SetSelectedOption(0);
 
             // Set the button sprite and alpha

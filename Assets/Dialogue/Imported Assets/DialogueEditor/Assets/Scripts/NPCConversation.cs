@@ -12,7 +12,6 @@ namespace DialogueEditor
         V1_03 = 103,    // Initial save data
         V1_10 = 110,    // Parameters
     }
-    
 
     //--------------------------------------
     // Conversation Monobehaviour (Serialized)
@@ -46,8 +45,8 @@ namespace DialogueEditor
         public UnityEngine.Events.UnityEvent Event;
         public List<EditableParameter> ParameterList; // Serialized into the json string
 
-        
-
+        // Dialogue state flag
+        public bool isDialogueActive = false;
 
         //--------------------------------------
         // Util
@@ -108,8 +107,21 @@ namespace DialogueEditor
             return null;
         }
 
+        //--------------------------------------
+        // Dialogue State Methods
+        //--------------------------------------
 
+        public void StartDialogue()
+        {
+            Debug.Log("dialogue started");
+            isDialogueActive = true;
+        }
 
+        public void EndDialogue()
+        {
+            Debug.Log("dialogue ended");
+            isDialogueActive = false;
+        }
 
         //--------------------------------------
         // Serialize and Deserialize
@@ -136,7 +148,7 @@ namespace DialogueEditor
         {
             // Dejsonify 
             EditableConversation conversation = Dejsonify();
-            
+
             if (conversation != null)
             {
                 // Copy the param list
@@ -273,59 +285,72 @@ namespace DialogueEditor
             // Tell any of the nodes children that the node is the childs parent
             for (int i = 0; i < allNodes.Count; i++)
             {
-                EditableConversationNode thisNode = allNodes[i];
-
-                for (int j = 0; j < thisNode.Connections.Count; j++)
+                for (int j = 0; j < allNodes[i].Connections.Count; j++)
                 {
-                    if (thisNode.Connections[j].ConnectionType == EditableConnection.eConnectiontype.Speech)
-                    {
-                        (thisNode.Connections[j] as EditableSpeechConnection).Speech.parents.Add(thisNode);
-                    }
-                    else if (thisNode.Connections[j].ConnectionType == EditableConnection.eConnectiontype.Option)
-                    {
-                        (thisNode.Connections[j] as EditableOptionConnection).Option.parents.Add(thisNode);
-                    }
+                    EditableConnection connection = allNodes[i].Connections[j];
+
+                    // Add ourselves to the child nodes parents
+                    conversation.GetNodeByUID(connection.NodeUID).parents.Add(allNodes[i]);
                 }
             }
         }
 
-        private string Jsonify(EditableConversation conversation)
-        {
-            if (conversation == null || conversation.Options == null) { return ""; }
-
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(EditableConversation));
-            ser.WriteObject(ms, conversation);
-            byte[] jsonData = ms.ToArray();
-            ms.Close();
-            string toJson = System.Text.Encoding.UTF8.GetString(jsonData, 0, jsonData.Length);
-
-            return toJson;
-        }
+        //--------------------------------------
+        // Dejsonification
+        //--------------------------------------
 
         private EditableConversation Dejsonify()
         {
-            if (json == null || json == "")
+            if (string.IsNullOrEmpty(json))
                 return null;
 
-            EditableConversation conversation = new EditableConversation();
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(System.Text.Encoding.UTF8.GetBytes(json));
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(conversation.GetType());
-            conversation = ser.ReadObject(ms) as EditableConversation;
-            ms.Close();
+            // Create the memory stream
+            EditableConversation conversation = null;
+            var serializer = new DataContractJsonSerializer(typeof(EditableConversation));
+            using (var stream = new System.IO.MemoryStream(System.Text.UTF8Encoding.UTF8.GetBytes(json)))
+            {
+                conversation = serializer.ReadObject(stream) as EditableConversation;
+            }
 
             return conversation;
         }
 
-
-
-
         //--------------------------------------
-        // Construct User-Facing Conversation Object and Nodes
+        // Jsonification
         //--------------------------------------
 
-        private Conversation ConstructConversationObject(EditableConversation ec)
+        private string Jsonify(EditableConversation conversation)
+        {
+            // Create the memory stream
+            string jsonString = "";
+            var serializer = new DataContractJsonSerializer(typeof(EditableConversation));
+            using (var stream = new System.IO.MemoryStream())
+            {
+                serializer.WriteObject(stream, conversation);
+                jsonString = System.Text.Encoding.UTF8.GetString(stream.ToArray());
+            }
+
+            return jsonString;
+        }
+
+        //--------------------------------------
+        // DestroyConversation
+        //--------------------------------------
+
+        public void DestroyConversation()
+        {
+            isDialogueActive = false;
+            // Add any additional cleanup code here if necessary
+            Destroy(this.gameObject);
+        }
+    
+
+
+//--------------------------------------
+// Construct User-Facing Conversation Object and Nodes
+//--------------------------------------
+
+private Conversation ConstructConversationObject(EditableConversation ec)
         {
             // Create a conversation object
             Conversation conversation = new Conversation();
