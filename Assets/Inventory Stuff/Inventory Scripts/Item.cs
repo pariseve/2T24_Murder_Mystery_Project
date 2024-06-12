@@ -10,3 +10,10 @@ public class Item : ScriptableObject
     [TextArea(15, 20)]
     public string description;
 }
+
+public enum ItemType
+{
+    Evidence,
+    Collectable,
+    Usable
+}
