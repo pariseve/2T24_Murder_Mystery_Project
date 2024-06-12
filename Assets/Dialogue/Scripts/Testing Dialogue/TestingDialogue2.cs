@@ -1,9 +1,9 @@
 using UnityEngine;
 using DialogueEditor;
 
-public class TestingNPCDialogue : MonoBehaviour
+public class TestingDialogue2 : MonoBehaviour
 {
-    [SerializeField] private NPCConversation TestingDialogue;
+    [SerializeField] private NPCConversation testingDialogue2;
     [SerializeField] private bool isInsideTrigger;
     [SerializeField] private bool conversationStarted;
 
@@ -27,7 +27,7 @@ public class TestingNPCDialogue : MonoBehaviour
     private void StartConversation()
     {
         // Start the conversation and set the conversationStarted flag to true
-        ConversationManager.Instance.StartConversation(TestingDialogue);
+        ConversationManager.Instance.StartConversation(testingDialogue2);
         conversationStarted = true;
     }
 
@@ -40,6 +40,3 @@ public class TestingNPCDialogue : MonoBehaviour
         }
     }
 }
-
-
-

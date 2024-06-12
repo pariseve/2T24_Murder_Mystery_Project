@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace DialogueEditor
@@ -90,6 +89,7 @@ namespace DialogueEditor
         private bool m_conversationEnding = false;
         private bool m_showingOption = false;
         private float BUTTON_COOLDOWN = 2f; // 2-second cooldown for button presses
+        private bool isConversationActive = false;
 
         //--------------------------------------
         // Awake, Start, Destroy, Update
@@ -126,8 +126,9 @@ namespace DialogueEditor
             // Debug.Log("Remaining cooldown time: " + BUTTON_COOLDOWN.ToString("F2") + " seconds");
             // Debug.Log("m_showingOption is: " + m_showingOption);
             // Check for left-click input only when the current dialogue is finished scrolling
-            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption)
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
             {
+                Debug.Log("testing 1");
                 // Proceed with the conversation or end it based on the current state
                 switch (m_state)
                 {
@@ -192,8 +193,10 @@ namespace DialogueEditor
             }
 
             // If there are no more valid speech nodes and left mouse button is clicked, end the conversation
-            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && GetValidSpeechOfNode(m_currentSpeech) == null && !m_showingOption)
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && GetValidSpeechOfNode(m_currentSpeech) == null && !m_showingOption && IsConversationActive)
+                
             {
+                Debug.Log("testing 2");
                 // Check if the conversation is not already ending
                 if (!m_conversationEnding)
                 {
@@ -206,7 +209,8 @@ namespace DialogueEditor
 
                     // Set the dialogue flags
                     npcConversation.EndDialogue();
-                    npcConversation.DestroyConversation();
+                    // Destroy the game object this script is attached to
+                    // npcConversation.DestroyConversation();
                     // toggleLookAround.EnableComponent();
                 }
             }
@@ -219,6 +223,7 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            isConversationActive = true;
             npcConversation.StartDialogue();
             m_conversation = conversation.Deserialize();
             if (OnConversationStarted != null)
@@ -235,6 +240,8 @@ namespace DialogueEditor
 
             if (OnConversationEnded != null)
                 OnConversationEnded.Invoke();
+            m_conversationEnding = false;
+            isConversationActive = false;
         }
 
         public void SelectNextOption()

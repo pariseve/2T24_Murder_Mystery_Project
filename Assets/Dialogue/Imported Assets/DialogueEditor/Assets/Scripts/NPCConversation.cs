@@ -339,8 +339,8 @@ namespace DialogueEditor
 
         public void DestroyConversation()
         {
-            isDialogueActive = false;
-            // Add any additional cleanup code here if necessary
+            // isDialogueActive = false;
+            Debug.Log("Destroying conversation: " + gameObject.name);
             Destroy(this.gameObject);
         }
     
