@@ -324,10 +324,50 @@ public class MessageManager : MonoBehaviour
         return null;
     }
 
+    // Define a class-level variable to store the playerReply for each NPC
+    private Dictionary<string, string> lastPlayerReplies = new Dictionary<string, string>();
+
+    public void ForCreateNPCMessage(string parameters)
+    {
+        Debug.Log("Parameters: " + parameters);
+        // Split the parameters into npcName, message, and player reply
+        string[] parts = parameters.Split(new char[] { '|' }, 3);
+        if (parts.Length == 3)
+        {
+            string npcName = parts[0];
+            string message = parts[1];
+            string playerReply = parts[2];
+            OpenChatWithNPC(npcName);
+            CreateNPCMessage(npcName, message, playerReply);
+
+            // Remove the previous playerReply for this NPC, if it exists
+            if (lastPlayerReplies.ContainsKey(npcName))
+            {
+                lastPlayerReplies.Remove(npcName);
+            }
+
+            // Store the last playerReply for this NPC
+            lastPlayerReplies[npcName] = playerReply;
+        }
+        else
+        {
+            Debug.LogError("Invalid parameters format. Expected 'npcName|message|playerReply'.");
+        }
+    }
+
     private void OnReplyButtonClicked(string npcName, string playerReply)
     {
         Debug.Log("Button Clicked");
         Debug.Log("Player Reply: " + playerReply); // Debugging
+
+        if (lastPlayerReplies.ContainsKey(npcName))
+        {
+            playerReply = lastPlayerReplies[npcName];
+        }
+        else
+        {
+            Debug.LogWarning("No previous playerReply found for NPC: " + npcName);
+        }
 
         // Find the chat history content for the NPC
         var chatHistoryTuple = FindChatHistoryContent(npcName);
@@ -662,6 +702,8 @@ public class MessageManager : MonoBehaviour
         // Add reply button listener for NPC messages
         GameObject messageChatUI = messageChatInstances[npcName];
         Button replyButton = messageChatUI.transform.Find("Reply Image/ReplyButton").GetComponent<Button>();
+
+        replyButton.onClick.RemoveAllListeners();
         string localPlayerReply = playerReply; // Create a local copy
         replyButton.onClick.AddListener(() => OnReplyButtonClicked(npcName, localPlayerReply)); // Use the local copy
         replyButton.gameObject.SetActive(true);
@@ -930,25 +972,6 @@ public class MessageManager : MonoBehaviour
     }
 
     // CREATE MESSAGE
-
-    public void ForCreateNPCMessage(string parameters)
-    {
-        Debug.Log("Parameters: " + parameters);
-        // Split the parameters into npcName, message, and player reply
-        string[] parts = parameters.Split(new char[] { '|' }, 3);
-        if (parts.Length == 3)
-        {
-            string npcName = parts[0];
-            string message = parts[1];
-            string playerReply = parts[2];
-            OpenChatWithNPC(npcName);
-            CreateNPCMessage(npcName, message, playerReply);
-        }
-        else
-        {
-            Debug.LogError("Invalid parameters format. Expected 'npcName|message|playerReply'.");
-        }
-    }
 
     private void CreateNPCMessage(string npcName, string message, string playerReply)
     {
