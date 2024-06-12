@@ -1010,7 +1010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &245623312
 Transform:
   m_ObjectHideFlags: 0
@@ -2320,7 +2320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &739555948
 Transform:
   m_ObjectHideFlags: 0
@@ -2453,7 +2453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &760220640
 Transform:
   m_ObjectHideFlags: 0
@@ -4518,7 +4518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1738448289
 Transform:
   m_ObjectHideFlags: 0
@@ -4652,7 +4652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: StreetScene
+  sceneName: Inventory2Test
   fadePanel: {fileID: 1667487015}
   fadeDuration: 0.5
 --- !u!114 &1792176745
@@ -4905,7 +4905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  maxSlots: 8
+  PickedUpItems: []
 --- !u!4 &1873461179
 Transform:
   m_ObjectHideFlags: 0
@@ -4918,7 +4918,8 @@ Transform:
   m_LocalPosition: {x: 1009.99677, y: 479.00726, z: 3.4963121}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2108031828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1882703237
@@ -5824,6 +5825,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2101858791}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &2108031828 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1663586152905132034, guid: df9eb1fd8d38b07499bce29cb4aeab67,
+    type: 3}
+  m_PrefabInstance: {fileID: 1225333136143034149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126302445
 GameObject:
   m_ObjectHideFlags: 0
@@ -5881,7 +5888,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1873461179}
     m_Modifications:
     - target: {fileID: 515532007674467051, guid: df9eb1fd8d38b07499bce29cb4aeab67,
         type: 3}
@@ -6371,6 +6378,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 174b48ea756f54f488f50cea9e44f40c,
         type: 2}
+    - target: {fileID: 7202080159516263985, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
+        type: 3}
+      propertyPath: uniqueID
+      value: 01
+      objectReference: {fileID: 0}
     - target: {fileID: 8331133788671685810, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
         type: 3}
       propertyPath: m_Name
@@ -6581,6 +6593,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1762550113416038950, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
+        type: 3}
+      propertyPath: uniqueID
+      value: 02
+      objectReference: {fileID: 0}
     - target: {fileID: 4305077482936987883, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
         type: 3}
       propertyPath: m_Name
@@ -6683,7 +6700,6 @@ SceneRoots:
   - {fileID: 3547987326650280914}
   - {fileID: 149906084}
   - {fileID: 1921184549}
-  - {fileID: 1225333136143034149}
   - {fileID: 1873461179}
   - {fileID: 1749271562706067899}
   - {fileID: 8414163817096339278}

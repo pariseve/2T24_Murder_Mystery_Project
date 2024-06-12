@@ -7,6 +7,7 @@ public class Item : ScriptableObject
     public Sprite icon;
     public bool isStackable;
     public GameObject prefab;
+    public ItemType itemType;
     [TextArea(15, 20)]
     public string description;
 }
