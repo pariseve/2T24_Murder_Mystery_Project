@@ -40,6 +40,9 @@ namespace DialogueEditor
         [SerializeField] private List<NodeEventHolder> NodeSerializedDataList;
         [SerializeField] public TMPro.TMP_FontAsset ContinueFont;
         [SerializeField] public TMPro.TMP_FontAsset EndConversationFont;
+        // public Color DefaultTextColor = Color.white;
+
+        [SerializeField] public Color TextColor = Color.white;
 
         // Runtime vars
         public UnityEngine.Events.UnityEvent Event;

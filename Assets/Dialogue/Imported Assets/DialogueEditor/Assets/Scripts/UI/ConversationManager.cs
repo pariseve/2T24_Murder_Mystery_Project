@@ -83,13 +83,16 @@ namespace DialogueEditor
         // MY ADDONS
 
         private NPCConversation npcConversation;
-        // private ToggleLookAround toggleLookAround;
+        private ToggleLookAround toggleLookAround;
+        private ObjectClickDialogue objectClickDialogue;
         // Add a flag to track whether the current dialogue is finished scrolling
         public bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
         private bool m_showingOption = false;
         private float BUTTON_COOLDOWN = 2f; // 2-second cooldown for button presses
-        private bool isConversationActive = false;
+        public bool isConversationActive = false;
+        private bool endingConversation = false;
+        private Vector3 cursorPosition;
 
         //--------------------------------------
         // Awake, Start, Destroy, Update
@@ -111,7 +114,8 @@ namespace DialogueEditor
             TurnOffUI();
 
             npcConversation = FindObjectOfType<NPCConversation>();
-            // toggleLookAround = FindObjectOfType<ToggleLookAround>();
+            toggleLookAround = FindObjectOfType<ToggleLookAround>();
+            objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
             BUTTON_COOLDOWN = 0;
         }
 
@@ -128,7 +132,6 @@ namespace DialogueEditor
             // Check for left-click input only when the current dialogue is finished scrolling
             if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
             {
-                Debug.Log("testing 1");
                 // Proceed with the conversation or end it based on the current state
                 switch (m_state)
                 {
@@ -145,7 +148,7 @@ namespace DialogueEditor
                         else
                         {
                             // If no next dialogue node, end the conversation
-                            // EndConversation();
+                            //EndConversation();
                         }
                         break;
 
@@ -173,6 +176,7 @@ namespace DialogueEditor
 
                     case eState.TransitioningOptionsOn:
                         TransitionOptionsOn_Update();
+                        EnableCursor();
                         break;
 
                     case eState.Idle:
@@ -192,30 +196,47 @@ namespace DialogueEditor
                 }
             }
 
-            // If there are no more valid speech nodes and left mouse button is clicked, end the conversation
-            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && GetValidSpeechOfNode(m_currentSpeech) == null && !m_showingOption && IsConversationActive)
-                
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
             {
-                Debug.Log("testing 2");
-                // Check if the conversation is not already ending
-                if (!m_conversationEnding)
+                // Proceed with ending the conversation if no valid speech node is available
+                if (GetValidSpeechOfNode(m_currentSpeech) == null)
                 {
-                    Debug.Log("ending conversation");
-                    // Set the conversation ending flag to true to prevent rapid toggling
-                    m_conversationEnding = true;
+                    // Check if the conversation is not already ending
+                    if (!endingConversation)
+                    {
+                        Debug.Log("Ending conversation");
 
-                    // End the conversation
-                    EndConversation();
+                        // Set the flag to indicate that conversation ending process has started
+                        endingConversation = true;
 
-                    // Set the dialogue flags
-                    npcConversation.EndDialogue();
-                    // Destroy the game object this script is attached to
-                    // npcConversation.DestroyConversation();
-                    // toggleLookAround.EnableComponent();
+                        // End the conversation
+                        EndConversation();
+
+                        // Set the dialogue flags or destroy the conversation object as needed
+                        npcConversation.EndDialogue();
+                        toggleLookAround.EnableComponent();
+                        EnableCursor();
+                    }
                 }
+            }
+            else
+            {
+                // Reset the endingConversation flag once left-click is released or conditions are no longer met
+                endingConversation = false;
             }
         }
 
+        void DisableCursor()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        void EnableCursor()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
 
         //--------------------------------------
         // Public functions
@@ -223,6 +244,8 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            DisableCursor();
+            toggleLookAround.DisableComponent();
             isConversationActive = true;
             npcConversation.StartDialogue();
             m_conversation = conversation.Deserialize();
@@ -242,6 +265,7 @@ namespace DialogueEditor
                 OnConversationEnded.Invoke();
             m_conversationEnding = false;
             isConversationActive = false;
+            objectClickDialogue.EnableAllColliders();
         }
 
         public void SelectNextOption()
@@ -274,7 +298,8 @@ namespace DialogueEditor
 
                 UIConversationButton button = m_uiOptions[m_currentSelectedIndex];
                 button.OnButtonPressed();
-            }
+            DisableCursor();
+        }
        
 
         public void AlertHover(UIConversationButton button)
@@ -634,7 +659,7 @@ namespace DialogueEditor
             if (GetValidSpeechOfNode(speech) != null)
             {
                 npcConversation.isDialogueActive = true;
-                // toggleLookAround.DisableComponent();
+                toggleLookAround.DisableComponent();
             }
 
             if (ScrollText)
