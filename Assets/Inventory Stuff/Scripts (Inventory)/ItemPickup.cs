@@ -8,12 +8,13 @@ public class ItemPickup : MonoBehaviour
 
     private void Start()
     {
+        // Generate a unique ID for this item pickup if it doesn't have one
         if (string.IsNullOrEmpty(uniqueID))
         {
             uniqueID = Guid.NewGuid().ToString();
         }
 
-        // Check if this item has already been picked up
+        // check if this item has already been picked up
         if (Inventory.instance.PickedUpItems.Contains(uniqueID))
         {
             Destroy(gameObject);
@@ -33,6 +34,9 @@ public class ItemPickup : MonoBehaviour
                 // Mark the item as picked up
                 Inventory.instance.PickedUpItems.Add(uniqueID);
                 Inventory.instance.SaveInventory(); // Save the inventory including picked up items
+
+                // Show pickup text through the UIManager
+                InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ". Press [i]");
 
                 Destroy(gameObject);
             }
