@@ -143,6 +143,7 @@ namespace DialogueEditor
                         SpeechNode nextSpeech = GetValidSpeechOfNode(m_currentSpeech);
                         if (nextSpeech != null)
                         {
+                            DisableCursor();
                             SetupSpeech(nextSpeech);
                         }
                         else
@@ -176,7 +177,7 @@ namespace DialogueEditor
 
                     case eState.TransitioningOptionsOn:
                         TransitionOptionsOn_Update();
-                        EnableCursor();
+                        // EnableCursor();
                         break;
 
                     case eState.Idle:
@@ -701,6 +702,7 @@ namespace DialogueEditor
                 if (option.Event != null)
                     option.Event.Invoke();
                 SetState(eState.TransitioningOptionsOff);
+                DisableCursor();
             }
 
             else
@@ -797,6 +799,7 @@ namespace DialogueEditor
             if (m_currentSpeech.ConnectionType == Connection.eConnectionType.Option)
             {
                 Debug.Log("create options");
+                EnableCursor();
                 m_showingOption = true;
                 for (int i = 0; i < m_currentSpeech.Connections.Count; i++)
                 {
@@ -898,6 +901,7 @@ namespace DialogueEditor
         {
             UIConversationButton button = GameObject.Instantiate(ButtonPrefab, OptionsPanel);
             m_uiOptions.Add(button);
+            EnableCursor();
             return button;
         }
 
