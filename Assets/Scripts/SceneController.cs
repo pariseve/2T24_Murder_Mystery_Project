@@ -1,70 +1,122 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SceneController : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
-    [SerializeField] private GameObject fadePanel;
-    [SerializeField] private float fadeDuration = 1f;
+    public float transitionDuration = 1.0f; // Duration of the fade transition
+    public Image transitionImage; // Reference to the UI Image used for transition
+    public string sceneName; // The name of the scene to transition to
+    private CanvasGroup canvasGroup;
 
     private void Start()
     {
-        // Ensure the fade panel is inactive at the start
-        fadePanel.SetActive(false);
+        // Get the CanvasGroup component attached to the transitionImage
+        canvasGroup = transitionImage.GetComponent<CanvasGroup>();
+        // Ensure the transition image is fully transparent at the start
+        canvasGroup.alpha = 0f;
+
+        // Start the transition immediately for testing purposes
+        // StartTransition(sceneName); // You can uncomment this line for testing
     }
 
-        private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
-            GoToScene();
+            StartTransition(sceneName);
         }
     }
 
-    public void GoToScene()
+    public void StartTransition(string sceneName)
     {
-        StartCoroutine(FadeAndLoad());
+        // Start the transition coroutine
+        StartCoroutine(Transition(sceneName));
     }
 
-    IEnumerator FadeAndLoad()
+    private IEnumerator Transition(string sceneName)
     {
-        // Activate the fade panel
-        fadePanel.SetActive(true);
-
-        // Fade in effect
-        float elapsedTime = 0f;
-        Color fadeColor = fadePanel.GetComponent<UnityEngine.UI.Image>().color;
-        while (elapsedTime < fadeDuration)
+        // Fade to black
+        while (canvasGroup.alpha < 1)
         {
-            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
-            fadeColor.a = alpha;
-            fadePanel.GetComponent<UnityEngine.UI.Image>().color = fadeColor;
-            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha += Time.deltaTime / transitionDuration;
             yield return null;
         }
+
+        // Ensure the transition image is fully opaque
+        canvasGroup.alpha = 1f;
 
         // Save the last scene before loading the new scene
         GameManager.SaveLastScene();
 
-        // Load the new scene asynchronously
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        // Load the target scene asynchronously
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
 
-        // Wait for a short time to ensure the scene is loaded
-        yield return new WaitForSeconds(0.1f);
-
-        // Fade out effect
-        elapsedTime = 0f;
-        while (elapsedTime < fadeDuration)
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
         {
-            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            fadeColor.a = alpha;
-            fadePanel.GetComponent<UnityEngine.UI.Image>().color = fadeColor;
-            elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Deactivate the fade panel
-        fadePanel.SetActive(false);
+        // Determine spawn position after scene is fully loaded
+        Vector3 spawnPosition = DetermineSpawnPosition();
+
+        // Instantiate the character prefab at the spawn position
+        InstantiateCharacter(spawnPosition);
+
+        // Fade back out
+        while (canvasGroup.alpha > 0)
+        {
+            canvasGroup.alpha -= Time.deltaTime / transitionDuration;
+            yield return null;
+        }
+
+        // Ensure the transition image is fully transparent
+        canvasGroup.alpha = 0f;
+
+        // Destroy this object after a short delay
+        StartCoroutine(DestroyObject());
+    }
+
+    private Vector3 DetermineSpawnPosition()
+    {
+        // Retrieve the name of the last scene from PlayerPrefs
+        string lastSceneName = PlayerPrefs.GetString("LastScene", "");
+        Debug.Log("Last scene name: " + lastSceneName);
+
+        // Find all game objects tagged as "SpawnPoint"
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        foreach (GameObject spawnPoint in spawnPoints)
+        {
+            Debug.Log("Spawn point name: " + spawnPoint.name);
+
+            // Check if the spawn point name matches the expected format
+            if (spawnPoint.name == lastSceneName + "SpawnPoint")
+            {
+                return spawnPoint.transform.position;
+            }
+        }
+
+        // If no matching spawn point is found, return Vector3.zero or initial spawn position
+        Debug.LogWarning("No spawn point found for scene: " + lastSceneName);
+        return Vector3.zero;
+    }
+
+    private void InstantiateCharacter(Vector3 spawnPosition)
+    {
+        // Instantiate your character prefab at the spawn position
+        // Example: Instantiate(characterPrefab, spawnPosition, Quaternion.identity);
+        // Make sure to assign characterPrefab in the Inspector or load it dynamically
+    }
+
+    private IEnumerator DestroyObject()
+    {
+        // Wait for a short delay before destroying the object
+        yield return new WaitForSeconds(0.1f); // Adjust the delay time as needed
+
+        // Destroy this object
+        Destroy(gameObject);
     }
 }

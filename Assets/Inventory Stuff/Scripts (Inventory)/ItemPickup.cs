@@ -36,7 +36,7 @@ public class ItemPickup : MonoBehaviour
                 Inventory.instance.SaveInventory(); // Save the inventory including picked up items
 
                 // Show pickup text through the UIManager
-                InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ". Press [i]");
+                InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
 
                 Destroy(gameObject);
             }

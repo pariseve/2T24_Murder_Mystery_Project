@@ -15,9 +15,8 @@ public class PlayerController : MonoBehaviour
     public Sprite defaultSprite;
 
     private bool isGrounded = false;
-
     private bool isSprinting = false;
-
+    private bool isIndoors = false;
 
     void Start()
     {
@@ -27,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-            MoveCharacter();
+        MoveCharacter();
     }
 
     void MoveCharacter()
@@ -45,7 +44,7 @@ public class PlayerController : MonoBehaviour
         }
 
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float y = isIndoors ? 0 : Input.GetAxisRaw("Vertical"); // Prevent z-axis movement indoors
 
         // Check if the player is sprinting
         isSprinting = Input.GetKey(KeyCode.LeftShift);
@@ -65,9 +64,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void InteriorMovement()
+    void OnTriggerEnter(Collider other)
     {
-
+        if (other.CompareTag("Indoor"))
+        {
+            isIndoors = true;
+        }
     }
 
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Indoor"))
+        {
+            isIndoors = false;
+        }
+    }
+
+    public void InteriorMovement()
+    {
+        // Additional indoor movement logic if needed
+    }
 }

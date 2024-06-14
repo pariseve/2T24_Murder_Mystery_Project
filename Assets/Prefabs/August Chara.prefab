@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6483457935210178643}
   - component: {fileID: 6976905772654174220}
-  - component: {fileID: 6194501293954896262}
   - component: {fileID: 1572322886500855075}
+  - component: {fileID: 9109668529931569153}
   m_Layer: 0
   m_Name: August Chara
   m_TagString: Player
@@ -63,27 +63,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &6194501293954896262
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4057187926068189713}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.5883579, y: 1.9322002, z: 1.4242105}
-  m_Center: {x: -0.07538509, y: -1.2339, z: 0.21210527}
 --- !u!114 &1572322886500855075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,6 +86,27 @@ MonoBehaviour:
   rb: {fileID: 6976905772654174220}
   sr: {fileID: 2081655511530042681}
   defaultSprite: {fileID: 21300000, guid: 58e29f376e0e12241b3168a2ce54a977, type: 3}
+--- !u!65 &9109668529931569153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4057187926068189713}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.2105546, z: 1}
+  m_Center: {x: 0, y: -1.6083033, z: -0.061947897}
 --- !u!1 &6392109281471556370
 GameObject:
   m_ObjectHideFlags: 0

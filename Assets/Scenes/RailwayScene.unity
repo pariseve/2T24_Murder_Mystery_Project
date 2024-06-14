@@ -531,13 +531,14 @@ GameObject:
   - component: {fileID: 405756358}
   - component: {fileID: 405756360}
   - component: {fileID: 405756359}
+  - component: {fileID: 405756361}
   m_Layer: 5
   m_Name: Transition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &405756358
 RectTransform:
   m_ObjectHideFlags: 0
@@ -595,6 +596,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 405756357}
   m_CullTransparentMesh: 1
+--- !u!225 &405756361
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405756357}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &580223623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1798,9 +1811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionDuration: 1
+  transitionImage: {fileID: 405756359}
   sceneName: Town1Scene
-  fadePanel: {fileID: 405756357}
-  fadeDuration: 0.5
 --- !u!114 &1585860695
 MonoBehaviour:
   m_ObjectHideFlags: 0
