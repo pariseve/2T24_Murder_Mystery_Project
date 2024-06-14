@@ -26,8 +26,6 @@ public class MessageManager : MonoBehaviour
 
     private bool isDraggingScrollbar = false;
 
-    private static MessageManager instance;
-
     private Transform contactScrollViewContent; // Reference to the content area of the Contact ScrollView
 
     private Dictionary<string, GameObject> contactInstances = new Dictionary<string, GameObject>();
@@ -39,12 +37,14 @@ public class MessageManager : MonoBehaviour
 
     private string playerReply;
 
+    public static MessageManager Instance { get; private set; }
+
     // Ensure only one instance exists across scenes
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
