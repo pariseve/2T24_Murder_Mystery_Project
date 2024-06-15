@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1060,9 +1060,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionDuration: 1
+  transitionImage: {fileID: 0}
   sceneName: RailwayScene
-  fadePanel: {fileID: 1667487015}
-  fadeDuration: 0.5
 --- !u!114 &245623315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4386,9 +4386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionDuration: 1
+  transitionImage: {fileID: 0}
   sceneName: Town2Scene
-  fadePanel: {fileID: 1667487015}
-  fadeDuration: 0.5
 --- !u!114 &1738448293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4470,9 +4470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionDuration: 1
+  transitionImage: {fileID: 0}
   sceneName: StreetScene
-  fadePanel: {fileID: 1667487015}
-  fadeDuration: 0.5
 --- !u!114 &1792176745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,15 +5932,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 840948679406724551, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.0000104904175
+      objectReference: {fileID: 0}
+    - target: {fileID: 993002309774102714, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657543852583335485, guid: 43522a6e99751384f9bd9db4f14f5d05,
         type: 3}
       propertyPath: m_Name
       value: Phone Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2657543852583335485, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3088892327774720137, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358080816528961156, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358080816528961156, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358080816528961156, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5600099310250442990, guid: 43522a6e99751384f9bd9db4f14f5d05,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000026881695
+      value: -0.0000104904175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732613757516827967, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6873871110202309871, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7432388829062406136, guid: 43522a6e99751384f9bd9db4f14f5d05,
         type: 3}
@@ -6045,12 +6090,17 @@ PrefabInstance:
     - target: {fileID: 7757530213617668942, guid: 43522a6e99751384f9bd9db4f14f5d05,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7757530213617668942, guid: 43522a6e99751384f9bd9db4f14f5d05,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757530213617668942, guid: 43522a6e99751384f9bd9db4f14f5d05,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
