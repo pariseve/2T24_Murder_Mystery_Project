@@ -8,6 +8,7 @@ public class Item : ScriptableObject
     public bool isStackable;
     public GameObject prefab;
     public ItemType itemType;
+    public int amount = 1;
     [TextArea(15, 20)]
     public string description;
 }

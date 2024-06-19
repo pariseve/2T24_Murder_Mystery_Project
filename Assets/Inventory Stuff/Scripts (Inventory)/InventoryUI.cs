@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
-    public static InventoryUI instance; // Singleton instance
+    public static InventoryUI instance;
 
     public Transform itemsParent;
     public GameObject inventoryUI;
@@ -16,9 +16,9 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI pickupText;
 
     private bool isOpen = false;
-
-    Inventory inventory;
-    InventorySlot[] slots;
+    private Inventory inventory;
+    private InventorySlot[] slots;
+    private InventorySlot currentSlot;
 
     void Awake()
     {
@@ -33,12 +33,9 @@ public class InventoryUI : MonoBehaviour
 
     void Start()
     {
-        // Get the singleton instance of the inventory
         inventory = Inventory.instance;
-        // Subscribe UpdateUI to the onItemChangedCallback
+        // Connects UpdateUI function to the onItemChangedCallback event (singal) in ItemPickup
         inventory.onItemChangedCallback += UpdateUI;
-
-        // Get all the InventorySlot components in the children of itemsParent
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
@@ -64,6 +61,11 @@ public class InventoryUI : MonoBehaviour
     {
         LeanTween.moveLocalY(inventoryUI, 650f, 0.5f).setEase(LeanTweenType.easeInQuart);
         isOpen = false;
+
+        if (currentSlot != null && currentSlot.isInteractOpen)
+        {
+            currentSlot.CloseInteractionPanel();
+        }
     }
 
     void UpdateUI()
@@ -76,6 +78,7 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
+                Debug.Log("Cleared slot from InventoryUI.");
                 slots[i].ClearSlot();
             }
         }
@@ -86,10 +89,10 @@ public class InventoryUI : MonoBehaviour
         if (pickupText != null)
         {
             pickupText.text = text;
-            pickupText.alpha = 1f; // Ensure the text is fully visible
+            pickupText.alpha = 1f;
             LeanTween.alphaText(pickupText.rectTransform, 1f, 1f).setEase(LeanTweenType.easeInCirc).setOnComplete(() =>
             {
-                Invoke("ClearPickupText", 2f); // Clear the text after 2 seconds
+                Invoke("ClearPickupText", 2f);
             });
         }
     }
@@ -107,11 +110,14 @@ public class InventoryUI : MonoBehaviour
 
     public void CloseExaminePanel()
     {
-        LeanTween.scale(examinePanel, new Vector2(0, 0), 1f)
-            .setEase(LeanTweenType.easeInBack)
-            .setOnComplete(() =>
-            {
-                examinePanel.SetActive(false); // This will be called after the animation completes
-            });
+        LeanTween.scale(examinePanel, new Vector2(0, 0), 1f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
+        {
+            examinePanel.SetActive(false);
+        });
+    }
+
+    public void SetCurrentSlot(InventorySlot slot)
+    {
+        currentSlot = slot;
     }
 }

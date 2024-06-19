@@ -7,7 +7,10 @@ public class InventorySlot : MonoBehaviour
     public Image icon; // Reference to the icon image for the item
     private Item item; // Reference to the item associated with this slot
 
-    public GameObject interactionsPanel;
+    public TextMeshProUGUI amountText;
+
+    public GameObject interactEvidencePanel;
+    public GameObject interactUsablePanel;
     public bool isInteractOpen = false;
 
     public GameObject examinePanel;
@@ -15,12 +18,27 @@ public class InventorySlot : MonoBehaviour
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
 
+    private void Awake()
+    {
+        interactUsablePanel.SetActive(false);
+        interactEvidencePanel.SetActive(false);
+        if (amountText != null) amountText.gameObject.SetActive(false);
+    }
+
     public void AddItem(Item newItem)
     {
+        if (newItem == null)
+            return;
+
         item = newItem;
         icon.sprite = item.icon;
         icon.enabled = true;
         Debug.Log("Item added to slot: " + item.itemName + ", Sprite: " + item.icon.name);
+
+        if (item.isStackable)
+        {
+            UpdateAmount();
+        }
     }
 
     public void ClearSlot()
@@ -28,14 +46,37 @@ public class InventorySlot : MonoBehaviour
         item = null;
         icon.sprite = null; // Clear the sprite
         icon.enabled = false; // Hide the icon
-        Debug.Log("Slot cleared"); // Debug log for confirmation
+        if (amountText != null)
+        {
+            amountText.gameObject.SetActive(false);
+            amountText.text = ""; // Clear the amount text
+        }
+        Debug.Log("Slot cleared");
     }
+
+    public void UpdateAmount()
+    {
+        if (amountText != null && item != null && item.isStackable)
+        {
+            amountText.text = item.amount.ToString();
+            amountText.gameObject.SetActive(true);
+        }
+    }
+
 
     public void OpenInteractionPanel()
     {
-        if(item != null)
+        if (item != null)
         {
-            interactionsPanel.SetActive(true);
+            InventoryUI.instance.SetCurrentSlot(this); // Set the current slot in InventoryUI
+            if (item.itemType == ItemType.Usable && interactUsablePanel != null)
+            {
+                interactUsablePanel.SetActive(true);
+            }
+            else if (item.itemType == ItemType.Evidence && interactEvidencePanel != null)
+            {
+                interactEvidencePanel.SetActive(true);
+            }
             isInteractOpen = true;
             Debug.Log("Interaction panel is open");
         }
@@ -43,9 +84,10 @@ public class InventorySlot : MonoBehaviour
 
     public void CloseInteractionPanel()
     {
-        interactionsPanel.SetActive(false);
+        if (interactUsablePanel != null) interactUsablePanel.SetActive(false);
+        if (interactEvidencePanel != null) interactEvidencePanel.SetActive(false);
         isInteractOpen = false;
-        Debug.Log("interaction panel is closed");
+        Debug.Log("Interaction panel is closed");
     }
 
     public void OpenExaminePanel()
@@ -59,11 +101,13 @@ public class InventorySlot : MonoBehaviour
             examineDescriptionText.text = item.description;
             examineImage.sprite = item.icon;
 
+            InventoryUI.instance.SetCurrentSlot(this); // Set the current slot in InventoryUI
+            Debug.Log("Set current slot in InventoryUI");
+
             if (isInteractOpen)
             {
                 CloseInteractionPanel();
             }
         }
     }
-
 }

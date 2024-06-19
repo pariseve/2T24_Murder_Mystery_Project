@@ -1,9 +1,12 @@
+using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
+
+    public Item item;
 
     void Awake()
     {
@@ -15,8 +18,8 @@ public class Inventory : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        LoadInventory(); // Load inventory and picked up items on start
-        //Clear(); //for testing
+        // LoadInventory(); // Load inventory and picked up items on start
+        Clear(); // For testing
     }
 
     public List<Item> items = new List<Item>();
@@ -26,10 +29,25 @@ public class Inventory : MonoBehaviour
 
     public bool Add(Item item)
     {
+        if (item == null)
+            return false;
+
+        if (item.isStackable)
+        {
+            Item existingItem = items.Find(i => i.itemName == item.itemName);
+            if (existingItem != null)
+            {
+                existingItem.amount += 1;
+                onItemChangedCallback?.Invoke();
+                return true;
+            }
+        }
+
         items.Add(item);
         onItemChangedCallback?.Invoke();
         return true;
     }
+
 
     public void Remove(Item item)
     {
@@ -41,7 +59,10 @@ public class Inventory : MonoBehaviour
     {
         items.Clear();
         PickedUpItems.Clear(); // Clear picked up items list when inventory is cleared
-        onItemChangedCallback?.Invoke();
+        onItemChangedCallback?.Invoke(); // Notify the UI to update
+        PlayerPrefs.DeleteAll();
+        item.amount = 1; 
+        
     }
 
     public void SaveInventory()
