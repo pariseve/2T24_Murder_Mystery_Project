@@ -85,6 +85,7 @@ namespace DialogueEditor
         private NPCConversation npcConversation;
         private ToggleLookAround toggleLookAround;
         private ObjectClickDialogue objectClickDialogue;
+        private PlayerController playerController;
         // Add a flag to track whether the current dialogue is finished scrolling
         public bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
@@ -116,6 +117,7 @@ namespace DialogueEditor
             npcConversation = FindObjectOfType<NPCConversation>();
             toggleLookAround = FindObjectOfType<ToggleLookAround>();
             objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
+            playerController = FindObjectOfType<PlayerController>();
             BUTTON_COOLDOWN = 0;
         }
 
@@ -143,6 +145,10 @@ namespace DialogueEditor
                         SpeechNode nextSpeech = GetValidSpeechOfNode(m_currentSpeech);
                         if (nextSpeech != null)
                         {
+                            if (playerController != null)
+                            {
+                                playerController.DisableMovement();
+                            }
                             DisableCursor();
                             SetupSpeech(nextSpeech);
                         }
@@ -214,9 +220,20 @@ namespace DialogueEditor
                         EndConversation();
 
                         // Set the dialogue flags or destroy the conversation object as needed
-                        npcConversation.EndDialogue();
-                        toggleLookAround.EnableComponent();
+
+                        if (npcConversation != null)
+                        {
+                            npcConversation.EndDialogue();
+                        }
+                        if (toggleLookAround != null)
+                        {
+                            toggleLookAround.EnableComponent();
+                        }
                         EnableCursor();
+                        if (playerController != null)
+                        {
+                            playerController.EnableMovement();
+                        }
                     }
                 }
             }
@@ -245,8 +262,12 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            playerController = FindObjectOfType<PlayerController>();
             DisableCursor();
-            toggleLookAround.DisableComponent();
+            if (toggleLookAround != null)
+            {
+                toggleLookAround.DisableComponent();
+            }
             isConversationActive = true;
             npcConversation.StartDialogue();
             m_conversation = conversation.Deserialize();
@@ -266,7 +287,11 @@ namespace DialogueEditor
                 OnConversationEnded.Invoke();
             m_conversationEnding = false;
             isConversationActive = false;
-            objectClickDialogue.EnableAllColliders();
+
+            if (objectClickDialogue != null)
+            {
+                objectClickDialogue.EnableAllColliders();
+            }
         }
 
         public void SelectNextOption()

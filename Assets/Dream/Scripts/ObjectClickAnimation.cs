@@ -37,12 +37,7 @@ public class ObjectClickAnimation : MonoBehaviour
         {
             if (hit.transform.CompareTag("Crow Fly Click"))// && !npcConversation.isDialogueActive)
             {
-                if (NotesManager.Instance != null)
-                {
-                    NotesManager.Instance.note1 = true;
-                    // Start the coroutine to play animation, move and destroy the object, and then spread out children
                     StartCoroutine(PlayAnimationAndMoveUp(hit.transform));
-                }
             }
         }
     }

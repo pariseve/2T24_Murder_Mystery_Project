@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private bool isSprinting = false;
     private bool isIndoors = false;
+    public bool canMove = true; // Flag to control movement
 
     void Start()
     {
@@ -26,7 +27,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        MoveCharacter();
+        if (canMove)
+        {
+            MoveCharacter();
+        }
     }
 
     void MoveCharacter()
@@ -80,8 +84,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void EnableMovement()
+    {
+        canMove = true;
+    }
+
+    public void DisableMovement()
+    {
+        canMove = false;
+        rb.velocity = Vector3.zero; // Stop the player immediately
+    }
+
     public void InteriorMovement()
     {
         // Additional indoor movement logic if needed
     }
 }
+

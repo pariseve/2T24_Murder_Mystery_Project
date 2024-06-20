@@ -9,7 +9,7 @@ public class NotesManager : MonoBehaviour
     public Transform notesParent; // Parent transform to organize notes in the hierarchy
     public ScrollRect scrollRect; // Reference to the ScrollRect
 
-    public bool note1 = false;
+    public bool dream1brokenclock = false;
     public bool note2 = false;
     public bool note3 = false;
 
@@ -39,17 +39,19 @@ public class NotesManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.E))
         {
             InstantiateNotes();
         }
+        */
     }
 
-    void InstantiateNotes()
+    public void InstantiateNotes()
     {
-        if (note1 && !IsNoteInstantiated("note1"))
+        if (dream1brokenclock && !IsNoteInstantiated("dream1brokenclock"))
         {
-            CreateNote("This is the text for note 1", "note1");
+            CreateNote("There was a broken clock in my dream with the time on 9:00... what could that mean?", "dream1brokenclock");
         }
         if (note2 && !IsNoteInstantiated("note2"))
         {
@@ -62,7 +64,7 @@ public class NotesManager : MonoBehaviour
         UpdateContentSize();
     }
 
-    void CreateNote(string text, string noteKey)
+    public void CreateNote(string text, string noteKey)
     {
         GameObject noteInstance = Instantiate(notePrefab, notesParent);
         TextMeshProUGUI textComponent = noteInstance.GetComponentInChildren<TextMeshProUGUI>();
@@ -76,6 +78,25 @@ public class NotesManager : MonoBehaviour
         else
         {
             Debug.LogError("TextMeshProUGUI component not found in the note prefab.");
+        }
+    }
+
+    public void SetNoteBool(string noteName)
+    {
+        switch (noteName)
+        {
+            case "dream1brokenclock":
+                dream1brokenclock = true;
+                break;
+            case "note2":
+                note2 = true;
+                break;
+            case "note3":
+                note3 = true;
+                break;
+            default:
+                Debug.LogError("Invalid note name.");
+                break;
         }
     }
 

@@ -6,6 +6,7 @@ public class TestingNPCDialogue : MonoBehaviour
     [SerializeField] private NPCConversation TestingDialogue;
     [SerializeField] private bool isInsideTrigger;
     [SerializeField] private bool conversationStarted;
+    private PlayerController playerController;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +27,11 @@ public class TestingNPCDialogue : MonoBehaviour
 
     private void StartConversation()
     {
+        playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.DisableMovement();
+        }
         // Start the conversation and set the conversationStarted flag to true
         ConversationManager.Instance.StartConversation(TestingDialogue);
         conversationStarted = true;
