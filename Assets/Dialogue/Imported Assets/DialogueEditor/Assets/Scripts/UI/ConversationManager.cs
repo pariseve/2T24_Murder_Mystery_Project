@@ -685,7 +685,11 @@ namespace DialogueEditor
             if (GetValidSpeechOfNode(speech) != null)
             {
                 npcConversation.isDialogueActive = true;
-                toggleLookAround.DisableComponent();
+
+                if (toggleLookAround != null)
+                {
+                    toggleLookAround.DisableComponent();
+                }
             }
 
             if (ScrollText)
