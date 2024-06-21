@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 public class NotesManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class NotesManager : MonoBehaviour
     public GameObject notePrefab; // Reference to the note prefab
     public Transform notesParent; // Parent transform to organize notes in the hierarchy
     public ScrollRect scrollRect; // Reference to the ScrollRect
+
+    public GameObject notificationPrefab; // Reference to the notification prefab
+    public Transform notificationParent; // Parent transform for notifications
 
     public bool dream1brokenclock = false;
     public bool note2 = false;
@@ -35,16 +39,6 @@ public class NotesManager : MonoBehaviour
     void Start()
     {
         AddScrollbarListener(scrollRect);
-    }
-
-    private void Update()
-    {
-        /*
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            InstantiateNotes();
-        }
-        */
     }
 
     public void InstantiateNotes()
@@ -87,12 +81,15 @@ public class NotesManager : MonoBehaviour
         {
             case "dream1brokenclock":
                 dream1brokenclock = true;
+                ShowNoteNotification("There was a broken clock in my dream with the time on 9:00... what could that mean?");
                 break;
             case "note2":
                 note2 = true;
+                ShowNoteNotification("This is the text for note 2");
                 break;
             case "note3":
                 note3 = true;
+                ShowNoteNotification("This is the text for note 3");
                 break;
             default:
                 Debug.LogError("Invalid note name.");
@@ -149,7 +146,65 @@ public class NotesManager : MonoBehaviour
             Debug.LogError("Notes Parent is not assigned.");
         }
     }
+
+    public void ShowNoteNotification(string noteText)
+    {
+        GameObject notificationInstance = Instantiate(notificationPrefab, notificationParent);
+
+        // Find the TextMeshPro component labeled "Last Note" and set the text
+        TextMeshProUGUI[] textComponents = notificationInstance.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (var textComponent in textComponents)
+        {
+            if (textComponent.name == "Last Note")
+            {
+                textComponent.text = noteText;
+                break;
+            }
+        }
+
+        // Set notification position to the center of the parent
+        if (notificationParent != null)
+        {
+            notificationInstance.transform.SetParent(notificationParent);
+            notificationInstance.transform.localPosition = Vector3.zero;
+        }
+
+        // Play notification audio if needed
+        // PlayNotificationSound();
+
+        // Start coroutine for fading in, staying, fading out, and destroying the notification
+        StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));
+    }
+
+    private IEnumerator FadeInOutAndDestroy(CanvasGroup canvasGroup)
+    {
+        float fadeDuration = 1.0f; // Adjust as needed
+        float stayDuration = 2.0f; // Adjust as needed
+
+        // Fade in
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            canvasGroup.alpha = Mathf.Lerp(0, 1, t / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1;
+
+        // Stay for a while
+        yield return new WaitForSeconds(stayDuration);
+
+        // Fade out
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            canvasGroup.alpha = Mathf.Lerp(1, 0, t / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = 0;
+
+        Destroy(canvasGroup.gameObject);
+    }
 }
+
+
 
 
 

@@ -151,6 +151,10 @@ namespace DialogueEditor
                             }
                             DisableCursor();
                             SetupSpeech(nextSpeech);
+                            if (objectClickDialogue != null)
+                            {
+                                objectClickDialogue.DisableAllColliders();
+                            }
                         }
                         else
                         {
@@ -268,6 +272,12 @@ namespace DialogueEditor
             {
                 toggleLookAround.DisableComponent();
             }
+
+            if (objectClickDialogue != null)
+            {
+                objectClickDialogue.DisableAllColliders();
+            }
+
             isConversationActive = true;
             npcConversation.StartDialogue();
             m_conversation = conversation.Deserialize();

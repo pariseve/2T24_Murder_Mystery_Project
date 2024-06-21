@@ -40,7 +40,7 @@ public class ObjectClickDialogue : MonoBehaviour
         }
     }
 
-    private void DisableAllColliders()
+    public void DisableAllColliders()
     {
         Collider[] allColliders = FindObjectsOfType<Collider>();
         foreach (Collider collider in allColliders)
