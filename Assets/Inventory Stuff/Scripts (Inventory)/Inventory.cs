@@ -15,8 +15,8 @@ public class Inventory : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        LoadInventory(); // Load inventory and picked up items on start
-        //Clear(); //for testing
+        //LoadInventory(); // Load inventory and picked up items on start
+        Clear(); //for testing
     }
 
     public List<Item> items = new List<Item>();
