@@ -483,8 +483,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c9c3c4be0ee40054095906babdf44be0, type: 2}
+  m_sharedMaterial: {fileID: -9081709142900960735, guid: c9c3c4be0ee40054095906babdf44be0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -508,12 +509,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 56.8
   m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 15
-  m_fontSizeMax: 30
+  m_fontSizeMin: 40
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -618,8 +619,9 @@ MonoBehaviour:
   m_text: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c9c3c4be0ee40054095906babdf44be0, type: 2}
+  m_sharedMaterial: {fileID: -9081709142900960735, guid: c9c3c4be0ee40054095906babdf44be0,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -643,12 +645,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 60
   m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 20
-  m_fontSizeMax: 30
+  m_fontSizeMin: 40
+  m_fontSizeMax: 60
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -755,6 +757,7 @@ MonoBehaviour:
   BlankSprite: {fileID: 21300000, guid: 70e433de46068504fa56fcf7f49b32b1, type: 3}
   m_targetScrollTextCount: 0
   m_dialogueFinishedScrolling: 0
+  isConversationActive: 0
 --- !u!82 &2835732684393891774
 AudioSource:
   m_ObjectHideFlags: 0

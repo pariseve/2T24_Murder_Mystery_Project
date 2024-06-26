@@ -1,10 +1,13 @@
 using UnityEngine;
+using TMPro;
 using DialogueEditor;
 
 public class IanSheriffDay1TownDialogue : MonoBehaviour
 {
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private bool isInsideTrigger;
+    [SerializeField] private GameObject interactTextPrefab; // Reference to the TextMeshPro prefab
+    private GameObject interactTextInstance; // Instance of the prefab
     private KeyCode startConversationKey = KeyCode.E;
 
     private const string CONVERSATION_TRIGGERED_KEY = "IanSheriffDay1TownConversationTriggered";
@@ -24,6 +27,7 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInsideTrigger = true;
+            ShowInteractText(other.transform);
         }
     }
 
@@ -32,6 +36,7 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInsideTrigger = false;
+            HideInteractText();
         }
     }
 
@@ -61,6 +66,28 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         }
     }
 
+    private void ShowInteractText(Transform playerTransform)
+    {
+        if (interactTextPrefab != null)
+        {
+            interactTextInstance = Instantiate(interactTextPrefab, playerTransform);
+            interactTextInstance.transform.localPosition = new Vector3(0, 1, 0); // Adjust the position above the player's head
+            TextMeshProUGUI textComponent = interactTextInstance.GetComponentInChildren<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = "[E] to Interact";
+            }
+        }
+    }
+
+    private void HideInteractText()
+    {
+        if (interactTextInstance != null)
+        {
+            Destroy(interactTextInstance);
+        }
+    }
+
     // You can call this method if you ever need to reset the PlayerPrefs key (for testing purposes, etc.)
     public void ResetConversationTrigger()
     {
@@ -68,4 +95,5 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         PlayerPrefs.Save();
     }
 }
+
 
