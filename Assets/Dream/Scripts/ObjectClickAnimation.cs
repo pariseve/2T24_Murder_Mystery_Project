@@ -4,12 +4,12 @@ using DialogueEditor;
 
 public class ObjectClickAnimation : MonoBehaviour
 {
-    public float moveDistance = 20f;
-    public float moveSpeed = 5f;
-    public float spreadDistance = 5f;
-    public float spreadDuration = 1.0f;
-    public string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
-    public float animationDelay = 0.5f; // Delay before moving up
+    [SerializeField] private float moveDistance = 20f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float spreadDistance = 5f;
+    [SerializeField] private float spreadDuration = 1.0f;
+    [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
+    [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
 
     private NPCConversation npcConversation;
 

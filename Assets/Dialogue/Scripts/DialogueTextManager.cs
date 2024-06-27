@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueTextManager : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI DialogueText;
+    [SerializeField] private TMPro.TextMeshProUGUI DialogueText;
 
     // Method to change the text color of DialogueText
     public void SetTextColor(string colorHex)

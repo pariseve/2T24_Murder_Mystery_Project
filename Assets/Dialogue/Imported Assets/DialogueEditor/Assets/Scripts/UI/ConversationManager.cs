@@ -87,11 +87,11 @@ namespace DialogueEditor
         private ObjectClickDialogue objectClickDialogue;
         private PlayerController playerController;
         // Add a flag to track whether the current dialogue is finished scrolling
-        public bool m_dialogueFinishedScrolling = false;
+        [SerializeField] private bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
         private bool m_showingOption = false;
         private float BUTTON_COOLDOWN = 2f; // 2-second cooldown for button presses
-        public bool isConversationActive = false;
+        [SerializeField] private bool isConversationActive = false;
         private bool endingConversation = false;
         private Vector3 cursorPosition;
 
@@ -151,10 +151,14 @@ namespace DialogueEditor
                             }
                             DisableCursor();
                             SetupSpeech(nextSpeech);
+                            /*
                             if (objectClickDialogue != null)
                             {
                                 objectClickDialogue.DisableAllColliders();
                             }
+                            */
+
+                            Invoke("DelayedDisableColliders", 0.1f);
                         }
                         else
                         {
@@ -273,10 +277,14 @@ namespace DialogueEditor
                 toggleLookAround.DisableComponent();
             }
 
+            Invoke("DelayedDisableColliders", 0.1f);
+
+            /*
             if (objectClickDialogue != null)
             {
                 objectClickDialogue.DisableAllColliders();
             }
+            */
 
             isConversationActive = true;
             npcConversation.StartDialogue();
@@ -287,6 +295,14 @@ namespace DialogueEditor
             TurnOnUI();
             m_currentSpeech = m_conversation.Root;
             SetState(eState.TransitioningDialogueBoxOn);
+        }
+
+        private void DelayedDisableColliders()
+        {
+            if (objectClickDialogue != null)
+            {
+                objectClickDialogue.DisableAllColliders();
+            }
         }
 
         public void EndConversation()

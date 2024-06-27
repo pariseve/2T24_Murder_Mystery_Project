@@ -8,14 +8,14 @@ using System;
 
 public class MessageManager : MonoBehaviour
 {
-    public GameObject npcMessageWindowPrefab;
-    public GameObject dialogueBoxPrefab;
-    public GameObject contactPrefab;
-    public Transform messageChatParent;
-    public Transform contactParent;
+    [SerializeField] private GameObject npcMessageWindowPrefab;
+    [SerializeField] private GameObject dialogueBoxPrefab;
+    [SerializeField] private GameObject contactPrefab;
+    [SerializeField] private Transform messageChatParent;
+    [SerializeField] private Transform contactParent;
 
-    public GameObject messageNotificationPrefab; // Reference to the message notification prefab
-    public Transform messageNotificationParent; // Parent transform for the message notifications
+    [SerializeField] private GameObject messageNotificationPrefab; // Reference to the message notification prefab
+    [SerializeField] private Transform messageNotificationParent; // Parent transform for the message notifications
 
     private Dictionary<string, GameObject> messageChatInstances = new Dictionary<string, GameObject>();
     private Dictionary<string, List<string>> chatHistory = new Dictionary<string, List<string>>();
@@ -30,10 +30,10 @@ public class MessageManager : MonoBehaviour
 
     private Dictionary<string, GameObject> contactInstances = new Dictionary<string, GameObject>();
 
-    public GameObject contactScrollView; // Add this line
+    [SerializeField] private GameObject contactScrollView; // Add this line
 
     // PLAYER REPLY VARIABLES
-    public GameObject playerDialogueBoxPrefab;
+    [SerializeField] private GameObject playerDialogueBoxPrefab;
 
     private string playerReply;
 

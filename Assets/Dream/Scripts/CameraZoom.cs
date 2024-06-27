@@ -1,20 +1,21 @@
 using UnityEngine;
 using System.Collections;
-using DialogueEditor;
 
 public class CameraZoom : MonoBehaviour
 {
-    public float zoomSpeed = 10f;
-    public float zoomFactor = 2f; // Distance multiplier for zooming in
-    public LayerMask zoomLayer;
+    [SerializeField] private float zoomSpeed = 2f; // Slower zoom speed
+    [SerializeField] private float zoomFactor = 2f; // Distance multiplier for zooming in
+    [SerializeField] private LayerMask zoomLayer;
 
     private Camera cam;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private bool isZoomedIn = false;
 
-    private NPCConversation npcConversation;
-    private ConversationManager conversationManager;
+    public bool IsZoomedIn { get { return isZoomedIn; } }
+
+    // Reference to CameraRotation script
+    private CameraRotation cameraRotation;
 
     void Start()
     {
@@ -22,9 +23,8 @@ public class CameraZoom : MonoBehaviour
         originalPosition = cam.transform.position;
         originalRotation = cam.transform.rotation;
 
-        // Find the NPCConversation component in the scene
-        npcConversation = FindObjectOfType<NPCConversation>();
-        conversationManager = FindObjectOfType<ConversationManager>();
+        // Get reference to CameraRotation script
+        cameraRotation = GetComponent<CameraRotation>();
     }
 
     void Update()
@@ -33,7 +33,7 @@ public class CameraZoom : MonoBehaviour
         {
             ZoomInToObject();
         }
-        else if (Input.GetMouseButtonDown(1) && !npcConversation.isDialogueActive)
+        else if (Input.GetMouseButtonDown(1))
         {
             ZoomOut();
         }
@@ -82,7 +82,6 @@ public class CameraZoom : MonoBehaviour
     {
         if (!isZoomedIn) return;
 
-        // Zoom back out to the original position
         StartCoroutine(ZoomOutCoroutine());
     }
 
@@ -90,25 +89,44 @@ public class CameraZoom : MonoBehaviour
     {
         float progress = 0f;
         Vector3 startPosition = cam.transform.position;
-        Quaternion startRotation = cam.transform.rotation;
+        Quaternion startRotation = cam.transform.rotation; // Store the current rotation as the start rotation
         Vector3 direction = (targetPosition - cam.transform.position).normalized;
 
-        // Calculate the target rotation to look at the object
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        // Calculate target rotation without changing the current rotation
+        Quaternion targetRotation = Quaternion.LookRotation(direction, cam.transform.up);
 
         while (progress < 1f)
         {
-            cam.transform.position = Vector3.Lerp(startPosition, targetPosition - direction * zoomFactor, progress);
-            cam.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, progress);
             progress += Time.deltaTime * zoomSpeed;
+            float smoothProgress = Mathf.SmoothStep(0f, 1f, progress);
+
+            // Calculate the new position
+            Vector3 newPosition = Vector3.Lerp(startPosition, targetPosition - direction * zoomFactor, smoothProgress);
+
+            // Apply position
+            cam.transform.position = newPosition;
+
+            // Apply rotation smoothly
+            cam.transform.rotation = Quaternion.Lerp(startRotation, targetRotation, smoothProgress);
+
+            // Center the object horizontally on screen
+            Vector3 screenPoint = cam.WorldToViewportPoint(targetPosition);
+            Vector3 offset = new Vector3(0.5f - screenPoint.x, 0f, 0f);
+            offset = cam.transform.TransformDirection(offset);
+            cam.transform.position += offset;
+
             yield return null;
         }
 
+        // Final position and rotation assignment
         cam.transform.position = targetPosition - direction * zoomFactor;
-        cam.transform.rotation = targetRotation;
+        cam.transform.rotation = targetRotation; // Assign the target rotation directly at the end
 
-        // After reaching the target position and rotation, ensure the object is centered horizontally on screen
-        CenterObjectInView(targetPosition);
+        // Re-enable CameraRotation script after zooming
+        cameraRotation.enabled = true;
+
+        // Update zoom state
+        isZoomedIn = true;
     }
 
     private IEnumerator ZoomOutCoroutine()
@@ -119,39 +137,31 @@ public class CameraZoom : MonoBehaviour
 
         while (progress < 1f)
         {
-            cam.transform.position = Vector3.Lerp(startPosition, originalPosition, progress);
-            cam.transform.rotation = Quaternion.Lerp(startRotation, originalRotation, progress);
             progress += Time.deltaTime * zoomSpeed;
+            float smoothProgress = Mathf.SmoothStep(0f, 1f, progress);
+
+            // Calculate the new position and rotation
+            Vector3 newPosition = Vector3.Lerp(startPosition, originalPosition, smoothProgress);
+            Quaternion newRotation = Quaternion.Lerp(startRotation, originalRotation, smoothProgress);
+
+            // Apply position and rotation
+            cam.transform.position = newPosition;
+            cam.transform.rotation = newRotation;
+
             yield return null;
         }
 
+        // Final position and rotation assignment
         cam.transform.position = originalPosition;
         cam.transform.rotation = originalRotation;
 
-        // After zooming out, ensure the object is centered horizontally on screen
-        if (isZoomedIn)
-        {
-            CenterObjectInView(originalPosition);
-            isZoomedIn = false;
-        }
-    }
+        // Update zoom state
+        isZoomedIn = false;
 
-    private void CenterObjectInView(Vector3 targetPosition)
-    {
-        // Convert the target position from world space to viewport space
-        Vector3 screenPoint = cam.WorldToViewportPoint(targetPosition);
+        // Re-enable CameraRotation script after zooming out
+        cameraRotation.enabled = true;
 
-        // Calculate the offset to center the target horizontally on screen
-        Vector3 offset = new Vector3(0.5f - screenPoint.x, 0f, 0f);
-
-        // Convert the offset to world space
-        offset = cam.transform.TransformDirection(offset);
-
-        // Apply the offset to the camera position
-        cam.transform.position += offset;
+        // Reset rotation in CameraRotation
+        cameraRotation.ResetRotation();
     }
 }
-
-
-
-

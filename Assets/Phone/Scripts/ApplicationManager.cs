@@ -4,14 +4,14 @@ using UnityEngine.EventSystems;
 
 public class ApplicationManager : MonoBehaviour
 {
-    public GameObject applicationIcons; // The parent object containing all application icons
-    public RawImage fingerprintImage;
-    public GameObject lockscreen;
-    public float longPressDuration = 1.5f;
-    public float bounceDuration = 0.5f;
-    public Vector3 bounceScale = new Vector3(1.2f, 1.2f, 1.2f);
-    public RawImage[] applications; // Array of application RawImages
-    public RawImage[] appIcons; // Array of RawImages corresponding to application icons
+    [SerializeField] private GameObject applicationIcons; // The parent object containing all application icons
+    [SerializeField] private RawImage fingerprintImage;
+    [SerializeField] private GameObject lockscreen;
+    [SerializeField] private float longPressDuration = 1f;
+    [SerializeField] private float bounceDuration = 0.5f;
+    [SerializeField] private Vector3 bounceScale = new Vector3(1.2f, 1.2f, 1.2f);
+    [SerializeField] private RawImage[] applications; // Array of application RawImages
+    [SerializeField] private RawImage[] appIcons; // Array of RawImages corresponding to application icons
 
     private bool isLongPressing = false;
     private float pressTime = 0f;

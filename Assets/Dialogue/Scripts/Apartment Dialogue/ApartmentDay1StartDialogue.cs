@@ -49,7 +49,7 @@ public class ApartmentDay1StartDialogue : MonoBehaviour
         yield return StartCoroutine(FadeToBlack());
 
         // Blink three times
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 1; i++)
         {
             yield return StartCoroutine(FadeOut());
             yield return new WaitForSeconds(0.1f); // Short pause between blinks

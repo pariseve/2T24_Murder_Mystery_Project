@@ -6,16 +6,16 @@ using System.Collections.Generic;
 
 public class NotesManager : MonoBehaviour
 {
-    public GameObject notePrefab; // Reference to the note prefab
-    public Transform notesParent; // Parent transform to organize notes in the hierarchy
-    public ScrollRect scrollRect; // Reference to the ScrollRect
+    [SerializeField] private GameObject notePrefab; // Reference to the note prefab
+    [SerializeField] private Transform notesParent; // Parent transform to organize notes in the hierarchy
+    [SerializeField] private ScrollRect scrollRect; // Reference to the ScrollRect
 
-    public GameObject notificationPrefab; // Reference to the notification prefab
-    public Transform notificationParent; // Parent transform for notifications
+    [SerializeField] private GameObject notificationPrefab; // Reference to the notification prefab
+    [SerializeField] private Transform notificationParent; // Parent transform for notifications
 
-    public bool dream1brokenclock = false;
-    public bool note2 = false;
-    public bool note3 = false;
+    [SerializeField] private bool dream1brokenclock = false;
+    [SerializeField] private bool dream1mirror = false;
+    [SerializeField] private bool note3 = false;
 
     private float noteSpacing = 10f; // Spacing between notes
 
@@ -45,11 +45,11 @@ public class NotesManager : MonoBehaviour
     {
         if (dream1brokenclock && !IsNoteInstantiated("dream1brokenclock"))
         {
-            CreateNote("There was a broken clock in my dream with the time on 9:00... what could that mean?", "dream1brokenclock");
+            CreateNote("There was a broken clock in my dream near an empty coffee cup. What could that mean?", "dream1brokenclock");
         }
-        if (note2 && !IsNoteInstantiated("note2"))
+        if (dream1mirror && !IsNoteInstantiated("dream1mirror"))
         {
-            CreateNote("This is the text for note 2", "note2");
+            CreateNote("There was a mirror in my dream that had a reflection of me with my hands covered in blood...", "dream1mirror");
         }
         if (note3 && !IsNoteInstantiated("note3"))
         {
@@ -81,11 +81,11 @@ public class NotesManager : MonoBehaviour
         {
             case "dream1brokenclock":
                 dream1brokenclock = true;
-                ShowNoteNotification("There was a broken clock in my dream with the time on 9:00... what could that mean?");
+                ShowNoteNotification("There was a broken clock in my dream near an empty coffee cup. What could that mean?");
                 break;
-            case "note2":
-                note2 = true;
-                ShowNoteNotification("This is the text for note 2");
+            case "dream1mirror":
+                dream1mirror = true;
+                ShowNoteNotification("There was a mirror in my dream that had a reflection of me with my hands covered in blood...");
                 break;
             case "note3":
                 note3 = true;
