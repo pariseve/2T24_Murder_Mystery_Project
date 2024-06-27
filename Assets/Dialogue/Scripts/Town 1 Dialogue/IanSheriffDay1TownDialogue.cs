@@ -27,7 +27,24 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInsideTrigger = true;
-            ShowInteractText(other.transform);
+
+            if (!PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+            {
+                ShowInteractText();
+            }
+
+            if (PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+            {
+                HideInteractText();
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+        {
+            HideInteractText();
         }
     }
 
@@ -66,12 +83,24 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         }
     }
 
-    private void ShowInteractText(Transform playerTransform)
+    private void ShowInteractText()
     {
         if (interactTextPrefab != null)
         {
-            interactTextInstance = Instantiate(interactTextPrefab, playerTransform);
-            interactTextInstance.transform.localPosition = new Vector3(0, 1, 0); // Adjust the position above the player's head
+            // Get collider bounds
+            Collider collider = GetComponent<Collider>();
+            Vector3 colliderCenter = collider.bounds.center;
+            Vector3 colliderExtents = collider.bounds.extents;
+
+            // Calculate position just above the collider
+            Vector3 textPosition = colliderCenter + Vector3.up * colliderExtents.y;
+
+            // Instantiate the interactTextPrefab and position it
+            interactTextInstance = Instantiate(interactTextPrefab, textPosition, Quaternion.identity, transform);
+
+            // Optionally adjust the position or rotation as needed
+            // interactTextInstance.transform.localPosition = new Vector3(0, 0.5f, 0); // Example: Adjust local position
+
             TextMeshProUGUI textComponent = interactTextInstance.GetComponentInChildren<TextMeshProUGUI>();
             if (textComponent != null)
             {

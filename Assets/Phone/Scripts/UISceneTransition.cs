@@ -5,8 +5,8 @@ using System.Collections;
 
 public class UISceneTransition : MonoBehaviour
 {
-    public float transitionDuration = 1.0f; // Duration of the fade transition
-    public Image transitionImage; // Reference to the UI Image used for transition
+    [SerializeField] private float transitionDuration = 1.0f; // Duration of the fade transition
+    [SerializeField] private Image transitionImage; // Reference to the UI Image used for transition
 
     private CanvasGroup canvasGroup;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FaceCamera : MonoBehaviour
 {
-    public LayerMask layersToFaceCamera;
+    [SerializeField] private LayerMask layersToFaceCamera;
 
     void Update()
     {

@@ -3,11 +3,11 @@ using DialogueEditor;
 
 public class DoorDream1Dialogue : MonoBehaviour
 {
-    public NPCConversation doorCantAccessDialogue;
+    [SerializeField] private NPCConversation doorCantAccessDialogue;
 
     // public NPCConversation doorAccessDialogue;
 
-    public bool dialogueStarted = false; // Track dialogue state for this instance
+    [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
 
     private Dream1BoolManager dream1BoolManager;
 
@@ -76,7 +76,7 @@ public class DoorDream1Dialogue : MonoBehaviour
             }
     }
 
-    private void DisableAllColliders()
+    public void DisableAllColliders()
     {
         Collider[] allColliders = FindObjectsOfType<Collider>();
         foreach (Collider collider in allColliders)

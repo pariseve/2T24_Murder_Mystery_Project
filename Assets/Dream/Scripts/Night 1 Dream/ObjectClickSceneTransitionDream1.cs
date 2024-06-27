@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ObjectClickSceneTransitionDream1 : MonoBehaviour
 {
-    public UISceneTransition sceneTransition;
-    public string targetSceneName;
+    [SerializeField] private UISceneTransition sceneTransition;
+    [SerializeField] private string targetSceneName;
     private Dream1BoolManager dream1BoolManager;
 
     private void Start()

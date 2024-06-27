@@ -1,14 +1,18 @@
 using UnityEngine;
+using System.Collections;
 using DialogueEditor;
 
 public class ObjectClickDialogue : MonoBehaviour
 {
-    public NPCConversation dialogue; // Assign NPCConversation for this instance in the Inspector
+    [SerializeField] private NPCConversation dialogue; // Assign NPCConversation for this instance in the Inspector
 
-    public bool dialogueStarted = false; // Track dialogue state for this instance
+    [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
+
+    private CameraZoom cameraZoom;
 
     private void Start()
     {
+        cameraZoom = FindObjectOfType<CameraZoom>();
         //npcConversation = FindObjectOfType<NPCConversation>();
     }
 
@@ -31,9 +35,9 @@ public class ObjectClickDialogue : MonoBehaviour
                 // Check if the hit object is the object this script is attached to
                 if (hit.collider.gameObject == gameObject)
                 {
-                    //DisableAllColliders();
                     // Start the conversation for this instance
                     dialogueStarted = true;
+                    // DisableAllColliders();
                     ConversationManager.Instance.StartConversation(dialogue);
                 }
             }

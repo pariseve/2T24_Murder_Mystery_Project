@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class PhoneSystem : MonoBehaviour
 {
-    public RawImage phoneImage;
-    public KeyCode toggleKey = KeyCode.Tab;
-    public float slideSpeed = 500f;
-    public GameObject applicationIcons;
-    public GameObject applications; // The parent object containing all application icons
-    public GameObject lockscreen; // The lockscreen object
-    public RawImage[] application; // Array of application RawImages
+    [SerializeField] private RawImage phoneImage;
+    [SerializeField] private KeyCode toggleKey = KeyCode.Tab;
+    [SerializeField] private float slideSpeed = 500f;
+    [SerializeField] private GameObject applicationIcons;
+    [SerializeField] private GameObject applications; // The parent object containing all application icons
+    [SerializeField] private GameObject lockscreen; // The lockscreen object
+    [SerializeField] private RawImage[] application; // Array of application RawImages
 
     private RectTransform phoneRectTransform;
     private bool isPhoneVisible = false;
