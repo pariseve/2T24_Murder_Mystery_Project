@@ -14,7 +14,14 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        Inventory.instance.SaveInventory();
+        if(Inventory.instance != null)
+        {
+            Inventory.instance.SaveInventory();
+        }
+        else
+        {
+            Debug.Log("inventory not there bro");
+        }
     }
 
     private void OnApplicationPause(bool pause)

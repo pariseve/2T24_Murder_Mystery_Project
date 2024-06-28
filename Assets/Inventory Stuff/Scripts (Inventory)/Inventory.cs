@@ -15,8 +15,8 @@ public class Inventory : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
 
-        //LoadInventory(); // Load inventory and picked up items on start
-        Clear(); //for testing
+        LoadInventory(); // Load inventory and picked up items on start
+        //Clear(); //for testing
     }
 
     public List<Item> items = new List<Item>();
@@ -26,8 +26,15 @@ public class Inventory : MonoBehaviour
 
     public bool Add(Item item)
     {
-        items.Add(item);
-        onItemChangedCallback?.Invoke();
+        if (!items.Contains(item)) //does the item exist
+        {
+            items.Add(item); //add the item to the array
+            onItemChangedCallback?.Invoke(); //do the item checks
+        }
+        else
+        {
+            //onItemChangedCallback?.Invoke();
+        }
         return true;
     }
 
