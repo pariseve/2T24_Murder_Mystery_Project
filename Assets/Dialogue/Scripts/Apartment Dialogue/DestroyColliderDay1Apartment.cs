@@ -1,27 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyColliderDay1Apartment : MonoBehaviour
 {
-    [SerializeField] private GameObject itemToMonitor;
-    [SerializeField] private GameObject[] objectsToDelete;
+    [SerializeField] private string objectNameToMonitor;
 
-    void Update()
+    void Start()
     {
-        // Check if the item to monitor is null (destroyed)
-        if (itemToMonitor == null)
+        // Check if this object should be destroyed based on saved state
+        if (PlayerPrefs.GetInt(objectNameToMonitor, 0) == 1) // 1 means destroyed, 0 means not destroyed
         {
-            // If the item is destroyed, delete all objects in the array
-            foreach (GameObject obj in objectsToDelete)
-            {
-                if (obj != null)
-                {
-                    Destroy(obj);
-                }
-            }
-
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
+
+    void OnDestroy()
+    {
+        // Mark object as destroyed when it is destroyed
+        PlayerPrefs.SetInt(objectNameToMonitor, 1);
+        PlayerPrefs.Save();
+    }
+
+    // Method to handle destruction via button click
+    public void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
 }
+
