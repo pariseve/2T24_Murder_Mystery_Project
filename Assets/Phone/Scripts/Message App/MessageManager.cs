@@ -13,6 +13,8 @@ public class MessageManager : MonoBehaviour
     [SerializeField] private GameObject contactPrefab;
     [SerializeField] private Transform messageChatParent;
     [SerializeField] private Transform contactParent;
+    [SerializeField] private GameObject messageApplication;
+    [SerializeField] private GameObject contactsUI;
 
     [SerializeField] private GameObject messageNotificationPrefab; // Reference to the message notification prefab
     [SerializeField] private Transform messageNotificationParent; // Parent transform for the message notifications
@@ -31,6 +33,8 @@ public class MessageManager : MonoBehaviour
     private Dictionary<string, GameObject> contactInstances = new Dictionary<string, GameObject>();
 
     [SerializeField] private GameObject contactScrollView; // Add this line
+
+    private Dictionary<string, bool> unreadMessages = new Dictionary<string, bool>();
 
     // PLAYER REPLY VARIABLES
     [SerializeField] private GameObject playerDialogueBoxPrefab;
@@ -64,6 +68,109 @@ public class MessageManager : MonoBehaviour
         {
             Debug.LogError("Contact Scroll View not assigned in the inspector.");
         }
+
+        AddBackImageListener();
+        AddBackImageListenerToContacts();
+    }
+
+    private void AddBackImageListener()
+    {
+        foreach (var chatInstance in messageChatInstances.Values)
+        {
+            Image backImage = chatInstance.GetComponentInChildren<Image>(true); // Search in all children
+            if (backImage != null && backImage.name == "Back Button")
+            {
+                // Add an EventTrigger component if not already present
+                EventTrigger trigger = backImage.gameObject.GetComponent<EventTrigger>();
+                if (trigger == null)
+                {
+                    trigger = backImage.gameObject.AddComponent<EventTrigger>();
+                }
+
+                // Create a new entry for Pointer Click event
+                EventTrigger.Entry entry = new EventTrigger.Entry();
+                entry.eventID = EventTriggerType.PointerClick;
+                entry.callback.AddListener((eventData) =>
+                {
+                    // Deactivate all message chat histories
+                    DeactivateAllChatHistories();
+
+                    // Activate the message application
+                    if (messageApplication != null)
+                    {
+                        messageApplication.SetActive(true);
+                    }
+                    else
+                    {
+                        Debug.LogError("Message Application not assigned in the inspector.");
+                    }
+                });
+
+                // Add the entry to the EventTrigger events list
+                trigger.triggers.Add(entry);
+            }
+            else
+            {
+                Debug.LogError("Back Image not found in the chat instance prefab.");
+            }
+        }
+    }
+
+    private void AddBackImageListenerToContacts()
+    {
+        Image backImage = contactsUI.GetComponentInChildren<Image>(true); // Search in all children
+        if (backImage != null && backImage.name == "Back Button")
+        {
+            // Add an EventTrigger component if not already present
+            EventTrigger trigger = backImage.gameObject.GetComponent<EventTrigger>();
+            if (trigger == null)
+            {
+                trigger = backImage.gameObject.AddComponent<EventTrigger>();
+            }
+
+            // Create a new entry for Pointer Click event
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            entry.callback.AddListener((eventData) =>
+            {
+                // Zoom out effect before disabling notesUI
+                StartCoroutine(ZoomOutAndDisableNotesUI());
+            });
+
+            // Add the entry to the EventTrigger events list
+            trigger.triggers.Add(entry);
+        }
+        else
+        {
+            Debug.LogError("Back Image not found in the chat instance prefab.");
+        }
+    }
+
+    private IEnumerator ZoomOutAndDisableNotesUI()
+    {
+        float zoomDuration = 0.5f; // Adjust duration as needed
+        Vector3 originalScale = contactsUI.transform.localScale;
+        Vector3 targetScale = Vector3.zero; // Zoom out to zero size
+
+        float elapsedTime = 0f;
+        while (elapsedTime < zoomDuration)
+        {
+            contactsUI.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / zoomDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure it ends at the target scale
+        contactsUI.transform.localScale = targetScale;
+
+        // Disable the notesUI
+        contactsUI.SetActive(false);
+
+        // Wait for a short time
+        yield return new WaitForSeconds(0.1f); // Adjust delay as needed
+
+        // Set notesUI back to its original scale
+        contactsUI.transform.localScale = originalScale;
     }
 
     void Update()
@@ -210,10 +317,13 @@ public class MessageManager : MonoBehaviour
         // Button replyButton = messageChatUI.transform.Find("Reply Image/ReplyButton").GetComponent<Button>();
         // replyButton.onClick.AddListener(() => OnReplyButtonClicked(npcName, playerReply));
         // replyButton.gameObject.SetActive(false); // Initially set to false
+        AddBackImageListener();
     }
 
     private void OpenChatWithNPC(string npcName)
     {
+        SetMessageRead(npcName);
+
         // Check if there's an existing chat history content for the NPC
         var chatHistoryTuple = FindChatHistoryContent(npcName);
 
@@ -280,6 +390,8 @@ public class MessageManager : MonoBehaviour
                 AddScrollbarListener(scrollRect);
             }
 
+            AddBackImageListener();
+
             // Show the reply button
             // Button replyButton = newChatHistory.transform.Find("Reply Image/ReplyButton").GetComponent<Button>();
             // replyButton.onClick.AddListener(() => OnReplyButtonClicked(npcName, playerReply));
@@ -339,6 +451,7 @@ public class MessageManager : MonoBehaviour
             string playerReply = parts[2];
             OpenChatWithNPC(npcName);
             CreateNPCMessage(npcName, message, playerReply);
+            SetMessageUnread(npcName);
 
             // Remove the previous playerReply for this NPC, if it exists
             if (lastPlayerReplies.ContainsKey(npcName))
@@ -355,7 +468,77 @@ public class MessageManager : MonoBehaviour
         }
     }
 
-    private void OnReplyButtonClicked(string npcName, string playerReply)
+    private void SetMessageUnread(string npcName)
+    {
+        if (unreadMessages.ContainsKey(npcName))
+        {
+            unreadMessages[npcName] = true;
+        }
+        else
+        {
+            unreadMessages.Add(npcName, true);
+        }
+
+        // Update the "New Message" indicator for the contact
+        UpdateNewMessageIndicator(npcName);
+    }
+
+    private void SetMessageRead(string npcName)
+    {
+        if (unreadMessages.ContainsKey(npcName))
+        {
+            unreadMessages[npcName] = false;
+        }
+
+        // Update the "New Message" indicator for the contact
+        UpdateNewMessageIndicator(npcName);
+    }
+
+    private void UpdateNewMessageIndicator(string npcName)
+    {
+        if (contactInstances.ContainsKey(npcName))
+        {
+            GameObject contactInstance = contactInstances[npcName];
+            Transform newMessageIndicator = contactInstance.transform.Find("New Message");
+
+            if (newMessageIndicator != null)
+            {
+                newMessageIndicator.gameObject.SetActive(unreadMessages[npcName]);
+            }
+        }
+    }
+
+    public bool HasUnreadMessages()
+    {
+        foreach (var unread in unreadMessages.Values)
+        {
+            if (unread)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Add this method to display the new message notification
+    public void DisplayNewMessageNotification()
+    {
+        foreach (var npc in unreadMessages)
+        {
+            if (contactInstances.ContainsKey(npc.Key))
+            {
+                GameObject contactInstance = contactInstances[npc.Key];
+                Transform newMessageIndicator = contactInstance.transform.Find("New Message");
+
+                if (newMessageIndicator != null)
+                {
+                    newMessageIndicator.gameObject.SetActive(npc.Value);
+                }
+            }
+        }
+    }
+
+private void OnReplyButtonClicked(string npcName, string playerReply)
     {
         Debug.Log("Button Clicked");
         Debug.Log("Player Reply: " + playerReply); // Debugging
@@ -479,6 +662,11 @@ public class MessageManager : MonoBehaviour
 
         // Update content size after adding the contact
         UpdateContactListContentSize();
+
+        if (!unreadMessages.ContainsKey(npcName))
+        {
+            unreadMessages.Add(npcName, true);
+        }
     }
 
     private void UpdateContactListContentSize()

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class NotesManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class NotesManager : MonoBehaviour
     [SerializeField] private bool dream1brokenclock = false;
     [SerializeField] private bool dream1mirror = false;
     [SerializeField] private bool note3 = false;
+
+    [SerializeField] private GameObject notesUI;
 
     private float noteSpacing = 10f; // Spacing between notes
 
@@ -39,6 +42,64 @@ public class NotesManager : MonoBehaviour
     void Start()
     {
         AddScrollbarListener(scrollRect);
+        AddBackImageListener();
+    }
+
+    private void AddBackImageListener()
+    {
+        Image backImage = notesUI.GetComponentInChildren<Image>(true); // Search in all children
+        if (backImage != null && backImage.name == "Back Button")
+        {
+            // Add an EventTrigger component if not already present
+            EventTrigger trigger = backImage.gameObject.GetComponent<EventTrigger>();
+            if (trigger == null)
+            {
+                trigger = backImage.gameObject.AddComponent<EventTrigger>();
+            }
+
+            // Create a new entry for Pointer Click event
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerClick;
+            entry.callback.AddListener((eventData) =>
+            {
+                // Zoom out effect before disabling notesUI
+                StartCoroutine(ZoomOutAndDisableNotesUI());
+            });
+
+            // Add the entry to the EventTrigger events list
+            trigger.triggers.Add(entry);
+        }
+        else
+        {
+            Debug.LogError("Back Image not found in the chat instance prefab.");
+        }
+    }
+
+    private IEnumerator ZoomOutAndDisableNotesUI()
+    {
+        float zoomDuration = 0.5f; // Adjust duration as needed
+        Vector3 originalScale = notesUI.transform.localScale;
+        Vector3 targetScale = Vector3.zero; // Zoom out to zero size
+
+        float elapsedTime = 0f;
+        while (elapsedTime < zoomDuration)
+        {
+            notesUI.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / zoomDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure it ends at the target scale
+        notesUI.transform.localScale = targetScale;
+
+        // Disable the notesUI
+        notesUI.SetActive(false);
+
+        // Wait for a short time
+        yield return new WaitForSeconds(0.1f); // Adjust delay as needed
+
+        // Set notesUI back to its original scale
+        notesUI.transform.localScale = originalScale;
     }
 
     public void InstantiateNotes()
