@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine; // Ensure you have the Cinemachine namespace included
 
 public class CameraManager : MonoBehaviour
 {
-    public GameObject mainVirtualCam;
+    public CinemachineVirtualCamera mainVirtualCam; // Changed type to CinemachineVirtualCamera
     public GameObject altVirtualCam;
 
     private GameObject activeCamera; // Track the active camera
 
     void Start()
     {
-        activeCamera = mainVirtualCam;
+        activeCamera = mainVirtualCam.gameObject;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,16 +27,14 @@ public class CameraManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SwitchCameras(mainVirtualCam);
+            SwitchCameras(mainVirtualCam.gameObject);
         }
     }
 
     private void SwitchCameras(GameObject newActiveCamera)
     {
         activeCamera.SetActive(false);
-
         newActiveCamera.SetActive(true);
-
         activeCamera = newActiveCamera;
     }
 
@@ -46,6 +45,12 @@ public class CameraManager : MonoBehaviour
 
     public void ShowPlayer()
     {
-        SwitchCameras(mainVirtualCam);
+        SwitchCameras(mainVirtualCam.gameObject);
+    }
+
+    public void SetPlayerCharacter(GameObject character)
+    {
+        mainVirtualCam.Follow = character.transform;
+        //mainVirtualCam.LookAt = character.transform;
     }
 }

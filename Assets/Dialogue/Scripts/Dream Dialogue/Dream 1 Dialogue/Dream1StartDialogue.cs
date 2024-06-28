@@ -1,5 +1,6 @@
 using UnityEngine;
 using DialogueEditor;
+using System.Collections;
 
 public class Dream1StartDialogue : MonoBehaviour
 {
@@ -13,13 +14,20 @@ public class Dream1StartDialogue : MonoBehaviour
         if (!PlayerPrefs.HasKey(METHOD_TRIGGERED_KEY))
         {
             // If not triggered before, start the dialogue
-            StartDialogue();
+            StartCoroutine(StartTheDialogue());
         }
         else
         {
             // Method has been triggered before, handle accordingly
             Debug.Log("Dialogue has already been triggered.");
         }
+    }
+
+    private IEnumerator StartTheDialogue()
+    {
+        yield return new WaitForSeconds(0.5f);
+        StartDialogue();
+
     }
 
     private void StartDialogue()
