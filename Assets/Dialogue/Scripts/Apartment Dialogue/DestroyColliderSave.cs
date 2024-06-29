@@ -1,28 +1,22 @@
 using UnityEngine;
 
-public class DestroyColliderDay1Apartment : MonoBehaviour
+public class DestroyColliderSave : MonoBehaviour
 {
     [SerializeField] private string objectNameToMonitor;
 
     void Start()
     {
         // Check if this object should be destroyed based on saved state
-        if (PlayerPrefs.GetInt(objectNameToMonitor, 0) == 1) // 1 means destroyed, 0 means not destroyed
+        if (ObjectManager.Instance.IsObjectDestroyed(objectNameToMonitor))
         {
             Destroy(gameObject);
         }
     }
 
-    void OnDestroy()
-    {
-        // Mark object as destroyed when it is destroyed
-        PlayerPrefs.SetInt(objectNameToMonitor, 1);
-        PlayerPrefs.Save();
-    }
-
     // Method to handle destruction via button click
     public void DestroyObject()
     {
+        ObjectManager.Instance.MarkObjectDestroyed(objectNameToMonitor);
         Destroy(gameObject);
     }
 }
