@@ -15,7 +15,7 @@ public class ItemPickup : MonoBehaviour
         }
 
         // check if this item has already been picked up
-        if (Inventory.instance.PickedUpItems.Contains(uniqueID))
+        if (InventoryManager.instance.PickedUpItems.Contains(uniqueID))
         {
             Destroy(gameObject);
         }
@@ -25,19 +25,34 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Player interacted with item: " + item.itemName);
+            //Debug.Log("Player interacted with item: " + item.itemName);
 
-            if (Inventory.instance.Add(item))
+            //if (Inventory.instance.Add(item))
+            //{
+            //    Debug.Log("Item added to inventory: " + item.itemName);
+
+            //    // Mark the item as picked up
+            //    Inventory.instance.PickedUpItems.Add(uniqueID);
+            //    Inventory.instance.SaveInventory(); // Save the inventory including picked up items
+
+            //    // Show pickup text through the UIManager
+            //    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
+
+            //    Destroy(gameObject);
+            //}
+            //else
+            //{
+            //    Debug.Log("Failed to add item to inventory: " + item.itemName);
+            //}
+
+            if (InventoryManager.instance.AddItem(item))
             {
                 Debug.Log("Item added to inventory: " + item.itemName);
-
-                // Mark the item as picked up
-                Inventory.instance.PickedUpItems.Add(uniqueID);
-                Inventory.instance.SaveInventory(); // Save the inventory including picked up items
-
+                // Add the item to the picked up items list
+                InventoryManager.instance.PickedUpItems.Add(uniqueID);
                 // Show pickup text through the UIManager
                 InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
-
+                // Destroy the item pickup
                 Destroy(gameObject);
             }
             else

@@ -59,48 +59,48 @@ public class InventorySlot : MonoBehaviour
         Debug.Log("Slot cleared"); // Debug log for confirmation
     }
 
-    public void OpenInteractionPanel()
-    {
-        if (item != null)
-        {
-            interactionsPanel.SetActive(true);
-            isInteractOpen = true;
-            Debug.Log("Interaction panel is open");
-        }
-    }
+    //public void OpenInteractionPanel()
+    //{
+    //    if (item != null)
+    //    {
+    //        interactionsPanel.SetActive(true);
+    //        isInteractOpen = true;
+    //        Debug.Log("Interaction panel is open");
+    //    }
+    //}
 
-    public void CloseInteractionPanel()
-    {
-        interactionsPanel.SetActive(false);
-        isInteractOpen = false;
-        Debug.Log("interaction panel is closed");
-    }
+    //public void CloseInteractionPanel()
+    //{
+    //    interactionsPanel.SetActive(false);
+    //    isInteractOpen = false;
+    //    Debug.Log("interaction panel is closed");
+    //}
 
-    public void OpenExaminePanel()
-    {
-        if (item != null)
-        {
-            // Update UI elements in the examine panel
-            examinePanel.SetActive(true);
-            LeanTween.scale(examinePanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutBack);
-            examineNameText.text = item.itemName;
-            examineDescriptionText.text = item.description;
-            examineImage.sprite = item.icon;
+    //public void OpenExaminePanel()
+    //{
+    //    if (item != null)
+    //    {
+    //        // Update UI elements in the examine panel
+    //        examinePanel.SetActive(true);
+    //        LeanTween.scale(examinePanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutBack);
+    //        examineNameText.text = item.itemName;
+    //        examineDescriptionText.text = item.description;
+    //        examineImage.sprite = item.icon;
 
-            if (isInteractOpen)
-            {
-                CloseInteractionPanel();
-            }
-        }
-    }
+    //        if (isInteractOpen)
+    //        {
+    //            CloseInteractionPanel();
+    //        }
+    //    }
+    //}
 
-    public bool HasItem()
-    {
-        return item != null;
-    }
+    //public bool HasItem()
+    //{
+    //    return item != null;
+    //}
 
-    public Item GetItem()
-    {
-        return item;
-    }
+    //public Item GetItem()
+    //{
+    //    return item;
+    //}
 }
