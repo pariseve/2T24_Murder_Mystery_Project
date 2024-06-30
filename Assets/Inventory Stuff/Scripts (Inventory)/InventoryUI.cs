@@ -6,19 +6,24 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI instance; // Singleton instance
 
-    public Transform itemsParent;
-    public GameObject inventoryUI;
+    public GameObject display;
+    public Transform grid;
+    private bool isOpen = false;
+
+    // Interaction panel variables
+    public InventoryItem curInventoryItem;
+
+    // Examine panel variables
     public GameObject examinePanel;
     public TextMeshProUGUI examineNameText;
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
 
+    // Pickup text variables
     public TextMeshProUGUI pickupText;
 
-    private bool isOpen = false;
 
-    Inventory inventory;
-    InventorySlot[] slots;
+    //InventorySlot[] slots;
 
     void Awake()
     {
@@ -28,19 +33,17 @@ public class InventoryUI : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        // Get the singleton instance of the inventory
-        inventory = Inventory.instance;
-        // Subscribe UpdateUI to the onItemChangedCallback
-        inventory.onItemChangedCallback += UpdateUI;
+    //void Start()
+    //{
+    //    // Subscribe UpdateUI to the onItemChangedCallback
+    //    Inventory.instance.onItemChangedCallback += UpdateUI;
 
-        // Get all the InventorySlot components in the children of itemsParent
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-    }
+    //    // Get all the InventorySlot components in the children of itemsParent
+    //    slots = grid.GetComponentsInChildren<InventorySlot>();
+    //}
 
     void Update()
     {
@@ -56,26 +59,38 @@ public class InventoryUI : MonoBehaviour
 
     void OpenUI()
     {
-        LeanTween.moveLocalY(inventoryUI, 440f, 0.5f).setEase(LeanTweenType.easeOutQuart);
+        LeanTween.moveLocalY(display, 440f, 0.5f).setEase(LeanTweenType.easeOutQuart);
         isOpen = true;
     }
 
     void CloseUI()
     {
-        LeanTween.moveLocalY(inventoryUI, 650f, 0.5f).setEase(LeanTweenType.easeInQuart);
+        LeanTween.moveLocalY(display, 650f, 0.5f).setEase(LeanTweenType.easeInQuart);
+
+        // If there is an interaction panel open, close it
+        if (curInventoryItem != null)
+        {
+            curInventoryItem.CloseInteractionPanel();
+            curInventoryItem = null;
+        }
+
         isOpen = false;
     }
 
-    void UpdateUI()
-    {
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (i < inventory.items.Count)
-            {
-                slots[i].AddItem(inventory.items[i]);
-            }
-        }
-    }
+    //void UpdateUI()
+    //{
+    //    for (int i = 0; i < slots.Length; i++)
+    //    {
+    //        if (i < Inventory.instance.items.Count)
+    //        {
+    //            slots[i].AddItem(Inventory.instance.items[i]);
+    //        }
+    //    }
+    //}
+
+    //-------------------------------------------------------------------------------------
+    // PICKUP TEXT
+    //-------------------------------------------------------------------------------------
 
     public void ShowPickupText(string text)
     {
@@ -88,6 +103,10 @@ public class InventoryUI : MonoBehaviour
                 Invoke("ClearPickupText", 2f); // Clear the text after 2 seconds
             });
         }
+        else
+        {
+            Debug.Log("Pickup text not found.");
+        }
     }
 
     private void ClearPickupText()
@@ -99,15 +118,39 @@ public class InventoryUI : MonoBehaviour
                 pickupText.text = "";
             });
         }
+        else
+        {
+            Debug.Log("Pickup text not found.");
+        }
+    }
+
+    //-------------------------------------------------------------------------------------
+    // EXAMINE PANEL
+    //-------------------------------------------------------------------------------------
+
+    public void OpenExaminePanel(Item item)
+    {
+        if (item != null)
+        {
+            // Update UI elements in the examine panel
+            examineNameText.text = item.itemName;
+            examineDescriptionText.text = item.description;
+            examineImage.sprite = item.icon;
+            examinePanel.SetActive(true);
+            LeanTween.scale(examinePanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutBack);
+        }
     }
 
     public void CloseExaminePanel()
     {
-        LeanTween.scale(examinePanel, new Vector2(0, 0), 1f)
-            .setEase(LeanTweenType.easeInBack)
-            .setOnComplete(() =>
+        LeanTween.scale(examinePanel, new Vector2(0, 0), 1f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
             {
                 examinePanel.SetActive(false); // This will be called after the animation completes
             });
+    }
+
+    public void UpdateCurrentInventoryItem(InventoryItem inventoryItem)
+    {
+        curInventoryItem = inventoryItem;
     }
 }
