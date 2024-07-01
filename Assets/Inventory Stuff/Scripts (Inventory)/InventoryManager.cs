@@ -23,6 +23,8 @@ public class InventoryManager : MonoBehaviour
             return;
         }
         instance = this;
+
+        DontDestroyOnLoad(this);
     }
 
     public bool AddItem(Item item)
@@ -41,6 +43,7 @@ public class InventoryManager : MonoBehaviour
                 itemInSlot.stackCount++;
                 // Update the stack count text in the UI
                 itemInSlot.RefreshCount();
+                onItemChangedCallback?.Invoke();
                 // Return out of the function
                 return true;
             }
@@ -58,6 +61,7 @@ public class InventoryManager : MonoBehaviour
             {
                 // Spawn a new item in that slot
                 SpawnNewItem(item, slot);
+                onItemChangedCallback?.Invoke();
                 // Return out of the function
                 return true;
             }
@@ -65,6 +69,13 @@ public class InventoryManager : MonoBehaviour
 
         // Return false if no slot is available
         return false;
+    }
+
+    public void ClearInventory(Item item)
+    {
+        item = null;
+        item.icon = null; // Clear the sprite
+        Debug.Log("Slot cleared"); // Debug log for confirmation
     }
 
     private void SpawnNewItem(Item item, GameObject slot)
@@ -119,5 +130,34 @@ public class InventoryManager : MonoBehaviour
 
         Debug.Log("Called GetSelectedInventoryItem, returning null.");
         return null;
+    }
+
+    //-------------------------------------------------------------------
+    // PLAYER PREFS
+    //-------------------------------------------------------------------
+
+
+    public delegate void OnItemChanged();
+    public OnItemChanged onItemChangedCallback;
+
+    public void Clear()
+    {
+        PickedUpItems.Clear(); // Clear picked up items list when inventory is cleared
+        onItemChangedCallback?.Invoke();
+    }
+
+    public void SaveInventory()
+    {
+        PlayerPrefs.SetString("PickedUpItems", string.Join(",", PickedUpItems));
+        PlayerPrefs.Save();
+    }
+
+    public void LoadInventory()
+    {
+        if (PlayerPrefs.HasKey("PickedUpItems"))
+        {
+            string pickedUpItemsString = PlayerPrefs.GetString("PickedUpItems");
+            PickedUpItems = new List<string>(pickedUpItemsString.Split(','));
+        }
     }
 }

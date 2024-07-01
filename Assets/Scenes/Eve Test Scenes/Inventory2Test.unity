@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 463117819}
   - component: {fileID: 463117821}
   - component: {fileID: 463117820}
+  - component: {fileID: 463117822}
   m_Layer: 5
   m_Name: Transition
   m_TagString: Untagged
@@ -1099,6 +1100,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463117818}
   m_CullTransparentMesh: 1
+--- !u!225 &463117822
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463117818}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &539125350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,7 +1570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionDuration: 1
-  transitionImage: {fileID: 0}
+  transitionImage: {fileID: 463117820}
   sceneName: InventoryTestScene
 --- !u!65 &1012777430
 BoxCollider:
