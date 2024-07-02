@@ -7,6 +7,8 @@ public class BoolManager : MonoBehaviour
 
     // Boolean variables
     public bool SheriffIanDay1Town1;
+    public bool EdithDay1Street;
+    public bool EdithDay1StreetFindRaymond;
 
     private void Awake()
     {
@@ -30,6 +32,12 @@ public class BoolManager : MonoBehaviour
             case "SheriffIanDay1Town1":
                 SheriffIanDay1Town1 = value;
                 break;
+            case "EdithDay1Street":
+                EdithDay1Street = value;
+                break;
+            case "EdithDay1StreetFindRaymond":
+                EdithDay1StreetFindRaymond = value;
+                break;
             // Add cases for additional boolean variables
             default:
                 Debug.LogWarning($"Bool '{boolName}' not found.");
@@ -44,6 +52,10 @@ public class BoolManager : MonoBehaviour
         {
             case "SheriffIanDay1Town1":
                 return SheriffIanDay1Town1;
+            case "EdithDay1Street":
+                return EdithDay1Street;
+            case "EdithDay1StreetFindRaymond":
+                return EdithDay1StreetFindRaymond;
             // Add cases for additional boolean variables
             default:
                 Debug.LogWarning($"Bool '{boolName}' not found.");

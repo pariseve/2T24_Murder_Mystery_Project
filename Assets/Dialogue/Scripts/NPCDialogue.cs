@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using DialogueEditor;
 
-public class IanSheriffDay1TownDialogue : MonoBehaviour
+public class NPCDialogue : MonoBehaviour
 {
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private bool isInsideTrigger;
@@ -10,14 +10,14 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
     private GameObject interactTextInstance; // Instance of the prefab
     private KeyCode startConversationKey = KeyCode.E;
 
-    private const string CONVERSATION_TRIGGERED_KEY = "IanSheriffDay1TownConversationTriggered";
+    [SerializeField] private string conversationTriggeredKey = "NPCDialogueKey";
 
     private void Start()
     {
         // Load the key from PlayerPrefs if it exists
-        if (PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+        if (PlayerPrefs.HasKey(conversationTriggeredKey))
         {
-            string keyName = PlayerPrefs.GetString(CONVERSATION_TRIGGERED_KEY);
+            string keyName = PlayerPrefs.GetString(conversationTriggeredKey);
             startConversationKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), keyName);
         }
     }
@@ -28,12 +28,12 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         {
             isInsideTrigger = true;
 
-            if (!PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+            if (!PlayerPrefs.HasKey(conversationTriggeredKey))
             {
                 ShowInteractText();
             }
 
-            if (PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+            if (PlayerPrefs.HasKey(conversationTriggeredKey))
             {
                 HideInteractText();
             }
@@ -42,7 +42,7 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY))
+        if (PlayerPrefs.HasKey(conversationTriggeredKey))
         {
             HideInteractText();
         }
@@ -70,14 +70,14 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
         ConversationManager.Instance.StartConversation(dialogue);
 
         // Save the key to PlayerPrefs
-        PlayerPrefs.SetString(CONVERSATION_TRIGGERED_KEY, startConversationKey.ToString());
+        PlayerPrefs.SetString(conversationTriggeredKey, startConversationKey.ToString());
         PlayerPrefs.Save();
     }
 
     private void Update()
     {
         // Check if the conversation has not started yet
-        if (isInsideTrigger && !PlayerPrefs.HasKey(CONVERSATION_TRIGGERED_KEY) && Input.GetKeyDown(startConversationKey))
+        if (isInsideTrigger && !PlayerPrefs.HasKey(conversationTriggeredKey) && Input.GetKeyDown(startConversationKey))
         {
             StartConversation();
         }
@@ -120,9 +120,8 @@ public class IanSheriffDay1TownDialogue : MonoBehaviour
     // You can call this method if you ever need to reset the PlayerPrefs key (for testing purposes, etc.)
     public void ResetConversationTrigger()
     {
-        PlayerPrefs.DeleteKey(CONVERSATION_TRIGGERED_KEY);
+        PlayerPrefs.DeleteKey(conversationTriggeredKey);
         PlayerPrefs.Save();
     }
 }
-
 
