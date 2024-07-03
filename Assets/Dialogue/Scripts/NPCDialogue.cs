@@ -43,7 +43,7 @@ public class NPCDialogue : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!PlayerPrefs.HasKey(conversationTriggeredKey))
+        if (!PlayerPrefs.HasKey(conversationTriggeredKey) && !ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
         {
             ShowInteractText();
             // Debug.Log("Showing interact text on trigger stay");
@@ -67,6 +67,13 @@ public class NPCDialogue : MonoBehaviour
 
     private void StartConversation()
     {
+        // Check if DialoguePanel is active
+        if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+            return;
+        }
+
         // Disable player movement or any other setup needed before dialogue
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)

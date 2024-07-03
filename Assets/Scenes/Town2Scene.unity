@@ -906,7 +906,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150150319}
   - component: {fileID: 150150321}
-  - component: {fileID: 150150320}
+  - component: {fileID: 150150322}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -929,18 +929,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 832565635}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &150150320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150150318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad7e19406c6f445e9f743f3f2854895, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &150150321
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -962,6 +950,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &150150322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150150318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bb081a8925494969a19259656735787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 817611855}
+  isInsideTrigger: 0
+  interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
+    type: 3}
+  conversationTriggeredKey: OliverDay1Town2Dialogue
 --- !u!1001 &168084607
 PrefabInstance:
   m_ObjectHideFlags: 0

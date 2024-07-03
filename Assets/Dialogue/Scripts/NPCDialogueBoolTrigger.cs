@@ -44,7 +44,7 @@ public class NPCDialogueBoolTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!PlayerPrefs.HasKey(conversationTriggeredKey))
+        if (!PlayerPrefs.HasKey(conversationTriggeredKey) && !ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
         {
             ShowInteractText(); // Show the interact text if the key is not present
         }
@@ -65,6 +65,13 @@ public class NPCDialogueBoolTrigger : MonoBehaviour
 
     private void StartConversation()
     {
+        // Check if DialoguePanel is active
+        if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+            return;
+        }
+
         // Disable player movement or any other setup needed before dialogue
         PlayerController playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
@@ -92,7 +99,7 @@ public class NPCDialogueBoolTrigger : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Cannot start conversation because one or more required booleans are not in the correct state.");
+                // Debug.LogWarning("Cannot start conversation because one or more required booleans are not in the correct state.");
             }
         }
     }
@@ -151,7 +158,7 @@ public class NPCDialogueBoolTrigger : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Cannot show interact text because one or more required booleans are not in the correct state.");
+            // Debug.LogWarning("Cannot show interact text because one or more required booleans are not in the correct state.");
         }
     }
 
