@@ -17,37 +17,37 @@ public class InventorySlot : MonoBehaviour
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
 
-    public void AddItem(Item newItem)
-    {
-        Debug.Log("Adding item: " + newItem.itemName);
+    //public void AddItem(Item newItem)
+    //{
+    //    Debug.Log("Adding item: " + newItem.itemName);
 
-        if (item != null && item.itemName == newItem.itemName && item.isStackable)
-        {
-            // Item already exists in slot and is stackable, increase amount
-            itemAmount += 1;
-            amountText.text = itemAmount.ToString();
-            amountText.gameObject.SetActive(true);
-            Debug.Log("Stacking item: " + item.itemName + ", Amount: " + itemAmount);
-        }
-        else if (item == null)
-        {
-            Debug.Log("Added new item: " + newItem.itemName);
-            // Slot is empty, add the new item
-            item = newItem;
-            icon.sprite = item.icon;
-            icon.enabled = true;
-            itemAmount = 1;
-            amountText.text = itemAmount.ToString();
-            amountText.gameObject.SetActive(false);
-        }
-        else
-        {
-            // Slot is occupied by a different item or the item is not stackable, do nothing
-            Debug.LogWarning("Cannot add item to slot. Slot is occupied by a different item or item is not stackable.");
-        }
+    //    if (item != null && item.itemName == newItem.itemName && item.isStackable)
+    //    {
+    //        // Item already exists in slot and is stackable, increase amount
+    //        itemAmount += 1;
+    //        amountText.text = itemAmount.ToString();
+    //        amountText.gameObject.SetActive(true);
+    //        Debug.Log("Stacking item: " + item.itemName + ", Amount: " + itemAmount);
+    //    }
+    //    else if (item == null)
+    //    {
+    //        Debug.Log("Added new item: " + newItem.itemName);
+    //        // Slot is empty, add the new item
+    //        item = newItem;
+    //        icon.sprite = item.icon;
+    //        icon.enabled = true;
+    //        itemAmount = 1;
+    //        amountText.text = itemAmount.ToString();
+    //        amountText.gameObject.SetActive(false);
+    //    }
+    //    else
+    //    {
+    //        // Slot is occupied by a different item or the item is not stackable, do nothing
+    //        Debug.LogWarning("Cannot add item to slot. Slot is occupied by a different item or item is not stackable.");
+    //    }
 
-        Debug.Log("Current item in slot: " + (item == null ? "None" : item.itemName));
-    }
+    //    Debug.Log("Current item in slot: " + (item == null ? "None" : item.itemName));
+    //}
 
     public void ClearSlot()
     {

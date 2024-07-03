@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1485,7 +1485,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObj: {fileID: 215831926}
+  playerCharacter: {fileID: 4057187926068189713, guid: e80d92c6172b9f746a8106f52082f28e,
+    type: 3}
+  textMeshPro: {fileID: 0}
+  interactPrompt: 'Go to the Railway
+
+    [Space]'
 --- !u!1 &249090040
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,7 +1803,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -47.43, y: 5.2200003, z: -15.7}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6746,7 +6751,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObj: {fileID: 2646157}
+  playerCharacter: {fileID: 4057187926068189713, guid: e80d92c6172b9f746a8106f52082f28e,
+    type: 3}
+  textMeshPro: {fileID: 0}
+  interactPrompt: 'Go Home
+
+    [Space]'
 --- !u!1 &1667487015
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6928,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObj: {fileID: 808778689}
+  playerCharacter: {fileID: 4057187926068189713, guid: e80d92c6172b9f746a8106f52082f28e,
+    type: 3}
+  textMeshPro: {fileID: 0}
+  interactPrompt: 'Go Right of Town
+
+    [Space]'
 --- !u!1 &1792176740
 GameObject:
   m_ObjectHideFlags: 0
@@ -7002,7 +7017,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObj: {fileID: 1052129913}
+  playerCharacter: {fileID: 4057187926068189713, guid: e80d92c6172b9f746a8106f52082f28e,
+    type: 3}
+  textMeshPro: {fileID: 0}
+  interactPrompt: 'Go Down Rosemont St
+
+    [Space]'
 --- !u!1 &1829117206
 GameObject:
   m_ObjectHideFlags: 0
