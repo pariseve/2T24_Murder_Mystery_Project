@@ -5,6 +5,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
+public class Note
+{
+    public string name;
+    public string description;
+    public string boolKey; // The key used to check against BoolManager
+    public bool isActive;
+}
+
 public class NotesManager : MonoBehaviour
 {
     [SerializeField] private GameObject notePrefab; // Reference to the note prefab
@@ -14,11 +23,9 @@ public class NotesManager : MonoBehaviour
     [SerializeField] private GameObject notificationPrefab; // Reference to the notification prefab
     [SerializeField] private Transform notificationParent; // Parent transform for notifications
 
-    [SerializeField] private bool dream1brokenclock = false;
-    [SerializeField] private bool dream1mirror = false;
-    [SerializeField] private bool note3 = false;
-
     [SerializeField] private GameObject notesUI;
+
+    [SerializeField] private List<Note> notes = new List<Note>(); // List of notes
 
     private float noteSpacing = 10f; // Spacing between notes
 
@@ -43,6 +50,7 @@ public class NotesManager : MonoBehaviour
     {
         AddScrollbarListener(scrollRect);
         AddBackImageListener();
+        InstantiateNotes();
     }
 
     private void AddBackImageListener()
@@ -104,17 +112,22 @@ public class NotesManager : MonoBehaviour
 
     public void InstantiateNotes()
     {
-        if (dream1brokenclock && !IsNoteInstantiated("dream1brokenclock"))
+        foreach (Note note in notes)
         {
-            CreateNote("There was a broken clock in my dream near an empty coffee cup. What could that mean?", "dream1brokenclock");
-        }
-        if (dream1mirror && !IsNoteInstantiated("dream1mirror"))
-        {
-            CreateNote("There was a mirror in my dream that had a reflection of me with my hands covered in blood...", "dream1mirror");
-        }
-        if (note3 && !IsNoteInstantiated("note3"))
-        {
-            CreateNote("This is the text for note 3", "note3");
+            if (BoolManager.Instance == null)
+            {
+                Debug.LogError("BoolManager.Instance is null.");
+                return;
+            }
+
+            bool isBoolActive = BoolManager.Instance.GetBool(note.boolKey);
+            Debug.Log($"Note: {note.name}, BoolKey: {note.boolKey}, isBoolActive: {isBoolActive}");
+
+            if (isBoolActive && !IsNoteInstantiated(note.name))
+            {
+                CreateNote(note.description, note.name);
+                ShowNoteNotification(note.description);
+            }
         }
         UpdateContentSize();
     }
@@ -138,23 +151,16 @@ public class NotesManager : MonoBehaviour
 
     public void SetNoteBool(string noteName)
     {
-        switch (noteName)
+        Note note = notes.Find(n => n.name == noteName);
+        if (note != null)
         {
-            case "dream1brokenclock":
-                dream1brokenclock = true;
-                ShowNoteNotification("There was a broken clock in my dream near an empty coffee cup. What could that mean?");
-                break;
-            case "dream1mirror":
-                dream1mirror = true;
-                ShowNoteNotification("There was a mirror in my dream that had a reflection of me with my hands covered in blood...");
-                break;
-            case "note3":
-                note3 = true;
-                ShowNoteNotification("This is the text for note 3");
-                break;
-            default:
-                Debug.LogError("Invalid note name.");
-                break;
+            note.isActive = true;
+            ShowNoteNotification(note.description);
+            // InstantiateNotes();
+        }
+        else
+        {
+            Debug.LogError("Invalid note name.");
         }
     }
 
@@ -264,10 +270,3 @@ public class NotesManager : MonoBehaviour
         Destroy(canvasGroup.gameObject);
     }
 }
-
-
-
-
-
-
-

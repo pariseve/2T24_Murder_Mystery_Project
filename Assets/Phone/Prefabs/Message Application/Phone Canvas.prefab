@@ -793,10 +793,18 @@ MonoBehaviour:
   notificationPrefab: {fileID: 5988743719354539502, guid: 599e9b4d238034d57a30af8ae1631f14,
     type: 3}
   notificationParent: {fileID: 5486263851227766114}
-  dream1brokenclock: 0
-  dream1mirror: 0
-  note3: 0
   notesUI: {fileID: 5469970763286731307}
+  notes:
+  - name: Broken Clock
+    description: There was a broken clock in my dream near an empty coffee cup. What
+      could that mean?
+    boolKey: dream1brokenclock
+    isActive: 0
+  - name: Mirror
+    description: There was a mirror in my dream that had a reflection of me with
+      my hands covered in blood...
+    boolKey: dream1mirror
+    isActive: 0
 --- !u!1 &2772700201755671268
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,12 @@ public class ObjectClickDialogue : MonoBehaviour
             return;
         }
 
+        if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
+        {
+            // Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+            return;
+        }
+
         if (Input.GetMouseButtonDown(0) && !dialogueStarted)// && !dialogue.isDialogueActive)
         {
             // Raycast to detect object click

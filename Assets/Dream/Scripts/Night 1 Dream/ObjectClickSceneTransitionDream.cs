@@ -1,23 +1,14 @@
 using UnityEngine;
 
-public class ObjectClickSceneTransitionDream1 : MonoBehaviour
+public class ObjectClickSceneTransitionDream : MonoBehaviour
 {
     [SerializeField] private UISceneTransition sceneTransition;
     [SerializeField] private string targetSceneName;
-    private Dream1BoolManager dream1BoolManager;
-
-    private void Start()
-    {
-        dream1BoolManager = FindObjectOfType<Dream1BoolManager>();
-        if (dream1BoolManager == null)
-        {
-            Debug.LogError("Dream1BoolManager not found in the scene.");
-        }
-    }
+    [SerializeField] private string[] requiredBoolNamesTrue;
 
     public void FoundAllClues()
     {
-        if (dream1BoolManager != null && dream1BoolManager.brokenClock && dream1BoolManager.mirror)
+        if (AllRequiredBoolsTrue())
         {
             if (sceneTransition != null)
             {
@@ -32,6 +23,18 @@ public class ObjectClickSceneTransitionDream1 : MonoBehaviour
         {
             Debug.Log("Broken clock boolean not set to true.");
         }
+    }
+
+    private bool AllRequiredBoolsTrue()
+    {
+        foreach (string boolName in requiredBoolNamesTrue)
+        {
+            if (!BoolManager.Instance.GetBool(boolName))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
 /*

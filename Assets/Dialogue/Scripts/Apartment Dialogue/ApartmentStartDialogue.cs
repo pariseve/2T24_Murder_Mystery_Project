@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using DialogueEditor;
 
-public class ApartmentDay1StartDialogue : MonoBehaviour
+public class ApartmentStartDialogue : MonoBehaviour
 {
-    [SerializeField] private NPCConversation ApartmentDay1Start;
+    [SerializeField] private NPCConversation apartmentStart;
     [SerializeField] private Image fadeImage; // Reference to the UI Image for fading
-    private const string METHOD_TRIGGERED_KEY = "ApartmentDay1StartDialogueMethodTriggered";
+    [SerializeField] private string METHOD_TRIGGERED_KEY = "";
     private PlayerController playerController;
 
     void Start()
@@ -39,10 +39,28 @@ public class ApartmentDay1StartDialogue : MonoBehaviour
 
     private IEnumerator ExecuteFadeAndStartDialogue()
     {
+        yield return new WaitForSeconds(0.1f); // Wait for a short delay to ensure player initialization
+
+        // Find the PlayerController
         playerController = FindObjectOfType<PlayerController>();
         if (playerController != null)
         {
             playerController.DisableMovement();
+        }
+        else
+        {
+            Debug.LogWarning("PlayerController not found immediately. Waiting for it to be initialized.");
+            yield return StartCoroutine(WaitForPlayerInitialization());
+            playerController = FindObjectOfType<PlayerController>(); // Try finding again
+            if (playerController != null)
+            {
+                playerController.DisableMovement();
+            }
+            else
+            {
+                Debug.LogError("PlayerController not found.");
+                yield break; // Exit coroutine if PlayerController still not found
+            }
         }
 
         // Fade to black
@@ -61,8 +79,13 @@ public class ApartmentDay1StartDialogue : MonoBehaviour
         yield return StartCoroutine(FadeOut());
 
         // Start the conversation
-        ConversationManager.Instance.StartConversation(ApartmentDay1Start);
+        ConversationManager.Instance.StartConversation(apartmentStart);
         Debug.Log("Method has been triggered for the first time.");
+    }
+
+    private IEnumerator WaitForPlayerInitialization()
+    {
+        yield return new WaitForSeconds(1f); // Adjust delay as needed
     }
 
     private IEnumerator FadeToBlack()
@@ -108,5 +131,6 @@ public class ApartmentDay1StartDialogue : MonoBehaviour
         PlayerPrefs.DeleteKey(METHOD_TRIGGERED_KEY);
     }
 }
+
 
 
