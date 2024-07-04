@@ -132,6 +132,65 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    // Exchange item method
+    public bool ExchangeItem(Item exchangeableItem)
+    {
+        // Check if the required item has an exchanged item set
+        if (exchangeableItem.exchangedItem == null)
+        {
+            Debug.Log("No exchanged item set for " + exchangeableItem.itemName);
+            return false;
+        }
+
+        // Iterate through slots to find the required item
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            GameObject slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item == exchangeableItem.exchangedItem)
+            {
+                // Remove the required item from the inventory
+                if (itemInSlot.stackCount > 1)
+                {
+                    itemInSlot.stackCount--;
+                    itemInSlot.RefreshCount();
+                }
+                else
+                {
+                    Destroy(itemInSlot.gameObject);
+                }
+
+                // Add the exchangeable item to the inventory
+                AddItem(exchangeableItem);
+                onItemChangedCallback?.Invoke();
+                return true;
+            }
+        }
+
+        // If the required item was not found
+        Debug.Log("Required item not found in inventory.");
+        return false;
+    }
+
+    public bool HasItem(Item item)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            GameObject slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item == item)
+            {
+                return true;
+            }
+            
+        }
+
+        return false;
+    }
+
+
     //-------------------------------------------------------------------
     // PLAYER PREFS
     //-------------------------------------------------------------------

@@ -14,7 +14,8 @@ public class InventoryItem : MonoBehaviour
     [HideInInspector] public int stackCount = 1;
 
     // Interaction panel variables
-    public GameObject interactionPanel;
+    public GameObject interactPanel_1;
+    public GameObject interactPanel_2;
     public bool isInteractOpen = false;
 
     public void InitialiseItem(Item newItem)
@@ -50,7 +51,15 @@ public class InventoryItem : MonoBehaviour
         
         if (item != null)
         {
-            interactionPanel.SetActive(true);
+            if (item.itemType == ItemType.Evidence || item.itemType == ItemType.Collectable)
+            {
+                interactPanel_1.SetActive(true);
+            }
+            else if (item.itemType == ItemType.Usable || item.itemType == ItemType.Exchangable)
+            {
+                interactPanel_2.SetActive(true);
+            }
+
             isInteractOpen = true;
             // Set self as the current inventory item with its interaction panel displayed
             InventoryUI.instance.UpdateCurrentInventoryItem(this);
@@ -60,7 +69,8 @@ public class InventoryItem : MonoBehaviour
 
     public void CloseInteractionPanel()
     {
-        interactionPanel.SetActive(false);
+        interactPanel_1.SetActive(false);
+        interactPanel_2.SetActive(false);
         isInteractOpen = false;
         Debug.Log("interaction panel is closed.");
     }

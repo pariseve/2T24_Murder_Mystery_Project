@@ -14,7 +14,7 @@ public class ItemPickup : MonoBehaviour
             uniqueID = Guid.NewGuid().ToString();
         }
 
-        // check if this item has already been picked up
+        // Check if this item has already been picked up
         if (InventoryManager.instance.PickedUpItems.Contains(uniqueID))
         {
             Destroy(gameObject);
@@ -25,39 +25,42 @@ public class ItemPickup : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
-            //Debug.Log("Player interacted with item: " + item.itemName);
-
-            //if (Inventory.instance.Add(item))
-            //{
-            //    Debug.Log("Item added to inventory: " + item.itemName);
-
-            //    // Mark the item as picked up
-            //    Inventory.instance.PickedUpItems.Add(uniqueID);
-            //    Inventory.instance.SaveInventory(); // Save the inventory including picked up items
-
-            //    // Show pickup text through the UIManager
-            //    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
-
-            //    Destroy(gameObject);
-            //}
-            //else
-            //{
-            //    Debug.Log("Failed to add item to inventory: " + item.itemName);
-            //}
-
-            if (InventoryManager.instance.AddItem(item))
+            // Check if the item is exchangeable
+            if (item.itemType == ItemType.Exchangable && item.exchangedItem != null)
             {
-                Debug.Log("Item added to inventory: " + item.itemName);
-                // Add the item to the picked up items list
-                InventoryManager.instance.PickedUpItems.Add(uniqueID);
-                // Show pickup text through the UIManager
-                InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
-                // Destroy the item pickup
-                Destroy(gameObject);
+                // Attempt to exchange the item
+                if (InventoryManager.instance.HasItem(item.exchangedItem) && InventoryManager.instance.ExchangeItem(item))
+                {
+                    Debug.Log("Item exchanged: " + item.itemName + " with " + item.exchangedItem.itemName);
+                    // Mark the item as picked up
+                    InventoryManager.instance.PickedUpItems.Add(uniqueID);
+                    // Show pickup text through the UIManager
+                    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
+                    // Destroy the item pickup
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Failed to exchange item: " + item.itemName);
+                }
             }
             else
             {
-                Debug.Log("Failed to add item to inventory: " + item.itemName);
+                // Regular item pickup process
+                if (InventoryManager.instance.AddItem(item))
+                {
+                    Debug.Log("Item added to inventory: " + item.itemName);
+                    // Mark the item as picked up
+                    InventoryManager.instance.PickedUpItems.Add(uniqueID);
+                    // Show pickup text through the UIManager
+                    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
+                    // Destroy the item pickup
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("Failed to add item to inventory: " + item.itemName);
+                }
             }
         }
     }
