@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 public class Note
 {
     public string name;
+    [TextArea(3, 10)]
     public string description;
     public string boolKey; // The key used to check against BoolManager
     public bool isActive;

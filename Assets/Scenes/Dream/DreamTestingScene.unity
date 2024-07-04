@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 3
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":49.25,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"So
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":97,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"So
     many birds...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: 
@@ -4182,7 +4182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &876452593
 Transform:
   m_ObjectHideFlags: 0
@@ -5640,8 +5640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83189876d4d389f43b7dd2e925aa112e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentIDCounter: 2
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":48.25,"yPos":20},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Seems
+  CurrentIDCounter: 3
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":88,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Seems
     to be a broken clock near a coffee cup... the time isn''t moving.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: 
@@ -6918,8 +6918,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 3
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":true,"xPos":48.25,"yPos":20},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"A
-    mirror but why... are my hands covered in blood.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":47.75,"yPos":137},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Something''s
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":true,"xPos":88,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"A
+    mirror but why... are my hands covered in blood.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":86.5,"yPos":139},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Something''s
     not right here.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: 
@@ -9598,6 +9598,74 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2200, y: 1400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &7726779813525601879
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3428167604258995915, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_Name
+      value: FOR REMINDERS APP
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b37c736ffd9b4154a788f4617f661da, type: 3}
 --- !u!225 &8887846994602342078
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9633,3 +9701,4 @@ SceneRoots:
   - {fileID: 1907180687}
   - {fileID: 591820427}
   - {fileID: 912842769}
+  - {fileID: 7726779813525601879}
