@@ -10,11 +10,13 @@ public class Item : ScriptableObject
     public ItemType itemType;
     [TextArea(15, 20)]
     public string description;
+    public Item exchangedItem; //item needed for exchange
 }
 
 public enum ItemType
 {
     Evidence,
     Collectable,
-    Usable
+    Usable,
+    Exchangable
 }
