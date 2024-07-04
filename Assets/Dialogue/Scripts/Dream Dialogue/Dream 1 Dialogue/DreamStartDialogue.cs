@@ -2,17 +2,20 @@ using UnityEngine;
 using DialogueEditor;
 using System.Collections;
 
-public class Dream1StartDialogue : MonoBehaviour
+public class DreamStartDialogue : MonoBehaviour
 {
-    [SerializeField] private NPCConversation Dream1Start;
-    private const string METHOD_TRIGGERED_KEY = "Dream1StartDialogueMethodTriggered";
+    [SerializeField] private NPCConversation dreamStartDialogue;
+    [SerializeField] private string METHOD_TRIGGERED_KEY = "";
     private PlayerController playerController;
+    private ToggleLookAround toggleLookAround;
 
     void Start()
     {
+        toggleLookAround = FindObjectOfType<ToggleLookAround>();
         // Check if the method has been triggered before
         if (!PlayerPrefs.HasKey(METHOD_TRIGGERED_KEY))
         {
+            toggleLookAround.DisableComponent();
             // If not triggered before, start the dialogue
             StartCoroutine(StartTheDialogue());
         }
@@ -40,7 +43,7 @@ public class Dream1StartDialogue : MonoBehaviour
         }
 
         // Start the conversation
-        ConversationManager.Instance.StartConversation(Dream1Start);
+        ConversationManager.Instance.StartConversation(dreamStartDialogue);
         Debug.Log("Method has been triggered for the first time.");
 
         // Set the flag to prevent this method from being triggered again

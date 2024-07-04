@@ -270,6 +270,12 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
+            if (DialoguePanel.gameObject.activeInHierarchy)
+            {
+                Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+                return;
+            }
+
             playerController = FindObjectOfType<PlayerController>();
             DisableCursor();
             if (toggleLookAround != null)

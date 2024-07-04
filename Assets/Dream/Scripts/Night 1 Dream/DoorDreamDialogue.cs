@@ -1,7 +1,7 @@
 using UnityEngine;
 using DialogueEditor;
 
-public class DoorDream1Dialogue : MonoBehaviour
+public class DoorDreamDialogue : MonoBehaviour
 {
     [SerializeField] private NPCConversation doorCantAccessDialogue;
 
@@ -9,34 +9,20 @@ public class DoorDream1Dialogue : MonoBehaviour
 
     [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
 
-    private Dream1BoolManager dream1BoolManager;
+    private ObjectClickSceneTransitionDream objectClickSceneTransitionDream;
 
-    private ObjectClickSceneTransitionDream1 objectClickSceneTransitionDream1;
+    [SerializeField] private string[] requiredBoolNamesTrue;
+    [SerializeField] private string[] requiredBoolNamesFalse;
 
     private void Start()
     {
-        //npcConversation = FindObjectOfType<NPCConversation>();
-        dream1BoolManager = FindObjectOfType<Dream1BoolManager>();
-        if (dream1BoolManager == null)
-        {
-            Debug.LogError("Dream1BoolManager not found in the scene.");
-        }
-
-        objectClickSceneTransitionDream1 = FindObjectOfType<ObjectClickSceneTransitionDream1>();
+        objectClickSceneTransitionDream = FindObjectOfType<ObjectClickSceneTransitionDream>();
     }
 
     void Update()
     {
-        if (doorCantAccessDialogue != null && doorCantAccessDialogue.isDialogueActive)
-        {
-            // If dialogue is active, do not allow zooming
-            return;
-        }
-
         if (Input.GetMouseButtonDown(0))// && !dialogue.isDialogueActive)
         {
-            if (dream1BoolManager != null && dream1BoolManager.brokenClock && dream1BoolManager.mirror)
-            {
                 // Raycast to detect object click
                 RaycastHit hit;
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -46,7 +32,9 @@ public class DoorDream1Dialogue : MonoBehaviour
                     // Check if the hit object is the object this script is attached to
                     if (hit.collider.gameObject == gameObject)
                     {
-                        objectClickSceneTransitionDream1.FoundAllClues();
+                    if (AllRequiredBoolsTrue())
+                    {
+                        objectClickSceneTransitionDream.FoundAllClues();
                         dialogueStarted = true;
                         //DisableAllColliders();
                         // Start the conversation for this instance
@@ -56,7 +44,7 @@ public class DoorDream1Dialogue : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !dialogueStarted )// && !dialogue.isDialogueActive)
+        if (Input.GetMouseButtonDown(0) && !dialogueStarted && AllRequiredBoolsFalse())// && !dialogue.isDialogueActive)
         {
                 // Raycast to detect object click
                 RaycastHit hit;
@@ -74,6 +62,30 @@ public class DoorDream1Dialogue : MonoBehaviour
                     }
                 }
             }
+    }
+
+    private bool AllRequiredBoolsTrue()
+    {
+        foreach (string boolName in requiredBoolNamesTrue)
+        {
+            if (!BoolManager.Instance.GetBool(boolName))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private bool AllRequiredBoolsFalse()
+    {
+        foreach (string boolName in requiredBoolNamesFalse)
+        {
+            if (BoolManager.Instance.GetBool(boolName))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void DisableAllColliders()
