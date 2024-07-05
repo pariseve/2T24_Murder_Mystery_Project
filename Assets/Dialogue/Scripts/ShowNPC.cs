@@ -30,5 +30,9 @@ public class ShowNPC : MonoBehaviour
             npcToActivate.SetActive(false);
             Debug.Log($"Deactivated {npcToActivate.name}");
         }
+        else
+        {
+            Debug.Log("Bool not found");
+        }
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using DialogueEditor;
 
-public class ApartmentDay1PickUpMedsReminderDialogue : MonoBehaviour
+public class TriggerEnterDialogue : MonoBehaviour
 {
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private bool isInsideTrigger;
