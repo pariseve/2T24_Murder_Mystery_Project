@@ -190,6 +190,33 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+    // New method to remove an item from the inventory
+    public bool RemoveItem(Item item)
+    {
+        for (int i = 0; i < inventorySlots.Length; i++)
+        {
+            GameObject slot = inventorySlots[i];
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item == item)
+            {
+                if (itemInSlot.stackCount > 1)
+                {
+                    itemInSlot.stackCount--;
+                    itemInSlot.RefreshCount();
+                }
+                else
+                {
+                    Destroy(itemInSlot.gameObject);
+                }
+                onItemChangedCallback?.Invoke();
+                return true;
+            }
+        }
+        Debug.Log("Item not found in inventory or not enough quantity.");
+        return false;
+    }
+
 
     //-------------------------------------------------------------------
     // PLAYER PREFS

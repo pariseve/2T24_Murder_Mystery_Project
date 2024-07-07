@@ -86,6 +86,7 @@ namespace DialogueEditor
         private ToggleLookAround toggleLookAround;
         private ObjectClickDialogue objectClickDialogue;
         private PlayerController playerController;
+        private CameraManager cameraManager;
         // Add a flag to track whether the current dialogue is finished scrolling
         [SerializeField] private bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
@@ -118,6 +119,7 @@ namespace DialogueEditor
             toggleLookAround = FindObjectOfType<ToggleLookAround>();
             objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
             playerController = FindObjectOfType<PlayerController>();
+            cameraManager = FindObjectOfType<CameraManager>();
             BUTTON_COOLDOWN = 0;
         }
 
@@ -242,6 +244,10 @@ namespace DialogueEditor
                         {
                             playerController.EnableMovement();
                         }
+                        if (cameraManager != null)
+                        {
+                            cameraManager.ShowPlayer();
+                        }
                     }
                 }
             }
@@ -324,6 +330,39 @@ namespace DialogueEditor
             {
                 objectClickDialogue.EnableAllColliders();
             }
+
+            // Check if the conversation is not already ending
+            if (!endingConversation)
+            {
+                Debug.Log("Ending conversation");
+
+                // Set the flag to indicate that conversation ending process has started
+                endingConversation = true;
+
+                // End the conversation
+                EndConversation();
+
+                // Set the dialogue flags or destroy the conversation object as needed
+
+                if (npcConversation != null)
+                {
+                    npcConversation.EndDialogue();
+                }
+                if (toggleLookAround != null)
+                {
+                    toggleLookAround.EnableComponent();
+                }
+                EnableCursor();
+                if (playerController != null)
+                {
+                    playerController.EnableMovement();
+                }
+            }
+            else
+            {
+                // Reset the endingConversation flag once left-click is released or conditions are no longer met
+                endingConversation = false;
+            }
         }
 
         public void SelectNextOption()
@@ -348,17 +387,16 @@ namespace DialogueEditor
 
         public void PressSelectedOption()
         {
-                // If the cooldown has expired, proceed with the action
-                if (m_state != eState.Idle) { return; }
-                if (m_currentSelectedIndex < 0) { return; }
-                if (m_currentSelectedIndex >= m_uiOptions.Count) { return; }
-                if (m_uiOptions.Count == 0) { return; }
+            // If the cooldown has expired, proceed with the action
+            if (m_state != eState.Idle) { return; }
+            if (m_currentSelectedIndex < 0) { return; }
+            if (m_currentSelectedIndex >= m_uiOptions.Count) { return; }
+            if (m_uiOptions.Count == 0) { return; }
 
-                UIConversationButton button = m_uiOptions[m_currentSelectedIndex];
-                button.OnButtonPressed();
+            UIConversationButton button = m_uiOptions[m_currentSelectedIndex];
+            button.OnButtonPressed();
             DisableCursor();
         }
-       
 
         public void AlertHover(UIConversationButton button)
         {
@@ -758,7 +796,7 @@ namespace DialogueEditor
                 BUTTON_COOLDOWN = 2;
                 // Update the last button press time
                 // BUTTON_COOLDOWN -= Time.time;
-            m_selectedOption = option;
+                m_selectedOption = option;
                 DoParamAction(option);
                 if (option.Event != null)
                     option.Event.Invoke();

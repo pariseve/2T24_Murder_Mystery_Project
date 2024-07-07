@@ -237,6 +237,15 @@ public class NotesManager : MonoBehaviour
             notificationInstance.transform.localPosition = Vector3.zero;
         }
 
+        // Ensure it takes the next available slot in the GridLayoutGroup
+        GridLayoutGroup gridLayoutGroup = notificationParent.GetComponent<GridLayoutGroup>();
+        if (gridLayoutGroup != null)
+        {
+            RectTransform rectTransform = notificationInstance.GetComponent<RectTransform>();
+            rectTransform.SetParent(notificationParent);
+            rectTransform.SetAsLastSibling(); // Move to the next available slot
+        }
+
         // Play notification audio if needed
         // PlayNotificationSound();
 

@@ -281,11 +281,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 3
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":94.5,"yPos":56},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Just
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":130.25,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Just
     in case, it''s time to write what was in my dream in my Notes so I can figure
     this out. I can''t let anyone find out.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":103.5,"yPos":209},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"The
-    Notes Application on your phone will store all the important clues you find out.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Hint","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":113.5,"yPos":356},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":139.25,"yPos":175},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"The
+    Notes Application on your phone will store all the important clues you find out.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Hint","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":149.25,"yPos":322},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     need to solve this alone... before I get called crazy again.","parentUIDs":[1],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
     Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
@@ -296,6 +296,7 @@ MonoBehaviour:
   - {fileID: 2134799372}
   - {fileID: 2134799374}
   - {fileID: 2134799373}
+  - {fileID: 2134799375}
   ContinueFont: {fileID: 0}
   EndConversationFont: {fileID: 0}
   TextColor: {r: 1, g: 1, b: 1, a: 1}
@@ -314,21 +315,58 @@ MonoBehaviour:
           m_StringArgument: '#60CCA0'
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1881327002}
-        m_TargetAssemblyTypeName: ForNotesCreation, Assembly-CSharp
-        m_MethodName: ForInstantiateNotes
-        m_Mode: 1
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ivy|where r u ?????|
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 787885982}
-        m_TargetAssemblyTypeName: DestroyColliderDay1Apartment, Assembly-CSharp
-        m_MethodName: DestroyObject
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|I'm waiting at urban goods|
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|Shift almost over|Stop shouting. I'll be there in
+            a sec.
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1360676359}
+        m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
+        m_MethodName: SetBoolVariable
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Day1ApartmentMeetIvyMainQuest
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 873906027}
+        m_TargetAssemblyTypeName: ForRemindersCreation, Assembly-CSharp
+        m_MethodName: ForInstantiateReminders
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2462,7 +2500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 1
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":109.25,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":130.25,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     better pick up my medication first.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: 
@@ -2524,11 +2562,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 11
-  json: '{"Options":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":73.75,"yPos":377},"ID":10,"ParamActions":[],"TMPFontGUID":null,"Text":"Take
-    Medication","parentUIDs":[9],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":63.75,"yPos":82},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It
-    was all a dream...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":9}],"EditorInfo":{"isRoot":false,"xPos":62.75,"yPos":184},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Then
-    why did it feel so real? This better not be like last time.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":65.75,"yPos":453},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Hmm..
-    where did I last place it.","parentUIDs":[10],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":10}],"EditorInfo":{"isRoot":false,"xPos":65.75,"yPos":279},"ID":9,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+  json: '{"Options":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":133.25,"yPos":161},"ID":10,"ParamActions":[],"TMPFontGUID":null,"Text":"Find
+    Medication","parentUIDs":[9],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":122.25,"yPos":-134},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It
+    was all a dream...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":9}],"EditorInfo":{"isRoot":false,"xPos":121.25,"yPos":-32},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Then
+    why did it feel so real? This better not be like last time.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":124.25,"yPos":237},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Hmm..
+    where did I last place it.","parentUIDs":[10],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":10}],"EditorInfo":{"isRoot":false,"xPos":124.25,"yPos":63},"ID":9,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     better take my medication before things get worse...","parentUIDs":[1],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: August
@@ -2545,19 +2583,7 @@ MonoBehaviour:
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   Event:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 901099776}
-        m_TargetAssemblyTypeName: DialogueTextManager, Assembly-CSharp
-        m_MethodName: SetTextColor
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: '#60CCA0'
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   isDialogueActive: 0
 --- !u!114 &766580643
 MonoBehaviour:
@@ -2972,6 +2998,86 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0af86af060c87437885866082e4b7c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &873906026
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3428167604258995915, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_Name
+      value: FOR REMINDERS APP
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573354369139754590, guid: 1b37c736ffd9b4154a788f4617f661da,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1b37c736ffd9b4154a788f4617f661da, type: 3}
+--- !u!114 &873906027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6340750691804827322, guid: 1b37c736ffd9b4154a788f4617f661da,
+    type: 3}
+  m_PrefabInstance: {fileID: 873906026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc7d856a1c6e4ad39125d448366f80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &887202196
@@ -4322,6 +4428,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19baa4395c4de41d885e3f77ae640e8c, type: 3}
+--- !u!114 &1360676359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4118141311453923356, guid: 19baa4395c4de41d885e3f77ae640e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1360676358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4fd7960f4374b50922392609a7b611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1376677058
 GameObject:
   m_ObjectHideFlags: 0
@@ -5736,6 +5854,7 @@ GameObject:
   - component: {fileID: 2134799372}
   - component: {fileID: 2134799374}
   - component: {fileID: 2134799373}
+  - component: {fileID: 2134799375}
   m_Layer: 0
   m_Name: ConversationEventInfo
   m_TagString: Untagged
@@ -5877,6 +5996,30 @@ MonoBehaviour:
             a sec.
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1360676359}
+        m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
+        m_MethodName: SetBoolVariable
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Day1ApartmentMeetIvyMainQuest
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 873906027}
+        m_TargetAssemblyTypeName: ForRemindersCreation, Assembly-CSharp
+        m_MethodName: ForInstantiateReminders
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   NodeID: 2
   TMPFont: {fileID: 11400000, guid: c9c3c4be0ee40054095906babdf44be0, type: 2}
   Icon: {fileID: 21300000, guid: f06bb7d4e6de6a446aa752c9ef20b3c7, type: 3}
@@ -5935,6 +6078,25 @@ MonoBehaviour:
   NodeID: 1
   TMPFont: {fileID: 11400000, guid: c9c3c4be0ee40054095906babdf44be0, type: 2}
   Icon: {fileID: 21300000, guid: 70e433de46068504fa56fcf7f49b32b1, type: 3}
+  Audio: {fileID: 0}
+--- !u!114 &2134799375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134799370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00abedce3cdbbba46bf2d86c9518c9f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
+  NodeID: 14
+  TMPFont: {fileID: 0}
+  Icon: {fileID: 0}
   Audio: {fileID: 0}
 --- !u!1 &382026359112904446
 GameObject:
@@ -6257,4 +6419,5 @@ SceneRoots:
   - {fileID: 337954896}
   - {fileID: 1881327001}
   - {fileID: 824097732}
+  - {fileID: 873906026}
   - {fileID: 1360676358}

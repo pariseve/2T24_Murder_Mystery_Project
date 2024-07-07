@@ -18,8 +18,9 @@ public class MessageManager : MonoBehaviour
 
     [SerializeField] private GameObject messageNotificationPrefab; // Reference to the message notification prefab
     [SerializeField] private Transform messageNotificationParent; // Parent transform for the message notifications
+    [SerializeField] private TextMeshProUGUI unreadMessageCountText;
 
-    private Dictionary<string, GameObject> messageChatInstances = new Dictionary<string, GameObject>();
+    [SerializeField] private Dictionary<string, GameObject> messageChatInstances = new Dictionary<string, GameObject>();
     private Dictionary<string, List<string>> chatHistory = new Dictionary<string, List<string>>();
 
     private bool testContactCreated = false;
@@ -67,10 +68,113 @@ public class MessageManager : MonoBehaviour
         else
         {
             Debug.LogError("Contact Scroll View not assigned in the inspector.");
+            return; // Exit early if contact scroll view is not assigned
+        }
+
+        // Find existing contact instance under contactParent and add it to the dictionary
+        if (contactParent != null)
+        {
+            Transform ryanContactTransform = FindInactiveObject(contactParent, "Ryan_Contact");
+            if (ryanContactTransform != null)
+            {
+                string npcName = "Ryan";
+
+                // Check if "Ryan" is already in contactInstances
+                if (!contactInstances.ContainsKey(npcName))
+                {
+                    contactInstances.Add(npcName, ryanContactTransform.gameObject);
+
+                    // Add event trigger to open chat history
+                    EventTrigger contactTrigger = ryanContactTransform.gameObject.GetComponent<EventTrigger>();
+                    if (contactTrigger == null)
+                    {
+                        contactTrigger = ryanContactTransform.gameObject.AddComponent<EventTrigger>();
+                    }
+
+                    EventTrigger.Entry contactEntry = new EventTrigger.Entry();
+                    contactEntry.eventID = EventTriggerType.PointerClick;
+                    contactEntry.callback.AddListener((eventData) => { OpenChatWithNPC(npcName); });
+
+                    // UpdateContactListContentSize();
+
+                    contactTrigger.triggers.Add(contactEntry);
+
+                    Debug.Log("Contact for " + npcName + " found and added to contactInstances.");
+                }
+                else
+                {
+                    Debug.LogWarning("Contact for " + npcName + " already exists in contactInstances.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Ryan_Contact not found under contactParent.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Contact Parent not assigned in the inspector.");
+        }
+
+        // Find existing chat history under messageChatParent and add it to the dictionary
+        if (messageChatParent != null)
+        {
+            string npcName = "Ryan";
+            Transform ryanChatHistoryTransform = FindInactiveObject(messageChatParent, "Ryan_ChatHistory");
+            if (ryanChatHistoryTransform != null)
+            {
+                // Check if "Ryan" is already in messageChatInstances
+                if (!messageChatInstances.ContainsKey(npcName))
+                {
+                    messageChatInstances.Add(npcName, ryanChatHistoryTransform.gameObject);
+                }
+                else
+                {
+                    Debug.LogWarning("Chat history instance for " + npcName + " already exists in messageChatInstances.");
+                }
+
+                // Check if "Ryan" is already in chatHistory
+                if (!chatHistory.ContainsKey(npcName))
+                {
+                    // Initialize or load your chat history list here if needed
+                    chatHistory.Add(npcName, new List<string>());
+                }
+                else
+                {
+                    Debug.LogWarning("Chat history for " + npcName + " already exists in chatHistory.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Ryan_ChatHistory not found under messageChatParent.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Message Chat Parent not assigned in the inspector.");
+        }
+
+        // Initialize unreadMessages for "Ryan"
+        if (!unreadMessages.ContainsKey("Ryan"))
+        {
+            unreadMessages.Add("Ryan", false); // Assuming false means unread initially
         }
 
         AddBackImageListener();
         AddBackImageListenerToContacts();
+    }
+
+    private Transform FindInactiveObject(Transform parent, string name)
+    {
+        Transform[] children = parent.GetComponentsInChildren<Transform>(true); // Include inactive children
+        foreach (Transform child in children)
+        {
+            if (child.name == name)
+            {
+                return child;
+            }
+        }
+        return null;
     }
 
     private void AddBackImageListener()
@@ -194,11 +298,11 @@ public class MessageManager : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            DeactivateAllChatHistories();
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                DeactivateAllChatHistories();
+            }
         }
-    }
 
     private void DeactivateAllChatHistories()
     {
@@ -211,7 +315,7 @@ public class MessageManager : MonoBehaviour
     public void CreateMessageNotification(string npcName, string lastMessage)
     {
         // Instantiate the message notification prefab
-        GameObject notification = Instantiate(messageNotificationPrefab, messageNotificationParent);
+        GameObject notification = Instantiate(messageNotificationPrefab);
 
         // Set NPC name
         TextMeshProUGUI npcNameText = notification.transform.Find("Name").GetComponent<TextMeshProUGUI>();
@@ -235,15 +339,25 @@ public class MessageManager : MonoBehaviour
             Debug.LogError("TextMeshProUGUI component for last message not found in the message notification prefab.");
         }
 
-        // Set notification position to the center of the parent
+        // Ensure it takes the next available slot in the GridLayoutGroup
         if (messageNotificationParent != null)
         {
-            notification.transform.SetParent(messageNotificationParent);
-            notification.transform.localPosition = Vector3.zero;
+            GridLayoutGroup gridLayoutGroup = messageNotificationParent.GetComponent<GridLayoutGroup>();
+            if (gridLayoutGroup != null)
+            {
+                RectTransform rectTransform = notification.GetComponent<RectTransform>();
+                rectTransform.SetParent(messageNotificationParent);
+                rectTransform.localScale = Vector3.one; // Reset scale to avoid scaling issues
+                rectTransform.SetAsLastSibling(); // Move to the next available slot
+            }
+            else
+            {
+                Debug.LogError("GridLayoutGroup component not found in the message notification parent.");
+            }
         }
 
         // Play notification audio
-        PlayNotificationSound();
+        // PlayNotificationSound();
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
         StartCoroutine(FadeInOutAndDestroy(notification.GetComponent<CanvasGroup>()));
@@ -481,6 +595,8 @@ public class MessageManager : MonoBehaviour
 
         // Update the "New Message" indicator for the contact
         UpdateNewMessageIndicator(npcName);
+        // Update unread message count
+        UpdateUnreadMessageCount();
     }
 
     private void SetMessageRead(string npcName)
@@ -492,6 +608,8 @@ public class MessageManager : MonoBehaviour
 
         // Update the "New Message" indicator for the contact
         UpdateNewMessageIndicator(npcName);
+        // Update unread message count
+        UpdateUnreadMessageCount();
     }
 
     private void UpdateNewMessageIndicator(string npcName)
@@ -536,6 +654,27 @@ public class MessageManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Method to update the unread message count
+    private void UpdateUnreadMessageCount()
+    {
+        int unreadCount = CountUnreadMessages();
+        unreadMessageCountText.text = unreadCount.ToString();
+    }
+
+    // Method to count the unread messages
+    private int CountUnreadMessages()
+    {
+        int count = 0;
+        foreach (var unread in unreadMessages.Values)
+        {
+            if (unread)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
 private void OnReplyButtonClicked(string npcName, string playerReply)
@@ -684,6 +823,9 @@ private void OnReplyButtonClicked(string npcName, string playerReply)
             // Set the size of the content RectTransform
             RectTransform contentRectTransform = contactScrollViewContent.GetComponent<RectTransform>();
             contentRectTransform.sizeDelta = new Vector2(contentRectTransform.sizeDelta.x, totalHeight);
+
+            // Scroll to the bottom
+            Canvas.ForceUpdateCanvases();
         }
         else
         {

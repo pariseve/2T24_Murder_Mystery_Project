@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class ShowNPC : MonoBehaviour
+public class ShowObject : MonoBehaviour
 {
-    [SerializeField] private GameObject npcToActivate;
+    [SerializeField] private GameObject objectToActivate;
     [SerializeField] private string[] boolNames; // Array of boolean names
 
     void Update()
@@ -19,16 +19,16 @@ public class ShowNPC : MonoBehaviour
         }
 
         // Activate the object if all booleans are true and it's not already active
-        if (allBoolsTrue && npcToActivate != null && !npcToActivate.activeSelf)
+        if (allBoolsTrue && objectToActivate != null && !objectToActivate.activeSelf)
         {
-            npcToActivate.SetActive(true);
-            Debug.Log($"Activated {npcToActivate.name}");
+            objectToActivate.SetActive(true);
+            Debug.Log($"Activated {objectToActivate.name}");
         }
         // Optional: Deactivate the object if any boolean is false and it's currently active
-        else if (!allBoolsTrue && npcToActivate != null && npcToActivate.activeSelf)
+        else if (!allBoolsTrue && objectToActivate != null && objectToActivate.activeSelf)
         {
-            npcToActivate.SetActive(false);
-            Debug.Log($"Deactivated {npcToActivate.name}");
+            objectToActivate.SetActive(false);
+            Debug.Log($"Deactivated {objectToActivate.name}");
         }
         else
         {

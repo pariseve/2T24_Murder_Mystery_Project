@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5265,50 +5265,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1066150341}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1078449996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1078449998}
-  - component: {fileID: 1078449997}
-  m_Layer: 0
-  m_Name: Clear Player Prefs
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1078449997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078449996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29aae8a61308dea4c962f49f217af460, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1078449998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1078449996}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -22.574347, y: 6.4792643, z: 5.7061176}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1085482432
 Mesh:
   m_ObjectHideFlags: 0
@@ -9701,13 +9657,12 @@ SceneRoots:
   - {fileID: 745706215}
   - {fileID: 1758013023}
   - {fileID: 2340901786579496811}
+  - {fileID: 1013028599}
   - {fileID: 285701550}
   - {fileID: 44493532}
   - {fileID: 1224469636}
-  - {fileID: 1013028599}
   - {fileID: 377741965}
   - {fileID: 1907180687}
   - {fileID: 591820427}
   - {fileID: 912842769}
   - {fileID: 7726779813525601879}
-  - {fileID: 1078449998}

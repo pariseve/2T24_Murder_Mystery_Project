@@ -21,6 +21,7 @@ public class Reminder
 public class DescriptionPair
 {
     public string boolKey;
+    [TextArea(3, 10)]
     public List<string> descriptions = new List<string>();
 }
 
@@ -34,6 +35,9 @@ public class RemindersManager : MonoBehaviour
     [SerializeField] private GameObject remindersUI;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private float remindersSpacing = 0.5f;
+
+    [SerializeField] private GameObject notificationPrefab; // Reference to the notification prefab
+    [SerializeField] private Transform notificationParent; // Parent transform for notifications
 
     private Dictionary<string, bool> instantiatedReminders = new Dictionary<string, bool>();
     private Dictionary<string, List<GameObject>> instantiatedReminderDescriptions = new Dictionary<string, List<GameObject>>();
@@ -80,6 +84,71 @@ public class RemindersManager : MonoBehaviour
 
     }
 
+    public void ShowRemindersNotification(Reminder reminder)
+    {
+        GameObject notificationInstance = Instantiate(notificationPrefab, notificationParent);
+
+        // Find the TextMeshPro component labeled "Last Note" and set the text
+        TextMeshProUGUI[] textComponents = notificationInstance.GetComponentsInChildren<TextMeshProUGUI>();
+        foreach (var textComponent in textComponents)
+        {
+            if (textComponent.name == "Last Reminder")
+            {
+                textComponent.text = reminder.name;
+                break;
+            }
+        }
+
+        // Set notification position to the center of the parent
+        if (notificationParent != null)
+        {
+            notificationInstance.transform.SetParent(notificationParent);
+            notificationInstance.transform.localPosition = Vector3.zero;
+        }
+
+        // Ensure it takes the next available slot in the GridLayoutGroup
+        GridLayoutGroup gridLayoutGroup = notificationParent.GetComponent<GridLayoutGroup>();
+        if (gridLayoutGroup != null)
+        {
+            RectTransform rectTransform = notificationInstance.GetComponent<RectTransform>();
+            rectTransform.SetParent(notificationParent);
+            rectTransform.SetAsLastSibling(); // Move to the next available slot
+        }
+
+        // Play notification audio if needed
+        // PlayNotificationSound();
+
+        // Start coroutine for fading in, staying, fading out, and destroying the notification
+        StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));
+    }
+
+    private IEnumerator FadeInOutAndDestroy(CanvasGroup canvasGroup)
+    {
+        float fadeDuration = 1.0f; // Adjust as needed
+        float stayDuration = 2.0f; // Adjust as needed
+
+        // Fade in
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            canvasGroup.alpha = Mathf.Lerp(0, 1, t / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = 1;
+
+        // Stay for a while
+        yield return new WaitForSeconds(stayDuration);
+
+        // Fade out
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            canvasGroup.alpha = Mathf.Lerp(1, 0, t / fadeDuration);
+            yield return null;
+        }
+        canvasGroup.alpha = 0;
+
+        Destroy(canvasGroup.gameObject);
+    }
+
     public void InstantiateReminders()
     {
         foreach (Reminder reminder in reminders)
@@ -105,9 +174,10 @@ public class RemindersManager : MonoBehaviour
             {
                 CreateReminder(reminder);
                 instantiatedReminders[reminder.name] = true;
+                // ShowRemindersNotification(reminder);
             }
+            // ShowRemindersNotification(reminder);
         }
-
         // After creating reminders, check if any need to be updated
         UpdateAllReminders();
     }
@@ -258,6 +328,7 @@ public class RemindersManager : MonoBehaviour
 
         // Store instantiated reminder state
         instantiatedReminders[reminder.name] = true;
+        ShowRemindersNotification(reminder);
     }
 
 
