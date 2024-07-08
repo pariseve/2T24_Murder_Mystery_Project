@@ -11,6 +11,8 @@ public class ObjectClickAnimation : MonoBehaviour
     [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
     [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
 
+    [SerializeField] private KeyCode startKey = KeyCode.E;
+
     private NPCConversation npcConversation;
 
     private void Start()
@@ -21,7 +23,7 @@ public class ObjectClickAnimation : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(startKey))
         {
             CheckClick();
         }

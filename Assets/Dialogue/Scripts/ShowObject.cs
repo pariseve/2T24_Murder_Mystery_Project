@@ -22,17 +22,17 @@ public class ShowObject : MonoBehaviour
         if (allBoolsTrue && objectToActivate != null && !objectToActivate.activeSelf)
         {
             objectToActivate.SetActive(true);
-            Debug.Log($"Activated {objectToActivate.name}");
+            // Debug.Log($"Activated {objectToActivate.name}");
         }
         // Optional: Deactivate the object if any boolean is false and it's currently active
         else if (!allBoolsTrue && objectToActivate != null && objectToActivate.activeSelf)
         {
             objectToActivate.SetActive(false);
-            Debug.Log($"Deactivated {objectToActivate.name}");
+            // Debug.Log($"Deactivated {objectToActivate.name}");
         }
         else
         {
-            Debug.Log("Bool not found");
+            // Debug.Log("Bool not found");
         }
     }
 }

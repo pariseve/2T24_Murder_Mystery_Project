@@ -8,6 +8,8 @@ public class ObjectClickDialogue : MonoBehaviour
 
     [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
 
+    [SerializeField] private KeyCode startKey = KeyCode.E;
+
     private CameraZoom cameraZoom;
 
     private void Start()
@@ -30,7 +32,7 @@ public class ObjectClickDialogue : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonDown(0) && !dialogueStarted)// && !dialogue.isDialogueActive)
+        if (Input.GetKeyDown(startKey) && !dialogueStarted)// && !dialogue.isDialogueActive)
         {
             // Raycast to detect object click
             RaycastHit hit;

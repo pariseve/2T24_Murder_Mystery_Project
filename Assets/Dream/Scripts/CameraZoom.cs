@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using DialogueEditor;
+using System.Collections.Generic;
 
 public class CameraZoom : MonoBehaviour
 {
     [SerializeField] private float zoomSpeed = 2f; // Slower zoom speed
     [SerializeField] private float zoomFactor = 2f; // Distance multiplier for zooming in
     [SerializeField] private LayerMask zoomLayer;
+
+    [SerializeField] private KeyCode startKey = KeyCode.E;
 
     private Camera cam;
     private Vector3 originalPosition;
@@ -29,11 +33,11 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(startKey) && !isZoomedIn)
         {
             ZoomInToObject();
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetKeyDown(startKey) && isZoomedIn)
         {
             ZoomOut();
         }
@@ -81,7 +85,6 @@ public class CameraZoom : MonoBehaviour
     public void ZoomOut()
     {
         if (!isZoomedIn) return;
-
         StartCoroutine(ZoomOutCoroutine());
     }
 

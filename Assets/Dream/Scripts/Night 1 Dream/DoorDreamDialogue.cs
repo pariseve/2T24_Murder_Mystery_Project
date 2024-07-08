@@ -14,6 +14,8 @@ public class DoorDreamDialogue : MonoBehaviour
     [SerializeField] private string[] requiredBoolNamesTrue;
     [SerializeField] private string[] requiredBoolNamesFalse;
 
+    [SerializeField] private KeyCode startKey = KeyCode.E;
+
     private void Start()
     {
         objectClickSceneTransitionDream = FindObjectOfType<ObjectClickSceneTransitionDream>();
@@ -21,7 +23,7 @@ public class DoorDreamDialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))// && !dialogue.isDialogueActive)
+        if (Input.GetKeyDown(startKey))// && !dialogue.isDialogueActive)
         {
                 // Raycast to detect object click
                 RaycastHit hit;
@@ -44,7 +46,7 @@ public class DoorDreamDialogue : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(0) && !dialogueStarted && AllRequiredBoolsFalse())// && !dialogue.isDialogueActive)
+        if (Input.GetKeyDown(startKey) && !dialogueStarted && AllRequiredBoolsFalse())// && !dialogue.isDialogueActive)
         {
                 // Raycast to detect object click
                 RaycastHit hit;

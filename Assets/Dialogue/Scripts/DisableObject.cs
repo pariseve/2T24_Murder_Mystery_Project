@@ -22,13 +22,13 @@ public class DisableObject : MonoBehaviour
         if (allBoolsTrue && objectToToggle != null && objectToToggle.activeSelf)
         {
             objectToToggle.SetActive(false);
-            Debug.Log($"Deactivated {objectToToggle.name}");
+            // Debug.Log($"Deactivated {objectToToggle.name}");
         }
         // Activate the object if any boolean is false and it's not already active
         else if (!allBoolsTrue && objectToToggle != null && !objectToToggle.activeSelf)
         {
             objectToToggle.SetActive(true);
-            Debug.Log($"Activated {objectToToggle.name}");
+            // Debug.Log($"Activated {objectToToggle.name}");
         }
     }
 }
