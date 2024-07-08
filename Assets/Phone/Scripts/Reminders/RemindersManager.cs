@@ -44,6 +44,8 @@ public class RemindersManager : MonoBehaviour
 
     [SerializeField] private List<Reminder> reminders = new List<Reminder>();
 
+    private Dictionary<string, HashSet<string>> shownDescriptions = new Dictionary<string, HashSet<string>>();
+
     public static RemindersManager Instance { get; private set; }
 
     private void Awake()
@@ -174,12 +176,37 @@ public class RemindersManager : MonoBehaviour
             {
                 CreateReminder(reminder);
                 instantiatedReminders[reminder.name] = true;
-                // ShowRemindersNotification(reminder);
             }
-            // ShowRemindersNotification(reminder);
+
+            // Show notification for new content added to the reminder
+            ShowNotificationForNewContent(reminder);
         }
+
         // After creating reminders, check if any need to be updated
         UpdateAllReminders();
+    }
+
+    private void ShowNotificationForNewContent(Reminder reminder)
+    {
+        if (!shownDescriptions.ContainsKey(reminder.name))
+        {
+            shownDescriptions[reminder.name] = new HashSet<string>();
+        }
+
+        foreach (DescriptionPair pair in reminder.descriptionPairs)
+        {
+            if (BoolManager.Instance.GetBool(pair.boolKey))
+            {
+                foreach (string description in pair.descriptions)
+                {
+                    if (!shownDescriptions[reminder.name].Contains(description))
+                    {
+                        ShowRemindersNotification(reminder);
+                        shownDescriptions[reminder.name].Add(description);
+                    }
+                }
+            }
+        }
     }
 
     public void UpdateAllReminders()
@@ -328,7 +355,7 @@ public class RemindersManager : MonoBehaviour
 
         // Store instantiated reminder state
         instantiatedReminders[reminder.name] = true;
-        ShowRemindersNotification(reminder);
+        // ShowRemindersNotification(reminder);
     }
 
 

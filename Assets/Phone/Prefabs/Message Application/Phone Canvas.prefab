@@ -2750,6 +2750,11 @@ MonoBehaviour:
       put this here and what it could mean?
     boolKey: foundidolstatue
     isActive: 0
+  - name: Talked To Ms Edith About Idol Statue
+    description: Ms Peyman was acting a bit strange when I talked about the statue...
+      but she's always strange.
+    boolKey: EdithDay1StreetTalkedIdolStatueMainQuest
+    isActive: 0
 --- !u!114 &5440625808805098058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,6 +2804,13 @@ MonoBehaviour:
         I should go
         see Ms Peyman down on Rosemont St to see if she can tell me anything about
         it.'
+    - boolKey: EdithDay1StreetTalkedIdolStatueMainQuest
+      descriptions:
+      - 'Edith didn''t know anything about the statue.
+
+
+        Ivy messaged me
+        that she''s at Petal And Bacon now so I better head over there.'
   - name: Help The Cat
     descriptionPairs:
     - boolKey: EdithDay1StreetFindRaymondQuest

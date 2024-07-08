@@ -19,6 +19,7 @@ public class RemoveItemFromInventory : MonoBehaviour
     [SerializeField] private bool isInsideTrigger = false;
 
     [SerializeField] private NPCConversation returnDialogue;
+    [SerializeField] private NPCConversation successfulDialogue;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -98,8 +99,15 @@ public class RemoveItemFromInventory : MonoBehaviour
             playerController.DisableMovement();
         }
 
-        // Start the conversation
-        ConversationManager.Instance.StartConversation(returnDialogue);
+        if (!InventoryManager.instance.HasItem(itemToRemove))
+        {
+            // Start the conversation
+            ConversationManager.Instance.StartConversation(returnDialogue);
+        }
+        else
+        {
+            UseItem();
+        }
     }
 
         private void UseItem()
@@ -109,28 +117,36 @@ public class RemoveItemFromInventory : MonoBehaviour
             Debug.LogWarning("Item to remove is not assigned.");
             return;
         }
-
-        if (InventoryManager.instance.HasItem(itemToRemove))
+        if (AllRequiredBoolsTrue() && AllRequiredBoolsFalse())
         {
-            if (AllRequiredBoolsTrue() && AllRequiredBoolsFalse())
+            // Call RemoveItem from InventoryManager to remove the item
+            if (InventoryManager.instance.HasItem(itemToRemove))
             {
-                // Call RemoveItem from InventoryManager to remove the item
-                if (InventoryManager.instance.HasItem(itemToRemove))
+                // Check if DialoguePanel is active
+                if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
                 {
-                    Debug.Log("Item used from inventory: " + itemToRemove.itemName);
-                    // Implement your item use logic here
-                    InventoryManager.instance.RemoveItem(itemToRemove);
-                    ExecuteItemUseLogic(itemToRemove);
-                    BoolManager.Instance.SetBool(boolName, true);
+                    Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+                    return;
                 }
-                else
+
+                Debug.Log("Item used from inventory: " + itemToRemove.itemName);
+                // Implement your item use logic here
+                InventoryManager.instance.RemoveItem(itemToRemove);
+                ExecuteItemUseLogic(itemToRemove);
+                BoolManager.Instance.SetBool(boolName, true);
+
+                // Disable player movement or any other setup needed before dialogue
+                PlayerController playerController = FindObjectOfType<PlayerController>();
+                if (playerController != null)
                 {
-                    Debug.Log("Failed to use item from inventory: " + itemToRemove.itemName);
+                    playerController.DisableMovement();
                 }
+
+                ConversationManager.Instance.StartConversation(successfulDialogue);
             }
             else
             {
-                Debug.Log("Required booleans are not in the correct state to use the item: " + itemToRemove.itemName);
+                Debug.Log("Failed to use item from inventory: " + itemToRemove.itemName);
             }
         }
         else
