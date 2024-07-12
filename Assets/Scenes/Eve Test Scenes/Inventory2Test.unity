@@ -1308,7 +1308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 739260492}
   m_Layer: 0
-  m_Name: Level Design Assets
+  m_Name: Level Design Greybox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1336,6 +1336,104 @@ Transform:
   - {fileID: 1335976930}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &830302320
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.9
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.65
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6544207043104339812, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3740410879150466512, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 328248306831618239, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Edith_House
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486285260423582616, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7171058562028668902, guid: 17a5e21ba6cc745498fa7842cfb401e5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 17a5e21ba6cc745498fa7842cfb401e5, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,7 +1703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textObj: {fileID: 1505908759}
+  playerCharacter: {fileID: 0}
+  interactPrompt: 
 --- !u!4 &1179899930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6483457935210178643, guid: e80d92c6172b9f746a8106f52082f28e,
@@ -2349,7 +2448,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1612674281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2739,7 +2838,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1110114801850206506, guid: e80d92c6172b9f746a8106f52082f28e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: e80d92c6172b9f746a8106f52082f28e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -2759,3 +2862,4 @@ SceneRoots:
   - {fileID: 1362951603}
   - {fileID: 1922246453}
   - {fileID: 1678793431}
+  - {fileID: 830302320}
