@@ -35,7 +35,7 @@ public class ItemPickup : MonoBehaviour
                     // Mark the item as picked up
                     InventoryManager.instance.PickedUpItems.Add(uniqueID);
                     // Show pickup text through the UIManager
-                    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
+                    InventoryUI.instance.ShowPickupDisplay(item);
                     // Destroy the item pickup
                     Destroy(gameObject);
                 }
@@ -53,7 +53,7 @@ public class ItemPickup : MonoBehaviour
                     // Mark the item as picked up
                     InventoryManager.instance.PickedUpItems.Add(uniqueID);
                     // Show pickup text through the UIManager
-                    InventoryUI.instance.ShowPickupText("Picked up " + item.itemName + ", press [i]");
+                    InventoryUI.instance.ShowPickupDisplay(item);
                     // Destroy the item pickup
                     Destroy(gameObject);
                 }

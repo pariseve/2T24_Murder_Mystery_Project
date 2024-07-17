@@ -224,6 +224,7 @@ void AssignItemsToGridSlots()
                 {
                     Debug.Log("Item exchanged: " + selectedItem.itemName + " with " + selectedItem.exchangedItem.itemName);
                     ShowBuySuccessMessage(selectedItem.itemName);
+                    InventoryUI.instance.ShowPickupDisplay(selectedItem);
                     buyButton.gameObject.SetActive(false);
                 }
                 else

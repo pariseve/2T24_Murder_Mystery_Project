@@ -19,7 +19,9 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
 
-    // Pickup text variables
+    // Pickup Display variables
+    public GameObject pickupDisplayPanel;
+    public Image pickupItemImage;
     public TextMeshProUGUI pickupText;
 
 
@@ -92,15 +94,31 @@ public class InventoryUI : MonoBehaviour
     // PICKUP TEXT
     //-------------------------------------------------------------------------------------
 
-    public void ShowPickupText(string text)
+    public void ShowPickupDisplay(Item item)
     {
-        if (pickupText != null)
+        if (pickupDisplayPanel != null)
         {
-            pickupText.text = text;
-            pickupText.alpha = 1f; // Ensure the text is fully visible
-            LeanTween.alphaText(pickupText.rectTransform, 1f, 1f).setEase(LeanTweenType.easeInCirc).setOnComplete(() =>
+            pickupDisplayPanel.SetActive(true);
+            pickupText.text = "Item obtained: " + item.itemName;
+            pickupItemImage.sprite = item.icon;
+            LeanTween.scale(pickupDisplayPanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutQuint);
+
+            // Close the display panel after 3 seconds
+            Invoke("EndPickupDisplay", 2f);
+        }
+        else
+        {
+            Debug.Log("Pickup text not found.");
+        }
+    }
+
+    private void EndPickupDisplay()
+    {
+        if (pickupDisplayPanel != null)
+        {
+            LeanTween.scale(pickupDisplayPanel, new Vector2(0, 0), 1f).setEase(LeanTweenType.easeInQuint).setOnComplete(() =>
             {
-                Invoke("ClearPickupText", 2f); // Clear the text after 2 seconds
+                pickupDisplayPanel.SetActive(false);
             });
         }
         else
@@ -109,20 +127,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private void ClearPickupText()
-    {
-        if (pickupText != null)
-        {
-            LeanTween.alphaText(pickupText.rectTransform, 0f, 1.5f).setEase(LeanTweenType.easeOutCirc).setOnComplete(() =>
-            {
-                pickupText.text = "";
-            });
-        }
-        else
-        {
-            Debug.Log("Pickup text not found.");
-        }
-    }
 
     //-------------------------------------------------------------------------------------
     // EXAMINE PANEL
