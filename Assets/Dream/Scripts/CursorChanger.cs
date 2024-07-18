@@ -8,6 +8,21 @@ public class CursorChanger : MonoBehaviour
     private Vector2 hotSpot;
     private Vector2 defaultHotSpot = Vector2.zero;
 
+    public static CursorChanger Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         if (newCursorTexture != null)

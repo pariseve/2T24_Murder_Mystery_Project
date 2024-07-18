@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DialogueEditor;
 
-public class ApartmentDay1AfterPickUpMedsDialogue : MonoBehaviour
+public class NPCDialogueMonitorItemRemovalTrigger : MonoBehaviour
 {
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private GameObject itemToMonitor;
 
-    private const string CONVERSATION_TRIGGERED_KEY = "ApartmentDay1AfterPickUpMedsTriggered";
+    [SerializeField] private string CONVERSATION_TRIGGERED_KEY = "";
 
     private void Start()
     {
