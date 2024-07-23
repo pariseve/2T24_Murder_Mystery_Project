@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    Event: 550
+    Event: 600
     _UseCustomDepthTexture: 0
     _UseFogOffsetTexture: 1
 --- !u!114 &-2292753759136050027
@@ -36,7 +36,7 @@ MonoBehaviour:
     m_Bits: 128
   outlineSettings:
     outlineColor: {r: 0, g: 0, b: 0, a: 1}
-    outlineScale: 1.5
+    outlineScale: 1
     depthThreshold: 0.1
     robertsCrossMultiplier: 0
     normalThreshold: 0.214
@@ -44,7 +44,7 @@ MonoBehaviour:
     steepAngleMultiplier: 0
     colorFormat: 0
     depthBufferBits: 0
-    filterMode: 0
+    filterMode: 1
     backgroundColor: {r: 0, g: 0, b: 0, a: 0}
     perObjectData: 0
     enableDynamicBatching: 0
