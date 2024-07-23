@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,10 +18,13 @@ public class PlayerController : MonoBehaviour
     private bool isIndoors = false;
     public bool canMove = true; // Flag to control movement
 
+    private Animator animator; // Reference to the Animator component
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        animator = GetComponentInChildren<Animator>(); // Get the Animator component
     }
 
     void FixedUpdate()
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = (x < 0);
         }
+
+        // Update animation parameters
+        bool isMoving = moveDirection.magnitude > 0;
+        animator.SetBool("isMoving", isMoving);
     }
 
     void OnTriggerEnter(Collider other)
@@ -94,10 +100,4 @@ public class PlayerController : MonoBehaviour
         canMove = false;
         rb.velocity = Vector3.zero; // Stop the player immediately
     }
-
-    public void InteriorMovement()
-    {
-        // Additional indoor movement logic if needed
-    }
 }
-
