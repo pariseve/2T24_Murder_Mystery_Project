@@ -46,21 +46,28 @@ public class ObjectClickAnimation : MonoBehaviour
 
     private IEnumerator PlayAnimationAndMoveUp(Transform obj)
     {
-        // Trigger animation on all children
-        foreach (Transform child in obj)
-        {
-            Animator animator = child.GetComponent<Animator>();
-            if (animator != null)
-            {
-                animator.SetTrigger(animationTriggerName);
-            }
-        }
+        // Trigger animation on all nested children
+        TriggerAnimationOnAllChildren(obj);
 
         // Wait for the fixed delay
         yield return new WaitForSeconds(animationDelay);
 
         // Start moving up and spreading out
         StartCoroutine(MoveUpAndSpreadChildren(obj));
+    }
+
+    private void TriggerAnimationOnAllChildren(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            Animator animator = child.GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.SetTrigger(animationTriggerName);
+            }
+            // Recursively apply animation to all children of this child
+            TriggerAnimationOnAllChildren(child);
+        }
     }
 
     private IEnumerator MoveUpAndSpreadChildren(Transform obj)

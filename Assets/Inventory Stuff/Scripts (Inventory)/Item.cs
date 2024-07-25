@@ -11,6 +11,7 @@ public class Item : ScriptableObject
     [TextArea(15, 20)]
     public string description;
     public Item exchangedItem; //item needed for exchange
+    public GameObject interactionUIPrefab;
 }
 
 public enum ItemType

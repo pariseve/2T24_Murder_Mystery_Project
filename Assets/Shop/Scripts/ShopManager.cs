@@ -217,7 +217,7 @@ void AssignItemsToGridSlots()
     {
         if (selectedItem != null)
         {
-            if (selectedItem.itemType == ItemType.Exchangable && selectedItem.exchangedItem != null)
+            if (selectedItem.itemType == ItemType.Exchangable && selectedItem.exchangedItem != null || selectedItem.itemType == ItemType.Usable)
             {
                 // Attempt to exchange the item
                 if (InventoryManager.instance.HasItem(selectedItem.exchangedItem) && InventoryManager.instance.ExchangeItem(selectedItem))

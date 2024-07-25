@@ -95,6 +95,18 @@ public class InventoryItem : MonoBehaviour
     // USING ITEMS
     //-------------------------------------------------------------------------------------
 
+    public void CallOpenUsableItemPanel()
+    {
+        // Close the interaction panel
+        if (isInteractOpen)
+        {
+            InventoryUI.instance.UpdateCurrentInventoryItem(null);
+            CloseInteractionPanel();
+        }
+        // Call the InventoryUI function to open the using item panel
+        InventoryUI.instance.OpenUsableItemPanel(item);
+    }
+
     public bool HasItem()
     {
         return item != null;

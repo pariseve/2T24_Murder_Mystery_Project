@@ -330,9 +330,9 @@ RectTransform:
   - {fileID: 8419957178342112413}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -395}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3617619882313150917
@@ -610,9 +610,9 @@ RectTransform:
   - {fileID: 3898852318505007016}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -555}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9017100339268537278
@@ -866,9 +866,9 @@ RectTransform:
   - {fileID: 8182550899294995369}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -235}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3407222703986696814
@@ -1198,9 +1198,9 @@ RectTransform:
   - {fileID: 426264209153758534}
   m_Father: {fileID: 5600099310250442990}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160, y: -40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7789682550650098822
@@ -2028,8 +2028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 10.668, y: 0.0000233886}
-  m_SizeDelta: {x: -40, y: 1590}
+  m_AnchoredPosition: {x: 10.668, y: -0.0010156278}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3960871436847973534
 MonoBehaviour:
@@ -2213,7 +2213,7 @@ RectTransform:
   m_Father: {fileID: 6202160710999172230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2324,9 +2324,9 @@ RectTransform:
   - {fileID: 1404804717315360487}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -75}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8767426322800123992
@@ -2761,6 +2761,43 @@ MonoBehaviour:
       Could the Hive be real?
     boolKey: oddletterday1town1
     isActive: 0
+  - name: Old Photograph
+    description: There was an old photograph in my dream of old railway tracks and
+      a building. The number 12B was written in the corner. I should try to find
+      this location.
+    boolKey: dream2photograph
+    isActive: 0
+  - name: The Pastry Nook Receipt
+    description: I found a receipt in my dream of a purchase from The Pastry Nook.
+      I haven't even been there in a while...
+    boolKey: dream2receipt
+    isActive: 0
+  - name: Cipher Code
+    description: 'There was a cryptic message in my dream on a srunched piece of
+      paper... There has to be a way to decode it.
+
+      Keyword: MAPLEWOOD
+
+      Message:
+      QAHE FWQY RR RDDIICBW ET, UZPHCK WTE RCSS'
+    boolKey: dream2ciphercode
+    isActive: 0
+  - name: Dream 2 Clues Linked
+    description: The receipt and the photograph in my dream were connected and led
+      me to find a Storage Unit in the Railway Building. There was documents about
+      'The Hive' and a torn piece of what looks like a map. Who left this here?
+    boolKey: Day2Town2StorageUnitItemsPickUp
+    isActive: 0
+  - name: Dream 2 Clues Map
+    description: 'All the clues in my dream led me to find pieces of a torn map which
+      led to me finding a key with a police logo.
+
+
+      There must be something
+      important locked away in the police station... I just need to get past Sheriff
+      Ian.'
+    boolKey: Day2Town2FoundSheriffLockerKey
+    isActive: 0
 --- !u!114 &5440625808805098058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2817,6 +2854,18 @@ MonoBehaviour:
 
         Ivy messaged
         me that she''s at Petal And Bacon now so I better head over there.'
+    - boolKey: Day2ApartmentTalkToNatalieMainQuest
+      descriptions:
+      - 'Natalie and Ryan were close.
+
+
+        I should go talk to her to see if
+        she knows anything about the Idol Statue and how it''s connected to Ryan.'
+    - boolKey: Day2Town2TalkedToNatalieMainQuest
+      descriptions:
+      - "Natalie corroborated that Ryan was invested in the story of \u2018The Hive\u2019.
+        She also mentioned something about him having a journal\u2026 I wonder where
+        that might be.\n\nI should try to find it... it has to be somewhere around."
   - name: Help The Cat
     descriptionPairs:
     - boolKey: EdithDay1StreetFindRaymondQuest
@@ -2986,7 +3035,7 @@ RectTransform:
   m_Father: {fileID: 6950526499872213721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4175,9 +4224,9 @@ RectTransform:
   - {fileID: 2995804825439505023}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -1195}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4464188549952781047
@@ -4643,9 +4692,9 @@ RectTransform:
   - {fileID: 2849324026153257759}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -715}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4016872435721369065
@@ -4717,9 +4766,9 @@ RectTransform:
   - {fileID: 4288294582129987784}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -1515}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2190455176947605195
@@ -5628,9 +5677,9 @@ RectTransform:
   - {fileID: 5688393892329148609}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -875}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5453150702691063576
@@ -6039,8 +6088,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 17.3223, y: 0.0000038444996}
-  m_SizeDelta: {x: -70, y: 80}
+  m_AnchoredPosition: {x: 17.3223, y: 0.000061035156}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8317504095772076092
 MonoBehaviour:
@@ -6826,8 +6875,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2891435977372497647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7174398}
-  m_AnchorMax: {x: 1, y: 0.9999999}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7604,9 +7653,9 @@ RectTransform:
   - {fileID: 6895999461326244366}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -1355}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8836906603997943063
@@ -7750,7 +7799,7 @@ RectTransform:
   m_Father: {fileID: 1197350660046648160}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9064,7 +9113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 17.3223, y: 0.000030517578}
-  m_SizeDelta: {x: -390, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5797529467300055522
 MonoBehaviour:
@@ -9311,9 +9360,9 @@ RectTransform:
   - {fileID: 4180182489835991673}
   m_Father: {fileID: 1365757563959215640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 175, y: -1035}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 350, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7058974888440121785
@@ -9716,7 +9765,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 17.3223, y: 0.000030517578}
-  m_SizeDelta: {x: -390, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7602756284427514705
 MonoBehaviour:

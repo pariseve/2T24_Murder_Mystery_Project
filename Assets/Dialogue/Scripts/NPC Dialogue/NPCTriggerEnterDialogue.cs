@@ -31,6 +31,19 @@ public class NPCTriggerEnterDialogue : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isInsideTrigger = true;
+
+            if (!PlayerPrefs.HasKey(conversationTriggeredKey))
+            {
+                StartConversation();
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))

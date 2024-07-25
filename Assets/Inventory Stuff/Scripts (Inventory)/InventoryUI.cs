@@ -12,6 +12,7 @@ public class InventoryUI : MonoBehaviour
 
     // Interaction panel variables
     public InventoryItem curInventoryItem;
+    private GameObject currentUsableUIPanel;
 
     // Examine panel variables
     public GameObject examinePanel;
@@ -142,11 +143,24 @@ public class InventoryUI : MonoBehaviour
             examineImage.sprite = item.icon;
             examinePanel.SetActive(true);
             LeanTween.scale(examinePanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutBack);
+
+            // Disable player movement or any other setup needed before dialogue
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.DisableMovement();
+            }
         }
     }
 
     public void CloseExaminePanel()
     {
+        // Disable player movement or any other setup needed before dialogue
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.EnableMovement();
+        }
         LeanTween.scale(examinePanel, new Vector2(0, 0), 1f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
             {
                 examinePanel.SetActive(false); // This will be called after the animation completes
@@ -156,5 +170,35 @@ public class InventoryUI : MonoBehaviour
     public void UpdateCurrentInventoryItem(InventoryItem inventoryItem)
     {
         curInventoryItem = inventoryItem;
+    }
+
+    //-------------------------------------------------------------------------------------
+    // USABLE ITEM UI PANEL
+    //-------------------------------------------------------------------------------------
+
+    public void OpenUsableItemPanel(Item item)
+    {
+
+        // Disable player movement or any other setup needed before dialogue
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null && currentUsableUIPanel != null)
+        {
+            playerController.DisableMovement();
+        }
+
+        if (item != null && item.itemType == ItemType.Usable)
+        {
+            if (currentUsableUIPanel != null)
+            {
+                Destroy(currentUsableUIPanel);
+            }
+
+            if (item.interactionUIPrefab != null)
+            {
+                currentUsableUIPanel = Instantiate(item.interactionUIPrefab);
+                currentUsableUIPanel.SetActive(true);
+                Debug.Log("Usable item UI panel is open.");
+            }
+        }
     }
 }
