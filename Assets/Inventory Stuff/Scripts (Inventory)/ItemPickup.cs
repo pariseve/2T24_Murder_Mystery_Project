@@ -23,7 +23,7 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
+        if (other.CompareTag("Player") && Input.GetMouseButton(0))
         {
             // Check if the item is exchangeable
             if (item.itemType == ItemType.Exchangable && item.exchangedItem != null)

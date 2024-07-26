@@ -1,34 +1,25 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class InteractText : MonoBehaviour
 {
-    public GameObject playerCharacter;
+    private GameObject playerCharacter;
     private TextMeshPro textMeshPro;
-    [TextArea(10,15)]
+    [TextArea(10, 15)]
     public string interactPrompt;
 
     void Start()
     {
-        playerCharacter = GameObject.FindGameObjectWithTag("Player");
-        if (playerCharacter == null)
-        {
-            Debug.Log("no player character found :(");
-            return;
-        }
-        
-        if (textMeshPro == null)
-        {
-            textMeshPro = playerCharacter.GetComponentInChildren<TextMeshPro>();
-            return;
-        }
-
-
+        StartCoroutine(CheckAgain());
     }
 
     public void SetText(string text)
     {
-        textMeshPro.text = interactPrompt;
+        if (textMeshPro != null)
+        {
+            textMeshPro.text = text;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +38,21 @@ public class InteractText : MonoBehaviour
             {
                 textMeshPro.text = "";
             }
+        }
+    }
+
+    IEnumerator CheckAgain()
+    {
+        while (playerCharacter == null)
+        {
+            playerCharacter = GameObject.FindGameObjectWithTag("Player");
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        textMeshPro = playerCharacter.GetComponentInChildren<TextMeshPro>();
+        if (textMeshPro == null)
+        {
+            Debug.LogError("TextMeshPro component not found in children of player character.");
         }
     }
 }
