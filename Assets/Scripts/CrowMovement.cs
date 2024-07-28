@@ -4,6 +4,7 @@ using UnityEngine.AI;
 
 public class CrowMovement : MonoBehaviour
 {
+    [SerializeField] private string crowObject;
     [SerializeField] private Transform crow; // The crow object
     [SerializeField] private Transform targetLocation; // The target location the crow will move towards
     [SerializeField] private float flyUpHeight = 15f;
@@ -19,10 +20,24 @@ public class CrowMovement : MonoBehaviour
 
     private void Start()
     {
+        ObjectManager.Instance.InitializeObjectKeys();
+        Debug.Log($"Checking destruction status for NPC: {crowObject}");
+
+        // Check if this NPC should be destroyed based on saved state
+        if (ObjectManager.Instance.IsObjectDestroyed(crowObject))
+        {
+            Debug.Log($"Destroying NPC: {crowObject} because it was marked as destroyed.");
+            Destroy(gameObject);
+        }
         if (crow != null)
         {
             navMeshAgent = crow.GetComponent<NavMeshAgent>();
             crowAnimator = crow.GetComponent<Animator>();
+
+            if (!ObjectManager.Instance.IsObjectDestroyed(crowObject))
+            {
+                LoadCrowPosition();
+            }
         }
     }
 
@@ -30,6 +45,7 @@ public class CrowMovement : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SaveCrowPosition();
             isMovingTowardsTarget = true;
             if (crowAnimator != null)
             {
@@ -42,6 +58,14 @@ public class CrowMovement : MonoBehaviour
                 SetCrowRotation();
                 navMeshAgent.SetDestination(targetLocation.position);
             }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SaveCrowPosition();
         }
     }
 
@@ -69,6 +93,7 @@ public class CrowMovement : MonoBehaviour
             {
                 isMovingTowardsTarget = false;
                 StartCoroutine(FlyUpAndDestroy());
+                ObjectManager.Instance.MarkObjectDestroyed(crowObject);
             }
         }
     }
@@ -124,6 +149,32 @@ public class CrowMovement : MonoBehaviour
         else
         {
             Debug.LogError("BoolManager.Instance is null.");
+        }
+    }
+
+    private void SaveCrowPosition()
+    {
+        PlayerPrefs.SetFloat($"{crowObject}_PosX", crow.position.x);
+        PlayerPrefs.SetFloat($"{crowObject}_PosY", crow.position.y);
+        PlayerPrefs.SetFloat($"{crowObject}_PosZ", crow.position.z);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadCrowPosition()
+    {
+        if (PlayerPrefs.HasKey($"{crowObject}_PosX") && PlayerPrefs.HasKey($"{crowObject}_PosY") && PlayerPrefs.HasKey($"{crowObject}_PosZ"))
+        {
+            if (!ObjectManager.Instance.IsObjectDestroyed(crowObject))
+            {
+                float x = PlayerPrefs.GetFloat($"{crowObject}_PosX");
+                float y = PlayerPrefs.GetFloat($"{crowObject}_PosY");
+                float z = PlayerPrefs.GetFloat($"{crowObject}_PosZ");
+                crow.position = new Vector3(x, y, z);
+            }
+            else
+            {
+                ObjectManager.Instance.MarkObjectDestroyed(crowObject);
+            }
         }
     }
 }

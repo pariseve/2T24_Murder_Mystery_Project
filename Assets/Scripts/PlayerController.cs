@@ -99,5 +99,6 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
         rb.velocity = Vector3.zero; // Stop the player immediately
+        animator.SetBool("isMoving", false);
     }
 }

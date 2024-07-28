@@ -16,7 +16,7 @@ public class NPCDialogueWithItem : MonoBehaviour
     [SerializeField] private string[] requiredBoolNamesTrue; // Array of boolean names that need to be true
     [SerializeField] private string[] requiredBoolNamesFalse; // Array of boolean names that need to be false
 
-    [SerializeField] private Item hasItem;
+    [SerializeField] private Item[] requiredItems; // Array of items required
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class NPCDialogueWithItem : MonoBehaviour
         {
             isInsideTrigger = true;
 
-            if (!PlayerPrefs.HasKey(conversationTriggeredKey) && AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && InventoryManager.instance.HasItem(hasItem))
+            if (!PlayerPrefs.HasKey(conversationTriggeredKey) && AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && HasRequiredItems())
             {
                 ShowInteractText();
             }
@@ -48,7 +48,7 @@ public class NPCDialogueWithItem : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!PlayerPrefs.HasKey(conversationTriggeredKey) && !ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy && InventoryManager.instance.HasItem(hasItem))
+        if (!PlayerPrefs.HasKey(conversationTriggeredKey) && !ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy && HasRequiredItems())
         {
             ShowInteractText(); // Show the interact text if the key is not present
         }
@@ -97,7 +97,7 @@ public class NPCDialogueWithItem : MonoBehaviour
         if (isInsideTrigger && !PlayerPrefs.HasKey(conversationTriggeredKey) && Input.GetKeyDown(startConversationKey))
         {
             // Check if all required booleans are true and all required booleans are false
-            if (AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && InventoryManager.instance.HasItem(hasItem))
+            if (AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && HasRequiredItems())
             {
                 StartConversation();
             }
@@ -130,6 +130,18 @@ public class NPCDialogueWithItem : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private bool HasRequiredItems()
+    {
+        foreach (Item item in requiredItems)
+        {
+            if (!InventoryManager.instance.HasItem(item))
+            {
+                return false; // Return false if the player does not have at least one of the required items
+            }
+        }
+        return true; // Return true only if the player has all required items
     }
 
     private void ShowInteractText()
