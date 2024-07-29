@@ -2758,7 +2758,7 @@ MonoBehaviour:
   - name: Odd Letter
     description: There was an odd letter left on a table at Petal & Bacon. It mentions
       subjects and they're being monitored... but why? Here's that Hive name again.
-      Could the Hive be real?
+      Could 'The Hive' be real?
     boolKey: oddletterday1town1
     isActive: 0
   - name: Old Photograph
@@ -2797,6 +2797,25 @@ MonoBehaviour:
       important locked away in the police station... I just need to get past Sheriff
       Ian.'
     boolKey: Day2Town2FoundSheriffLockerKey
+    isActive: 0
+  - name: Locker 42
+    description: 'The key led me to Locker 42 in the police station.
+
+
+      I found
+      a note from Ryan about a meeting at the park, his journal on ''The Hive,''
+      and several unsolved missing person cases, including his own. Why does Sheriff
+      Ian have these?'
+    boolKey: Day2PoliceStationUnlockedLockerMainQuest
+    isActive: 0
+  - name: About Dreams
+    description: 'I talked to Edith about my dreams... it still doesn''t make sense
+      to me but maybe the dreams are trying to help me find Ryan?
+
+
+      I need
+      to see where it leads all I know that it''s all connected somehow...'
+    boolKey: EdithDay2StreetDreamsEndDay
     isActive: 0
 --- !u!114 &5440625808805098058
 MonoBehaviour:
@@ -2861,11 +2880,24 @@ MonoBehaviour:
 
         I should go talk to her to see if
         she knows anything about the Idol Statue and how it''s connected to Ryan.'
-    - boolKey: Day2Town2TalkedToNatalieMainQuest
+    - boolKey: Day2Town2FindJournalMainQuest
       descriptions:
       - "Natalie corroborated that Ryan was invested in the story of \u2018The Hive\u2019.
         She also mentioned something about him having a journal\u2026 I wonder where
         that might be.\n\nI should try to find it... it has to be somewhere around."
+    - boolKey: Day2PoliceStationUnlockedLockerMainQuest
+      descriptions:
+      - "I found Ryan\u2019s journal in the Sheriff's locker. Why did the Sheriff
+        have this? \n\nIvy said that maybe Sadie might know something. I should talk
+        to Sadie Elmes to see if she knows more."
+    - boolKey: Day2Town2TalkToEdithMainQuest
+      descriptions:
+      - 'Sadie didn''t know anything that involved Ryan and ''The Hive''.
+
+
+        It''s
+        getting late, before I head home I should go see Ms Peyman if she would know
+        anything about the dreams I''ve been getting.'
   - name: Help The Cat
     descriptionPairs:
     - boolKey: EdithDay1StreetFindRaymondQuest

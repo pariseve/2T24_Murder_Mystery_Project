@@ -103,4 +103,10 @@ public class NPCTriggerEnterBoolDialogue : MonoBehaviour
         PlayerPrefs.SetString(conversationTriggeredKey, "true");
         PlayerPrefs.Save();
     }
+
+    public void ResetConversationTrigger()
+    {
+        PlayerPrefs.DeleteKey(conversationTriggeredKey);
+        PlayerPrefs.Save();
+    }
 }

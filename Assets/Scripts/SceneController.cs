@@ -12,6 +12,9 @@ public class SceneController : MonoBehaviour
 
     public GameObject loadingScreen;
     public Image loadingBar;
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private GameObject canvasObject;
+    [SerializeField] private bool startedTransition = false;
 
     private void Start()
     {
@@ -22,18 +25,26 @@ public class SceneController : MonoBehaviour
 
         // Start the transition immediately for testing purposes
         // StartTransition(sceneName); // You can uncomment this line for testing
+        canvasGroup.alpha = 0f;
+        loadingScreen.SetActive(false);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
-            StartTransition(sceneName);
+            if (!startedTransition)
+            {
+                startedTransition = true;
+                StartTransition(sceneName);
+            }
         }
     }
 
     public void StartTransition(string sceneName)
     {
+        DontDestroyOnLoad(gameObject); // Preserve this object during scene loading
+        DontDestroyOnLoad(canvasObject);
         // Start the transition coroutine
         StartCoroutine(Transition(sceneName));
     }
@@ -50,20 +61,29 @@ public class SceneController : MonoBehaviour
         //// Ensure the transition image is fully opaque
         //canvasGroup.alpha = 1f;
 
+        // Fade in the loading screen
+        loadingScreen.SetActive(true);
+        yield return StartCoroutine(FadeCanvasGroup(canvasGroup, 0f, 1f, 1f));
+
         // Save the last scene before loading the new scene
         GameManager.SaveLastScene();
 
         // Load the target scene asynchronously
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
-
-        loadingScreen.SetActive(true);
+        Debug.Log("started loading scene");
 
         // Wait until the asynchronous scene fully loads
         while (!asyncLoad.isDone)
         {
             float progressValue = Mathf.Clamp01(asyncLoad.progress / 0.9f);
-
+            Debug.Log("still loading scene");
             loadingBar.fillAmount = progressValue;
+            yield return null;
+        }
+
+        // Wait until the asynchronous scene is fully loaded
+        while (!asyncLoad.isDone)
+        {
             yield return null;
         }
 
@@ -83,8 +103,23 @@ public class SceneController : MonoBehaviour
         // Ensure the transition image is fully transparent
         //canvasGroup.alpha = 0f;
 
+        // Fade out the loading screen
+        yield return StartCoroutine(FadeCanvasGroup(canvasGroup, 1f, 0f, 1f));
+        Debug.Log("finished loading scene");
         // Destroy this object after a short delay
         StartCoroutine(DestroyObject());
+    }
+
+    private IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            cg.alpha = Mathf.Lerp(start, end, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        cg.alpha = end;
     }
 
     private Vector3 DetermineSpawnPosition()
@@ -124,7 +159,9 @@ public class SceneController : MonoBehaviour
         // Wait for a short delay before destroying the object
         yield return new WaitForSeconds(0.1f); // Adjust the delay time as needed
 
+        startedTransition = false;
         // Destroy this object
         Destroy(gameObject);
+        Destroy(canvasObject);
     }
 }

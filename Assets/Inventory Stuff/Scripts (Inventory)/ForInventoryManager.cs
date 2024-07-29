@@ -6,6 +6,7 @@ public class ForInventoryManager : MonoBehaviour
 {
     [SerializeField] private Item[] itemsToCheck;
     [SerializeField] private Item[] itemsToAdd;
+    [SerializeField] private Item[] itemsToRemove;
 
     public void ForAddingItem()
     {
@@ -45,6 +46,38 @@ public class ForInventoryManager : MonoBehaviour
                 InventoryUI.instance.ShowPickupDisplay(itemToAdd);
             }
             Debug.Log("All items checked and items added.");
+        }
+    }
+
+    public void RemoveItems()
+    {
+        if (itemsToRemove == null)
+        {
+            Debug.LogWarning("Items to remove are not set.");
+            return;
+        }
+
+        // Check if all items to remove are in the inventory
+        bool allItemsFound = true;
+        foreach (Item itemToRemove in itemsToRemove)
+        {
+            if (!InventoryManager.instance.HasItem(itemToRemove))
+            {
+                Debug.LogWarning("Item to remove not found in inventory: " + itemToRemove.itemName);
+                allItemsFound = false;
+                break;
+            }
+        }
+
+        // If all items are found, remove the corresponding items from the inventory
+        if (allItemsFound)
+        {
+            foreach (Item itemToRemove in itemsToRemove)
+            {
+                InventoryManager.instance.RemoveItem(itemToRemove);
+                // InventoryUI.instance.ShowPickupDisplay(itemToRemove);
+            }
+            Debug.Log("All items checked and items removed.");
         }
     }
 }
