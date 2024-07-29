@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 2457507398882992794}
   - component: {fileID: 184337121770847909}
   m_Layer: 0
-  m_Name: Item 3
+  m_Name: item 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,6 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9094536413919722237}
   - component: {fileID: 2198890320205476292}
+  - component: {fileID: 7935918051567427859}
   m_Layer: 0
   m_Name: cabinet_sprite
   m_TagString: Untagged
@@ -1042,6 +1043,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7935918051567427859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3033489611514525844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c51a47f419341f4090cc68d2dbbf77f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  evidenceSlots:
+  - {fileID: 7215189669844831584}
+  - {fileID: 3241407516858365915}
+  - {fileID: 2790650881268924454}
+  - {fileID: 4787402182968638029}
+  - {fileID: 8740352973106078922}
+  - {fileID: 187487362988835462}
+  - {fileID: 840362843512434430}
+  - {fileID: 6379267190493055010}
+  - {fileID: 4407200549847110075}
+  - {fileID: 5723002612491416530}
+  targetSceneName: Day2ApartmentScene
 --- !u!1 &3167401557949805495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1437,7 @@ GameObject:
   - component: {fileID: 4976541372783743123}
   - component: {fileID: 4492345841281860905}
   m_Layer: 0
-  m_Name: Statue Item
+  m_Name: item 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2530,6 +2555,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1036036112822681196}
   - component: {fileID: 1696228625478203694}
+  - component: {fileID: 3543543310542392656}
   m_Layer: 0
   m_Name: Item 1
   m_TagString: Untagged
@@ -2604,6 +2630,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3543543310542392656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215189669844831584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06a880f595d21f54d848a8d790f72ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7358415888439805417
 GameObject:
   m_ObjectHideFlags: 0
