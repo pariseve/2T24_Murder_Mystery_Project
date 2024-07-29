@@ -2855,12 +2855,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749783978}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.42, y: -0.99, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.42, y: -0.99, z: 0.1}
   m_LocalScale: {x: 0.55, y: 0.5, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6629774615082611348}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1799248369
 GameObject:
@@ -3279,8 +3279,14 @@ PrefabInstance:
       value: Apartment Level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4624106899133041141, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013, type: 3}
+    - {fileID: 8760967723051177925, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4930914650857779636, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+        type: 3}
+      insertIndex: 10
+      addedObject: {fileID: 1749783980}
     - targetCorrespondingSourceObject: {fileID: 9094536413919722237, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
         type: 3}
       insertIndex: -1
@@ -3329,6 +3335,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6629774615082611346}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &6629774615082611348 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4930914650857779636, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+    type: 3}
+  m_PrefabInstance: {fileID: 6629774615082611346}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3346,4 +3358,3 @@ SceneRoots:
   - {fileID: 955958622}
   - {fileID: 6187037891150184779}
   - {fileID: 6629774615082611346}
-  - {fileID: 1749783980}
