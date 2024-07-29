@@ -3436,9 +3436,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6093215485836557712, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2036135946}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013, type: 3}
+--- !u!4 &1880159972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6093215485836557712, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+    type: 3}
+  m_PrefabInstance: {fileID: 1880159971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1881327001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3519,6 +3529,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d54661d00e2994eaf8c9a4a19772ae7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2036135945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2036135946}
+  - component: {fileID: 2036135947}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2036135946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036135945}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1880159972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036135947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036135945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766856b2be76e49f7b098ae3c96526ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 1009838683}
+  isInsideTrigger: 0
+  interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
+    type: 3}
+  conversationTriggeredKey: Day1ApartmentGoToBedDialogue
+  requiredBoolNamesTrue:
+  - Day1ApartmentMeetIvyMainQuest
+  - IvyDay1Town1IdolStatueEndDay
+  - ShovelDigDay1RailwayAfterMainQuest
+  - EdithDay1StreetTalkedIdolStatueMainQuest
+  - IvyDay1UrbanGoodsRumourMainQuest
+  requiredBoolNamesFalse: []
 --- !u!1 &2036949314
 GameObject:
   m_ObjectHideFlags: 0
