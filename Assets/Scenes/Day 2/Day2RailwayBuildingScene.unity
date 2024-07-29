@@ -453,6 +453,7 @@ MonoBehaviour:
   itemsToAdd:
   - {fileID: 11400000, guid: 566ba8140a9aa486fb10b4942c98e47d, type: 2}
   - {fileID: 11400000, guid: 80505c2fb45634d21879de9b6f003d83, type: 2}
+  itemsToRemove: []
 --- !u!4 &229358173
 Transform:
   m_ObjectHideFlags: 0
@@ -2999,7 +3000,8 @@ MonoBehaviour:
   requiredBoolNamesTrue:
   - Day2Town2StorageUnitKeyPickUp
   requiredBoolNamesFalse: []
-  hasItem: {fileID: 11400000, guid: 376c913b3808d489fb53b271f02fb24f, type: 2}
+  requiredItems:
+  - {fileID: 11400000, guid: 376c913b3808d489fb53b271f02fb24f, type: 2}
 --- !u!65 &1746676262
 BoxCollider:
   m_ObjectHideFlags: 0
