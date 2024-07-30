@@ -18,4 +18,27 @@ public class EvidenceSlot : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = item.icon;
         Debug.Log("Stored " + item.itemName + " in evidence slot.");
     }
+
+    // Method to clear the slot
+    public void ClearSlot()
+    {
+        storedItem = null;
+        GetComponent<SpriteRenderer>().sprite = null;
+        Debug.Log("Cleared evidence slot.");
+    }
+
+    // Method to get the stored item
+    public Item GetStoredItem()
+    {
+        return storedItem;
+    }
+
+    public void Interact()
+    {
+        if (storedItem != null)
+        {
+            InventoryUI.instance.OpenExaminePanel(storedItem);
+            Debug.Log("Opened examine panel for" + storedItem.name);
+        }
+    }
 }

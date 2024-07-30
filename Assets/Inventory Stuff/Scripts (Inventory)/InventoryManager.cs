@@ -222,6 +222,19 @@ public class InventoryManager : MonoBehaviour
         return items;
     }
 
+    public Item GetItemByName(string itemName)
+    {
+        foreach (GameObject slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && itemInSlot.item.itemName == itemName)
+            {
+                return itemInSlot.item;
+            }
+        }
+        return null;
+    }
+
     //-------------------------------------------------------------------
     // PLAYER PREFS
     //-------------------------------------------------------------------
