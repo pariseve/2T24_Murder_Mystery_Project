@@ -118,20 +118,6 @@ public class InventoryManager : MonoBehaviour
         Debug.Log("Called ConsumeItem.");
     }
 
-    public InventoryItem GetSelectedInventoryItem()
-    {
-        //GameObject slot = inventorySlots[currentSlotIndex];
-        //InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-
-        //if (itemInSlot != null)
-        //{
-        //    return itemInSlot;
-        //}
-
-        Debug.Log("Called GetSelectedInventoryItem, returning null.");
-        return null;
-    }
-
     // Exchange item method
     public bool ExchangeItem(Item exchangeableItem)
     {
@@ -217,6 +203,37 @@ public class InventoryManager : MonoBehaviour
         return false;
     }
 
+  public List<Item> FindAllItemsOfType(ItemType itemType)
+    {
+        List<Item> items = new List<Item>();
+
+        foreach (GameObject slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && itemInSlot.item.itemType == itemType)
+            {
+                for (int i = 0; i < itemInSlot.stackCount; i++)
+                {
+                    items.Add(itemInSlot.item);
+                }
+            }
+        }
+
+        return items;
+    }
+
+    public Item GetItemByName(string itemName)
+    {
+        foreach (GameObject slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && itemInSlot.item.itemName == itemName)
+            {
+                return itemInSlot.item;
+            }
+        }
+        return null;
+    }
 
     //-------------------------------------------------------------------
     // PLAYER PREFS

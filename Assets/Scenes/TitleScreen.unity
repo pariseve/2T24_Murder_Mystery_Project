@@ -823,9 +823,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaef42fc3c1097d45a4f02d563e277f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionDuration: 1
-  transitionImage: {fileID: 1668927431}
   sceneName: DreamTestingScene
+  loadingScreen: {fileID: 0}
+  loadingBar: {fileID: 0}
+  canvasGroup: {fileID: 0}
+  canvasObject: {fileID: 0}
+  startedTransition: 0
 --- !u!4 &743692289
 Transform:
   m_ObjectHideFlags: 0
@@ -853,6 +856,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47c6c1eb35ff46399952c58e268abd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1493560212
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14053209199022401, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128936884104763284, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485227456334442473, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: dreamTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: a2fcb9acfd2fb4a43b1aa39987020dc7, type: 3}
+    - target: {fileID: 7485227456334442473, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: apartmentTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 94335a6c8846694408d50ce0da8de435, type: 3}
+    - target: {fileID: 7717421467311244379, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7927823667194438843, guid: 8520bfbb248ea0240b36d27f0c2a232d,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8520bfbb248ea0240b36d27f0c2a232d, type: 3}
 --- !u!1 &1668927429
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,3 +1363,4 @@ SceneRoots:
   - {fileID: 743692289}
   - {fileID: 541183709}
   - {fileID: 190143346}
+  - {fileID: 1493560212}
