@@ -4,8 +4,6 @@ public class EvidenceSlot : MonoBehaviour
 {
     private Item storedItem;
 
-    public string uniqueIDReference;
-
     // Method to check if the slot has an item
     public bool HasItem()
     {

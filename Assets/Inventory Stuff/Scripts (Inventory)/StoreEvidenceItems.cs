@@ -32,56 +32,39 @@ public class StoreEvidenceItems : MonoBehaviour
     // Method to store items
     public void StoreItems()
     {
-        // Iterate through each evidence slot
-        foreach (GameObject slot in evidenceSlots)
+        // Find all items in the inventory that are of type Evidence
+        List<Item> evidenceItems = InventoryManager.instance.FindAllItemsOfType(ItemType.Evidence);
+
+        int slotIndex = 0;
+
+        foreach (Item evidenceItem in evidenceItems)
         {
-            EvidenceSlot evidenceSlot = slot.GetComponent<EvidenceSlot>();
-
-            if (evidenceSlot != null)
+            // Find the next available slot
+            while (slotIndex < evidenceSlots.Length)
             {
-                // Get the uniqueIDReference from the evidence slot
-                string uniqueIDReference = evidenceSlot.uniqueIDReference;
+                GameObject slot = evidenceSlots[slotIndex];
+                EvidenceSlot evidenceSlot = slot.GetComponent<EvidenceSlot>();
 
-                // Check if this uniqueIDReference exists in the PickedUpItems list
-                if (InventoryManager.instance.PickedUpItems.Contains(uniqueIDReference))
+                if (evidenceSlot != null && !evidenceSlot.HasItem())
                 {
-                    // Create a placeholder Item to pass to RemoveItem
-                    Item itemToRemove = null;
+                    // Remove the item from the inventory
+                    bool removed = InventoryManager.instance.RemoveItem(evidenceItem);
 
-                    // Iterate through all inventory slots to find the item with the matching uniqueID
-                    foreach (GameObject invSlot in InventoryManager.instance.inventorySlots)
+                    if (removed)
                     {
-                        InventoryItem inventoryItem = invSlot.GetComponentInChildren<InventoryItem>();
-
-                        if (inventoryItem != null && inventoryItem.item != null)
-                        {
-                            // Use the ItemPickup component to get the uniqueID (assuming you have this setup)
-                            ItemPickup itemPickup = invSlot.GetComponent<ItemPickup>();
-
-                            if (itemPickup != null && itemPickup.uniqueID == uniqueIDReference)
-                            {
-                                itemToRemove = inventoryItem.item;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (itemToRemove != null)
-                    {
-                        // Remove the item from the inventory
-                        bool removed = InventoryManager.instance.RemoveItem(itemToRemove);
-
-                        if (removed)
-                        {
-                            // Store the item in the evidence slot
-                            evidenceSlot.StoreItem(itemToRemove);
-                        }
-                        else
-                        {
-                            Debug.Log("Failed to remove item from inventory.");
-                        }
+                        // Store the item in the evidence slot
+                        evidenceSlot.StoreItem(evidenceItem);
+                        break;
                     }
                 }
+
+                slotIndex++;
+            }
+
+            if (slotIndex >= evidenceSlots.Length)
+            {
+                Debug.Log("Not enough slots to store all evidence items.");
+                break;
             }
         }
     }
