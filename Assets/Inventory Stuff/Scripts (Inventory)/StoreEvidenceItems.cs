@@ -7,8 +7,11 @@ public class StoreEvidenceItems : MonoBehaviour
     public GameObject[] evidenceSlots;
     public string targetSceneName;
 
+    private bool hasStoredItems = false;
+
     public LayerMask interactableLayerMask;
 
+    //for opening examine panel
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -18,25 +21,13 @@ public class StoreEvidenceItems : MonoBehaviour
 
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1.0f); // Visualize the raycast
 
-            // Perform raycast with layer mask
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, interactableLayerMask))
             {
-                Debug.Log("Raycast hit: " + hit.collider.name);
-
                 EvidenceSlot evidenceSlot = hit.collider.GetComponent<EvidenceSlot>();
                 if (evidenceSlot != null)
                 {
-                    Debug.Log("EvidenceSlot found: " + evidenceSlot.name);
                     evidenceSlot.Interact();
                 }
-                else
-                {
-                    Debug.Log("Hit object is not an EvidenceSlot.");
-                }
-            }
-            else
-            {
-                Debug.Log("Raycast did not hit anything.");
             }
         }
     }
@@ -50,15 +41,13 @@ public class StoreEvidenceItems : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
+    //when the target scene is loaded, trigger store items function
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == targetSceneName)
-        {
             StoreItems();
-        }
+           
     }
-
+    //searches the inventory for all items under evidence type, removes them from inventory and adds them to evidence slot
     public void StoreItems()
     {
         List<Item> evidenceItems = InventoryManager.instance.FindAllItemsOfType(ItemType.Evidence);
@@ -78,7 +67,10 @@ public class StoreEvidenceItems : MonoBehaviour
 
                     if (removed)
                     {
+                        // Set the slotID of the item before storing it
+                        evidenceItem.slotID = evidenceSlot.SlotID;
                         evidenceSlot.StoreItem(evidenceItem);
+                        Debug.Log($"Stored {evidenceItem.itemName} in slot {slotIndex}");
                         break;
                     }
                 }
@@ -93,4 +85,5 @@ public class StoreEvidenceItems : MonoBehaviour
             }
         }
     }
+
 }
