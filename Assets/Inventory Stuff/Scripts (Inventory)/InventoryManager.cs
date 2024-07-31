@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class InventoryManager : MonoBehaviour
 
     // Scene object management variables
     [HideInInspector] public List<string> PickedUpItems = new List<string>(); // List to store picked up item IDs
+
 
     private void Awake()
     {
@@ -221,20 +223,6 @@ public class InventoryManager : MonoBehaviour
 
         return items;
     }
-
-    public Item GetItemByName(string itemName)
-    {
-        foreach (GameObject slot in inventorySlots)
-        {
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null && itemInSlot.item.itemName == itemName)
-            {
-                return itemInSlot.item;
-            }
-        }
-        return null;
-    }
-
     //-------------------------------------------------------------------
     // PLAYER PREFS
     //-------------------------------------------------------------------
@@ -249,18 +237,4 @@ public class InventoryManager : MonoBehaviour
         onItemChangedCallback?.Invoke();
     }
 
-    public void SaveInventory()
-    {
-        PlayerPrefs.SetString("PickedUpItems", string.Join(",", PickedUpItems));
-        PlayerPrefs.Save();
-    }
-
-    public void LoadInventory()
-    {
-        if (PlayerPrefs.HasKey("PickedUpItems"))
-        {
-            string pickedUpItemsString = PlayerPrefs.GetString("PickedUpItems");
-            PickedUpItems = new List<string>(pickedUpItemsString.Split(','));
-        }
-    }
 }

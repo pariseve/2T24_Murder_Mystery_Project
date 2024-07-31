@@ -4,6 +4,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string itemName;
+    public string slotID;
     public Sprite icon;
     public bool isStackable;
     public GameObject prefab;
