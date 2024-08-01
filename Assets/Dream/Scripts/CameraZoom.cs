@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using DialogueEditor;
-using System.Collections.Generic;
 
 public class CameraZoom : MonoBehaviour
 {
@@ -15,6 +13,8 @@ public class CameraZoom : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
     private bool isZoomedIn = false;
+    private bool zoomEnabled = true; // New flag to control zoom functionality
+    private bool isZooming = false; // New flag to indicate if zoom is in progress
 
     public bool IsZoomedIn { get { return isZoomedIn; } }
 
@@ -33,6 +33,8 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
+        if (!zoomEnabled || isZooming) return; // Skip zoom logic if zoom is disabled or zoom is in progress
+
         if (Input.GetKeyDown(startKey) && !isZoomedIn)
         {
             ZoomInToObject();
@@ -45,7 +47,7 @@ public class CameraZoom : MonoBehaviour
 
     public void ZoomInToObject()
     {
-        if (isZoomedIn) return;
+        if (isZoomedIn || !zoomEnabled || isZooming) return;
 
         // Perform a raycast to see what the player clicked on
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -84,12 +86,13 @@ public class CameraZoom : MonoBehaviour
 
     public void ZoomOut()
     {
-        if (!isZoomedIn) return;
+        if (!isZoomedIn || !zoomEnabled || isZooming) return;
         StartCoroutine(ZoomOutCoroutine());
     }
 
     private IEnumerator ZoomToPosition(Vector3 targetPosition)
     {
+        isZooming = true; // Set zooming flag to true
         float progress = 0f;
         Vector3 startPosition = cam.transform.position;
         Quaternion startRotation = cam.transform.rotation; // Store the current rotation as the start rotation
@@ -130,10 +133,12 @@ public class CameraZoom : MonoBehaviour
 
         // Update zoom state
         isZoomedIn = true;
+        isZooming = false; // Reset zooming flag
     }
 
     private IEnumerator ZoomOutCoroutine()
     {
+        isZooming = true; // Set zooming flag to true
         float progress = 0f;
         Vector3 startPosition = cam.transform.position;
         Quaternion startRotation = cam.transform.rotation;
@@ -160,11 +165,24 @@ public class CameraZoom : MonoBehaviour
 
         // Update zoom state
         isZoomedIn = false;
+        isZooming = false; // Reset zooming flag
 
         // Re-enable CameraRotation script after zooming out
         cameraRotation.enabled = true;
 
         // Reset rotation in CameraRotation
         cameraRotation.ResetRotation();
+    }
+
+    // Method to enable zooming
+    public void EnableZoom()
+    {
+        zoomEnabled = true;
+    }
+
+    // Method to disable zooming
+    public void DisableZoom()
+    {
+        zoomEnabled = false;
     }
 }

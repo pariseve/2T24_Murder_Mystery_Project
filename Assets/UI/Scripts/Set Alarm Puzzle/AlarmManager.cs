@@ -280,7 +280,7 @@ public class AlarmManager : MonoBehaviour
         durationDial.enabled = interactable;
         setAlarmButton.interactable = interactable;
         gotoSetAlarmPanelButton.interactable = interactable;
-        backButton.interactable = interactable;
+        // backButton.interactable = interactable;
         manualOverdriveButton.interactable = !interactable; // Always keep the manual overdrive button interactable
     }
 

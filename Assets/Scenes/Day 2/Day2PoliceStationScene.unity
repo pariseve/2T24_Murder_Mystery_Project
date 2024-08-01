@@ -634,6 +634,18 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1189507632}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|you can see if she knows anything|will do.
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 270322609}
         m_TargetAssemblyTypeName: ForRemindersCreation, Assembly-CSharp
         m_MethodName: ForInstantiateReminders
@@ -675,6 +687,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1189507632}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|hey i saw sadie in front of urban goods|
           m_BoolArgument: 0
         m_CallState: 2
   NodeID: 6
@@ -2189,6 +2213,7 @@ GameObject:
   - component: {fileID: 699827315}
   - component: {fileID: 699827314}
   - component: {fileID: 699827316}
+  - component: {fileID: 699827317}
   m_Layer: 0
   m_Name: Locker Day 2 Police Station Trigger
   m_TagString: Untagged
@@ -2274,6 +2299,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb997c2c1db284c99b2e4f0206a05dc7, type: 2}
   - {fileID: 11400000, guid: 1707eb0964ca9406d978c43051a28bb1, type: 2}
   itemsToRemove: []
+--- !u!114 &699827317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699827312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bcd306052964668a11f927822cd8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 896463658}
+  isInsideTrigger: 0
+  conversationTriggeredKey: InHeadzzday2PoliceStationAfterCompletingLockerDialogue
+  requiredBoolNamesTrue:
+  - Day2PoliceStationCompleteLockerPuzzle
+  requiredBoolNamesFalse: []
+  hasItem: {fileID: 11400000, guid: 895c889aa429849a098ccff93cecfdcb, type: 2}
 --- !u!1 &748506111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2463,23 +2507,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 8
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":186,"yPos":-402},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"A
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":84.5,"yPos":23},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"A
     note about a meeting at the park, signed by Ryan. Why does the sheriff have this?","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":188,"yPos":-286.5},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"There''s
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":86.5,"yPos":137.5},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"There''s
     a party setup happening there now, so I should check it out during the event.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":3}],"EditorInfo":{"isRoot":false,"xPos":185,"yPos":-184.5},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"This
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":3}],"EditorInfo":{"isRoot":false,"xPos":83.5,"yPos":239.5},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"This
     must be Ryan''s personal journal. Natalie mentioned he had one about ''The Hive.''
     ","parentUIDs":[1],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":4}],"EditorInfo":{"isRoot":false,"xPos":186,"yPos":-74.5},"ID":3,"ParamActions":[],"TMPFontGUID":null,"Text":"Why
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":4}],"EditorInfo":{"isRoot":false,"xPos":84.5,"yPos":349.5},"ID":3,"ParamActions":[],"TMPFontGUID":null,"Text":"Why
     would the sheriff have Ryan''s journal? Was he involved in this somehow?","parentUIDs":[2],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":5}],"EditorInfo":{"isRoot":false,"xPos":187,"yPos":39.5},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Missing
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":5}],"EditorInfo":{"isRoot":false,"xPos":85.5,"yPos":463.5},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Missing
     person cases... so many left unsolved. One of them is Ryan. ","parentUIDs":[3],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":6}],"EditorInfo":{"isRoot":false,"xPos":170,"yPos":159.5},"ID":5,"ParamActions":[],"TMPFontGUID":null,"Text":"Why
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":6}],"EditorInfo":{"isRoot":false,"xPos":68.5,"yPos":582.5},"ID":5,"ParamActions":[],"TMPFontGUID":null,"Text":"Why
     are there so many unsolved cases here? Could this be related to ''The Hive''?
     I need to find out more.","parentUIDs":[4],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":7}],"EditorInfo":{"isRoot":false,"xPos":164,"yPos":268.5},"ID":6,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":7}],"EditorInfo":{"isRoot":false,"xPos":61.5,"yPos":692.5},"ID":6,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     better write these down in my notes before I forget.","parentUIDs":[5],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":169,"yPos":378.5},"ID":7,"ParamActions":[],"TMPFontGUID":null,"Text":"Now...
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":67.5,"yPos":802.5},"ID":7,"ParamActions":[],"TMPFontGUID":null,"Text":"Now...
     time to get out of here before the Sheriff comes back..","parentUIDs":[6],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
     Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
@@ -2501,16 +2545,28 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1772988506}
-        m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
-        m_MethodName: SetBoolVariable
+      - m_Target: {fileID: 919617645}
+        m_TargetAssemblyTypeName: DialogueTextManager, Assembly-CSharp
+        m_MethodName: SetTextColor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Day2PoliceStationUnlockedLockerMainQuest
+          m_StringArgument: '#60CCA0'
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 699827316}
+        m_TargetAssemblyTypeName: ForInventoryManager, Assembly-CSharp
+        m_MethodName: ForAddingItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   isDialogueActive: 0
@@ -3290,6 +3346,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60323d801e4924fd0959dd6290c355c8, type: 3}
+--- !u!114 &1189507632 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6270433419729507175, guid: 60323d801e4924fd0959dd6290c355c8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1189507631}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af86af060c87437885866082e4b7c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1234254253
 GameObject:
   m_ObjectHideFlags: 0

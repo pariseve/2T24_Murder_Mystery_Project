@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace DialogueEditor
 {
@@ -87,6 +88,7 @@ namespace DialogueEditor
         private ObjectClickDialogue objectClickDialogue;
         private PlayerController playerController;
         private CameraManager cameraManager;
+        private CameraZoom cameraZoom;
         // Add a flag to track whether the current dialogue is finished scrolling
         [SerializeField] private bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
@@ -120,6 +122,7 @@ namespace DialogueEditor
             objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
             playerController = FindObjectOfType<PlayerController>();
             cameraManager = FindObjectOfType<CameraManager>();
+            cameraZoom = FindObjectOfType<CameraZoom>();
             BUTTON_COOLDOWN = 0;
         }
 
@@ -152,20 +155,15 @@ namespace DialogueEditor
                                 playerController.DisableMovement();
                             }
                             DisableCursor();
-                            SetupSpeech(nextSpeech);
-                            /*
-                            if (objectClickDialogue != null)
+                            if (cameraZoom != null)
                             {
-                                objectClickDialogue.DisableAllColliders();
+                                cameraZoom.DisableZoom();
                             }
-                            */
-
-                            Invoke("DelayedDisableColliders", 0.1f);
+                            StartCoroutine(ProceedWithConversationAfterDelay(nextSpeech));
                         }
                         else
                         {
-                            // If no next dialogue node, end the conversation
-                            //EndConversation();
+                            StartCoroutine(EndConversationAfterDelay());
                         }
                         break;
 
@@ -227,27 +225,7 @@ namespace DialogueEditor
                         endingConversation = true;
 
                         // End the conversation
-                        EndConversation();
-
-                        // Set the dialogue flags or destroy the conversation object as needed
-
-                        if (npcConversation != null)
-                        {
-                            npcConversation.EndDialogue();
-                        }
-                        if (toggleLookAround != null)
-                        {
-                            toggleLookAround.EnableComponent();
-                        }
-                        EnableCursor();
-                        if (playerController != null)
-                        {
-                            playerController.EnableMovement();
-                        }
-                        if (cameraManager != null)
-                        {
-                            cameraManager.ShowPlayer();
-                        }
+                        StartCoroutine(EndConversationAfterDelay());
                     }
                 }
             }
@@ -258,7 +236,49 @@ namespace DialogueEditor
             }
         }
 
-        void DisableCursor()
+        private IEnumerator ProceedWithConversationAfterDelay(SpeechNode nextSpeech)
+        {
+            yield return new WaitForSeconds(0.2f);
+            SetupSpeech(nextSpeech);
+            /*
+            if (objectClickDialogue != null)
+            {
+                objectClickDialogue.DisableAllColliders();
+            }
+            */
+            Invoke("DelayedDisableColliders", 0.1f);
+        }
+
+        private IEnumerator EndConversationAfterDelay()
+        {
+            yield return new WaitForSeconds(0.2f);
+            // Set the dialogue flags or destroy the conversation object as needed
+            EndConversation();
+
+            if (npcConversation != null)
+            {
+                npcConversation.EndDialogue();
+            }
+            if (toggleLookAround != null)
+            {
+                toggleLookAround.EnableComponent();
+            }
+            EnableCursor();
+            if (playerController != null)
+            {
+                playerController.EnableMovement();
+            }
+            if (cameraManager != null)
+            {
+                cameraManager.ShowPlayer();
+            }
+            if (cameraZoom != null)
+            {
+                cameraZoom.EnableZoom();
+            }
+        }
+
+    void DisableCursor()
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

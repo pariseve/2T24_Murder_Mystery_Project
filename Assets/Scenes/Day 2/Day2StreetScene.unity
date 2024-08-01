@@ -522,7 +522,7 @@ GameObject:
   - component: {fileID: 276741983}
   - component: {fileID: 276741984}
   m_Layer: 0
-  m_Name: Edith Day 1 Street
+  m_Name: Edith Day 2 Street
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,7 +537,7 @@ Transform:
   m_GameObject: {fileID: 276741982}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.86, y: 3.727, z: 16.08}
+  m_LocalPosition: {x: 10.86, y: 2.21, z: 9.77}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2367,7 +2367,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733723957}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4bb081a8925494969a19259656735787, type: 3}
   m_Name: 
@@ -2407,18 +2407,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 733723957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 316377bbeabe1444c8003d4008588e1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 766856b2be76e49f7b098ae3c96526ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 870460961}
+  dialogue: {fileID: 1189890963}
   isInsideTrigger: 0
   interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
     type: 3}
-  conversationTriggeredKey: EdithDay1StreetFoundIdolStatueDialogue
+  conversationTriggeredKey: EdithDay2StreetTalkAboutDreamsDialogue
   requiredBoolNamesTrue:
-  - ShovelDigDay1RailwayAfterMainQuest
+  - Day2Town2TalkToEdithMainQuest
   requiredBoolNamesFalse: []
-  requiredItems: []
 --- !u!1 &739260491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,7 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6c54f846bcf4e719e3b056f0f77561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 1318545400}
   isInsideTrigger: 0
   conversationTriggeredKey: Day2StreetEndDayDialogue
   requiredBoolNamesTrue:
@@ -3231,68 +3230,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 31
-  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-522,\"yPos\":-170},\"ID\":9,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Crows\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":17}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-277,\"yPos\":-166},\"ID\":10,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Mirror\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-65,\"yPos\":-163},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Strange
-    Objects\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":216.5,\"yPos\":-153},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That's
-    all\",\"parentUIDs\":[8],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":-199.5,\"yPos\":-1215},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hello,
+  json: "{\"Options\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":12}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-202.25,\"yPos\":-164},\"ID\":9,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Crows\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":17}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":42.75,\"yPos\":-160},\"ID\":10,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Mirror\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":21}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":254.75,\"yPos\":-157},\"ID\":11,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Strange
+    Objects\",\"parentUIDs\":[8],\"SpeechUID\":-1},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":27}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":536.25,\"yPos\":-147},\"ID\":26,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That's
+    all\",\"parentUIDs\":[8],\"SpeechUID\":-1}],\"Parameters\":[],\"SpeechNodes\":[{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":1}],\"EditorInfo\":{\"isRoot\":true,\"xPos\":120.25,\"yPos\":-1209},\"ID\":0,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Hello,
     Ms Peyman.\",\"parentUIDs\":[],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-205,\"yPos\":-1080},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Oh,
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":2}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":114.75,\"yPos\":-1074},\"ID\":1,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Oh,
     Hello August dear. How can I help you today ?\",\"parentUIDs\":[0],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-189,\"yPos\":-971},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":3}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":130.75,\"yPos\":-965},\"ID\":2,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
     wanted to talk to you about something.. I\u2019ve been having strange dreams
     lately.\",\"parentUIDs\":[1],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-206,\"yPos\":-857},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Oh
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":4}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":113.75,\"yPos\":-851},\"ID\":3,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Oh
     dear, have these dreams been causing you grief ?\",\"parentUIDs\":[2],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-200,\"yPos\":-752},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"A
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":5}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":119.75,\"yPos\":-746},\"ID\":4,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"A
     little. I know it might sound crazy but\u2026 I think they\u2019re leading me
     somewhere\u2026 I keep finding things from my dreams in the real world.\",\"parentUIDs\":[3],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-199,\"yPos\":-641},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":6}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":120.75,\"yPos\":-635},\"ID\":5,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
     see\u2026 Perhaps these dreams are messages being sent to you by some sort of
     external power.\",\"parentUIDs\":[4],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":7}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-195,\"yPos\":-537},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"External
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":7}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":124.75,\"yPos\":-531},\"ID\":6,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"External
     power ? What do you mean by that ?\",\"parentUIDs\":[5],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-207,\"yPos\":-424},\"ID\":7,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"August,
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":112.75,\"yPos\":-418},\"ID\":7,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"August,
     dear. There are powerful forces in this world, they control the energy around
     us and shape our destiny. It seems something is pulling you in a particular direction.\",\"parentUIDs\":[6],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":9},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":10},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-222,\"yPos\":-288},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"What
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":9},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":10},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":11},{\"__type\":\"EditableOptionConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":26}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":97.75,\"yPos\":-282},\"ID\":8,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"What
     sorts of things are you seeing in your dreams, dear ?\",\"parentUIDs\":[7,16,20,25],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-550.5,\"yPos\":-87},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":14}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-230.75,\"yPos\":-81},\"ID\":12,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
     been seeing an abundance of crows.\",\"parentUIDs\":[9],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-557.5,\"yPos\":36},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":15}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-237.75,\"yPos\":42},\"ID\":14,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
     yes\u2026 A darkness surrounds your fate. The crows will lead you further into
     the dark.\",\"parentUIDs\":[12],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-572.5,\"yPos\":141},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Should
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":16}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-252.75,\"yPos\":147},\"ID\":15,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Should
     I avoid crows, then ?\",\"parentUIDs\":[14],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-581.5,\"yPos\":284},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Perhaps.
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-261.75,\"yPos\":290},\"ID\":16,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Perhaps.
     Perhaps not, the crow is wise but it is also fearful.\",\"parentUIDs\":[15],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-264.5,\"yPos\":-79},\"ID\":17,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":18}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":55.25,\"yPos\":-73},\"ID\":17,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
     been seeing warped reflections in a mirror.\",\"parentUIDs\":[10],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":19}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-249.5,\"yPos\":39},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"A
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":19}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":70.25,\"yPos\":45},\"ID\":18,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"A
     disconnection within oneself, you are fighting to understand who you are.\",\"parentUIDs\":[17],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":20}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-259.5,\"yPos\":216},\"ID\":19,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s\u2026
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":20}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":60.25,\"yPos\":222},\"ID\":19,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That\u2019s\u2026
     not wrong. I feel like I don\u2019t know myself anymore, I feel like I keep messing
     things up, even when I don\u2019t want to.\",\"parentUIDs\":[18],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-299.5,\"yPos\":402},\"ID\":20,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Introspection
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":20.25,\"yPos\":408},\"ID\":20,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Introspection
     is a journey, dear, your dreams will guide you through it.\",\"parentUIDs\":[19],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":22}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":1.5,\"yPos\":-66},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":22}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":321.25,\"yPos\":-60},\"ID\":21,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I\u2019ve
     been finding various trinkets that appear in the real world.\",\"parentUIDs\":[11],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-6.5,\"yPos\":42},\"ID\":22,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":23}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":313.25,\"yPos\":48},\"ID\":22,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Ah,
     yes. You have been set on a clear path. The forces have a goal in mind for you.\",\"parentUIDs\":[21],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-14.5,\"yPos\":166},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Should
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":24}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":305.25,\"yPos\":172},\"ID\":23,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Should
     I\u2026 trust the, uh, \u2018forces\u2019.\",\"parentUIDs\":[22],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":25}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-16.5,\"yPos\":268},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":25}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":303.25,\"yPos\":274},\"ID\":24,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"That
     is for you to decipher, my dear. Do you feel they are guiding you down the correct
     path ?\",\"parentUIDs\":[23],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":-14.5,\"yPos\":406},\"ID\":25,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":8}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":305.25,\"yPos\":412},\"ID\":25,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
     feel like they\u2019re guiding me towards Ryan. I think\u2026 I think they want
     me to find him.\",\"parentUIDs\":[24],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":28}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":225.5,\"yPos\":-72},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"This
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":28}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":545.25,\"yPos\":-66},\"ID\":27,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"This
     isn\u2019t the first time I've had these sorts of dreams\u2026\",\"parentUIDs\":[26],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":29}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":225.5,\"yPos\":41},\"ID\":28,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":29}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":545.25,\"yPos\":47},\"ID\":28,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"I
     see. If you have any more questions, dear, please come find me. I would hate
     for you to face this alone.\",\"parentUIDs\":[27],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
-    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":30}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":228.5,\"yPos\":149},\"ID\":29,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Thank
+    Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[{\"__type\":\"EditableSpeechConnection:#DialogueEditor\",\"Conditions\":[],\"NodeUID\":30}],\"EditorInfo\":{\"isRoot\":false,\"xPos\":548.25,\"yPos\":155},\"ID\":29,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"Thank
     you, Ms Peyman.\",\"parentUIDs\":[28],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"August
-    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":214.5,\"yPos\":268},\"ID\":30,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"You
+    Clemett\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0},{\"Connections\":[],\"EditorInfo\":{\"isRoot\":false,\"xPos\":534.25,\"yPos\":274},\"ID\":30,\"ParamActions\":[],\"TMPFontGUID\":null,\"Text\":\"You
     are most welcome, August.\",\"parentUIDs\":[29],\"AdvanceDialogueAutomatically\":false,\"AudioGUID\":null,\"AutoAdvanceShouldDisplayOption\":false,\"IconGUID\":null,\"Name\":\"Edith
     Peyman\",\"OptionUIDs\":null,\"SpeechUID\":0,\"TimeUntilAdvance\":0,\"Volume\":0}]}"
   saveVersion: 110
@@ -3335,19 +3334,7 @@ MonoBehaviour:
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   Event:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1415388537}
-        m_TargetAssemblyTypeName: ForNotesCreation, Assembly-CSharp
-        m_MethodName: ForInstantiateNotes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   isDialogueActive: 0
 --- !u!1001 &1229513863
 PrefabInstance:
@@ -3757,7 +3744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 1
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":222,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It''s
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[],"EditorInfo":{"isRoot":true,"xPos":39.75,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It''s
     getting late... I should head home and get a goods night rest for the party tomorrow...
     hopefully...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
     Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
