@@ -97,9 +97,6 @@ namespace DialogueEditor
         private bool endingConversation = false;
         private Vector3 cursorPosition;
 
-        [SerializeField] private float leftClickCooldown = 1f; // 1-second cooldown between left clicks
-        private float nextAllowedClickTime = 0f; // Time when the next click is allowed
-
         //--------------------------------------
         // Awake, Start, Destroy, Update
         //--------------------------------------
@@ -143,11 +140,8 @@ namespace DialogueEditor
             }
 
             // Check for left-click input only when the cooldown has passed and the current dialogue is finished scrolling
-            if (Time.time >= nextAllowedClickTime && Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
             {
-                // Update the next allowed click time
-                nextAllowedClickTime = Time.time + leftClickCooldown;
-
                 // Proceed with the conversation or end it based on the current state
                 switch (m_state)
                 {
