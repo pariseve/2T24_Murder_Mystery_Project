@@ -92,7 +92,7 @@ public class BoolManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Bool '{boolName}' not found.");
+            // Debug.LogWarning($"Bool '{boolName}' not found.");
         }
     }
 
@@ -104,7 +104,7 @@ public class BoolManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Bool '{boolName}' not found.");
+            // Debug.LogWarning($"Bool '{boolName}' not found.");
             return false;
         }
     }
