@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
     {
         sceneMusicMap = new Dictionary<string, AudioClip>
         {
-             { "TitleScreen", titleTheme },
+             { "MainMenu", titleTheme },
             { "Day1Town1Scene", townTheme },
             { "Day1Town2Scene", townTheme },
             { "Day2Town1Scene", townTheme },

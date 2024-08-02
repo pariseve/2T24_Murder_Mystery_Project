@@ -8,7 +8,7 @@ public class ObjectClickDialogue : MonoBehaviour
 
     [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
 
-    [SerializeField] private KeyCode startKey = KeyCode.E;
+    [SerializeField] private KeyCode startKey = KeyCode.Mouse0;
 
     private CameraZoom cameraZoom;
 
@@ -20,20 +20,19 @@ public class ObjectClickDialogue : MonoBehaviour
 
     void Update()
     {
-        if (dialogue != null && dialogue.isDialogueActive)
+        if (Input.GetKeyDown(startKey) && !dialogueStarted && !ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
         {
-            // If dialogue is active, do not allow zooming
-            return;
+            StartConversation();
         }
+    }
 
+    private void StartConversation()
+    {
         if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
         {
             // Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
             return;
         }
-
-        if (Input.GetKeyDown(startKey) && !dialogueStarted)// && !dialogue.isDialogueActive)
-        {
             // Raycast to detect object click
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -50,7 +49,6 @@ public class ObjectClickDialogue : MonoBehaviour
                 }
             }
         }
-    }
 
     public void DisableAllColliders()
     {
