@@ -50,7 +50,7 @@ public class MessageManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -357,7 +357,10 @@ public class MessageManager : MonoBehaviour
         }
 
         // Play notification audio
-        // PlayNotificationSound();
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPhoneNotification();
+        }
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
         StartCoroutine(FadeInOutAndDestroy(notification.GetComponent<CanvasGroup>()));
