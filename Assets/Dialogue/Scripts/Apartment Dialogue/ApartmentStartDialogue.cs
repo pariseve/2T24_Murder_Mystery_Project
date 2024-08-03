@@ -9,6 +9,7 @@ public class ApartmentStartDialogue : MonoBehaviour
     [SerializeField] private Image fadeImage; // Reference to the UI Image for fading
     [SerializeField] private string METHOD_TRIGGERED_KEY = "";
     private PlayerController playerController;
+    private bool isCoroutineRunning = false; // Boolean to check if coroutine is running
 
     void Start()
     {
@@ -27,7 +28,7 @@ public class ApartmentStartDialogue : MonoBehaviour
 
     private void CheckAndTriggerMethod()
     {
-        if (!PlayerPrefs.HasKey(METHOD_TRIGGERED_KEY))
+        if (!PlayerPrefs.HasKey(METHOD_TRIGGERED_KEY) && !isCoroutineRunning)
         {
             StartCoroutine(ExecuteFadeAndStartDialogue());
 
@@ -39,6 +40,7 @@ public class ApartmentStartDialogue : MonoBehaviour
 
     private IEnumerator ExecuteFadeAndStartDialogue()
     {
+        isCoroutineRunning = true; // Set the flag to indicate the coroutine is running
         yield return new WaitForSeconds(0.1f); // Wait for a short delay to ensure player initialization
 
         // Find the PlayerController
@@ -59,6 +61,7 @@ public class ApartmentStartDialogue : MonoBehaviour
             else
             {
                 Debug.LogError("PlayerController not found.");
+                isCoroutineRunning = false; // Reset the flag
                 yield break; // Exit coroutine if PlayerController still not found
             }
         }
@@ -81,6 +84,8 @@ public class ApartmentStartDialogue : MonoBehaviour
         // Start the conversation
         ConversationManager.Instance.StartConversation(apartmentStart);
         Debug.Log("Method has been triggered for the first time.");
+
+        isCoroutineRunning = false; // Reset the flag once the coroutine completes
     }
 
     private IEnumerator WaitForPlayerInitialization()

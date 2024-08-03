@@ -13,7 +13,7 @@ public class ComponentManager : MonoBehaviour
 
     private void Awake()
     {
-
+        /*
         // Subscribe to scene change events
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -22,7 +22,7 @@ public class ComponentManager : MonoBehaviour
 
         // Debug: Check initial state
         CheckAndToggleComponents(SceneManager.GetActiveScene().name);
-    }
+    */}
 
     private void Start()
     {
@@ -35,6 +35,14 @@ public class ComponentManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        // Subscribe to scene change events
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Populate the dictionary initially
+        PopulateComponentReferences();
+
+        // Debug: Check initial state
+        CheckAndToggleComponents(SceneManager.GetActiveScene().name);
     }
 
     private void OnDestroy()

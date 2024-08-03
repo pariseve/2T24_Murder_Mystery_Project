@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; // Add this if using TextMeshPro
+using UnityEngine.SceneManagement;
 
 namespace DialogueEditor
 {
@@ -231,6 +232,7 @@ namespace DialogueEditor
             Invoke("DelayedDisableColliders", 0.1f);
 
             isConversationActive = true;
+
             m_conversation = conversation.Deserialize();
             if (OnConversationStarted != null)
                 OnConversationStarted.Invoke();
@@ -287,7 +289,6 @@ namespace DialogueEditor
                 cameraZoom.EnableZoom();
             }
         }
-
 
         public void SelectNextOption()
         {
