@@ -18,7 +18,7 @@ public class ContactsManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -32,6 +32,19 @@ public class ContactsManager : MonoBehaviour
         AddContactImageListeners();
         AddDescriptionBackButtonListeners();
         AddScrollbarListener(scrollRect);
+
+        if (scrollRect != null)
+        {
+            StartCoroutine(SetScrollViewToTop());
+        }
+    }
+
+    private IEnumerator SetScrollViewToTop()
+    {
+        yield return new WaitForEndOfFrame();
+
+        // Set the verticalNormalizedPosition to 1 (top)
+        scrollRect.verticalNormalizedPosition = 1f;
     }
 
     private void Update()

@@ -9,10 +9,10 @@ public class ComponentManager : MonoBehaviour
 
     private Dictionary<string, GameObject> componentReferences = new Dictionary<string, GameObject>();
 
+    public static ComponentManager Instance { get; private set; }
+
     private void Awake()
     {
-        // Ensure this object persists across scene loads
-        DontDestroyOnLoad(gameObject);
 
         // Subscribe to scene change events
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -22,6 +22,19 @@ public class ComponentManager : MonoBehaviour
 
         // Debug: Check initial state
         CheckAndToggleComponents(SceneManager.GetActiveScene().name);
+    }
+
+    private void Start()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()
