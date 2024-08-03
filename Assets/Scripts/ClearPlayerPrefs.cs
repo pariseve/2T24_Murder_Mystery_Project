@@ -9,4 +9,9 @@ public class ClearPlayerPrefs : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    public void DeleteAllPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
 }

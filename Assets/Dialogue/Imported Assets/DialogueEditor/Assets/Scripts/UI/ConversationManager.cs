@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // Add this if using TextMeshPro
+using UnityEngine.SceneManagement;
 
 namespace DialogueEditor
 {
@@ -28,8 +30,6 @@ namespace DialogueEditor
         public static ConversationStartEvent OnConversationStarted;
         public static ConversationEndEvent OnConversationEnded;
 
-        // User-Facing options
-        // Drawn by custom inspector
         public bool ScrollText;
         public float ScrollSpeed = 1;
         public Sprite BackgroundImage;
@@ -38,34 +38,18 @@ namespace DialogueEditor
         public bool OptionImageSliced;
         public bool AllowMouseInteraction;
 
-        // Non-User facing 
-        // Not exposed via custom inspector
-        // 
-        // Base panels
         public RectTransform DialoguePanel;
         public RectTransform OptionsPanel;
-        // Dialogue UI
         public Image DialogueBackground;
         public Image NpcIcon;
-        public TMPro.TextMeshProUGUI NameText;
-        public TMPro.TextMeshProUGUI DialogueText;
-        // Components
+        public TextMeshProUGUI NameText;
+        public TextMeshProUGUI DialogueText;
         public AudioSource AudioPlayer;
-        // Prefabs
         public UIConversationButton ButtonPrefab;
-        // Default values
         public Sprite BlankSprite;
 
-        // Getter properties
-        public bool IsConversationActive
-        {
-            get
-            {
-                return m_state != eState.NONE && m_state != eState.Off;
-            }
-        }
+        public bool IsConversationActive => m_state != eState.NONE && m_state != eState.Off;
 
-        // Private
         private float m_elapsedScrollTime;
         private int m_scrollIndex;
         public int m_targetScrollTextCount;
@@ -75,12 +59,8 @@ namespace DialogueEditor
         private Conversation m_conversation;
         private SpeechNode m_currentSpeech;
         private OptionNode m_selectedOption;
-
-        // Selection options
         private List<UIConversationButton> m_uiOptions;
         private int m_currentSelectedIndex;
-
-        // MY ADDONS
 
         private NPCConversation npcConversation;
         private ToggleLookAround toggleLookAround;
@@ -88,33 +68,24 @@ namespace DialogueEditor
         private PlayerController playerController;
         private CameraManager cameraManager;
         private CameraZoom cameraZoom;
-        // Add a flag to track whether the current dialogue is finished scrolling
-        [SerializeField] private bool m_dialogueFinishedScrolling = false;
+        private bool m_dialogueFinishedScrolling = false;
         private bool m_conversationEnding = false;
         private bool m_showingOption = false;
         private float BUTTON_COOLDOWN = 2f; // 2-second cooldown for button presses
-        [SerializeField] private bool isConversationActive = false;
+        private bool isConversationActive = false;
         private bool endingConversation = false;
-        private Vector3 cursorPosition;
 
-        [SerializeField] private float leftClickCooldown = 1f; // 1-second cooldown between left clicks
-        private float nextAllowedClickTime = 0f; // Time when the next click is allowed
-
-        //--------------------------------------
-        // Awake, Start, Destroy, Update
-        //--------------------------------------
+        private bool canProcessClick = true;
 
         private void Awake()
         {
-            // Destroy myself if I am not the singleton
             if (Instance != null && Instance != this)
             {
-                GameObject.Destroy(this.gameObject);
+                Destroy(this.gameObject);
             }
             Instance = this;
 
             m_uiOptions = new List<UIConversationButton>();
-
             NpcIcon.sprite = BlankSprite;
             DialogueText.text = "";
             TurnOffUI();
@@ -137,17 +108,10 @@ namespace DialogueEditor
         {
             BUTTON_COOLDOWN = Mathf.Max(0, BUTTON_COOLDOWN - Time.deltaTime);
 
-            if (!DialoguePanel.gameObject.activeInHierarchy)
+            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive && canProcessClick)
             {
-                return;
-            }
-
-            // Check for left-click input only when the cooldown has passed and the current dialogue is finished scrolling
-            if (Time.time >= nextAllowedClickTime && Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
-            {
-                // Update the next allowed click time
-                nextAllowedClickTime = Time.time + leftClickCooldown;
-
+                // Start cooldown period
+                canProcessClick = false;
                 // Proceed with the conversation or end it based on the current state
                 switch (m_state)
                 {
@@ -155,7 +119,6 @@ namespace DialogueEditor
                     case eState.ScrollingText:
                     case eState.TransitioningOptionsOn:
                     case eState.Idle:
-                        // Check if there's a valid next dialogue node, if yes, proceed
                         SpeechNode nextSpeech = GetValidSpeechOfNode(m_currentSpeech);
                         if (nextSpeech != null)
                         {
@@ -169,18 +132,19 @@ namespace DialogueEditor
                             {
                                 cameraZoom.DisableZoom();
                             }
-                            /*
-                            if (objectClickDialogue != null)
+                            if (toggleLookAround != null)
                             {
-                                objectClickDialogue.DisableAllColliders();
+                                toggleLookAround.DisableComponent();
                             }
-                            */
+                            if (playerController != null)
+                            {
+                                playerController.DisableMovement();
+                            }
 
                             Invoke("DelayedDisableColliders", 0.1f);
                         }
-                        else
+                        else if (Input.GetMouseButtonDown(0) && nextSpeech == null)
                         {
-                            // If no next dialogue node, end the conversation
                             EndConversation();
                             endingConversation = false;
                         }
@@ -188,7 +152,6 @@ namespace DialogueEditor
 
                     case eState.TransitioningOptionsOff:
                     case eState.TransitioningDialogueOff:
-                        // Do nothing if transitioning off
                         break;
 
                     default:
@@ -210,7 +173,6 @@ namespace DialogueEditor
 
                     case eState.TransitioningOptionsOn:
                         TransitionOptionsOn_Update();
-                        // EnableCursor();
                         break;
 
                     case eState.Idle:
@@ -229,55 +191,13 @@ namespace DialogueEditor
                         break;
                 }
             }
-
-            /*
-            if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive)
-            {
-                // Proceed with ending the conversation if no valid speech node is available
-                if (GetValidSpeechOfNode(m_currentSpeech) == null)
-                {
-                    // Check if the conversation is not already ending
-                    if (!endingConversation)
-                    {
-                        // Set the flag to indicate that conversation ending process has started
-                        endingConversation = true;
-
-                        // End the conversation
-                        EndConversation();
-
-                        // Set the dialogue flags or destroy the conversation object as needed
-
-                        /*if (npcConversation != null)
-                        {
-                            npcConversation.EndDialogue();
-                        }/
-                        if (toggleLookAround != null)
-                        {
-                            toggleLookAround.EnableComponent();
-                        }
-                        EnableCursor();
-                        if (playerController != null)
-                        {
-                            playerController.EnableMovement();
-                        }
-                        if (cameraManager != null)
-                        {
-                            cameraManager.ShowPlayer();
-                        }
-                        if (cameraZoom != null)
-                        {
-                            cameraZoom.EnableZoom();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // Reset the endingConversation flag once left-click is released or conditions are no longer met
-                endingConversation = false;
-            }
-            */
         }
+
+        private void ResetClickProcessing()
+        {
+            canProcessClick = true;
+        }
+
 
         void DisableCursor()
         {
@@ -297,12 +217,6 @@ namespace DialogueEditor
 
         public void StartConversation(NPCConversation conversation)
         {
-            if (DialoguePanel.gameObject.activeInHierarchy)
-            {
-                Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
-                return;
-            }
-
             Debug.Log("Starting conversation");
             playerController = FindObjectOfType<PlayerController>();
             DisableCursor();
@@ -310,18 +224,15 @@ namespace DialogueEditor
             {
                 toggleLookAround.DisableComponent();
             }
+            if (playerController != null)
+            {
+                playerController.DisableMovement();
+            }
 
             Invoke("DelayedDisableColliders", 0.1f);
 
-            /*
-            if (objectClickDialogue != null)
-            {
-                objectClickDialogue.DisableAllColliders();
-            }
-            */
-
             isConversationActive = true;
-            // npcConversation.StartDialogue();
+
             m_conversation = conversation.Deserialize();
             if (OnConversationStarted != null)
                 OnConversationStarted.Invoke();
@@ -336,6 +247,10 @@ namespace DialogueEditor
             if (objectClickDialogue != null)
             {
                 objectClickDialogue.DisableAllColliders();
+            }
+            if (cameraZoom != null)
+            {
+                cameraZoom.DisableZoom();
             }
         }
 
@@ -354,10 +269,7 @@ namespace DialogueEditor
                 objectClickDialogue.EnableAllColliders();
             }
 
-            // Set the flag to indicate that conversation ending process has started
             endingConversation = true;
-
-            // Set the dialogue flags or destroy the conversation object as needed
 
             if (toggleLookAround != null)
             {
@@ -376,45 +288,7 @@ namespace DialogueEditor
             {
                 cameraZoom.EnableZoom();
             }
-
-
-// Check if the conversation is not already ending
-/*
-if (!endingConversation)
-{
-    Debug.Log("Ending conversation");
-
-    // Set the flag to indicate that conversation ending process has started
-    endingConversation = true;
-
-    // End the conversation
-    EndConversation();
-
-    // Set the dialogue flags or destroy the conversation object as needed
-
-    /*if (npcConversation != null)
-    {
-        npcConversation.EndDialogue();
-    }
-
-    if (toggleLookAround != null)
-    {
-        toggleLookAround.EnableComponent();
-    }
-    EnableCursor();
-    if (playerController != null)
-    {
-        playerController.EnableMovement();
-    }
-}
-else
-{
-    // Reset the endingConversation flag once left-click is released or conditions are no longer met
-    endingConversation = false;
-} 
-}*/
         }
-
 
         public void SelectNextOption()
         {
@@ -613,6 +487,7 @@ else
                 // Finished scrolling?
                 if (m_scrollIndex >= m_targetScrollTextCount)
                 {
+                    ResetClickProcessing();
                     // Set the flag to indicate that the dialogue has finished scrolling
                     m_dialogueFinishedScrolling = true;
                     SetState(eState.TransitioningOptionsOn); // Automatically transition to options once scrolling is finished

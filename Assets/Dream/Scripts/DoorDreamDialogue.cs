@@ -5,8 +5,6 @@ public class DoorDreamDialogue : MonoBehaviour
 {
     [SerializeField] private NPCConversation doorCantAccessDialogue;
 
-    // public NPCConversation doorAccessDialogue;
-
     [SerializeField] private bool dialogueStarted = false; // Track dialogue state for this instance
 
     private ObjectClickSceneTransitionDream objectClickSceneTransitionDream;
@@ -14,7 +12,8 @@ public class DoorDreamDialogue : MonoBehaviour
     [SerializeField] private string[] requiredBoolNamesTrue;
     [SerializeField] private string[] requiredBoolNamesFalse;
 
-    [SerializeField] private KeyCode startKey = KeyCode.E;
+    [SerializeField] private KeyCode startKey = KeyCode.Mouse0;
+    private bool hasBeenClicked = false; // Flag to track if the door has been clicked
 
     private void Start()
     {
@@ -23,47 +22,41 @@ public class DoorDreamDialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(startKey))// && !dialogue.isDialogueActive)
+        if (Input.GetKeyDown(startKey) && !hasBeenClicked) // Check if door has not been clicked yet
         {
-                // Raycast to detect object click
-                RaycastHit hit;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    // Check if the hit object is the object this script is attached to
-                    if (hit.collider.gameObject == gameObject)
-                    {
-                    if (AllRequiredBoolsTrue())
-                    {
-                        objectClickSceneTransitionDream.FoundAllClues();
-                        dialogueStarted = true;
-                        //DisableAllColliders();
-                        // Start the conversation for this instance
-                        // ConversationManager.Instance.StartConversation(doorAccessDialogue);
-                    }
-                }
-            }
-        }
-
-        if (Input.GetKeyDown(startKey) && !dialogueStarted && AllRequiredBoolsFalse())// && !dialogue.isDialogueActive)
-        {
-                // Raycast to detect object click
-                RaycastHit hit;
+            // Raycast to detect object click
+            RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out hit))
             {
-                    // Check if the hit object is the object this script is attached to
-                    if (hit.collider.gameObject == gameObject)
+                // Check if the hit object is the object this script is attached to
+                if (hit.collider.gameObject == gameObject)
+                {
+                    hasBeenClicked = true; // Set the flag to prevent further clicks
+
+                    if (AllRequiredBoolsTrue())
+                    {
+                        objectClickSceneTransitionDream.FoundAllClues();
+                        dialogueStarted = true;
+                        // DisableAllColliders();
+                        // Start the conversation for this instance
+                        // ConversationManager.Instance.StartConversation(doorAccessDialogue);
+                    }
+                    else if (AllRequiredBoolsFalse())
                     {
                         dialogueStarted = true;
-                        //DisableAllColliders();
+                        // DisableAllColliders();
                         // Start the conversation for this instance
                         ConversationManager.Instance.StartConversation(doorCantAccessDialogue);
                     }
+                    else
+                    {
+                        hasBeenClicked = false; // Reset the flag if conditions are not met
+                    }
                 }
             }
+        }
     }
 
     private bool AllRequiredBoolsTrue()
