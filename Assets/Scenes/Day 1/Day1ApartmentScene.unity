@@ -219,11 +219,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 3
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":49.5,"yPos":116},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Just
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":76.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Just
     in case, it''s time to write what was in my dream in my Notes so I can figure
     this out. I can''t let anyone find out.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
-    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":57.5,"yPos":269},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"The
-    Notes Application on your phone will store all the important clues you find out.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Hint","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":67.5,"yPos":416},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+    Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":84.5,"yPos":175},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"The
+    Notes Application on your phone will store all the important clues you find out.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Hint","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":94.5,"yPos":322},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     need to solve this alone... before I get called crazy again.","parentUIDs":[1],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
     Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
@@ -253,21 +253,58 @@ MonoBehaviour:
           m_StringArgument: '#60CCA0'
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1881327002}
-        m_TargetAssemblyTypeName: ForNotesCreation, Assembly-CSharp
-        m_MethodName: ForInstantiateNotes
-        m_Mode: 1
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Ivy|where r u ?????|
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 787885982}
-        m_TargetAssemblyTypeName: DestroyColliderDay1Apartment, Assembly-CSharp
-        m_MethodName: DestroyObject
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|I'm waiting at urban goods|
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 824097733}
+        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
+        m_MethodName: NPCMessage
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Ivy|Shift almost over|Stop shouting. I'll be there in
+            a sec.
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270403232}
+        m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
+        m_MethodName: SetBoolVariable
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Day1ApartmentMeetIvyMainQuest
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 873906027}
+        m_TargetAssemblyTypeName: ForRemindersCreation, Assembly-CSharp
+        m_MethodName: ForInstantiateReminders
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1215,11 +1252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 11
-  json: '{"Options":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":97,"yPos":344},"ID":10,"ParamActions":[],"TMPFontGUID":null,"Text":"Find
-    Medication","parentUIDs":[9],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":86,"yPos":49},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It
-    was all a dream...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":9}],"EditorInfo":{"isRoot":false,"xPos":85,"yPos":151},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Then
-    why did it feel so real? This better not be like last time.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":88,"yPos":420},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Hmm..
-    where did I last place it.","parentUIDs":[10],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":10}],"EditorInfo":{"isRoot":false,"xPos":88,"yPos":246},"ID":9,"ParamActions":[],"TMPFontGUID":null,"Text":"I
+  json: '{"Options":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":87.5,"yPos":317},"ID":10,"ParamActions":[],"TMPFontGUID":null,"Text":"Find
+    Medication","parentUIDs":[9],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":1}],"EditorInfo":{"isRoot":true,"xPos":76.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"It
+    was all a dream...","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":9}],"EditorInfo":{"isRoot":false,"xPos":75.5,"yPos":124},"ID":1,"ParamActions":[],"TMPFontGUID":null,"Text":"Then
+    why did it feel so real? This better not be like last time.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":78.5,"yPos":393},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Hmm..
+    where did I last place it.","parentUIDs":[10],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":10}],"EditorInfo":{"isRoot":false,"xPos":78.5,"yPos":219},"ID":9,"ParamActions":[],"TMPFontGUID":null,"Text":"I
     better take my medication before things get worse...","parentUIDs":[1],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: August
@@ -2069,8 +2106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 3
-  json: '{"Options":[{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":39.75,"yPos":145},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Go
-    To Bed","parentUIDs":[0],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":true,"xPos":63.75,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Go
+  json: '{"Options":[{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":52.5,"yPos":145},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"Go
+    To Bed","parentUIDs":[0],"SpeechUID":-1}],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableOptionConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":true,"xPos":76.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"Go
     To Bed?","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"August
     Clemett","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
@@ -2086,19 +2123,99 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 343955822}
-        m_TargetAssemblyTypeName: UISceneTransition, Assembly-CSharp
-        m_MethodName: StartTransition
+      - m_Target: {fileID: 901099776}
+        m_TargetAssemblyTypeName: DialogueTextManager, Assembly-CSharp
+        m_MethodName: SetTextColor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Day2Dream
+          m_StringArgument: '#FFFFFF'
           m_BoolArgument: 0
         m_CallState: 2
   isDialogueActive: 0
+--- !u!1001 &1270403231
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 926170865212878249, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_Name
+      value: For Bool Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19baa4395c4de41d885e3f77ae640e8c, type: 3}
+--- !u!114 &1270403232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4118141311453923356, guid: 19baa4395c4de41d885e3f77ae640e8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1270403231}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4fd7960f4374b50922392609a7b611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1324432199
 GameObject:
   m_ObjectHideFlags: 0
@@ -2361,86 +2478,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1001 &1360676358
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 926170865212878249, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_Name
-      value: For Bool Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7740425910514914718, guid: 19baa4395c4de41d885e3f77ae640e8c,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 19baa4395c4de41d885e3f77ae640e8c, type: 3}
---- !u!114 &1360676359 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4118141311453923356, guid: 19baa4395c4de41d885e3f77ae640e8c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1360676358}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4fd7960f4374b50922392609a7b611, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1409332525
 GameObject:
   m_ObjectHideFlags: 0
@@ -3044,6 +3081,21 @@ PrefabInstance:
       propertyPath: dialogue
       value: 
       objectReference: {fileID: 1009838683}
+    - target: {fileID: 6884571365505893852, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+        type: 3}
+      propertyPath: requiredBoolNamesTrue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884571365505893852, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+        type: 3}
+      propertyPath: requiredBoolNamesTrue.Array.data[0]
+      value: Day1Town1GoToBed
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884571365505893852, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
+        type: 3}
+      propertyPath: requiredBoolNamesTrue.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7624582954921090767, guid: 43a5c4357d92c4f4f8dd05a5f0b1f013,
         type: 3}
       propertyPath: m_Name
@@ -3530,7 +3582,7 @@ MonoBehaviour:
             a sec.
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1360676359}
+      - m_Target: {fileID: 1270403232}
         m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
         m_MethodName: SetBoolVariable
         m_Mode: 5
@@ -3684,7 +3736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3922,7 +3974,7 @@ SceneRoots:
   - {fileID: 337954896}
   - {fileID: 64276299}
   - {fileID: 2122907349}
+  - {fileID: 1270403231}
   - {fileID: 1881327001}
   - {fileID: 824097732}
   - {fileID: 873906026}
-  - {fileID: 1360676358}
