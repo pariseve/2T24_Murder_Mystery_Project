@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ComponentManager : MonoBehaviour
 {
@@ -43,6 +44,22 @@ public class ComponentManager : MonoBehaviour
 
         // Debug: Check initial state
         CheckAndToggleComponents(SceneManager.GetActiveScene().name);
+
+        StartCoroutine(DisableObjects());
+    }
+
+    private IEnumerator DisableObjects()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        // Subscribe to scene change events
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
+        // Populate the dictionary initially
+        PopulateComponentReferences();
+
+        // Debug: Check initial state
+        CheckAndToggleComponents(SceneManager.GetActiveScene().name);
     }
 
     private void OnDestroy()
@@ -71,7 +88,7 @@ public class ComponentManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Failed to find {componentName} during initialization.");
+                // Debug.LogWarning($"Failed to find {componentName} during initialization.");
             }
         }
     }
@@ -94,7 +111,7 @@ public class ComponentManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning($"Failed to find {componentName} in component references.");
+                // Debug.LogWarning($"Failed to find {componentName} in component references.");
             }
         }
     }
