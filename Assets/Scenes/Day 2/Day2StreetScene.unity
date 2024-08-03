@@ -2922,6 +2922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1003665089}
   - component: {fileID: 1003665088}
+  - component: {fileID: 1003665090}
   m_Layer: 0
   m_Name: Interactive Objects
   m_TagString: Untagged
@@ -2961,6 +2962,21 @@ Transform:
   - {fileID: 15551615}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1003665090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003665087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77876768ef30b433a9104ce6bde6852e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToActivate: {fileID: 1586011127}
+  boolNames:
+  - Day2Town2FindJournalMainQuest
 --- !u!1 &1012777427
 GameObject:
   m_ObjectHideFlags: 0
@@ -4961,6 +4977,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8277b6e458141404fa0294d14dceaea2, type: 3}
+--- !u!1 &1586011127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7756310823486484036, guid: 8277b6e458141404fa0294d14dceaea2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1586011126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1594833105
 PrefabInstance:
   m_ObjectHideFlags: 0

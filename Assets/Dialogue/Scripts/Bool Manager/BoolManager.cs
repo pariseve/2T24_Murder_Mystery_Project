@@ -118,6 +118,14 @@ public class BoolManager : MonoBehaviour
     {
         return boolDictionary;
     }
+
+    public void ClearAllBools()
+    {
+        boolDictionary.Clear();
+        boolKeys.Clear();
+        PlayerPrefs.DeleteKey("BoolKeys"); // Clear the stored keys
+        PlayerPrefs.Save(); // Ensure PlayerPrefs is saved
+    }
 }
 
 

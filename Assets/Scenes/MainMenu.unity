@@ -2905,6 +2905,7 @@ MonoBehaviour:
   componentsToDisable:
   - _InventoryManager
   - Phone Canvas
+  - _InventoryManager(Clone)
   sceneNamesToDisableComponents:
   - MainMenu
   - Day1Dream
@@ -3089,6 +3090,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593381292}
   m_CullTransparentMesh: 1
+--- !u!1 &657200805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 657200807}
+  - component: {fileID: 657200806}
+  m_Layer: 0
+  m_Name: Objects Reset Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &657200806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657200805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6406f394491af4b5fbe694a73f1ac4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectNamesToDestroy:
+  - Phone Canvas Parent
+  - _InventoryManager
+  - Phone Canvas Parent(Clone)
+  - _InventoryManager(Clone)
+  prefabsToInstantiate:
+  - {fileID: 2628849606470482380, guid: bb2df7cfbf4c0425c93ed0f8942ff2ec, type: 3}
+  - {fileID: 731120198010478910, guid: 777162edadb104c4781413ab4aa3c7a1, type: 3}
+--- !u!4 &657200807
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657200805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &669375373
 GameObject:
   m_ObjectHideFlags: 0
@@ -5008,6 +5061,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1629955333}
+        m_TargetAssemblyTypeName: InventoryManager, Assembly-CSharp
+        m_MethodName: Clear
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1336224808}
+        m_TargetAssemblyTypeName: BoolManager, Assembly-CSharp
+        m_MethodName: ClearAllBools
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 657200806}
+        m_TargetAssemblyTypeName: ObjectResetManager, Assembly-CSharp
+        m_MethodName: NewGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1193196482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5757,6 +5846,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a99977dc26bcc40d899da9faa764a051, type: 3}
+--- !u!114 &1336224808 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2415034469893065795, guid: a99977dc26bcc40d899da9faa764a051,
+    type: 3}
+  m_PrefabInstance: {fileID: 1336224807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03801ad41c96d405bb788af10edcc50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1354961591
 Mesh:
   m_ObjectHideFlags: 0
@@ -7218,6 +7319,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 777162edadb104c4781413ab4aa3c7a1, type: 3}
+--- !u!114 &1629955333 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 725572110376558928, guid: 777162edadb104c4781413ab4aa3c7a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1629955332}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d7cfd16958ea244ae78119af1e9c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1668927429
 GameObject:
   m_ObjectHideFlags: 0
@@ -26391,3 +26504,4 @@ SceneRoots:
   - {fileID: 962353107}
   - {fileID: 1336224807}
   - {fileID: 116199037}
+  - {fileID: 657200807}
