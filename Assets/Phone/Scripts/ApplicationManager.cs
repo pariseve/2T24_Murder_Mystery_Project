@@ -16,6 +16,7 @@ public class ApplicationManager : MonoBehaviour
     private bool isLongPressing = false;
     private float pressTime = 0f;
 
+
     void Start()
     {
         // Ensure the applications are disabled at the start
@@ -39,6 +40,7 @@ public class ApplicationManager : MonoBehaviour
         {
             app.gameObject.SetActive(false);
         }
+
     }
 
     void Update()
@@ -63,6 +65,7 @@ public class ApplicationManager : MonoBehaviour
                         if (lockscreen != null)
                         {
                             lockscreen.SetActive(false);
+                            AudioManager.Instance.PlaySFX(SFXContext.PhoneUnlock);
                         }
                     }
                 }
