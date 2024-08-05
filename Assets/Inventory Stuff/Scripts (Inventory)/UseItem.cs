@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class UseItem : MonoBehaviour
 {
+    private bool isInArea = false;
+    public string uniqueID;
     public void DetermineUse(Item item)
     {
         switch (item.itemType)
@@ -27,6 +29,16 @@ public class UseItem : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        isInArea = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isInArea = false;
+    }
+
     void EvidenceFunction()
     {
         // evidenceEvent.Invoke();
@@ -40,6 +52,15 @@ public class UseItem : MonoBehaviour
     void ExchangeFunction(Item item)
     {
         // Exchange the item using the InventoryManager
-        InventoryManager.instance.ExchangeItem(item);
+        if (isInArea && InventoryManager.instance.HasItem(item.exchangedItem) && InventoryManager.instance.ExchangeItem(item))
+        {
+            Debug.Log("Item exchanged: " + item.itemName + " with " + item.exchangedItem.itemName);
+            // Mark the item as picked up
+            InventoryManager.instance.PickedUpItems.Add(uniqueID);
+            // Show pickup text through the UIManager
+            InventoryUI.instance.ShowPickupDisplay(item);
+            // Destroy the item pickup
+            Destroy(gameObject);
+        }
     }
 }
