@@ -65,7 +65,6 @@ public class ApplicationManager : MonoBehaviour
                         if (lockscreen != null)
                         {
                             lockscreen.SetActive(false);
-                            AudioManager.Instance.PlaySFX(SFXContext.PhoneUnlock);
                         }
                     }
                 }

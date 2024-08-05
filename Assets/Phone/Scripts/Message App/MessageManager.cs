@@ -316,7 +316,6 @@ public class MessageManager : MonoBehaviour
     {
         // Instantiate the message notification prefab
         GameObject notification = Instantiate(messageNotificationPrefab);
-        AudioManager.Instance.PlaySFX(SFXContext.PhoneNotification);
 
         // Set NPC name
         TextMeshProUGUI npcNameText = notification.transform.Find("Name").GetComponent<TextMeshProUGUI>();
