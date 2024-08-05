@@ -165,7 +165,6 @@ public enum SFXContext
     PhoneNotification,
     ItemPickup,
     SceneTransition,
-    Footstep,
     PhoneUnlock,
     Crow
 }
