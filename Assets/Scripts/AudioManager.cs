@@ -26,12 +26,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip footstep1;
     public AudioClip footstep2;
     public AudioClip footstep3;
-    public AudioClip buttonInteraction;
+    public AudioClip footstep4;
+    public AudioClip phoneUnlock;
+    public AudioClip phoneNotif;
     public AudioClip crow;
 
     public static AudioManager Instance { get; private set; }
 
     private Dictionary<string, AudioClip> sceneMusicMap;
+    private Dictionary<SFXContext, AudioClip> SFXMap;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class AudioManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         InitializeSceneMusicMap();
+        InitializeSFXMap();
     }
 
     private void OnDisable()
@@ -79,6 +83,18 @@ public class AudioManager : MonoBehaviour
         };
     }
 
+    private void InitializeSFXMap()
+    {
+        SFXMap = new Dictionary<SFXContext, AudioClip>
+        {
+            { SFXContext.PhoneNotification, phoneNotification },
+            { SFXContext.ItemPickup, itemPickup },
+            { SFXContext.SceneTransition, sceneTransition },
+            { SFXContext.PhoneUnlock, phoneUnlock },
+            { SFXContext.Crow, crow }
+        };
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (sceneMusicMap.TryGetValue(scene.name, out AudioClip musicClip))
@@ -100,10 +116,18 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(SFXContext context)
     {
-        SFXSource.PlayOneShot(clip);
+        if (SFXMap.TryGetValue(context, out AudioClip clip))
+        {
+            SFXSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"No SFX assigned for context: {context}");
+        }
     }
+
 
     public void PlayPhoneNotification()
     {
@@ -111,14 +135,11 @@ public class AudioManager : MonoBehaviour
     }
 
     public void ItemPickupSFX()
+
     {
-        SFXSource.PlayOneShot(itemPickup);
+        SFXSource.Stop();
     }
 
-    public void ButtonSFX()
-    {
-        SFXSource.PlayOneShot(buttonInteraction);
-    }
 
     public void WalkingSFX()
     {
@@ -147,3 +168,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 }
+
+public enum SFXContext
+{
+    PhoneNotification,
+    ItemPickup,
+    SceneTransition,
+    Footstep,
+    PhoneUnlock,
+    Crow
+}
+
