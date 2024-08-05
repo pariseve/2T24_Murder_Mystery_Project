@@ -73,9 +73,11 @@ public class AudioManager : MonoBehaviour
             { "Day1ApartmentScene", apartmentTheme },
             { "Day2ApartmentScene", apartmentTheme },
             { "Day1UrbanGoods", apartmentTheme },
-            { "DreamTestingScene", dreamTheme },
+            { "Day2UrbanGoods", apartmentTheme },
+            { "Day1Dream", dreamTheme },
             { "Day2Dream", dreamTheme },
-            { "StealthScene", stealth },
+            { "Day2RailwayBuildingScene", stealth },
+            { "Day2PoliceStationScene", stealth },
             { "PartyScene", partyTheme },
             { "RyanDiscoveredScene", ryanDiscovered }
         };
@@ -126,7 +128,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ClearSFX()
+
+    public void PlayPhoneNotification()
+    {
+        SFXSource.PlayOneShot(phoneNotification);
+    }
+
+    public void ItemPickupSFX()
+
     {
         SFXSource.Stop();
     }
