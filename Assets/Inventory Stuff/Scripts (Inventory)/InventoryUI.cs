@@ -28,17 +28,15 @@ public class InventoryUI : MonoBehaviour
 
     //InventorySlot[] slots;
 
-    private void Awake()
+    void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (instance != null)
         {
             Destroy(gameObject);
+            return;
         }
+        instance = this;
+        //DontDestroyOnLoad(gameObject);
     }
 
     //void Start()

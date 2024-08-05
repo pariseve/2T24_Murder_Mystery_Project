@@ -19,15 +19,14 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (instance != null)
         {
             Destroy(gameObject);
+            return;
         }
+        instance = this;
+
+        DontDestroyOnLoad(this);
     }
 
     public bool AddItem(Item item)

@@ -39,7 +39,7 @@ public class NotesManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -51,7 +51,7 @@ public class NotesManager : MonoBehaviour
     {
         AddScrollbarListener(scrollRect);
         AddBackImageListener();
-        // InstantiateNotes();
+        InstantiateNotes();
     }
 
     private void AddBackImageListener()
@@ -246,11 +246,8 @@ public class NotesManager : MonoBehaviour
             rectTransform.SetAsLastSibling(); // Move to the next available slot
         }
 
-        // Play notification audio
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlayPhoneNotification();
-        }
+        // Play notification audio if needed
+        // PlayNotificationSound();
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
         StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));

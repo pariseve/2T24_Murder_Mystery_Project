@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using DialogueEditor;
 
 public class SceneController : MonoBehaviour
 {
@@ -34,7 +33,7 @@ public class SceneController : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKey(KeyCode.Space))
         {
-            if (!startedTransition && !ConversationManager.Instance.IsConversationActive)
+            if (!startedTransition)
             {
                 startedTransition = true;
                 StartTransition(sceneName);

@@ -94,16 +94,19 @@ public class NPCDialogueWithItem : MonoBehaviour
     private void Update()
     {
         // Check if the conversation has not started yet
-        if (isInsideTrigger && !PlayerPrefs.HasKey(conversationTriggeredKey) && Input.GetKeyDown(startConversationKey) && AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && HasRequiredItems())
+        if (isInsideTrigger && !PlayerPrefs.HasKey(conversationTriggeredKey) && Input.GetKeyDown(startConversationKey))
         {
-            StartConversation();
+            // Check if all required booleans are true and all required booleans are false
+            if (AllRequiredBoolsTrue() && AllRequiredBoolsFalse() && HasRequiredItems())
+            {
+                StartConversation();
+            }
+            else
+            {
+                // Debug.LogWarning("Cannot start conversation because one or more required booleans are not in the correct state.");
+            }
         }
-        else
-        {
-            // Debug.LogWarning("Cannot start conversation because one or more required booleans are not in the correct state.");
-        }
-        }
-    
+    }
 
     private bool AllRequiredBoolsTrue()
     {
