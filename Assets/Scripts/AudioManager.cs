@@ -21,17 +21,19 @@ public class AudioManager : MonoBehaviour
 
     [Header("----- SFX Clips -----")]
     public AudioClip phoneNotification;
+    public AudioClip phoneUnlock;
     public AudioClip itemPickup;
     public AudioClip sceneTransition;
     public AudioClip footstep1;
     public AudioClip footstep2;
     public AudioClip footstep3;
-    public AudioClip buttonInteraction;
+    public AudioClip footstep4;
     public AudioClip crow;
 
     public static AudioManager Instance { get; private set; }
 
     private Dictionary<string, AudioClip> sceneMusicMap;
+    private Dictionary<SFXContext, AudioClip> SFXMap;
 
     private void Awake()
     {
@@ -50,6 +52,7 @@ public class AudioManager : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         InitializeSceneMusicMap();
+        InitializeSFXMap();
     }
 
     private void OnDisable()
@@ -69,13 +72,23 @@ public class AudioManager : MonoBehaviour
             { "Day1ApartmentScene", apartmentTheme },
             { "Day2ApartmentScene", apartmentTheme },
             { "Day1UrbanGoods", apartmentTheme },
-            { "Day2UrbanGoods", apartmentTheme },
-            { "Day1Dream", dreamTheme },
+            { "DreamTestingScene", dreamTheme },
             { "Day2Dream", dreamTheme },
-            { "Day2RailwayBuildingScene", stealth },
-            { "Day2PoliceStationScene", stealth },
+            { "StealthScene", stealth },
             { "PartyScene", partyTheme },
             { "RyanDiscoveredScene", ryanDiscovered }
+        };
+    }
+
+    private void InitializeSFXMap()
+    {
+        SFXMap = new Dictionary<SFXContext, AudioClip>
+        {
+            { SFXContext.PhoneNotification, phoneNotification },
+            { SFXContext.ItemPickup, itemPickup },
+            { SFXContext.SceneTransition, sceneTransition },
+            { SFXContext.PhoneUnlock, phoneUnlock },
+            { SFXContext.Crow, crow }
         };
     }
 
@@ -100,25 +113,23 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(SFXContext context)
     {
-        SFXSource.PlayOneShot(clip);
+        if (SFXMap.TryGetValue(context, out AudioClip clip))
+        {
+            SFXSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning($"No SFX assigned for context: {context}");
+        }
     }
 
-    public void PlayPhoneNotification()
+    public void ClearSFX()
     {
-        SFXSource.PlayOneShot(phoneNotification);
+        SFXSource.Stop();
     }
 
-    public void ItemPickupSFX()
-    {
-        SFXSource.PlayOneShot(itemPickup);
-    }
-
-    public void ButtonSFX()
-    {
-        SFXSource.PlayOneShot(buttonInteraction);
-    }
 
     public void WalkingSFX()
     {
@@ -146,4 +157,13 @@ public class AudioManager : MonoBehaviour
             SFXSource.PlayOneShot(randomFootstep);
         }
     }
+}
+
+public enum SFXContext
+{
+    PhoneNotification,
+    ItemPickup,
+    SceneTransition,
+    PhoneUnlock,
+    Crow
 }

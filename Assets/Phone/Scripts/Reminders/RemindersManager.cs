@@ -120,7 +120,7 @@ public class RemindersManager : MonoBehaviour
         // Play notification audio
         if (AudioManager.Instance != null)
         {
-            AudioManager.Instance.PlayPhoneNotification();
+            AudioManager.Instance.PlaySFX(SFXContext.PhoneNotification);
         }
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
