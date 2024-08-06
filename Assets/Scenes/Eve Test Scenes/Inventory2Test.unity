@@ -677,7 +677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &308056099
 Transform:
   m_ObjectHideFlags: 0
@@ -1059,7 +1059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -1160,74 +1160,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1001 &494689328
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.58769363
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 18.888723
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 30.135813
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1669665862605753043, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567562871684717216, guid: 0d4b8841e23f20840a969bc4bdd6f9ff,
-        type: 3}
-      propertyPath: m_Name
-      value: Post Process + Lighting
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0d4b8841e23f20840a969bc4bdd6f9ff, type: 3}
 --- !u!1 &675728939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,9 +1518,6 @@ MonoBehaviour:
   sceneName: InventoryTestScene
   loadingScreen: {fileID: 227444119}
   loadingBar: {fileID: 227444118}
-  canvasGroup: {fileID: 0}
-  canvasObject: {fileID: 0}
-  startedTransition: 0
 --- !u!65 &1012777430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1622,6 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCharacter: {fileID: 0}
   interactPrompt: 
 --- !u!4 &1179899930 stripped
 Transform:
@@ -1926,7 +1856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1399467293
 Transform:
   m_ObjectHideFlags: 0
@@ -2599,16 +2529,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 507199948442196420, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -25.79
-      objectReference: {fileID: 0}
-    - target: {fileID: 507199948442196420, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -30.7
-      objectReference: {fileID: 0}
     - target: {fileID: 816479809728755245, guid: 0a17ea12d2853b44db209300b8644bdc,
         type: 3}
       propertyPath: m_Name
@@ -2663,31 +2583,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3929645762402020332, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -86.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 3929645762402020332, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -27.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988809635451462506, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -55.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3988809635451462506, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6082296735691247916, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2777,7 +2672,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 330585546}
   - {fileID: 242264361}
-  - {fileID: 494689328}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 6892971008770909726}

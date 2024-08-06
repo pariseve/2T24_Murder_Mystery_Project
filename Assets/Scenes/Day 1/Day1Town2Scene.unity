@@ -1986,11 +1986,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1155878580840359587, guid: 12e5c9a3c389db746b1fa1f1e586e171,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1634267377438469109, guid: 12e5c9a3c389db746b1fa1f1e586e171,
         type: 3}
       propertyPath: m_Name
       value: Town 2 Level
       objectReference: {fileID: 0}
+    - target: {fileID: 2996994054253996377, guid: 12e5c9a3c389db746b1fa1f1e586e171,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb8ca4f0d6063d543a51f05b116e57ef, type: 2}
+    - target: {fileID: 4156555322130151779, guid: 12e5c9a3c389db746b1fa1f1e586e171,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb8ca4f0d6063d543a51f05b116e57ef, type: 2}
     - target: {fileID: 5847508563885811865, guid: 12e5c9a3c389db746b1fa1f1e586e171,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2041,6 +2056,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947275565960983213, guid: 12e5c9a3c389db746b1fa1f1e586e171,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb8ca4f0d6063d543a51f05b116e57ef, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
