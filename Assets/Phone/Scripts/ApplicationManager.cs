@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 public class ApplicationManager : MonoBehaviour
 {
     [SerializeField] private GameObject applicationIcons; // The parent object containing all application icons
-    [SerializeField] private RawImage fingerprintImage;
+    [SerializeField] private Image fingerprintImage;
     [SerializeField] private GameObject lockscreen;
     [SerializeField] private float longPressDuration = 1f;
     [SerializeField] private float bounceDuration = 0.5f;
@@ -13,6 +13,7 @@ public class ApplicationManager : MonoBehaviour
     [SerializeField] private RawImage[] applications; // Array of application RawImages
     [SerializeField] private RawImage[] appIcons; // Array of RawImages corresponding to application icons
 
+    [SerializeField] private Slider radialSlider;
     private bool isLongPressing = false;
     private float pressTime = 0f;
 
@@ -57,6 +58,10 @@ public class ApplicationManager : MonoBehaviour
                 }
                 else
                 {
+                    float duration = Time.time - pressTime;
+                    float fillAmount = Mathf.Clamp01(duration / longPressDuration);
+                    radialSlider.value = fillAmount; // Update the slider's fill amount
+
                     if (Time.time - pressTime >= longPressDuration)
                     {
                         ShowApplications();
@@ -73,6 +78,7 @@ public class ApplicationManager : MonoBehaviour
         else
         {
             isLongPressing = false;
+            radialSlider.value = 0; // Reset the slider when not pressing
         }
     }
 
