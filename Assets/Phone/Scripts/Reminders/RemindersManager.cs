@@ -53,7 +53,7 @@ public class RemindersManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -64,7 +64,7 @@ public class RemindersManager : MonoBehaviour
     void Start()
     {
         AddScrollbarListener(scrollRect);
-        // InstantiateReminders();
+        InstantiateReminders();
         AddBackImageListener();
         AddRemindersUIBackImageListener();
     }
@@ -117,11 +117,8 @@ public class RemindersManager : MonoBehaviour
             rectTransform.SetAsLastSibling(); // Move to the next available slot
         }
 
-        // Play notification audio
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlayPhoneNotification();
-        }
+        // Play notification audio if needed
+        // PlayNotificationSound();
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
         StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));
