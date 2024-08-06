@@ -114,7 +114,7 @@ namespace DialogueEditor
         // Dialogue State Methods
         //--------------------------------------
 
-        public void StartDialogue()
+        /* public void StartDialogue()
         {
             Debug.Log("dialogue started");
             isDialogueActive = true;
@@ -122,9 +122,10 @@ namespace DialogueEditor
 
         public void EndDialogue()
         {
-            Debug.Log("dialogue ended");
+            // Debug.Log("dialogue ended");
             isDialogueActive = false;
         }
+        */
 
         //--------------------------------------
         // Serialize and Deserialize

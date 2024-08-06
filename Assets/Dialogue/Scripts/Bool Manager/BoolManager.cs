@@ -92,7 +92,7 @@ public class BoolManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Bool '{boolName}' not found.");
+            // Debug.LogWarning($"Bool '{boolName}' not found.");
         }
     }
 
@@ -104,7 +104,7 @@ public class BoolManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Bool '{boolName}' not found.");
+            // Debug.LogWarning($"Bool '{boolName}' not found.");
             return false;
         }
     }
@@ -117,6 +117,14 @@ public class BoolManager : MonoBehaviour
     public Dictionary<string, bool> GetBoolDictionary()
     {
         return boolDictionary;
+    }
+
+    public void ClearAllBools()
+    {
+        boolDictionary.Clear();
+        boolKeys.Clear();
+        PlayerPrefs.DeleteKey("BoolKeys"); // Clear the stored keys
+        PlayerPrefs.Save(); // Ensure PlayerPrefs is saved
     }
 }
 
