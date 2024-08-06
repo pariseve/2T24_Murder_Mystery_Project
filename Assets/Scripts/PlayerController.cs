@@ -17,17 +17,14 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting = false;
     private bool isIndoors = false;
     public bool canMove = true; // Flag to control movement
-    private bool isMoving = false;
 
     private Animator animator; // Reference to the Animator component
-    private AudioManager audioManager;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         animator = GetComponentInChildren<Animator>(); // Get the Animator component
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void FixedUpdate()
@@ -42,7 +39,6 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 castPos = transform.position + Vector3.up;
-
 
         // Check if the player is grounded
         isGrounded = Physics.Raycast(castPos, -Vector3.up, out hit, groundDistance, groundLayer);
@@ -76,7 +72,6 @@ public class PlayerController : MonoBehaviour
         // Update animation parameters
         bool isMoving = moveDirection.magnitude > 0;
         animator.SetBool("isMoving", isMoving);
-
     }
 
     void OnTriggerEnter(Collider other)
