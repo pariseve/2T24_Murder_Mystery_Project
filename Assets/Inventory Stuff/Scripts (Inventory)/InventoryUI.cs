@@ -21,7 +21,7 @@ public class InventoryUI : MonoBehaviour
     public Image examineImage;
     public RectTransform examineContentRectTransform;
     private float defaultWidth = 400f; 
-    private float defaultHeight = 45f; 
+    private float defaultHeight = 1f; 
 
 
     // Pickup Display variables
@@ -148,7 +148,7 @@ public class InventoryUI : MonoBehaviour
         ScrollRect scrollRect = examinePanel.GetComponentInChildren<ScrollRect>();
         if (scrollRect != null)
         {
-            scrollRect.verticalNormalizedPosition = 1f; // Scroll to top
+            scrollRect.verticalNormalizedPosition = 0f; // Scroll to top
         }
     }
 
