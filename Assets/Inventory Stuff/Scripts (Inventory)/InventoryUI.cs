@@ -19,6 +19,10 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI examineNameText;
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
+    public RectTransform examineContentRectTransform;
+    private float defaultWidth = 400f; 
+    private float defaultHeight = 45f; 
+
 
     // Pickup Display variables
     public GameObject pickupDisplayPanel;
@@ -135,6 +139,28 @@ public class InventoryUI : MonoBehaviour
     // EXAMINE PANEL
     //-------------------------------------------------------------------------------------
 
+    private void UpdateExaminePanel()
+    {
+        // Force the content size fitter to update
+        LayoutRebuilder.ForceRebuildLayoutImmediate(examineContentRectTransform);
+
+        // Optionally, scroll to the top if using a ScrollRect
+        ScrollRect scrollRect = examinePanel.GetComponentInChildren<ScrollRect>();
+        if (scrollRect != null)
+        {
+            scrollRect.verticalNormalizedPosition = 1f; // Scroll to top
+        }
+    }
+
+    private void ResetExaminePanel()
+    {
+        // Reset size to default values
+        examineContentRectTransform.sizeDelta = new Vector2(defaultWidth, defaultHeight);
+
+        // Force a layout rebuild to apply the new size
+        LayoutRebuilder.ForceRebuildLayoutImmediate(examineContentRectTransform);
+    }
+
     public void OpenExaminePanel(Item item)
     {
         if (item != null)
@@ -145,6 +171,8 @@ public class InventoryUI : MonoBehaviour
             examineImage.sprite = item.icon;
             examinePanel.SetActive(true);
             LeanTween.scale(examinePanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutBack);
+
+            //UpdateExaminePanel();
 
             // Disable player movement or any other setup needed before dialogue
             PlayerController playerController = FindObjectOfType<PlayerController>();
@@ -163,9 +191,11 @@ public class InventoryUI : MonoBehaviour
         {
             playerController.EnableMovement();
         }
+
         LeanTween.scale(examinePanel, new Vector2(0, 0), 1f).setEase(LeanTweenType.easeInBack).setOnComplete(() =>
             {
                 examinePanel.SetActive(false); // This will be called after the animation completes
+                ResetExaminePanel();
             });
     }
 
