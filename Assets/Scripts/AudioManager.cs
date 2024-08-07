@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
             { "Day1ApartmentScene", apartmentTheme },
             { "Day2ApartmentScene", apartmentTheme },
             { "Day1UrbanGoods", apartmentTheme },
-            { "DreamTestingScene", dreamTheme },
+            { "Day1Dream", dreamTheme },
             { "Day2Dream", dreamTheme },
             { "StealthScene", stealth },
             { "PartyScene", partyTheme },
