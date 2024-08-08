@@ -33,10 +33,9 @@ public class DoorDreamDialogue : MonoBehaviour
                 // Check if the hit object is the object this script is attached to
                 if (hit.collider.gameObject == gameObject)
                 {
-                    hasBeenClicked = true; // Set the flag to prevent further clicks
-
                     if (AllRequiredBoolsTrue())
                     {
+                        hasBeenClicked = true;
                         objectClickSceneTransitionDream.FoundAllClues();
                         dialogueStarted = true;
                         // DisableAllColliders();
