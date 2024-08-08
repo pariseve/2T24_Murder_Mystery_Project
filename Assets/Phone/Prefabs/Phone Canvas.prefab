@@ -10043,6 +10043,18 @@ MonoBehaviour:
       descriptions:
       - "This must be Ms Peymans\u2019 Cat, Raymond. It seems to be cornered by Lottie
         the dog at The Old Railway. Now how do I get her down from there\u2026"
+  - name: Give June Her Birthday Gift
+    descriptionPairs:
+    - boolKey: BirthdayGiftDay1ApartmentSideQuest
+      descriptions:
+      - 'It''s June''s birthday today and I prepared a gift for her.
+
+
+        I
+        should try and find her to give it.'
+    - boolKey: JuneDay1StreetGaveBirthdayGiftSideQuest
+      descriptions:
+      - I have June her gift but she seems to be a bit upset with me.
 --- !u!114 &5703213277150232278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10102,6 +10114,7 @@ MonoBehaviour:
   - {fileID: 4285046912835482442}
   - {fileID: 5139156316034477213}
   - {fileID: 1183784532137368765}
+  scrollviewToTop: 0
 --- !u!1 &2671533552646889601
 GameObject:
   m_ObjectHideFlags: 0

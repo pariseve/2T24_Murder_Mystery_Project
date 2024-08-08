@@ -676,4 +676,90 @@ public class RemindersManager : MonoBehaviour
 
         return null;
     }
-}
+
+    public void RemoveReminderByName(string reminderName)
+    {
+        // Find the reminder in the list
+        Reminder reminderToRemove = reminders.Find(reminder => reminder.name == reminderName);
+
+        if (reminderToRemove != null)
+        {
+            // Remove the reminder from the list
+            reminders.Remove(reminderToRemove);
+
+            // Destroy the reminder's UI instance if it exists
+            if (instantiatedReminders.ContainsKey(reminderName) && instantiatedReminders[reminderName])
+            {
+                GameObject reminderInstance = FindReminderInstance(reminderName);
+                if (reminderInstance != null)
+                {
+                    Destroy(reminderInstance);
+                }
+                instantiatedReminders.Remove(reminderName);
+            }
+
+            // Remove the reminder's descriptions from the instantiated descriptions dictionary
+            if (instantiatedReminderDescriptions.ContainsKey(reminderName))
+            {
+                foreach (GameObject descriptionInstance in instantiatedReminderDescriptions[reminderName])
+                {
+                    Destroy(descriptionInstance);
+                }
+                instantiatedReminderDescriptions.Remove(reminderName);
+            }
+
+            // Remove the reminder's name from the shown descriptions dictionary
+            if (shownDescriptions.ContainsKey(reminderName))
+            {
+                shownDescriptions.Remove(reminderName);
+            }
+
+            // Optionally, update the UI after removing the reminder
+            UpdateAllReminders();
+        }
+        else
+        {
+            Debug.LogWarning($"Reminder with name {reminderName} not found.");
+        }
+    }
+
+        public void SetDescriptionToIncomplete(string reminderName)
+        {
+            // Find the reminder by name
+            Reminder reminder = reminders.Find(r => r.name == reminderName);
+
+            if (reminder == null)
+            {
+                Debug.LogError($"Reminder with name {reminderName} not found.");
+                return;
+            }
+
+            // Find the associated reminder instance in the UI
+            GameObject reminderInstance = FindReminderInstance(reminderName);
+            if (reminderInstance == null)
+            {
+                Debug.LogError($"Reminder instance for {reminderName} not found.");
+                return;
+            }
+
+            // Find the description parent
+            Transform descriptionParent = DeepFind(reminderInstance.transform, "Description");
+            if (descriptionParent != null)
+            {
+                TextMeshProUGUI descriptionText = descriptionParent.GetComponent<TextMeshProUGUI>();
+                if (descriptionText != null)
+                {
+                    // Change the text to "Incomplete"
+                    descriptionText.text = "Incomplete";
+                }
+                else
+                {
+                    Debug.LogError("TextMeshProUGUI component not found in the description parent.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Description parent not found in the reminder instance.");
+            }
+        }
+    }

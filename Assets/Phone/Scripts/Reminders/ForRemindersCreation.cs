@@ -12,7 +12,31 @@ public class ForRemindersCreation : MonoBehaviour
         }
         else
         {
-            Debug.LogError("NotesManager.Instance is null.");
+            Debug.LogError("ReminderManager.Instance is null.");
+        }
+    }
+
+    public void ForRemovingReminder(string reminderName)
+    {
+        if (RemindersManager.Instance != null)
+        {
+            RemindersManager.Instance.RemoveReminderByName(reminderName);
+        }
+        else
+        {
+            Debug.LogError("ReminderManager.Instance is null.");
+        }
+    }
+
+    public void ForSetReminderToIncomplete(string reminderName)
+    {
+        if (RemindersManager.Instance != null)
+        {
+            RemindersManager.Instance.SetDescriptionToIncomplete(reminderName);
+        }
+        else
+        {
+            Debug.LogError("ReminderManager.Instance is null.");
         }
     }
 }
