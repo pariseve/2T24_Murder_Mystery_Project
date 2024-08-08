@@ -5,6 +5,8 @@ using TMPro;
 
 public class TakeMedicationUI : MonoBehaviour
 {
+    public static TakeMedicationUI Instance { get; private set; }
+
     [SerializeField] private bool needsMedication = false;
     [SerializeField] private string medicationUIName = "MedicationUI"; // The name of the instantiated UI prefab
     [SerializeField] private float animationDuration = 0.5f;
@@ -18,17 +20,30 @@ public class TakeMedicationUI : MonoBehaviour
     private void Awake()
     {
         medicationUIText.gameObject.SetActive(false);
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void Update()
     {
         GameObject medicationUI = GameObject.Find(medicationUIName);
+
+        // Check if the boolName is true in the BoolManager
+        bool isBoolTrue = BoolManager.Instance != null && BoolManager.Instance.GetBool(boolName);
 
         if (medicationUI != null && medicationUI.activeInHierarchy && !isListenerSet)
         {
             SetupButtonListener();
         }
 
-        if (needsMedication)
+        if (needsMedication && isBoolTrue)
         {
             medicationUIText.gameObject.SetActive(true);
             PlayerController playerController = FindObjectOfType<PlayerController>();
@@ -50,13 +65,36 @@ public class TakeMedicationUI : MonoBehaviour
             }
             ResetSizeAndFadeOutText();
         }
+        if (!isBoolTrue && medicationUI != null)
+        {
+            Destroy(medicationUI);
+            needsMedication = false;
+            isListenerSet = false;
+            PlayerController playerController = FindObjectOfType<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.EnableMovement();
+            }
+        }
     }
 
-    public void SetBoolVariable()
+    private void SetBoolVariableTrue()
     {
         if (BoolManager.Instance != null)
         {
             BoolManager.Instance.SetBool(boolName, true);
+        }
+        else
+        {
+            Debug.LogError("BoolManager.Instance is null.");
+        }
+    }
+
+    private void SetBoolVariableFalse()
+    {
+        if (BoolManager.Instance != null)
+        {
+            BoolManager.Instance.SetBool(boolName, false);
         }
         else
         {
@@ -126,6 +164,7 @@ public class TakeMedicationUI : MonoBehaviour
     public void NeedsTheMedication()
     {
         needsMedication = true;
+        SetBoolVariableTrue();
     }
 
     public void NotNeedMedication()
@@ -138,7 +177,7 @@ public class TakeMedicationUI : MonoBehaviour
         {
             playerController.EnableMovement();
         }
-        SetBoolVariable();
+        SetBoolVariableFalse();
     }
 
     private void SetupButtonListener()
