@@ -1,15 +1,24 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TakeMedicationUI : MonoBehaviour
 {
     [SerializeField] private bool needsMedication = false;
     [SerializeField] private string medicationUIName = "MedicationUI"; // The name of the instantiated UI prefab
     [SerializeField] private float animationDuration = 0.5f;
+    [SerializeField] private TextMeshProUGUI medicationUIText;
+    [SerializeField] private float scaleAmount = 0.5f;
 
     [SerializeField] private bool isListenerSet = false;
+    private Coroutine scaleCoroutine;
+    [SerializeField] private string boolName;
 
+    private void Awake()
+    {
+        medicationUIText.gameObject.SetActive(false);
+    }
     void Update()
     {
         GameObject medicationUI = GameObject.Find(medicationUIName);
@@ -18,13 +27,71 @@ public class TakeMedicationUI : MonoBehaviour
         {
             SetupButtonListener();
         }
+
         if (needsMedication)
         {
+            medicationUIText.gameObject.SetActive(true);
             PlayerController playerController = FindObjectOfType<PlayerController>();
             if (playerController != null)
             {
                 playerController.DisableMovement();
             }
+            if (medicationUIText != null && scaleCoroutine == null)
+            {
+                scaleCoroutine = StartCoroutine(ScaleText());
+            }
+        }
+        else
+        {
+            if (scaleCoroutine != null)
+            {
+                StopCoroutine(scaleCoroutine);
+                scaleCoroutine = null;
+            }
+            ResetSizeAndFadeOutText();
+        }
+    }
+
+    public void SetBoolVariable()
+    {
+        if (BoolManager.Instance != null)
+        {
+            BoolManager.Instance.SetBool(boolName, true);
+        }
+        else
+        {
+            Debug.LogError("BoolManager.Instance is null.");
+        }
+    }
+
+    private IEnumerator ScaleText()
+    {
+        Vector3 originalScale = medicationUIText.rectTransform.localScale;
+        Vector3 maxScale = originalScale * (1 + scaleAmount);
+
+        while (needsMedication)
+        {
+            // Scale up
+            LeanTween.scale(medicationUIText.rectTransform, maxScale, animationDuration).setEaseInOutSine();
+            yield return new WaitForSeconds(animationDuration);
+
+            // Scale down
+            LeanTween.scale(medicationUIText.rectTransform, originalScale, animationDuration).setEaseInOutSine();
+            yield return new WaitForSeconds(animationDuration);
+        }
+    }
+
+    private void ResetSizeAndFadeOutText()
+    {
+        if (medicationUIText != null)
+        {
+            // Reset scale
+            LeanTween.scale(medicationUIText.rectTransform, Vector3.one, animationDuration).setEaseInOutSine();
+            // Fade out
+            LeanTween.alphaText(medicationUIText.rectTransform, 0, animationDuration).setEaseInOutSine().setOnComplete(() =>
+            {
+                medicationUIText.gameObject.SetActive(false);
+            });
         }
     }
 
@@ -34,22 +101,25 @@ public class TakeMedicationUI : MonoBehaviour
 
         // Find the instantiated medicationUI GameObject by its name
         GameObject medicationUI = GameObject.Find(medicationUIObject);
-        if (enable)
+        if (medicationUI != null)
         {
-            medicationUI.SetActive(true);
-            LeanTween.scale(medicationUI, Vector3.one, animationDuration).setEaseOutBounce();
-        }
-        else
-        {
-            LeanTween.scale(medicationUI, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+            if (enable)
             {
-                medicationUI.SetActive(false);
-            });
-            yield return new WaitForSeconds(animationDuration); // Wait for the animation to complete
+                medicationUI.SetActive(true);
+                LeanTween.scale(medicationUI.GetComponent<RectTransform>(), Vector3.one, animationDuration).setEaseOutBounce();
+            }
+            else
+            {
+                LeanTween.scale(medicationUI.GetComponent<RectTransform>(), Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+                {
+                    medicationUI.SetActive(false);
+                });
+                yield return new WaitForSeconds(animationDuration); // Wait for the animation to complete
 
-            needsMedication = false;
-            isListenerSet = false;
-            Destroy(medicationUI); // Destroy after animation
+                needsMedication = false;
+                isListenerSet = false;
+                Destroy(medicationUI); // Destroy after animation
+            }
         }
     }
 
@@ -68,6 +138,7 @@ public class TakeMedicationUI : MonoBehaviour
         {
             playerController.EnableMovement();
         }
+        SetBoolVariable();
     }
 
     private void SetupButtonListener()
