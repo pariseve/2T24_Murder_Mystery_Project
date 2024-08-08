@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class DragUIPuzzleManager : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class DragUIPuzzleManager : MonoBehaviour
     [SerializeField] private float proximityThreshold = 50f; // Set an appropriate proximity threshold
     [SerializeField] private GameObject parentObject;
     [SerializeField] private string boolName;
+    [SerializeField] private float animationDuration = 0.5f;
 
     private bool isPuzzleComplete = false; // Flag to check if the puzzle is complete
 
@@ -253,8 +254,28 @@ public class DragUIPuzzleManager : MonoBehaviour
         {
             playerController.EnableMovement();
         }
-        Destroy(gameObject); // Destroy the GameObject that this script is attached to
+        StartCoroutine(AnimateUI(false));
+        // Destroy(gameObject); // Destroy the GameObject that this script is attached to
         ToggleOtherUIInteractions(true);
+    }
+
+    public IEnumerator AnimateUI(bool enable)
+    {
+        if (enable)
+        {
+            parentObject.SetActive(true);
+            LeanTween.scale(parentObject, Vector3.one, animationDuration).setEaseOutBounce();
+        }
+        else
+        {
+            LeanTween.scale(parentObject, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+            {
+                parentObject.SetActive(false);
+            });
+            yield return new WaitForSeconds(animationDuration); // Wait for the animation to complete
+
+            Destroy(gameObject); // Destroy after animation
+        }
     }
 
     private void CheckAndUpdatePlayerMovement()

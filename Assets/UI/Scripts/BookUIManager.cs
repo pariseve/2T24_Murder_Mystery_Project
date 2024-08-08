@@ -1,8 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 public class BookUIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject parentObject;
+    [SerializeField] private float animationDuration = 0.5f;
     [SerializeField] private Image[] pages; // Array of page images
     private int currentPageIndex = 0;
 
@@ -98,8 +103,29 @@ public class BookUIManager : MonoBehaviour
         {
             playerController.EnableMovement();
         }
-        gameObject.SetActive(false);
-        Destroy(gameObject); // Destroy the GameObject that this script is attached to
+
+        StartCoroutine(AnimateUI(false));
+        // gameObject.SetActive(false);
+        // Destroy(gameObject); // Destroy the GameObject that this script is attached to
+    }
+
+    public IEnumerator AnimateUI(bool enable)
+    {
+        if (enable)
+        {
+            parentObject.SetActive(true);
+            LeanTween.scale(parentObject, Vector3.one, animationDuration).setEaseOutBounce();
+        }
+        else
+        {
+            LeanTween.scale(parentObject, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+            {
+                parentObject.SetActive(false);
+            });
+            yield return new WaitForSeconds(animationDuration); // Wait for the animation to complete
+
+            Destroy(gameObject); // Destroy after animation
+        }
     }
 
     private void CheckAndUpdatePlayerMovement()

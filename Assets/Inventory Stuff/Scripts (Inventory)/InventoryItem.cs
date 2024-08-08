@@ -97,6 +97,12 @@ public class InventoryItem : MonoBehaviour
 
     public void CallOpenUsableItemPanel()
     {
+        // Disable player movement or any other setup needed before dialogue
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.DisableMovement();
+        }
         // Close the interaction panel
         if (isInteractOpen)
         {

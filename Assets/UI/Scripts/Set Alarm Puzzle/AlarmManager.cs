@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 public class AlarmManager : MonoBehaviour
 {
+    [SerializeField] private GameObject parentObject;
+    [SerializeField] private float animationDuration = 0.5f;
+
     [SerializeField] private DialControl volumeDial;
     [SerializeField] private DialControl frequencyDial;
     [SerializeField] private DialControl durationDial;
@@ -137,10 +140,12 @@ public class AlarmManager : MonoBehaviour
         {
             if (IsUIActive())
             {
+                ToggleComponents(false);
                 playerController.DisableMovement();
             }
             else
             {
+                ToggleComponents(true);
                 playerController.EnableMovement();
             }
         }
@@ -286,14 +291,17 @@ public class AlarmManager : MonoBehaviour
 
     public void CloseAllUI()
     {
+        StartCoroutine(AnimateUI(false));
         // Ensure the alarm is stopped and settings reset
         timer = 0f;
         isAlarmActive = false; // Stop the alarm if it was active
         // settingsUIPanel.SetActive(false);
         // setAlarmUIPanel.SetActive(false);
-        completeText.SetActive(false);
-        timerText.gameObject.SetActive(false);
-        feedbackText.gameObject.SetActive(false);
+
+
+        // completeText.SetActive(false);
+        // timerText.gameObject.SetActive(false);
+        // feedbackText.gameObject.SetActive(false);
         // ResetSettings(); // Reset settings to default
         SetInteractableUIElements(false); // Disable UI elements
 
@@ -301,6 +309,29 @@ public class AlarmManager : MonoBehaviour
         if (playerController != null)
         {
             playerController.EnableMovement();
+        }
+    }
+
+    public IEnumerator AnimateUI(bool enable)
+    {
+        if (enable)
+        {
+            parentObject.SetActive(true);
+            LeanTween.scale(parentObject, Vector3.one, animationDuration).setEaseOutBounce();
+        }
+        else
+        {
+            LeanTween.scale(parentObject, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+            {
+                parentObject.SetActive(false);
+            });
+            yield return new WaitForSeconds(animationDuration); // Wait for the animation to complete
+
+            ResetSettings();
+            completeText.SetActive(false);
+            timerText.gameObject.SetActive(false);
+            feedbackText.gameObject.SetActive(false);
+            ToggleComponents(true);
         }
     }
 }
