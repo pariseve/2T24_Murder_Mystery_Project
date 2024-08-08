@@ -93,7 +93,7 @@ public class BookUIManager : MonoBehaviour
 
     private void Update()
     {
-        CheckAndUpdatePlayerMovement();
+        // CheckAndUpdatePlayerMovement();
     }
 
     public void CloseUI()
