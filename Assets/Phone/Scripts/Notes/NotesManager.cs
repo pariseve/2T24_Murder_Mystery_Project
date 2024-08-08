@@ -246,14 +246,18 @@ public class NotesManager : MonoBehaviour
             rectTransform.SetAsLastSibling(); // Move to the next available slot
         }
 
-        // Play notification audio
+        PlayNotificationSound();
+
+        // Start coroutine for fading in, staying, fading out, and destroying the notification
+        StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));
+    }
+
+    private void PlayNotificationSound()
+    {
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySFX(SFXContext.PhoneNotification);
         }
-
-        // Start coroutine for fading in, staying, fading out, and destroying the notification
-        StartCoroutine(FadeInOutAndDestroy(notificationInstance.GetComponent<CanvasGroup>()));
     }
 
     private IEnumerator FadeInOutAndDestroy(CanvasGroup canvasGroup)

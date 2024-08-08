@@ -65,6 +65,7 @@ public class ApplicationManager : MonoBehaviour
                     if (Time.time - pressTime >= longPressDuration)
                     {
                         ShowApplications();
+                        PlayUnlockSound();
                         isLongPressing = false;
 
                         if (lockscreen != null)
@@ -79,6 +80,14 @@ public class ApplicationManager : MonoBehaviour
         {
             isLongPressing = false;
             radialSlider.value = 0; // Reset the slider when not pressing
+        }
+    }
+
+    private void PlayUnlockSound()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SFXContext.PhoneUnlock);
         }
     }
 

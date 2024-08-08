@@ -357,10 +357,7 @@ public class MessageManager : MonoBehaviour
         }
 
         // Play notification audio
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.PlaySFX(SFXContext.PhoneNotification);
-        }
+        PlayNotificationSound();
 
         // Start coroutine for fading in, staying, fading out, and destroying the notification
         StartCoroutine(FadeInOutAndDestroy(notification.GetComponent<CanvasGroup>()));
@@ -392,7 +389,10 @@ public class MessageManager : MonoBehaviour
 
     private void PlayNotificationSound()
     {
-        // Implement audio playback logic here
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(SFXContext.PhoneNotification);
+        }
     }
 
     public void InstantiateOrOpenMessageChat(string npcName, string playerReply)
