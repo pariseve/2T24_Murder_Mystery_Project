@@ -12,6 +12,7 @@ public class ContactsManager : MonoBehaviour
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private RawImage[] contactImages; // Array of contact images
     [SerializeField] private GameObject[] contactDescriptions; // Array of contact descriptions
+    [SerializeField] private bool scrollviewToTop = false;
 
     private void Awake()
     {
@@ -36,19 +37,43 @@ public class ContactsManager : MonoBehaviour
         if (scrollRect != null)
         {
             StartCoroutine(SetScrollViewToTop());
+            scrollviewToTop = true;
         }
     }
 
     private IEnumerator SetScrollViewToTop()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.1f);
 
-        // Set the verticalNormalizedPosition to 1 (top)
-        scrollRect.verticalNormalizedPosition = 1f;
+        if (scrollRect != null)
+        {
+            // Ensure the value is within the valid range
+            float clampedValue = Mathf.Clamp01(1f); // Set to 1 but clamped to ensure it's within 0 to 1
+            Debug.Log("Scroll to top");
+            scrollRect.verticalNormalizedPosition = clampedValue;
+        }
+        else
+        {
+            Debug.LogError("ScrollRect is null in SetScrollViewToTop.");
+        }
+
+        // scrollviewToTop = false; // Reset this flag if needed
     }
 
     private void Update()
     {
+        if (contactsUI.activeSelf && !scrollviewToTop)
+        {
+            Debug.Log("Scroll to top turned true");
+            scrollviewToTop = true;
+            StartCoroutine(SetScrollViewToTop());
+        }
+        if (!contactsUI.activeSelf)
+        {
+            Debug.Log("Scroll to top turned false");
+            scrollviewToTop = false;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             DeactivateAllDescriptions();
@@ -173,6 +198,7 @@ public class ContactsManager : MonoBehaviour
 
         // Set contactsUI back to its original scale
         contactsUI.transform.localScale = originalScale;
+        scrollviewToTop = false;
     }
 
     private void ShowDescription(int index)
