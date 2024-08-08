@@ -314,21 +314,29 @@ public class SettingsManager : MonoBehaviour
 
     private IEnumerator ZoomOutAndDisable()
     {
+        float zoomDuration = 0.5f; // Adjust duration as needed
         Vector3 originalScale = settingsUI.transform.localScale;
-        Vector3 targetScale = originalScale * 1.1f; // Slightly larger scale for zoom-out effect
-        float elapsedTime = 0f;
+        Vector3 targetScale = Vector3.zero; // Zoom out to zero size
 
-        while (elapsedTime < 0.2f)
+        float elapsedTime = 0f;
+        while (elapsedTime < zoomDuration)
         {
-            settingsUI.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / 0.2f);
+            settingsUI.transform.localScale = Vector3.Lerp(originalScale, targetScale, elapsedTime / zoomDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
+        // Ensure it ends at the target scale
         settingsUI.transform.localScale = targetScale;
 
-        // Deactivate settingsUI after zoom-out effect
+        // Disable the notesUI
         settingsUI.SetActive(false);
+
+        // Wait for a short time
+        yield return new WaitForSeconds(0.1f); // Adjust delay as needed
+
+        // Set notesUI back to its original scale
+        settingsUI.transform.localScale = originalScale;
     }
 }
 
