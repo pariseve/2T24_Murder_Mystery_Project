@@ -106,7 +106,7 @@ public class InventoryUI : MonoBehaviour
         if (pickupDisplayPanel != null)
         {
             pickupDisplayPanel.SetActive(true);
-            pickupText.text = "Item obtained: " + item.itemName;
+            pickupText.text = "[i] Item obtained: " + item.itemName ;
             pickupItemImage.sprite = item.icon;
             LeanTween.scale(pickupDisplayPanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutQuint);
 
