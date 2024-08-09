@@ -126,28 +126,60 @@ public class NotesManager : MonoBehaviour
 
             if (isBoolActive && !IsNoteInstantiated(note.name))
             {
-                CreateNote(note.description, note.name);
+                CreateNote(note.description, note);
                 ShowNoteNotification(note.description);
             }
         }
         UpdateContentSize();
     }
 
-    public void CreateNote(string text, string noteKey)
+    public void CreateNote(string description, Note note)
     {
+        // Instantiate the note prefab and set its parent
         GameObject noteInstance = Instantiate(notePrefab, notesParent);
-        TextMeshProUGUI textComponent = noteInstance.GetComponentInChildren<TextMeshProUGUI>();
 
-        if (textComponent != null)
+        // Find the TextMeshProUGUI component labeled "Notes Text" and set the description
+        TextMeshProUGUI descriptionComponent = null;
+        foreach (TextMeshProUGUI textComponent in noteInstance.GetComponentsInChildren<TextMeshProUGUI>())
         {
-            textComponent.text = text;
-            // Mark this note as instantiated
-            instantiatedNotes[noteKey] = true;
+            if (textComponent.name == "Notes Text")
+            {
+                descriptionComponent = textComponent;
+                break;
+            }
+        }
+
+        if (descriptionComponent != null)
+        {
+            descriptionComponent.text = description; // Set the note description
         }
         else
         {
-            Debug.LogError("TextMeshProUGUI component not found in the note prefab.");
+            Debug.LogError("TextMeshProUGUI component named 'Notes Text' not found in the note prefab.");
         }
+
+        // Find the TextMeshProUGUI component labeled "Note Name" and set the name
+        TextMeshProUGUI nameComponent = null;
+        foreach (TextMeshProUGUI textComponent in noteInstance.GetComponentsInChildren<TextMeshProUGUI>())
+        {
+            if (textComponent.name == "Notes Name")
+            {
+                nameComponent = textComponent;
+                break;
+            }
+        }
+
+        if (nameComponent != null)
+        {
+            nameComponent.text = note.name; // Set the note name
+        }
+        else
+        {
+            Debug.LogError("TextMeshProUGUI component named 'Note Name' not found in the note prefab.");
+        }
+
+        // Mark this note as instantiated
+        instantiatedNotes[note.name] = true;
     }
 
     public void SetNoteBool(string noteName)

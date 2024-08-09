@@ -8,6 +8,17 @@ public class DreamStartDialogue : MonoBehaviour
     [SerializeField] private string METHOD_TRIGGERED_KEY = "";
     private PlayerController playerController;
     private ToggleLookAround toggleLookAround;
+    private ObjectClickDialogue objectClickDialogue;
+
+    private void Awake()
+    {
+        objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
+
+        if (objectClickDialogue != null)
+        {
+            objectClickDialogue.DisableAllColliders();
+        }
+    }
 
     void Start()
     {

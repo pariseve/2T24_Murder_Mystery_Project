@@ -7,9 +7,15 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform target;
     [SerializeField] private float stopDistance = 1f;
-    [SerializeField] private SpriteRenderer spriteRenderer; // Reference the SpriteRenderer
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private bool isMoving = false;
     [SerializeField] private string boolName = "";
+
+    private string GetNavMeshAgentID()
+    {
+        // Use the instance ID of the NavMeshAgent to generate a unique key
+        return navMeshAgent.GetInstanceID().ToString();
+    }
 
     private void Start()
     {
@@ -28,6 +34,17 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
         if (boolName == null)
         {
             Debug.LogError("Bool name is not assigned.");
+        }
+
+        // Load the saved position when starting
+        LoadTargetPosition();
+    }
+
+    private void OnDisable()
+    {
+        if (navMeshAgent != null)
+        {
+            SaveTargetPosition();
         }
     }
 
@@ -66,7 +83,7 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
         {
             if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
             {
-                Debug.Log("start walking");
+                Debug.Log("Start walking");
                 navMeshAgent.SetDestination(hit.position);
                 isMoving = true;
                 navMeshAgent.isStopped = false; // Ensure the agent is not stopped
@@ -127,6 +144,31 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
         else
         {
             Debug.LogError("BoolManager.Instance is null.");
+        }
+    }
+
+    private void SaveTargetPosition()
+    {
+        PlayerPrefs.SetFloat($"{navMeshAgent}_Pos_X", navMeshAgent.transform.position.x);
+        PlayerPrefs.SetFloat($"{navMeshAgent}_Pos_Y", navMeshAgent.transform.position.y);
+        PlayerPrefs.SetFloat($"{navMeshAgent}_Pos_Z", navMeshAgent.transform.position.z);
+        PlayerPrefs.SetFloat($"{navMeshAgent}_FlipX", spriteRenderer.flipX ? 1f : 0f);
+        PlayerPrefs.Save(); // Ensure the data is saved immediately
+    }
+
+    private void LoadTargetPosition()
+    {
+        if (PlayerPrefs.HasKey($"{navMeshAgent}_Pos_X") &&
+            PlayerPrefs.HasKey($"{navMeshAgent}_Pos_Y") &&
+            PlayerPrefs.HasKey($"{navMeshAgent}_Pos_Z") &&
+            PlayerPrefs.HasKey($"{navMeshAgent}_FlipX"))
+        {
+            float x = PlayerPrefs.GetFloat($"{navMeshAgent}_Pos_X");
+            float y = PlayerPrefs.GetFloat($"{navMeshAgent}_Pos_Y");
+            float z = PlayerPrefs.GetFloat($"{navMeshAgent}_Pos_Z");
+            bool flipX = PlayerPrefs.GetFloat($"{navMeshAgent}_FlipX") > 0f;
+            navMeshAgent.transform.position = new Vector3(x, y, z);
+            ToggleFlipX(flipX);
         }
     }
 }

@@ -229,6 +229,11 @@ namespace DialogueEditor
                 playerController.DisableMovement();
             }
 
+            if (objectClickDialogue != null)
+            {
+                objectClickDialogue.DisableAllColliders();
+            }
+
             Invoke("DelayedDisableColliders", 0.1f);
 
             isConversationActive = true;

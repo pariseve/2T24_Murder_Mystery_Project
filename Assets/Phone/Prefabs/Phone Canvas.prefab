@@ -9854,12 +9854,12 @@ MonoBehaviour:
   notificationParent: {fileID: 7680454610477985351}
   notesUI: {fileID: 5469970763286731307}
   notes:
-  - name: Broken Clock
-    description: There was a broken clock in my dream near an empty coffee cup. What
-      could that mean?
+  - name: 'Dream 1: Clock'
+    description: There was a clock in my dream near an empty coffee cup. What could
+      that mean?
     boolKey: dream1brokenclock
     isActive: 0
-  - name: Mirror
+  - name: 'Dream 1: Mirror'
     description: There was a mirror in my dream that had a reflection of me with
       my hands covered in blood...
     boolKey: dream1mirror
@@ -9886,25 +9886,25 @@ MonoBehaviour:
       Could 'The Hive' be real?
     boolKey: oddletterday1town1
     isActive: 0
-  - name: Old Photograph
+  - name: 'Dream 2: Old Photograph'
     description: There was an old photograph in my dream of old railway tracks and
       a building. The number 12B was written in the corner. I should try to find
       this location.
     boolKey: dream2photograph
     isActive: 0
-  - name: The Pastry Nook Receipt
+  - name: 'Dream 2: The Pastry Nook Receipt'
     description: I found a receipt in my dream of a purchase from The Pastry Nook.
       I haven't even been there in a while...
     boolKey: dream2receipt
     isActive: 0
-  - name: Cipher Code
-    description: 'There was a cryptic message in my dream on a srunched piece of
-      paper... There has to be a way to decode it.
+  - name: 'Dream 2: Cipher Code'
+    description: 'There was a a keyword and jumbled letters in my dream on a piece
+      of paper. What could it mean?
 
       Keyword: MAPLEWOOD
 
-      Message:
-      QAHE FWQY RR RDDIICBW ET, UZPHCK WTE RCSS'
+      Message: QAHE
+      FWQY RR RDDIICBW ET, UZPHCK WTE RCSS'
     boolKey: dream2ciphercode
     isActive: 0
   - name: Dream 2 Clues Linked
@@ -9947,6 +9947,55 @@ MonoBehaviour:
       was so much anger in his eyes.\n\nHe kept blaming me for something\u2014like
       I failed him."
     boolKey: dream3ryaninmirror
+    isActive: 0
+  - name: Charlie Note
+    description: "Charlie was heading out to grab some beers. His attitude didn\u2019t
+      reveal anything out of the ordinary, but it\u2019s worth noting his whereabouts."
+    boolKey: Day3Town1CharlieInteraction
+    isActive: 0
+  - name: Natalie Note
+    description: Natalie was reflective about our previous conversation and seemed
+      to be processing her feelings about Ryan. She feels the need to relax.
+    boolKey: Day3Town1NatalieInteraction
+    isActive: 0
+  - name: Ruby Note
+    description: Ruby was acting a bit off today. Not like her usual calm and uplifting
+      self. It feels like she's dealing with something deeper.
+    boolKey: Day3Town1RubyInteraction
+    isActive: 0
+  - name: Edith Note
+    description: Edith seemed unusually concerned and suggested I avoid Maplewood
+      Park tonight. She was reluctant to provide more details... very strange.
+    boolKey: Day3Town1EdithInteraction
+    isActive: 0
+  - name: Adam And Oliver Note
+    description: Oliver believes the sheriff is corrupt. Adam is skeptical but seems
+      to have personal issues with the sheriff. Why is Oliver so set on blaming everything
+      on the Sheriff?
+    boolKey: Day3Town2AdamAndOliverInteraction
+    isActive: 0
+  - name: Daniel And Sheriff Ian Note
+    description: Daniel and Sheriff Ian had a heated argument. Daniel dismissed the
+      Sheriff's concerns about the party, while the Sheriff was clearly worried.
+      It seems like they have unresolved conflicts between the two.
+    boolKey: Day3Town2DanielAndSheriffIanInteraction
+    isActive: 0
+  - name: June Note
+    description: "June was out here alone and seemed frustrated. She expressed feeling
+      neglected and hurt. Our conversation was intense, and it\u2019s clear she\u2019s
+      struggling with how things have been between us."
+    boolKey: Day3RailwayJuneInteraction
+    isActive: 0
+  - name: Avery Note
+    description: Avery was hanging around an unfamiliar house and seemed a bit evasive
+      when I asked about it.
+    boolKey: Day3StreetAveryInteraction
+    isActive: 0
+  - name: Ivy Note
+    description: "Ivy\u2019s reaction to the threatening message was genuine concern.
+      Her suggestion that someone at the party might have insights into the message
+      aligns with my instinct to keep a low profile."
+    boolKey: Day3UrbanGoodsIvyInteraction
     isActive: 0
 --- !u!114 &5440625808805098058
 MonoBehaviour:
