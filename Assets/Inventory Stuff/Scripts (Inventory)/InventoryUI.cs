@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject pickupDisplayPanel;
     public Image pickupItemImage;
     public TextMeshProUGUI pickupText;
+
+    [SerializeField] private float animationDuration = 0.5f;
 
 
     //InventorySlot[] slots;
@@ -228,9 +231,64 @@ public class InventoryUI : MonoBehaviour
             if (item.interactionUIPrefab != null)
             {
                 currentUsableUIPanel = Instantiate(item.interactionUIPrefab);
-                currentUsableUIPanel.SetActive(true);
+                StartCoroutine(AnimateUI(true));
                 Debug.Log("Usable item UI panel is open.");
             }
         }
+        if (!currentUsableUIPanel.activeSelf)
+        {
+            if (playerController != null && currentUsableUIPanel != null)
+            {
+                playerController.EnableMovement();
+            }
+        }
     }
-}
+
+    private IEnumerator AnimateUI(bool enable)
+    {
+        if (currentUsableUIPanel == null)
+        {
+            Debug.LogError("currentUsableUIPanel is null. Cannot animate.");
+            yield break;
+        }
+
+        // Find the child object named "Parent Object"
+        Transform parentObjectTransform = currentUsableUIPanel.transform.Find("Parent Object");
+        if (parentObjectTransform == null)
+        {
+            Debug.LogError("Parent Object not found in currentUsableUIPanel.");
+            yield break;
+        }
+
+        GameObject parentObject = parentObjectTransform.gameObject;
+
+        if (enable)
+        {
+            Debug.Log("Animating Parent Object to scale up.");
+            parentObject.SetActive(true);
+            parentObject.transform.localScale = Vector3.zero; // Ensure starting scale is zero
+            LeanTween.scale(parentObject, Vector3.one, animationDuration).setEaseOutBounce();
+        }
+        else
+        {
+            Debug.Log("Animating Parent Object to scale down.");
+            LeanTween.scale(parentObject, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
+            {
+                    parentObject.SetActive(false);
+                    Debug.Log("Scale down animation completed.");
+                });
+        }
+
+        yield return new WaitForSeconds(animationDuration);
+    }
+
+    public void CloseUsableItemPanel()
+    {
+            if (currentUsableUIPanel != null)
+            {
+                Destroy(currentUsableUIPanel);
+            }
+
+        }
+    }
+

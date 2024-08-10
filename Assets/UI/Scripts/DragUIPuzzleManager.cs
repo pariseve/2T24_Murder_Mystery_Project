@@ -23,6 +23,32 @@ public class DragUIPuzzleManager : MonoBehaviour
     [SerializeField] private string[] gameObjectsToDisable; // Array of canvas names to disable
     private Dictionary<string, GameObject> gameObjectReferences = new Dictionary<string, GameObject>();
 
+    private void Awake()
+    {
+        // Singleton setup
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        foreach (var item in requiredInventoryItems)
+        {
+            if (!InventoryManager.instance.HasItem(item))
+            {
+                PlayerController playerController = FindObjectOfType<PlayerController>();
+                if (playerController != null)
+                {
+                    playerController.EnableMovement();
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void Start()
     {
         completeText.gameObject.SetActive(false);
@@ -107,7 +133,7 @@ public class DragUIPuzzleManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    /*private void Awake()
     {
         // Singleton setup
         if (Instance == null)
@@ -118,7 +144,7 @@ public class DragUIPuzzleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 
     public void CheckPuzzleCompletion()
     {
@@ -257,6 +283,7 @@ public class DragUIPuzzleManager : MonoBehaviour
         StartCoroutine(AnimateUI(false));
         // Destroy(gameObject); // Destroy the GameObject that this script is attached to
         ToggleOtherUIInteractions(true);
+        Destroy(gameObject);
     }
 
     public IEnumerator AnimateUI(bool enable)
