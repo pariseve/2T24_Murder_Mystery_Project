@@ -482,14 +482,14 @@ public class RemindersManager : MonoBehaviour
                 UpdateDescriptionTexts(descriptionInstance, reminder);
 
                 AddBackButtonListenerToDescription(descriptionInstance);
-/*
-                VerticalLayoutGroup layoutGroup = descriptionTransform.GetComponentInChildren<VerticalLayoutGroup>();
-                if (layoutGroup != null)
-                {
-                    layoutGroup.spacing = 10f;
-                }
-                UpdateContentSize(descriptionTransform, layoutGroup);
-*/
+                /*
+                                VerticalLayoutGroup layoutGroup = descriptionTransform.GetComponentInChildren<VerticalLayoutGroup>();
+                                if (layoutGroup != null)
+                                {
+                                    layoutGroup.spacing = 10f;
+                                }
+                                UpdateContentSize(descriptionTransform, layoutGroup);
+                */
                 return;
             }
 
@@ -723,43 +723,57 @@ public class RemindersManager : MonoBehaviour
         }
     }
 
-        public void SetDescriptionToIncomplete(string reminderName)
+    public void SetDescriptionToIncomplete(string reminderName)
+    {
+        // Find the reminder by name
+        Reminder reminder = reminders.Find(r => r.name == reminderName);
+
+        if (reminder == null)
         {
-            // Find the reminder by name
-            Reminder reminder = reminders.Find(r => r.name == reminderName);
+            Debug.LogError($"Reminder with name {reminderName} not found.");
+            return;
+        }
 
-            if (reminder == null)
+        // Check if the player has all the required bool keys in BoolManager
+        bool allBoolKeysPresent = true;
+        foreach (var descriptionPair in reminder.descriptionPairs)
+        {
+            if (!BoolManager.Instance.GetBool(descriptionPair.boolKey))
             {
-                Debug.LogError($"Reminder with name {reminderName} not found.");
-                return;
+                allBoolKeysPresent = false;
+                break;
             }
+        }
 
-            // Find the associated reminder instance in the UI
-            GameObject reminderInstance = FindReminderInstance(reminderName);
-            if (reminderInstance == null)
-            {
-                Debug.LogError($"Reminder instance for {reminderName} not found.");
-                return;
-            }
+        // Find the associated reminder instance in the UI
+        GameObject reminderInstance = FindReminderInstance(reminderName);
+        if (reminderInstance == null)
+        {
+            Debug.LogError($"Reminder instance for {reminderName} not found.");
+            return;
+        }
 
-            // Find the description parent
-            Transform descriptionParent = DeepFind(reminderInstance.transform, "Description");
-            if (descriptionParent != null)
+        // Find the description parent
+        Transform descriptionParent = DeepFind(reminderInstance.transform, "Description");
+        if (descriptionParent != null)
+        {
+            TextMeshProUGUI descriptionText = descriptionParent.GetComponent<TextMeshProUGUI>();
+            if (descriptionText != null)
             {
-                TextMeshProUGUI descriptionText = descriptionParent.GetComponent<TextMeshProUGUI>();
-                if (descriptionText != null)
+                // If not all bool keys are present, change the text to "Incomplete"
+                if (!allBoolKeysPresent)
                 {
-                    // Change the text to "Incomplete"
-                    descriptionText.text = "Incomplete";
-                }
-                else
-                {
-                    Debug.LogError("TextMeshProUGUI component not found in the description parent.");
+                    descriptionText.text = "Failed.";
                 }
             }
             else
             {
-                Debug.LogError("Description parent not found in the reminder instance.");
+                Debug.LogError("TextMeshProUGUI component not found in the description parent.");
             }
         }
+        else
+        {
+            Debug.LogError("Description parent not found in the reminder instance.");
+        }
     }
+}

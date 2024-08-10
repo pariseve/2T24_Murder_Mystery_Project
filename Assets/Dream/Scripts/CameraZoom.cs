@@ -73,6 +73,7 @@ public class CameraZoom : MonoBehaviour
 
             if (!isHit)
             {
+                Debug.Log("about to zoom in");
                 // Zoom in towards the object that was clicked
                 StartCoroutine(ZoomToPosition(hit.transform.position));
                 isZoomedIn = true;
@@ -183,6 +184,7 @@ public class CameraZoom : MonoBehaviour
     // Method to disable zooming
     public void DisableZoom()
     {
+        Debug.Log("disable zoom");
         zoomEnabled = false;
     }
 }

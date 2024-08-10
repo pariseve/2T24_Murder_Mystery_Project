@@ -48,6 +48,11 @@ public class ComponentManager : MonoBehaviour
         StartCoroutine(DisableObjects());
     }
 
+    private void Update()
+    {
+        CheckAndToggleComponents(SceneManager.GetActiveScene().name);
+    }
+
     private IEnumerator DisableObjects()
     {
         yield return new WaitForSeconds(0.1f);

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DialogueEditor;
 
 public class DialogueComponentsDisable : MonoBehaviour
@@ -16,6 +17,8 @@ public class DialogueComponentsDisable : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            // Register for the sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
@@ -43,6 +46,12 @@ public class DialogueComponentsDisable : MonoBehaviour
             Debug.LogWarning("Dialogue panel is not active. Enabling components.");
             ToggleComponents(true);
         }
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"Scene {scene.name} loaded. Updating component references.");
+        PopulateComponentReferences();
     }
 
     private void PopulateComponentReferences()
@@ -98,5 +107,14 @@ public class DialogueComponentsDisable : MonoBehaviour
         }
 
         return foundObject;
+    }
+
+    void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            // Unregister from the sceneLoaded event when the object is destroyed
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 }

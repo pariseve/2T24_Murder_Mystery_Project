@@ -10082,16 +10082,34 @@ MonoBehaviour:
       descriptions:
       - "Keep on the down low. Talk to everyone in Maplewood before the party tonight.
         \n\nGet notes on people. Someone knows something about Ryan."
-  - name: Help The Cat
+    - boolKey: Day3Town1TalkedToEveryoneMainQuest
+      descriptions:
+      - 'The party should be set up by now.
+
+
+        Travel to the park by going
+        to the ticket booth at The Old Railway.'
+  - name: Find Raymond
     descriptionPairs:
     - boolKey: EdithDay1StreetFindRaymondQuest
       descriptions:
-      - Ms Peymon seems to have lost her cat. We should try to find where Raymond
+      - Ms Peyman seems to have lost her cat. We should try to find where Raymond
         is.
     - boolKey: RaymondDay1RailwayFoundRaymondQuest
       descriptions:
-      - "This must be Ms Peymans\u2019 Cat, Raymond. It seems to be cornered by Lottie
-        the dog at The Old Railway. Now how do I get her down from there\u2026"
+      - "This must be Ms Peymans\u2019 Cat, Raymond. \n\nIt seems to be cornered
+        by Lottie the dog at The Old Railway. Now how do I get her down from there\u2026"
+    - boolKey: LottieDay1RailwayGaveSnackQuest
+      descriptions:
+      - "Now that Lottie is distracted\u2026 try to get Raymond down at The Old Railway
+        Building."
+    - boolKey: RaymondDay1RailwayGetRaymondQuest
+      descriptions:
+      - "Raymond ran off again\u2026\n\nI should tell Ms Peyman what happened. She
+        should still be at her house on Rosemont St."
+    - boolKey: EdithDay1StreetFindRaymondQuestComplete
+      descriptions:
+      - Raymond made her way home.
   - name: Give June Her Birthday Gift
     descriptionPairs:
     - boolKey: BirthdayGiftDay1ApartmentSideQuest

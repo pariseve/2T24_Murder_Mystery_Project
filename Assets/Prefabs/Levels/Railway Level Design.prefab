@@ -4267,6 +4267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7348740427696425852}
+  - component: {fileID: 3413251443136075333}
   m_Layer: 0
   m_Name: Railway Level Design
   m_TagString: Untagged
@@ -4295,6 +4296,26 @@ Transform:
   - {fileID: 64825471226016684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3413251443136075333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389458811174441886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_StartPoint: {x: 26.917622, y: 3.9914267, z: 9.46262}
+  m_EndPoint: {x: 26.724232, y: 13.186249, z: 12.964337}
+  m_Width: 1.0959727
+  m_CostModifier: 3
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &6402214188128340817
 GameObject:
   m_ObjectHideFlags: 0
@@ -6726,7 +6747,7 @@ PrefabInstance:
     - target: {fileID: 2638934737325359301, guid: d425adf9e547bb249b77ddabf8525cad,
         type: 3}
       propertyPath: m_Name
-      value: Ground Plane 1
+      value: Railway Ground Plane
       objectReference: {fileID: 0}
     - target: {fileID: 7390179822330232041, guid: d425adf9e547bb249b77ddabf8525cad,
         type: 3}
@@ -6736,7 +6757,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2638934737325359301, guid: d425adf9e547bb249b77ddabf8525cad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5456619975581382440}
   m_SourcePrefab: {fileID: 100100000, guid: d425adf9e547bb249b77ddabf8525cad, type: 3}
 --- !u!4 &64825471226016684 stripped
 Transform:
@@ -6744,6 +6769,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2585188177492487048}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &540167909944404813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2638934737325359301, guid: d425adf9e547bb249b77ddabf8525cad,
+    type: 3}
+  m_PrefabInstance: {fileID: 2585188177492487048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5456619975581382440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540167909944404813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 29c55565272ce48c4a1c88f658a14fdc, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &2838128024813707961
 PrefabInstance:
   m_ObjectHideFlags: 0

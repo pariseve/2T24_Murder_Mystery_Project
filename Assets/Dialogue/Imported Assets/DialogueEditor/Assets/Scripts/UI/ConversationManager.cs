@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Add this if using TextMeshPro
+using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 namespace DialogueEditor
 {
@@ -140,8 +141,6 @@ namespace DialogueEditor
                             {
                                 playerController.DisableMovement();
                             }
-
-                            Invoke("DelayedDisableColliders", 0.1f);
                         }
                         else if (Input.GetMouseButtonDown(0) && nextSpeech == null)
                         {
@@ -234,7 +233,7 @@ namespace DialogueEditor
                 objectClickDialogue.DisableAllColliders();
             }
 
-            Invoke("DelayedDisableColliders", 0.1f);
+            // StartCoroutine(DelayedDisableColliders());
 
             isConversationActive = true;
 
@@ -247,8 +246,10 @@ namespace DialogueEditor
             SetState(eState.TransitioningDialogueBoxOn);
         }
 
-        private void DelayedDisableColliders()
+        private IEnumerator DelayedDisableColliders()
         {
+            yield return new WaitForSeconds(0.1f);
+
             if (objectClickDialogue != null)
             {
                 objectClickDialogue.DisableAllColliders();
