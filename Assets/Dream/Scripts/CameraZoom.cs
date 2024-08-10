@@ -12,9 +12,9 @@ public class CameraZoom : MonoBehaviour
     private Camera cam;
     private Vector3 originalPosition;
     private Quaternion originalRotation;
-    private bool isZoomedIn = false;
-    private bool zoomEnabled = true; // New flag to control zoom functionality
-    private bool isZooming = false; // New flag to indicate if zoom is in progress
+    [SerializeField] private bool isZoomedIn = false;
+    [SerializeField] private bool zoomEnabled = true; // New flag to control zoom functionality
+    [SerializeField] private bool isZooming = false; // New flag to indicate if zoom is in progress
 
     public bool IsZoomedIn { get { return isZoomedIn; } }
 

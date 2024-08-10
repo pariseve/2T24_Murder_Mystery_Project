@@ -129,10 +129,10 @@ namespace DialogueEditor
                             }
                             DisableCursor();
                             SetupSpeech(nextSpeech);
-                            if (cameraZoom != null)
+                            /*if (cameraZoom != null)
                             {
                                 cameraZoom.DisableZoom();
-                            }
+                            }*/
                             if (toggleLookAround != null)
                             {
                                 toggleLookAround.DisableComponent();
@@ -233,7 +233,7 @@ namespace DialogueEditor
                 objectClickDialogue.DisableAllColliders();
             }
 
-            // StartCoroutine(DelayedDisableColliders());
+            StartCoroutine(DelayedDisableColliders());
 
             isConversationActive = true;
 

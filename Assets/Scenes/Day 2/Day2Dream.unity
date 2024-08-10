@@ -907,16 +907,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstArray:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 991384168}
-  - {fileID: 447018307}
+  - {fileID: 416793110}
+  - {fileID: 416793109}
   secondArray:
-  - {fileID: 396010314}
-  - {fileID: 1197284619}
-  - {fileID: 0}
-  - {fileID: 2074210417}
-  - {fileID: 0}
+  - {fileID: 416793108}
+  - {fileID: 594796216}
   rotationDuration: 1
   initialWaitFirstArray: 0.5
   initialWaitSecondArray: 1.5
@@ -2436,6 +2431,24 @@ PrefabInstance:
 --- !u!4 &416793107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2238170737097899600, guid: 91616d1da347f498e803f252b1044976,
+    type: 3}
+  m_PrefabInstance: {fileID: 416793106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &416793108 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5618738815053829770, guid: 91616d1da347f498e803f252b1044976,
+    type: 3}
+  m_PrefabInstance: {fileID: 416793106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &416793109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6007003542964734384, guid: 91616d1da347f498e803f252b1044976,
+    type: 3}
+  m_PrefabInstance: {fileID: 416793106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &416793110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1020162580231823219, guid: 91616d1da347f498e803f252b1044976,
     type: 3}
   m_PrefabInstance: {fileID: 416793106}
   m_PrefabAsset: {fileID: 0}
@@ -5108,6 +5121,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   startKey: 323
+  isZoomedIn: 0
+  zoomEnabled: 1
+  isZooming: 0
 --- !u!1001 &969296018
 PrefabInstance:
   m_ObjectHideFlags: 0
