@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 6799951578352081281}
   - component: {fileID: 9108968126258979708}
   m_Layer: 0
-  m_Name: Grass Plane
+  m_Name: Street Grass Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e54e936f62e334525bd0db0c83770812, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f48a86a6c3dfd420f9f73cf117f02fd4, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &172653979188523526
 PrefabInstance:
@@ -1185,10 +1185,25 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 5203420740957109118, guid: 7ec9262b145a2bd4aa530d18769e9d69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8446626993255487917, guid: 7ec9262b145a2bd4aa530d18769e9d69,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 60.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645073726784460852, guid: 7ec9262b145a2bd4aa530d18769e9d69,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163756598667611834, guid: 7ec9262b145a2bd4aa530d18769e9d69,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 37.31
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

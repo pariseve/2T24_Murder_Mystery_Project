@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class ClearPlayerPrefs : MonoBehaviour
 {
-    private void Awake()
+    /*private void Awake()
     {
         PlayerPrefs.DeleteAll();
-    }
+    }*/
 
     public void DeleteAllPlayerPrefs()
     {
-        PlayerPrefs.DeleteAll();
-    }
+        // Retrieve the current volume settings
+        float savedOverallVolume = PlayerPrefs.GetFloat("OverallVolume", PlayerPrefs.GetFloat("OverallVolume"));
+        float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
 
+        // Delete all PlayerPrefs
+        PlayerPrefs.DeleteAll();
+
+        // Restore the volume settings
+        PlayerPrefs.SetFloat("OverallVolume", savedOverallVolume);
+        PlayerPrefs.SetFloat("SFXVolume", savedSFXVolume);
+
+        // Save the restored settings
+        PlayerPrefs.Save();
+    }
 }

@@ -4064,7 +4064,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081984132050443260}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4116,7 +4116,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 700, y: -910}
-  m_SizeDelta: {x: 380, y: 600}
+  m_SizeDelta: {x: 390, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &194350109934742720
 CanvasRenderer:
@@ -5207,8 +5207,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 07d91d9460b9e0c47b239fe98e5e0395, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7572,7 +7572,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007904014452370503}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7671,7 +7671,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 10.668, y: -0.0010156278}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -40, y: 1590}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3960871436847973534
 MonoBehaviour:
@@ -9615,15 +9615,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4117647, g: 0.45882353, b: 0.54901963, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 07d91d9460b9e0c47b239fe98e5e0395, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9875,7 +9875,7 @@ MonoBehaviour:
       put this here and what it could mean?
     boolKey: foundidolstatue
     isActive: 0
-  - name: Talked To Ms Edith About Idol Statue
+  - name: About Idol Statue
     description: Ms Peyman was acting a bit strange when I talked about the statue...
       but she's always strange.
     boolKey: EdithDay1StreetTalkedIdolStatueMainQuest
@@ -9894,10 +9894,9 @@ MonoBehaviour:
     isActive: 0
   - name: 'Dream 2: The Pastry Nook Receipt'
     description: I found a receipt in my dream of a purchase from The Pastry Nook.
-      I haven't even been there in a while...
     boolKey: dream2receipt
     isActive: 0
-  - name: 'Dream 2: Cipher Code'
+  - name: 'Dream 2: Jumbled Letters'
     description: 'There was a a keyword and jumbled letters in my dream on a piece
       of paper. What could it mean?
 
@@ -10089,6 +10088,29 @@ MonoBehaviour:
 
         Travel to the park by going
         to the ticket booth at The Old Railway.'
+    - boolKey: Day3ParkTalkToIvyMainQuest
+      descriptions:
+      - 'Ivy must be around somewhere. Maybe she can help me cover more ground.
+
+
+        Talk
+        To Ivy.'
+    - boolKey: Day3ParkInvestigateParkMainQuest
+      descriptions:
+      - "Ivy is too drunk to help me with anything. Looks like I\u2019m on my own
+        tonight.\n\nInvestigate Maplewood Park."
+    - boolKey: Day3ParkFindAWayThroughFenceMainQuest
+      descriptions:
+      - "I need to find a way to get through the fence. Perhaps someone around here
+        could help me ? Or maybe I could find something lying around to use\u2026\n\nTry
+        to find a way to cut through the fence."
+    - boolKey: Day3ParkCutHoleThroughFenceMainQuest
+      descriptions:
+      - Oliver had a knife on him that would be perfect to cut through the fence.
+    - boolKey: Day3ParkFoundRyanMainQuest
+      descriptions:
+      - Ryan is... dead..
+    isFailed: 0
   - name: Find Raymond
     descriptionPairs:
     - boolKey: EdithDay1StreetFindRaymondQuest
@@ -10110,6 +10132,7 @@ MonoBehaviour:
     - boolKey: EdithDay1StreetFindRaymondQuestComplete
       descriptions:
       - Raymond made her way home.
+    isFailed: 0
   - name: Give June Her Birthday Gift
     descriptionPairs:
     - boolKey: BirthdayGiftDay1ApartmentSideQuest
@@ -10122,6 +10145,7 @@ MonoBehaviour:
     - boolKey: JuneDay1StreetGaveBirthdayGiftSideQuest
       descriptions:
       - I have June her gift but she seems to be a bit upset with me.
+    isFailed: 0
 --- !u!114 &5703213277150232278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10377,7 +10401,7 @@ RectTransform:
   m_Father: {fileID: 6950526499872213721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11973,14 +11997,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5058824, g: 0.54509807, b: 0.6117647, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 02bc6413e9c541c4c8fd2e7501c27232, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21486,8 +21510,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 07d91d9460b9e0c47b239fe98e5e0395, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -21532,7 +21556,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 17.3223, y: 0.000061035156}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -70, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8317504095772076092
 MonoBehaviour:
@@ -21946,7 +21970,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8152397278609435683}
   m_HandleRect: {fileID: 1498080880739940839}
   m_Direction: 2
-  m_Value: 0.9999999
+  m_Value: 1.0000008
   m_Size: 0.28256014
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -23238,15 +23262,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4117647, g: 0.45882353, b: 0.54901963, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 07d91d9460b9e0c47b239fe98e5e0395, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -23353,7 +23377,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6053899705965846789}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24167,8 +24191,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2891435977372497647}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.7174398}
+  m_AnchorMax: {x: 1, y: 0.9999999}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28729,14 +28753,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5058824, g: 0.54509807, b: 0.6117647, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 02bc6413e9c541c4c8fd2e7501c27232, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

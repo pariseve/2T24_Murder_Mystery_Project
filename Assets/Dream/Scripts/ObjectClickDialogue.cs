@@ -44,8 +44,12 @@ public class ObjectClickDialogue : MonoBehaviour
                 {
                     // Start the conversation for this instance
                     dialogueStarted = true;
-                    // DisableAllColliders();
-                    ConversationManager.Instance.StartConversation(dialogue);
+                // DisableAllColliders();
+                if (cameraZoom != null)
+                {
+                    cameraZoom.ZoomInToObject();
+                }
+                ConversationManager.Instance.StartConversation(dialogue);
                 }
             }
         }

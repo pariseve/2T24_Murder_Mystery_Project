@@ -897,9 +897,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4378eabfbc37e48f6a77c484e5a0c424, type: 2}
   shopOpen: 0
   gameObjectsToDisable:
-  - _InventoryManager
-  - InventoryCanvas
   - Phone Canvas
+  - _InventoryManager
+  - _InventoryManager(Clone)
+  - InventoryCanvas
 --- !u!1 &5928249066202626092
 GameObject:
   m_ObjectHideFlags: 0

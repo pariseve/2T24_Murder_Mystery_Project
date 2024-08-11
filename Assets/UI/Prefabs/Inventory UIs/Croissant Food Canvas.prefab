@@ -580,7 +580,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2848363720738498002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697446521462615118}
+        m_TargetAssemblyTypeName: EatingFoodUI, Assembly-CSharp
+        m_MethodName: SetFoodItem
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: b9750c5a007d94e48890225baecc9abe,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1697446521462615118}
+        m_TargetAssemblyTypeName: EatingFoodUI, Assembly-CSharp
+        m_MethodName: EatFood
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4284826106998994721
 PrefabInstance:
   m_ObjectHideFlags: 0

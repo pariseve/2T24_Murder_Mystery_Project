@@ -10,10 +10,12 @@ public class Reminder
 {
     public string name;
     public List<DescriptionPair> descriptionPairs = new List<DescriptionPair>();
+    public bool isFailed; // New property
 
     public Reminder()
     {
         descriptionPairs = new List<DescriptionPair>();
+        isFailed = false; // Default to false
     }
 }
 
@@ -162,6 +164,11 @@ public class RemindersManager : MonoBehaviour
     {
         foreach (Reminder reminder in reminders)
         {
+            if (reminder.isFailed)
+            {
+                continue; // Skip failed reminders
+            }
+
             if (BoolManager.Instance == null)
             {
                 Debug.LogError("BoolManager.Instance is null.");
@@ -195,6 +202,11 @@ public class RemindersManager : MonoBehaviour
 
     private void ShowNotificationForNewContent(Reminder reminder)
     {
+        if (reminder.isFailed)
+        {
+            return; // Skip notifications for failed reminders
+        }
+
         if (!shownDescriptions.ContainsKey(reminder.name))
         {
             shownDescriptions[reminder.name] = new HashSet<string>();
@@ -246,6 +258,11 @@ public class RemindersManager : MonoBehaviour
             return;
         }
 
+        if (reminder.isFailed)
+        {
+            return; // Skip updating failed reminders
+        }
+
         GameObject reminderInstance = FindReminderInstance(reminder.name);
         if (reminderInstance == null)
         {
@@ -288,7 +305,6 @@ public class RemindersManager : MonoBehaviour
             Debug.LogError("Description parent not found in the reminder instance.");
         }
     }
-
 
     public void CreateReminder(Reminder reminder)
     {
@@ -725,6 +741,8 @@ public class RemindersManager : MonoBehaviour
 
     public void SetDescriptionToIncomplete(string reminderName)
     {
+        Debug.Log("Called SetDescriptionToIncomplete");
+
         // Find the reminder by name
         Reminder reminder = reminders.Find(r => r.name == reminderName);
 
@@ -738,11 +756,19 @@ public class RemindersManager : MonoBehaviour
         bool allBoolKeysPresent = true;
         foreach (var descriptionPair in reminder.descriptionPairs)
         {
+            // Ensure all required bool keys are present and true
             if (!BoolManager.Instance.GetBool(descriptionPair.boolKey))
             {
                 allBoolKeysPresent = false;
                 break;
             }
+        }
+
+        // Mark the reminder as failed if not all bool keys are present
+        if (!allBoolKeysPresent)
+        {
+            Debug.Log("Marking reminder as failed.");
+            reminder.isFailed = true;
         }
 
         // Find the associated reminder instance in the UI
@@ -760,9 +786,10 @@ public class RemindersManager : MonoBehaviour
             TextMeshProUGUI descriptionText = descriptionParent.GetComponent<TextMeshProUGUI>();
             if (descriptionText != null)
             {
-                // If not all bool keys are present, change the text to "Incomplete"
-                if (!allBoolKeysPresent)
+                // Update the UI text based on the isFailed property
+                if (reminder.isFailed)
                 {
+                    Debug.Log("Changing text to 'Failed'");
                     descriptionText.text = "Failed.";
                 }
             }
