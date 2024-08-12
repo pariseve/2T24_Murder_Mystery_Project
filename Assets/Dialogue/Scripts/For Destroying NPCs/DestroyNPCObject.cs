@@ -10,6 +10,8 @@ public class DestroyNPCObject : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private string boolName = "";
 
+    private Vector3 previousPosition;
+
     void Start()
     {
         ObjectManager.Instance.InitializeObjectKeys();
@@ -25,10 +27,19 @@ public class DestroyNPCObject : MonoBehaviour
             Debug.Log($"Destroying NPC: {npcObjectNameToMonitor} because it was marked as destroyed.");
             Destroy(gameObject);
         }
+
         if (boolName == null)
         {
             Debug.LogError("Bool name is not assigned.");
         }
+
+        if (navMeshAgent == null)
+        {
+            navMeshAgent = GetComponent<NavMeshAgent>();
+        }
+
+        // Initialize previousPosition with the starting position of the NPC
+        previousPosition = navMeshAgent.transform.position;
     }
 
     public void StartDestroyNPCFlipXTrue(bool finalFlipXState)
@@ -46,11 +57,6 @@ public class DestroyNPCObject : MonoBehaviour
         ObjectManager.Instance.MarkObjectDestroyed(npcObjectNameToMonitor);
         Debug.Log($"NPC: {npcObjectNameToMonitor} marked as destroyed.");
 
-        if (navMeshAgent == null)
-        {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-        }
-
         if (navMeshAgent != null && targetPosition != null)
         {
             navMeshAgent.enabled = true;
@@ -59,7 +65,7 @@ public class DestroyNPCObject : MonoBehaviour
             Debug.Log($"Set destination to {targetPosition.position}");
 
             ToggleFlipX(initialFlipXState);
-            StartCoroutine(RotateTowardsDestination(finalFlipXState));
+            StartCoroutine(CheckArrival(finalFlipXState));
             StartCoroutine(DelayedCoroutine(8f));
         }
         else
@@ -68,13 +74,7 @@ public class DestroyNPCObject : MonoBehaviour
         }
     }
 
-    private IEnumerator DelayedCoroutine(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        StartCoroutine(WaitForNPCDestination(npcObjectNameToMonitor));
-    }
-
-    private IEnumerator RotateTowardsDestination(bool finalFlipXState)
+    private IEnumerator CheckArrival(bool finalFlipXState)
     {
         while (navMeshAgent.enabled && navMeshAgent.pathPending)
         {
@@ -82,7 +82,40 @@ public class DestroyNPCObject : MonoBehaviour
             yield return null;
         }
 
+        while (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+        {
+            UpdateFlipX();  // Update flip state based on movement direction
+            yield return null;
+        }
+
+        // NPC has reached the destination
+        navMeshAgent.isStopped = true;
         ToggleFlipX(finalFlipXState);
+
+        if (boolName != null)
+        {
+            SetBoolVariable();
+        }
+    }
+
+    private void UpdateFlipX()
+    {
+        Vector3 currentPosition = navMeshAgent.transform.position;
+        if (currentPosition.x > previousPosition.x)
+        {
+            spriteRenderer.flipX = false; // Moving right
+        }
+        else if (currentPosition.x < previousPosition.x)
+        {
+            spriteRenderer.flipX = true; // Moving left
+        }
+        previousPosition = currentPosition;
+    }
+
+    private IEnumerator DelayedCoroutine(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        StartCoroutine(WaitForNPCDestination(npcObjectNameToMonitor));
     }
 
     private IEnumerator WaitForNPCDestination(string npcObjectName)
