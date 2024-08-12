@@ -116,6 +116,9 @@ MonoBehaviour:
   m_Name: Bloom
   m_EditorClassIdentifier: 
   active: 1
+  skipIterations:
+    m_OverrideState: 0
+    m_Value: 1
   threshold:
     m_OverrideState: 0
     m_Value: 2
@@ -130,13 +133,16 @@ MonoBehaviour:
     m_Value: 65472
   tint:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.85490197, b: 0.5882353, a: 1}
+    m_Value: {r: 0.5882353, g: 0.9703003, b: 1, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
-  skipIterations:
+  downscale:
     m_OverrideState: 0
-    m_Value: 1
+    m_Value: 0
+  maxIterations:
+    m_OverrideState: 0
+    m_Value: 6
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -487,7 +493,31 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
+    m_Value: 0
+  neutralHDRRangeReductionMode:
+    m_OverrideState: 0
     m_Value: 2
+  acesPreset:
+    m_OverrideState: 0
+    m_Value: 3
+  hueShiftAmount:
+    m_OverrideState: 0
+    m_Value: 0
+  detectPaperWhite:
+    m_OverrideState: 0
+    m_Value: 0
+  paperWhite:
+    m_OverrideState: 0
+    m_Value: 300
+  detectBrightnessLimits:
+    m_OverrideState: 0
+    m_Value: 1
+  minNits:
+    m_OverrideState: 0
+    m_Value: 0.005
+  maxNits:
+    m_OverrideState: 0
+    m_Value: 1000
 --- !u!114 &8059108853157839605
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -512,7 +542,7 @@ MonoBehaviour:
     m_Value: 0
   _FogColor:
     m_OverrideState: 1
-    m_Value: {r: 0.34939608, g: 0.5070217, b: 0.6745098, a: 1}
+    m_Value: {r: 0.2047437, g: 0.30157104, b: 0.4056604, a: 1}
   _GradientStart:
     m_OverrideState: 1
     m_Value: 0
@@ -526,7 +556,7 @@ MonoBehaviour:
     LerpValue: 0
     FromTexture: {fileID: 0}
   _UseSunLight:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   _SunColor:
     m_OverrideState: 1
@@ -542,7 +572,7 @@ MonoBehaviour:
     m_Value: 1
   _UseRadialDistance:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   _FogType:
     m_OverrideState: 1
     m_Value: 3
@@ -563,13 +593,13 @@ MonoBehaviour:
     m_Value: 1
   _SkyboxFogOffset:
     m_OverrideState: 1
-    m_Value: 0.0009
+    m_Value: -0.1
   _SkyboxFogHardness:
     m_OverrideState: 1
-    m_Value: 0.761
+    m_Value: 0.999
   _SkyboxFogIntensity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   _SkyboxFill:
     m_OverrideState: 1
     m_Value: 0
