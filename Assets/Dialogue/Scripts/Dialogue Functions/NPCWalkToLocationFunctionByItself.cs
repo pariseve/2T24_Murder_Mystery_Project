@@ -10,12 +10,8 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     private bool isMoving = false;
     [SerializeField] private string boolName = "";
-
-    private string GetNavMeshAgentID()
-    {
-        // Use the instance ID of the NavMeshAgent to generate a unique key
-        return navMeshAgent.GetInstanceID().ToString();
-    }
+    
+    private Vector3 previousPosition;
 
     private void Start()
     {
@@ -36,6 +32,9 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
             Debug.LogError("Bool name is not assigned.");
         }
 
+        // Initialize previousPosition with the starting position of the NPC
+        previousPosition = navMeshAgent.transform.position;
+
         // Load the saved position when starting
         LoadTargetPosition();
     }
@@ -48,42 +47,22 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
         }
     }
 
-    // Method to start walking with initial flipX state true
     public void StartWalkingFlipXTrue(bool finalFlipXState)
     {
-        Debug.Log("StartWalkingFlipXTrue called with finalFlipXState: " + finalFlipXState);
-        if (spriteRenderer != null)
-        {
-            StartWalking(true, finalFlipXState);
-        }
-        else
-        {
-            Debug.LogError("SpriteRenderer is not assigned.");
-        }
+        StartWalking(true, finalFlipXState);
     }
 
-    // Method to start walking with initial flipX state false
     public void StartWalkingFlipXFalse(bool finalFlipXState)
     {
-        Debug.Log("StartWalkingFlipXFalse called with finalFlipXState: " + finalFlipXState);
-        if (spriteRenderer != null)
-        {
-            StartWalking(false, finalFlipXState);
-        }
-        else
-        {
-            Debug.LogError("SpriteRenderer is not assigned.");
-        }
+        StartWalking(false, finalFlipXState);
     }
 
     private void StartWalking(bool initialFlipXState, bool finalFlipXState)
     {
-        Debug.Log("StartWalking called with initialFlipXState: " + initialFlipXState + " and finalFlipXState: " + finalFlipXState);
         if (navMeshAgent != null && target != null)
         {
             if (NavMesh.SamplePosition(target.position, out NavMeshHit hit, 1.0f, NavMesh.AllAreas))
             {
-                Debug.Log("Start walking");
                 navMeshAgent.SetDestination(hit.position);
                 isMoving = true;
                 navMeshAgent.isStopped = false; // Ensure the agent is not stopped
@@ -99,7 +78,6 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
 
     private IEnumerator CheckArrival(bool finalFlipXState)
     {
-        Debug.Log("CheckArrival started with finalFlipXState: " + finalFlipXState);
         while (isMoving)
         {
             if (navMeshAgent.pathPending)
@@ -107,6 +85,9 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
                 yield return null;
                 continue;
             }
+
+            // Update the flipX state dynamically based on movement direction
+            UpdateFlipX();
 
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {
@@ -126,13 +107,23 @@ public class NPCWalkToLocationFunctionByItself : MonoBehaviour
         }
     }
 
+    private void UpdateFlipX()
+    {
+        Vector3 currentPosition = navMeshAgent.transform.position;
+        if (currentPosition.x > previousPosition.x)
+        {
+            spriteRenderer.flipX = false; // Moving right
+        }
+        else if (currentPosition.x < previousPosition.x)
+        {
+            spriteRenderer.flipX = true; // Moving left
+        }
+        previousPosition = currentPosition;
+    }
+
     public void ToggleFlipX(bool flipXState)
     {
-        Debug.Log("ToggleFlipX called with flipXState: " + flipXState);
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.flipX = flipXState; // Toggle flipX state based on input
-        }
+        spriteRenderer.flipX = flipXState;
     }
 
     private void SetBoolVariable()
