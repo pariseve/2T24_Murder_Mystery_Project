@@ -78,40 +78,46 @@ public class DialogueImageChanger : MonoBehaviour
         yield return new WaitForSeconds(1f);
         RectTransform rectTransform = secondImage.rectTransform;
 
-        // Zoom factor (2x the size)
+        // Scale factor for zoom
         float zoomFactor = 2f;
-        Vector2 originalSize = rectTransform.sizeDelta;
-        Vector2 targetSize = originalSize * zoomFactor;
 
-        // Positions for corners
-        Vector2[] cornerPositions = new Vector2[]
+        // Save the original size
+        Vector2 originalSize = rectTransform.sizeDelta;
+
+        // Positions for corners with pivot and anchor points
+        Vector2[] cornerAnchors = new Vector2[]
         {
-            new Vector2(0.0f, 1.0f), // Top Left
-            new Vector2(1.0f, 1.0f), // Top Right
-            new Vector2(0.0f, 0.0f), // Bottom Left
-            new Vector2(1.0f, 0.0f)  // Bottom Right
+        new Vector2(0f, 1f), // Top Left
+        new Vector2(1f, 1f), // Top Right
+        new Vector2(0f, 0f), // Bottom Left
+        new Vector2(1f, 0f)  // Bottom Right
         };
 
-        // Move to each corner and zoom
-        for (int i = 0; i < cornerPositions.Length; i++)
+        for (int i = 0; i < cornerAnchors.Length; i++)
         {
-            rectTransform.pivot = cornerPositions[i];
-            rectTransform.anchoredPosition = Vector2.zero; // Center it
-            rectTransform.sizeDelta = targetSize; // Scale the image
+            // Set the pivot to the corner
+            rectTransform.pivot = cornerAnchors[i];
 
-            // Wait for 0.5 seconds at each corner
-            yield return new WaitForSeconds(zoomDuration);
+            // Set the anchor to the corner
+            rectTransform.anchorMin = cornerAnchors[i];
+            rectTransform.anchorMax = cornerAnchors[i];
 
-            // Return to original size and center
-            rectTransform.sizeDelta = originalSize;
-            rectTransform.pivot = new Vector2(0.5f, 0.5f); // Center pivot
+            // Position the image at the corner
             rectTransform.anchoredPosition = Vector2.zero;
+
+            // Scale the image to fill the screen
+            rectTransform.sizeDelta = new Vector2(Screen.width * zoomFactor, Screen.height * zoomFactor);
+
+            // Wait for the zoom duration before moving to the next corner
+            yield return new WaitForSeconds(zoomDuration);
         }
 
-        // Optional: ensure the final state is centered
-        rectTransform.sizeDelta = originalSize;
-        rectTransform.pivot = new Vector2(0.5f, 0.5f); // Center pivot
+        // Optional: ensure the final state is centered and reset the size
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.sizeDelta = originalSize;
     }
 }
 

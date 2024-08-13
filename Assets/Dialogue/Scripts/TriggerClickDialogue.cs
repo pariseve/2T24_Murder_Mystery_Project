@@ -1,28 +1,39 @@
 using UnityEngine;
 using System.Collections;
-using DialogueEditor;
+using System.Collections.Generic;
 
-public class ObjectClickAnimation : MonoBehaviour
+public class TriggerClickDialogue : MonoBehaviour
 {
     [SerializeField] private float moveDistance = 20f;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float spreadDistance = 5f;
     [SerializeField] private float spreadDuration = 1.0f;
     [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
-    [SerializeField] private string isMovingBoolName = "IsMoving"; // The bool name in the Animator
     [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
-    [SerializeField] private KeyCode startKey = KeyCode.Mouse0;
+    [SerializeField] private string isMovingBoolName = "IsMoving"; // The bool name in the Animator
+    [SerializeField] private KeyCode startKey = KeyCode.E; // Key to press for activation
 
-    private NPCConversation npcConversation;
+    private bool isPlayerInTrigger = false;
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        npcConversation = FindObjectOfType<NPCConversation>();
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInTrigger = true;
+        }
     }
 
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        if (Input.GetKeyDown(startKey))
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInTrigger = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (isPlayerInTrigger && Input.GetKeyDown(startKey))
         {
             CheckClick();
         }
@@ -30,18 +41,9 @@ public class ObjectClickAnimation : MonoBehaviour
 
     void CheckClick()
     {
-        // Perform a raycast from the mouse position
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.CompareTag("Crow Fly Click"))
-            {
-                StartCoroutine(PlayAnimationAndMoveUp(hit.transform));
-            }
+                StartCoroutine(PlayAnimationAndMoveUp(transform));
         }
-    }
+    
 
     private IEnumerator PlayAnimationAndMoveUp(Transform obj)
     {
@@ -110,25 +112,4 @@ public class ObjectClickAnimation : MonoBehaviour
         // Destroy the parent object
         Destroy(obj.gameObject);
     }
-
-    private void DisableAllColliders()
-    {
-        Collider[] allColliders = FindObjectsOfType<Collider>();
-        foreach (Collider collider in allColliders)
-        {
-            collider.enabled = false;
-        }
-    }
-
-    private void EnableAllColliders()
-    {
-        Collider[] allColliders = FindObjectsOfType<Collider>();
-        foreach (Collider collider in allColliders)
-        {
-            collider.enabled = true;
-        }
-    }
 }
-
-
-
