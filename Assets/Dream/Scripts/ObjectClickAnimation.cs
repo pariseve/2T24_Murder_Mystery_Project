@@ -9,8 +9,13 @@ public class ObjectClickAnimation : MonoBehaviour
     [SerializeField] private float spreadDistance = 5f;
     [SerializeField] private float spreadDuration = 1.0f;
     [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
-    [SerializeField] private string isMovingBoolName = "IsMoving"; // The bool name in the Animator
     [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
+
+    //for new sprite implementation
+    [SerializeField] private Sprite stationarySprite;
+    [SerializeField] private Sprite flyingSprite;
+    //---------------------------
+
     [SerializeField] private KeyCode startKey = KeyCode.Mouse0;
 
     private NPCConversation npcConversation;
@@ -18,6 +23,7 @@ public class ObjectClickAnimation : MonoBehaviour
     private void Start()
     {
         npcConversation = FindObjectOfType<NPCConversation>();
+
     }
 
     void Update()
@@ -36,9 +42,9 @@ public class ObjectClickAnimation : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.transform.CompareTag("Crow Fly Click"))
+            if (hit.transform.CompareTag("Crow Fly Click"))// && !npcConversation.isDialogueActive)
             {
-                StartCoroutine(PlayAnimationAndMoveUp(hit.transform));
+                    StartCoroutine(PlayAnimationAndMoveUp(hit.transform));
             }
         }
     }
@@ -60,15 +66,26 @@ public class ObjectClickAnimation : MonoBehaviour
         foreach (Transform child in parent)
         {
             Animator animator = child.GetComponent<Animator>();
+            SpriteRenderer renderer = child.GetComponent<SpriteRenderer>();
             if (animator != null)
             {
                 animator.SetTrigger(animationTriggerName);
-                animator.SetBool(isMovingBoolName, true); // Set the IsMoving bool to true
+                Debug.Log("has triggered animation");
+            }
+            else if (renderer != null)
+            {
+                Debug.Log("Changing sprite for " + child.name);
+                renderer.sprite = flyingSprite;
+            }
+            else
+            {
+                Debug.Log("No SpriteRenderer found on " + child.name);
             }
             // Recursively apply animation to all children of this child
             TriggerAnimationOnAllChildren(child);
         }
     }
+
 
     private IEnumerator MoveUpAndSpreadChildren(Transform obj)
     {
@@ -108,7 +125,7 @@ public class ObjectClickAnimation : MonoBehaviour
         }
 
         // Destroy the parent object
-        Destroy(obj.gameObject);
+        // Destroy(obj.gameObject);
     }
 
     private void DisableAllColliders()
