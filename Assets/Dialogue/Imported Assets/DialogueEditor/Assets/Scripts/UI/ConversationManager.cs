@@ -77,6 +77,7 @@ namespace DialogueEditor
         private bool endingConversation = false;
 
         private bool canProcessClick = true;
+        private Coroutine fadeCoroutine;
 
         private void Awake()
         {
@@ -107,13 +108,16 @@ namespace DialogueEditor
 
         private void Update()
         {
+            Debug.Log($"m_dialogueFinishedScrolling set to: {m_dialogueFinishedScrolling}");
+            // Handle NPC image visibility based on scrolling state
             BUTTON_COOLDOWN = Mathf.Max(0, BUTTON_COOLDOWN - Time.deltaTime);
 
+            // Handle left mouse button click and state transitions
             if (Input.GetMouseButtonDown(0) && m_dialogueFinishedScrolling && !m_showingOption && isConversationActive && canProcessClick)
             {
                 // Start cooldown period
                 canProcessClick = false;
-                // Proceed with the conversation or end it based on the current state
+
                 switch (m_state)
                 {
                     case eState.TransitioningDialogueBoxOn:
@@ -129,6 +133,7 @@ namespace DialogueEditor
                             }
                             DisableCursor();
                             SetupSpeech(nextSpeech);
+
                             /*if (cameraZoom != null)
                             {
                                 cameraZoom.DisableZoom();
@@ -142,7 +147,7 @@ namespace DialogueEditor
                                 playerController.DisableMovement();
                             }
                         }
-                        else if (Input.GetMouseButtonDown(0) && nextSpeech == null)
+                        else
                         {
                             EndConversation();
                             endingConversation = false;
@@ -157,38 +162,36 @@ namespace DialogueEditor
                         break;
                 }
             }
-            else
+
+            // Call existing logic based on the state if not left-clicked
+            switch (m_state)
             {
-                // Call the existing logic based on the state if not left-clicked
-                switch (m_state)
-                {
-                    case eState.TransitioningDialogueBoxOn:
-                        TransitioningDialogueBoxOn_Update();
-                        break;
+                case eState.TransitioningDialogueBoxOn:
+                    TransitioningDialogueBoxOn_Update();
+                    break;
 
-                    case eState.ScrollingText:
-                        ScrollingText_Update();
-                        break;
+                case eState.ScrollingText:
+                    ScrollingText_Update();
+                    break;
 
-                    case eState.TransitioningOptionsOn:
-                        TransitionOptionsOn_Update();
-                        break;
+                case eState.TransitioningOptionsOn:
+                    TransitionOptionsOn_Update();
+                    break;
 
-                    case eState.Idle:
-                        Idle_Update();
-                        break;
+                case eState.Idle:
+                    Idle_Update();
+                    break;
 
-                    case eState.TransitioningOptionsOff:
-                        TransitionOptionsOff_Update();
-                        break;
+                case eState.TransitioningOptionsOff:
+                    TransitionOptionsOff_Update();
+                    break;
 
-                    case eState.TransitioningDialogueOff:
-                        TransitioningDialogueBoxOff_Update();
-                        break;
+                case eState.TransitioningDialogueOff:
+                    TransitioningDialogueBoxOff_Update();
+                    break;
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
         }
 
@@ -253,6 +256,28 @@ namespace DialogueEditor
         public void StartConversation(NPCConversation conversation)
         {
             Debug.Log("Starting conversation");
+
+            GameObject npcParent = GameObject.FindWithTag("NPCImage");
+
+            if (npcParent != null)
+            {
+                // Find the child component you want to activate/deactivate
+                Transform childTransform = npcParent.transform.Find("NPCImageChild");
+
+                if (childTransform != null)
+                {
+                    CanvasGroup canvasGroup = childTransform.GetComponent<CanvasGroup>();
+
+                    if (canvasGroup != null)
+                    {
+                        // Hide the NPC image
+                        childTransform.gameObject.SetActive(false);
+                        canvasGroup.alpha = 0;  // Fully transparent
+                        Debug.Log("Else dialogue finished scrolling");
+                    }
+                }
+            }
+
             playerController = FindObjectOfType<PlayerController>();
             DisableCursor();
             if (toggleLookAround != null)
@@ -295,6 +320,27 @@ namespace DialogueEditor
             if (IsDreamScene())
             {
                 EnableAllColliders();
+            }
+
+            GameObject npcParent = GameObject.FindWithTag("NPCImage");
+
+            if (npcParent != null)
+            {
+                // Find the child component you want to activate/deactivate
+                Transform childTransform = npcParent.transform.Find("NPCImageChild");
+
+                if (childTransform != null)
+                {
+                    CanvasGroup canvasGroup = childTransform.GetComponent<CanvasGroup>();
+
+                    if (canvasGroup != null)
+                    {
+                        // Hide the NPC image
+                        childTransform.gameObject.SetActive(false);
+                        canvasGroup.alpha = 0;  // Fully transparent
+                        Debug.Log("Else dialogue finished scrolling");
+                    }
+                }
             }
 
             endingConversation = true;
@@ -518,10 +564,93 @@ namespace DialogueEditor
                     ResetClickProcessing();
                     // Set the flag to indicate that the dialogue has finished scrolling
                     m_dialogueFinishedScrolling = true;
-                    SetState(eState.TransitioningOptionsOn); // Automatically transition to options once scrolling is finished
+
+                    // Activate the GameObject with the tag "NPCImage"
+                    /*GameObject npcImage = GameObject.FindWithTag("NPCImage");
+                    if (npcImage != null)
+                    {
+                        npcImage.SetActive(true);
+
+                        // Start the fade in/out coroutine
+                        if (fadeCoroutine != null)
+                        {
+                            StopCoroutine(fadeCoroutine);
+                        }
+                        fadeCoroutine = StartCoroutine(FadeInOut(npcImage.GetComponent<CanvasGroup>()));
+                    }*/
+
+                    // Find the parent GameObject with the tag "NPCImage"
+                    GameObject npcParent = GameObject.FindWithTag("NPCImage");
+
+                    if (npcParent != null)
+                    {
+                        // Find the child component you want to activate/deactivate
+                        Transform childTransform = npcParent.transform.Find("NPCImageChild");
+
+                        if (childTransform != null)
+                        {
+                            CanvasGroup canvasGroup = childTransform.GetComponent<CanvasGroup>();
+
+                            if (canvasGroup != null)
+                            {
+                                if (m_dialogueFinishedScrolling)
+                                {
+                                    // Show the NPC image
+                                    childTransform.gameObject.SetActive(true);
+                                    if (fadeCoroutine != null)
+                                    {
+                                        StopCoroutine(fadeCoroutine);
+                                    }
+                                    fadeCoroutine = StartCoroutine(FadeInOut(childTransform.GetComponent<CanvasGroup>()));
+                                    Debug.Log("Dialogue finished scrolling");
+                                }
+                            }
+                        }
+                    }
+
+                                // Automatically transition to options once scrolling is finished
+                                SetState(eState.TransitioningOptionsOn);
                 }
             }
         }
+
+        private IEnumerator FadeInOut(CanvasGroup canvasGroup)
+        {
+            float duration = 1.5f; // Time to fade in or out
+            float alpha = 0;
+            bool fadingIn = true;
+
+            while (m_dialogueFinishedScrolling && !m_showingOption)
+            {
+                while (fadingIn)
+                {
+                    alpha += Time.deltaTime / duration;
+                    canvasGroup.alpha = Mathf.Clamp01(alpha);
+
+                    if (alpha >= 1)
+                    {
+                        fadingIn = false;
+                    }
+                    yield return null;
+                }
+
+                while (!fadingIn)
+                {
+                    alpha -= Time.deltaTime / duration;
+                    canvasGroup.alpha = Mathf.Clamp01(alpha);
+
+                    if (alpha <= 0)
+                    {
+                        fadingIn = true;
+                    }
+                    yield return null;
+                }
+            }
+
+            // Reset alpha when the coroutine stops
+            canvasGroup.alpha = 0;
+        }
+
 
         private void TransitionOptionsOn_Update()
         {
@@ -611,7 +740,24 @@ namespace DialogueEditor
         }
 
 
+        private IEnumerator DisableNPCImage()
+        {
+            yield return new WaitForSeconds(0.5f);
 
+            // Optionally hide the image again
+            GameObject npcImage = GameObject.FindWithTag("NPCImage");
+            // Stop fading when going to the next dialogue
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+                fadeCoroutine = null;
+            }
+            if (npcImage != null)
+            {
+                npcImage.GetComponent<CanvasGroup>().alpha = 0;
+                npcImage.SetActive(false);
+            }
+        }
 
         //--------------------------------------
         // Do Speech
@@ -619,8 +765,32 @@ namespace DialogueEditor
 
         private void SetupSpeech(SpeechNode speech)
         {
+            // Debug.Log("set up speech");
             // Reset the flag at the beginning of the method
             m_dialogueFinishedScrolling = false;
+
+            // StartCoroutine(DisableNPCImage());
+
+            GameObject npcParent = GameObject.FindWithTag("NPCImage");
+
+            if (npcParent != null)
+            {
+                // Find the child component you want to activate/deactivate
+                Transform childTransform = npcParent.transform.Find("NPCImageChild");
+
+                if (childTransform != null)
+                {
+                    CanvasGroup canvasGroup = childTransform.GetComponent<CanvasGroup>();
+
+                    if (canvasGroup != null)
+                    {
+                        // Hide the NPC image
+                        childTransform.gameObject.SetActive(false);
+                        canvasGroup.alpha = 0;  // Fully transparent
+                        Debug.Log("Else dialogue finished scrolling");
+                    }
+                }
+            }
 
             if (speech == null)
             {
