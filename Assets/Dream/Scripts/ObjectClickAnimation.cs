@@ -11,6 +11,11 @@ public class ObjectClickAnimation : MonoBehaviour
     [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
     [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
 
+    //for new sprite implementation
+    [SerializeField] private Sprite stationarySprite;
+    [SerializeField] private Sprite flyingSprite;
+    //---------------------------
+
     [SerializeField] private KeyCode startKey = KeyCode.Mouse0;
 
     private NPCConversation npcConversation;
@@ -61,14 +66,26 @@ public class ObjectClickAnimation : MonoBehaviour
         foreach (Transform child in parent)
         {
             Animator animator = child.GetComponent<Animator>();
+            SpriteRenderer renderer = child.GetComponent<SpriteRenderer>();
             if (animator != null)
             {
                 animator.SetTrigger(animationTriggerName);
+                Debug.Log("has triggered animation");
+            }
+            else if (renderer != null)
+            {
+                Debug.Log("Changing sprite for " + child.name);
+                renderer.sprite = flyingSprite;
+            }
+            else
+            {
+                Debug.Log("No SpriteRenderer found on " + child.name);
             }
             // Recursively apply animation to all children of this child
             TriggerAnimationOnAllChildren(child);
         }
     }
+
 
     private IEnumerator MoveUpAndSpreadChildren(Transform obj)
     {

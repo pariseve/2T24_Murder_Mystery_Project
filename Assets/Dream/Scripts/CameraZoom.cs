@@ -14,8 +14,9 @@ public class CameraZoom : MonoBehaviour
     private Quaternion originalRotation;
     [SerializeField] private bool isZoomedIn = false;
     [SerializeField] private bool zoomEnabled = true; // New flag to control zoom functionality
-    [SerializeField] private bool isZooming = false; // New flag to indicate if zoom is in progress
+    [SerializeField] public bool isZooming = false; // New flag to indicate if zoom is in progress
 
+    public bool isZoomedInMirror = false;
     public bool IsZoomedIn { get { return isZoomedIn; } }
 
     // Reference to CameraRotation script
@@ -54,6 +55,17 @@ public class CameraZoom : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, zoomLayer))
         {
+
+            if (hit.transform.CompareTag("mirror"))
+            {
+                isZoomedInMirror = true;
+                zoomFactor = 2.5f;
+            }
+            else
+            {
+                isZoomedInMirror = false;
+                zoomFactor = 1f;
+            }
             // Check if there are any colliders between the camera and the hit point
             Vector3 direction = hit.point - cam.transform.position;
             float distance = direction.magnitude;
@@ -89,6 +101,7 @@ public class CameraZoom : MonoBehaviour
     {
         if (!isZoomedIn || !zoomEnabled || isZooming) return;
         StartCoroutine(ZoomOutCoroutine());
+        
     }
 
     private IEnumerator ZoomToPosition(Vector3 targetPosition)
@@ -139,6 +152,10 @@ public class CameraZoom : MonoBehaviour
 
     private IEnumerator ZoomOutCoroutine()
     {
+        if (isZoomedInMirror)
+        {
+            isZoomedInMirror = false;
+        }
         isZooming = true; // Set zooming flag to true
         float progress = 0f;
         Vector3 startPosition = cam.transform.position;
