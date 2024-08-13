@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class TriggerClickDialogue : MonoBehaviour
 {
@@ -8,9 +7,8 @@ public class TriggerClickDialogue : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float spreadDistance = 5f;
     [SerializeField] private float spreadDuration = 1.0f;
-    [SerializeField] private string animationTriggerName = "PlayAnimation"; // The trigger name in the Animator
-    [SerializeField] private float animationDelay = 0.5f; // Delay before moving up
-    [SerializeField] private string isMovingBoolName = "IsMoving"; // The bool name in the Animator
+    [SerializeField] private Sprite newSprite; // New sprite to change to
+    [SerializeField] private float spriteChangeDelay = 0.5f; // Delay before moving up
     [SerializeField] private KeyCode startKey = KeyCode.E; // Key to press for activation
 
     private bool isPlayerInTrigger = false;
@@ -41,34 +39,32 @@ public class TriggerClickDialogue : MonoBehaviour
 
     void CheckClick()
     {
-                StartCoroutine(PlayAnimationAndMoveUp(transform));
-        }
-    
+        StartCoroutine(ChangeSpriteAndMoveUp(transform));
+    }
 
-    private IEnumerator PlayAnimationAndMoveUp(Transform obj)
+    private IEnumerator ChangeSpriteAndMoveUp(Transform obj)
     {
-        // Trigger animation on all nested children
-        TriggerAnimationOnAllChildren(obj);
+        // Change sprite on all nested children
+        ChangeSpriteOnAllChildren(obj);
 
         // Wait for the fixed delay
-        yield return new WaitForSeconds(animationDelay);
+        yield return new WaitForSeconds(spriteChangeDelay);
 
         // Start moving up and spreading out
         StartCoroutine(MoveUpAndSpreadChildren(obj));
     }
 
-    private void TriggerAnimationOnAllChildren(Transform parent)
+    private void ChangeSpriteOnAllChildren(Transform parent)
     {
         foreach (Transform child in parent)
         {
-            Animator animator = child.GetComponent<Animator>();
-            if (animator != null)
+            SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
             {
-                animator.SetTrigger(animationTriggerName);
-                animator.SetBool(isMovingBoolName, true); // Set the IsMoving bool to true
+                spriteRenderer.sprite = newSprite; // Change the sprite to the new one
             }
-            // Recursively apply animation to all children of this child
-            TriggerAnimationOnAllChildren(child);
+            // Recursively apply sprite change to all children of this child
+            ChangeSpriteOnAllChildren(child);
         }
     }
 

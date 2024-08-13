@@ -192,6 +192,32 @@ namespace DialogueEditor
             }
         }
 
+        public void DisableAllColliders()
+        {
+            Collider[] allColliders = FindObjectsOfType<Collider>();
+            foreach (Collider collider in allColliders)
+            {
+                collider.enabled = false;
+                Debug.Log("disable colliders");
+            }
+        }
+
+        public void EnableAllColliders()
+        {
+            Collider[] allColliders = FindObjectsOfType<Collider>();
+            foreach (Collider collider in allColliders)
+            {
+                collider.enabled = true;
+                Debug.Log("enable colliders");
+            }
+        }
+
+        private bool IsDreamScene()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            return sceneName.Contains("Dream");
+        }
+
         private void ResetClickProcessing()
         {
             canProcessClick = true;
@@ -208,6 +234,16 @@ namespace DialogueEditor
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        private IEnumerator DisableZoom()
+        {
+            yield return new WaitForSeconds(0.1f);
+
+            if (cameraZoom != null)
+            {
+                cameraZoom.DisableZoom();
+            }
         }
 
         //--------------------------------------
@@ -228,12 +264,12 @@ namespace DialogueEditor
                 playerController.DisableMovement();
             }
 
-            if (objectClickDialogue != null)
-            {
-                objectClickDialogue.DisableAllColliders();
-            }
+            StartCoroutine(DisableZoom());
 
-            StartCoroutine(DelayedDisableColliders());
+            if (IsDreamScene())
+            {
+                DisableAllColliders();
+            }
 
             isConversationActive = true;
 
@@ -246,20 +282,6 @@ namespace DialogueEditor
             SetState(eState.TransitioningDialogueBoxOn);
         }
 
-        private IEnumerator DelayedDisableColliders()
-        {
-            yield return new WaitForSeconds(0.1f);
-
-            if (objectClickDialogue != null)
-            {
-                objectClickDialogue.DisableAllColliders();
-            }
-            if (cameraZoom != null)
-            {
-                cameraZoom.DisableZoom();
-            }
-        }
-
         public void EndConversation()
         {
             SetState(eState.TransitioningDialogueOff);
@@ -270,9 +292,9 @@ namespace DialogueEditor
             isConversationActive = false;
             Debug.Log("Ending conversation");
 
-            if (objectClickDialogue != null)
+            if (IsDreamScene())
             {
-                objectClickDialogue.EnableAllColliders();
+                EnableAllColliders();
             }
 
             endingConversation = true;

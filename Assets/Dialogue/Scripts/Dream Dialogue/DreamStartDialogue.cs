@@ -12,12 +12,6 @@ public class DreamStartDialogue : MonoBehaviour
 
     private void Awake()
     {
-        objectClickDialogue = FindObjectOfType<ObjectClickDialogue>();
-
-        if (objectClickDialogue != null)
-        {
-            objectClickDialogue.DisableAllColliders();
-        }
     }
 
     void Start()

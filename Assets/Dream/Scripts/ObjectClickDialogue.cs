@@ -30,7 +30,7 @@ public class ObjectClickDialogue : MonoBehaviour
     {
         if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
         {
-            // Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+            Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
             return;
         }
             // Raycast to detect object click
@@ -60,6 +60,7 @@ public class ObjectClickDialogue : MonoBehaviour
         foreach (Collider collider in allColliders)
         {
             collider.enabled = false;
+            Debug.Log("disable colliders");
         }
     }
 
@@ -69,6 +70,7 @@ public class ObjectClickDialogue : MonoBehaviour
         foreach (Collider collider in allColliders)
         {
             collider.enabled = true;
+            Debug.Log("enable colliders");
         }
     }
 }
