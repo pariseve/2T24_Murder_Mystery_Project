@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.0530238
+  m_Volume: 0.24442008
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   titleTheme: {fileID: 8300000, guid: 05a83bcdf7d6f8242b8cebc89f0eeede, type: 3}
   townTheme: {fileID: 8300000, guid: d3647dad68a975c419d30697820d3204, type: 3}
   apartmentTheme: {fileID: 8300000, guid: 94335a6c8846694408d50ce0da8de435, type: 3}
+  deptTheme: {fileID: 0}
   dreamTheme: {fileID: 8300000, guid: a2fcb9acfd2fb4a43b1aa39987020dc7, type: 3}
   sombreMoments: {fileID: 8300000, guid: 7f6fb73a79e2fd14dbd834f550bb6cf2, type: 3}
   forgiveness: {fileID: 8300000, guid: b40f4f807df9eb242be96d74ea25984d, type: 3}
@@ -194,6 +195,7 @@ MonoBehaviour:
   footstep3: {fileID: 0}
   footstep4: {fileID: 0}
   crow: {fileID: 0}
+  sfxQueueTimeout: 2
 --- !u!1 &3014491171094239701
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +240,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.0530238
+  m_Volume: 0.24442008
   m_Pitch: 1
   Loop: 0
   Mute: 0
