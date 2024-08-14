@@ -1315,6 +1315,8 @@ private void OnReplyButtonClicked(string npcName, string playerReply)
 
             // Show the reply button for the NPC
             ShowReplyButton(npcName);
+
+            DeactivateAllChatHistories();
         }
         else
         {

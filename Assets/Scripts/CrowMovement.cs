@@ -16,6 +16,7 @@ public class CrowMovement : MonoBehaviour
     private NavMeshAgent navMeshAgent;
     private SpriteRenderer spriteRenderer; // SpriteRenderer for changing sprites
     private bool isMovingTowardsTarget = false;
+    private bool isFlyingUp = false; // Flag to indicate if the crow is flying up
 
     private void Start()
     {
@@ -48,7 +49,7 @@ public class CrowMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isFlyingUp) // Prevent trigger actions if flying up
         {
             SaveCrowPosition();
             isMovingTowardsTarget = true;
@@ -59,7 +60,7 @@ public class CrowMovement : MonoBehaviour
 
             if (navMeshAgent != null && targetLocation != null)
             {
-                SetCrowRotation();
+                SetCrowFlip();
                 navMeshAgent.SetDestination(targetLocation.position);
             }
         }
@@ -67,7 +68,7 @@ public class CrowMovement : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isFlyingUp) // Prevent trigger actions if flying up
         {
             SaveCrowPosition();
         }
@@ -75,7 +76,7 @@ public class CrowMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isFlyingUp) // Prevent sprite change if flying up
         {
             isMovingTowardsTarget = false;
             if (navMeshAgent != null)
@@ -103,18 +104,25 @@ public class CrowMovement : MonoBehaviour
         }
     }
 
-    private void SetCrowRotation()
+    private void SetCrowFlip()
     {
-        if (targetLocation != null)
+        if (targetLocation != null && spriteRenderer != null)
         {
             Vector3 directionToTarget = targetLocation.position - crow.position;
+
+            // Change to move sprite when moving horizontally
+            if (moveSprite != null)
+            {
+                spriteRenderer.sprite = moveSprite;
+            }
+
             if (directionToTarget.x < 0) // Target is to the left
             {
-                crow.rotation = Quaternion.Euler(0f, 0f, 0f);
+                spriteRenderer.flipX = true; // Flip sprite to face left
             }
-            else // Target is to the right
+            else if (directionToTarget.x > 0) // Target is to the right
             {
-                crow.rotation = Quaternion.Euler(0f, 180f, 0f);
+                spriteRenderer.flipX = false; // Flip sprite to face right
             }
         }
     }
@@ -122,6 +130,7 @@ public class CrowMovement : MonoBehaviour
     private IEnumerator FlyUpAndDestroy()
     {
         SetBoolVariable();
+        isFlyingUp = true; // Set the flag to true when starting to fly up
 
         // Disable the NavMeshAgent component before flying up
         if (navMeshAgent != null)
@@ -130,6 +139,12 @@ public class CrowMovement : MonoBehaviour
         }
 
         Vector3 targetPosition = new Vector3(crow.position.x, crow.position.y + flyUpHeight, crow.position.z);
+
+        // Change to move sprite when flying up
+        if (spriteRenderer != null && moveSprite != null)
+        {
+            spriteRenderer.sprite = moveSprite;
+        }
 
         while (Vector3.Distance(crow.position, targetPosition) > 0.1f)
         {
