@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public string description;
     public Item exchangedItem; //item needed for exchange
     public GameObject interactionUIPrefab;
+    public Transform triggerTransform;
 }
 
 public enum ItemType

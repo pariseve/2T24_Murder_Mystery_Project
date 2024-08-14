@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
+  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5114,9 +5114,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
         type: 3}
+      propertyPath: crow
+      value: 
+      objectReference: {fileID: 15551615}
+    - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
+        type: 3}
+      propertyPath: boolName
+      value: Day2StreetCrowMoveToTornMapLocation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
+        type: 3}
       propertyPath: crowObject
       value: Crow Day 2 Street Move To Map
       objectReference: {fileID: 0}
+    - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
+        type: 3}
+      propertyPath: idleSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2125cdfa7cdd4ab4884d5a821f663549,
+        type: 3}
+    - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
+        type: 3}
+      propertyPath: moveSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 93bfc9e8766c8644c858497529c79b1f,
+        type: 3}
     - target: {fileID: 1737447049041975706, guid: 8277b6e458141404fa0294d14dceaea2,
         type: 3}
       propertyPath: targetLocation
@@ -5130,7 +5152,7 @@ PrefabInstance:
     - target: {fileID: 4843670184544662948, guid: 8277b6e458141404fa0294d14dceaea2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4843670184544662948, guid: 8277b6e458141404fa0294d14dceaea2,
         type: 3}
@@ -6483,62 +6505,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2618887497790245497, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2618887497790245497, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7450327544406148650, guid: 0a17ea12d2853b44db209300b8644bdc,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1860636736}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a17ea12d2853b44db209300b8644bdc, type: 3}
---- !u!1 &1860636735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7450327544406148650, guid: 0a17ea12d2853b44db209300b8644bdc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1860636734}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1860636736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860636735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AgentTypeID: -334000983
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_GenerateLinks: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
-  m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f3ed9bbb53b574123a5712c5c29e0039, type: 2}
-  m_BuildHeightMesh: 0
 --- !u!1001 &1927309152
 PrefabInstance:
   m_ObjectHideFlags: 0

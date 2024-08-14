@@ -9,13 +9,12 @@ public class CrowMovement : MonoBehaviour
     [SerializeField] private Transform targetLocation; // The target location the crow will move towards
     [SerializeField] private float flyUpHeight = 15f;
     [SerializeField] private float flyUpSpeed = 3f;
-    [SerializeField] private string moveAnimationTriggerName = "MoveAnimation"; // The trigger name for moving animation
-    [SerializeField] private string flyAnimationTriggerName = "FlyAnimation"; // The trigger name for flying animation
+    [SerializeField] private Sprite idleSprite; // The sprite when the crow is idle
+    [SerializeField] private Sprite moveSprite; // The sprite when the crow is moving
     [SerializeField] private string boolName = "";
-    [SerializeField] private string moveAnimationBoolName = "IsMoving"; // The boolean parameter name in the Animator for the move animation
 
     private NavMeshAgent navMeshAgent;
-    private Animator crowAnimator;
+    private SpriteRenderer spriteRenderer; // SpriteRenderer for changing sprites
     private bool isMovingTowardsTarget = false;
 
     private void Start()
@@ -32,11 +31,17 @@ public class CrowMovement : MonoBehaviour
         if (crow != null)
         {
             navMeshAgent = crow.GetComponent<NavMeshAgent>();
-            crowAnimator = crow.GetComponent<Animator>();
+            spriteRenderer = crow.GetComponent<SpriteRenderer>(); // Get the SpriteRenderer component
 
             if (!ObjectManager.Instance.IsObjectDestroyed(crowObject))
             {
                 LoadCrowPosition();
+            }
+
+            // Set the initial sprite to idle
+            if (spriteRenderer != null && idleSprite != null)
+            {
+                spriteRenderer.sprite = idleSprite;
             }
         }
     }
@@ -47,10 +52,9 @@ public class CrowMovement : MonoBehaviour
         {
             SaveCrowPosition();
             isMovingTowardsTarget = true;
-            if (crowAnimator != null)
+            if (spriteRenderer != null && moveSprite != null)
             {
-                crowAnimator.SetTrigger(moveAnimationTriggerName);
-                crowAnimator.SetBool(moveAnimationBoolName, true);
+                spriteRenderer.sprite = moveSprite; // Change to move sprite
             }
 
             if (navMeshAgent != null && targetLocation != null)
@@ -78,9 +82,10 @@ public class CrowMovement : MonoBehaviour
             {
                 navMeshAgent.ResetPath();
             }
-            if (crowAnimator != null)
+
+            if (spriteRenderer != null && idleSprite != null)
             {
-                crowAnimator.SetBool(moveAnimationBoolName, false);
+                spriteRenderer.sprite = idleSprite; // Change back to idle sprite
             }
         }
     }
@@ -116,11 +121,6 @@ public class CrowMovement : MonoBehaviour
 
     private IEnumerator FlyUpAndDestroy()
     {
-        if (crowAnimator != null)
-        {
-            crowAnimator.SetTrigger(flyAnimationTriggerName);
-        }
-
         SetBoolVariable();
 
         // Disable the NavMeshAgent component before flying up

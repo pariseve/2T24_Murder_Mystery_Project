@@ -4269,6 +4269,10 @@ GameObject:
   - component: {fileID: 7348740427696425852}
   - component: {fileID: 3413251443136075333}
   - component: {fileID: 2751897735732135337}
+  - component: {fileID: 2047265223252014372}
+  - component: {fileID: 3183832290919583668}
+  - component: {fileID: 4816338523474302069}
+  - component: {fileID: 3222666572184051616}
   m_Layer: 0
   m_Name: Railway Level Design
   m_TagString: Untagged
@@ -4337,6 +4341,70 @@ MonoBehaviour:
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!114 &2047265223252014372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389458811174441886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 200.04822, y: 3, z: 78.27172}
+  m_Center: {x: -0.024112701, y: 1, z: 60.607403}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &3183832290919583668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389458811174441886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 59.867645, y: 3, z: 124.08263}
+  m_Center: {x: -71.87727, y: 1, z: -39.00805}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &4816338523474302069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389458811174441886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 143.62378, y: 3, z: 87.94995}
+  m_Center: {x: 28.219637, y: 1, z: -64.115814}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &3222666572184051616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6389458811174441886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 39.049164, y: 3, z: 116.4326}
+  m_Center: {x: 80.13014, y: 1, z: 24.722527}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &6402214188128340817
 GameObject:
   m_ObjectHideFlags: 0
@@ -6825,7 +6893,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 29c55565272ce48c4a1c88f658a14fdc, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: fe4816a0a63ed467b81e7184f982e9d0, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &2838128024813707961
 PrefabInstance:

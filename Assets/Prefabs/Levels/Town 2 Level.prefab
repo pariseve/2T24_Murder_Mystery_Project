@@ -131,6 +131,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5847508563885811865}
+  - component: {fileID: 1685882534332113081}
+  - component: {fileID: 926452179836151191}
+  - component: {fileID: 7238778913826326606}
+  - component: {fileID: 1252830219425465428}
   m_Layer: 0
   m_Name: Town 2 Level
   m_TagString: Untagged
@@ -167,6 +171,70 @@ Transform:
   - {fileID: 6487791130445989352}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1685882534332113081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634267377438469109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 49.56711, y: 3, z: 199.90765}
+  m_Center: {x: -75.667755, y: 1, z: 0.05901718}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &926452179836151191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634267377438469109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 202.76062, y: 3, z: 84.56811}
+  m_Center: {x: 0.4669304, y: 1, z: -58.50047}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &7238778913826326606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634267377438469109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 50.48056, y: 3, z: 202.4755}
+  m_Center: {x: 75.52333, y: 1, z: -0.048000336}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &1252830219425465428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634267377438469109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 202.49619, y: 3, z: 74.70538}
+  m_Center: {x: -0.013168335, y: 1, z: 63.650635}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &2033849169203191793
 GameObject:
   m_ObjectHideFlags: 0
@@ -2946,7 +3014,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ff1e95a24606b40bfb189b62926fffa1, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e21120f2c2d034cfea35c540e799b573, type: 2}
   m_BuildHeightMesh: 0
 --- !u!4 &5578412239527126032 stripped
 Transform:

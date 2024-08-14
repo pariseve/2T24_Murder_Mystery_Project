@@ -160,6 +160,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 548917648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &129366220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 129366222}
+  - component: {fileID: 129366221}
+  m_Layer: 0
+  m_Name: Camera Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &129366221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129366220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ea2d3d7f756fa45b64ac04bcb7a2b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainVirtualCam: {fileID: 1861418386}
+  altVirtualCam: {fileID: 129366220}
+--- !u!4 &129366222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129366220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.604267, y: -62.28466, z: 199.23698}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &174570638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2617,6 +2663,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dialogue Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1961499107483771681, guid: 77f7cc53f38fd4c69b6468f051219540,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4246964523190524187, guid: 77f7cc53f38fd4c69b6468f051219540,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3565,6 +3616,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 150a91fa5ccda6e49b498f81cf6681ee, type: 3}
+--- !u!114 &1861418386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5887342128021084723, guid: 150a91fa5ccda6e49b498f81cf6681ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1861418385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909865895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,6 +4010,7 @@ SceneRoots:
   - {fileID: 1585860693}
   - {fileID: 1423981273}
   - {fileID: 548917648}
+  - {fileID: 129366222}
   - {fileID: 990252667}
   - {fileID: 690568106}
   - {fileID: 585545643}

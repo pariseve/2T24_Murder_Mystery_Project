@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1103801586667452296}
+  - component: {fileID: 5732801315691420260}
+  - component: {fileID: 3732168573582189930}
+  - component: {fileID: 109722057055423247}
+  - component: {fileID: 4894870553254197943}
   m_Layer: 0
   m_Name: Rosemont Level
   m_TagString: Untagged
@@ -39,6 +43,70 @@ Transform:
   - {fileID: 2618887497790245497}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5732801315691420260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816479809728755245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 199.64384, y: 3, z: 99.093285}
+  m_Center: {x: 0.2913437, y: 1, z: -50.186504}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &3732168573582189930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816479809728755245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 40.954407, y: 3, z: 205.05286}
+  m_Center: {x: -79.66843, y: 1, z: 2.9512901}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &109722057055423247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816479809728755245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 40.88954, y: 3, z: 202.57065}
+  m_Center: {x: 81.064964, y: 1, z: -0.8186188}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
+--- !u!114 &4894870553254197943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816479809728755245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 202.46191, y: 3, z: 63.486084}
+  m_Center: {x: 1.1718788, y: 1, z: 68.17284}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &3209857244571290471
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +287,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: f48a86a6c3dfd420f9f73cf117f02fd4, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: c62c66b3b201b4ba6b11959f0a334d22, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &172653979188523526
 PrefabInstance:
