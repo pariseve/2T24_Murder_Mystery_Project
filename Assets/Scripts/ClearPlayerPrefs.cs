@@ -9,6 +9,15 @@ public class ClearPlayerPrefs : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }*/
 
+    private void Awake()
+    {
+        // Unlock the cursor from the center of the screen
+        Cursor.lockState = CursorLockMode.None;
+
+        // Show the cursor
+        Cursor.visible = true;
+    }
+
     public void DeleteAllPlayerPrefs()
     {
         // Retrieve the current volume settings

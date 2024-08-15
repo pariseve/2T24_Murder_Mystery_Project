@@ -674,12 +674,15 @@ public class MessageManager : MonoBehaviour
 
                     npcMessageQueues[npcName].Enqueue(messageDataObj);
 
-                    // Store the boolName for each NPC
-                    if (!npcBoolNames.ContainsKey(npcName))
+                    // Clear the existing boolName for this NPC and store the new one
+                    if (npcBoolNames.ContainsKey(npcName))
                     {
-                        npcBoolNames[npcName] = boolName;
-                        Debug.Log($"Stored boolName '{boolName}' for NPC: {npcName}");
+                        npcBoolNames.Remove(npcName);
+                        Debug.Log($"Cleared existing boolName for NPC: {npcName}");
                     }
+
+                    npcBoolNames[npcName] = boolName;
+                    Debug.Log($"Stored new boolName '{boolName}' for NPC: {npcName}");
                 }
                 else
                 {

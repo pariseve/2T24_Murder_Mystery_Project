@@ -719,7 +719,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
   m_Color: {r: 0.38993704, g: 0.38993704, b: 0.38993704, a: 1}
@@ -2257,7 +2257,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
     type: 3}
   m_Color: {r: 0.38993704, g: 0.38993704, b: 0.38993704, a: 1}
@@ -2499,7 +2499,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1299368750}
   - component: {fileID: 1299368752}
-  - component: {fileID: 1299368753}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -2543,25 +2542,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1299368753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299368749}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 766856b2be76e49f7b098ae3c96526ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 243945858}
-  isInsideTrigger: 0
-  interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
-    type: 3}
-  conversationTriggeredKey: DavidDay1UrbanGoodsShopDialogue
-  requiredBoolNamesTrue: []
-  requiredBoolNamesFalse: []
 --- !u!1 &1301219320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,7 +3190,7 @@ MonoBehaviour:
   Event:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1299368753}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: NPCDialogueBoolTrigger, Assembly-CSharp
         m_MethodName: ResetConversationTrigger
         m_Mode: 1
@@ -4432,7 +4412,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1299368753}
+      objectReference: {fileID: 0}
     - target: {fileID: 5420716245752674735, guid: 30297c77a8f1c4c35a2d0468a0a0b249,
         type: 3}
       propertyPath: m_Name

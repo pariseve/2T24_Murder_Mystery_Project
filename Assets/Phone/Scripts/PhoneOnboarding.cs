@@ -33,14 +33,17 @@ public class PhoneOnboarding : MonoBehaviour
         if (PlayerPrefs.HasKey(onboardingTriggeredKey))
         {
             isOnboardingTriggered = true;
+            onboardingComplete = true;
             currentStepIndex = onboardingSteps.Length; // Set to the end to skip onboarding
         }
+        else
+        {
+            // Cache application icons
+            CacheApplicationIcons();
 
-        // Cache application icons
-        CacheApplicationIcons();
-
-        // Start a coroutine to wait for the boolean to be true
-        StartCoroutine(WaitForOnboardingBool());
+            // Start a coroutine to wait for the boolean to be true
+            StartCoroutine(WaitForOnboardingBool());
+        }
     }
 
     private IEnumerator WaitForOnboardingBool()
@@ -88,15 +91,6 @@ public class PhoneOnboarding : MonoBehaviour
             }
             CacheApplicationIcons();
             HighlightCurrentApplicationIcon();
-        }
-        else if (isOnboardingTriggered && onboardingComplete)
-        {
-            // Disable player movement or any other setup needed before dialogue
-            PlayerController playerController = FindObjectOfType<PlayerController>();
-            if (playerController != null)
-            {
-                playerController.EnableMovement();
-            }
         }
     }
 
@@ -274,6 +268,12 @@ public class PhoneOnboarding : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("Onboarding process completed.");
+
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+        if (playerController != null)
+        {
+            playerController.EnableMovement();
+        }
     }
 
     private void HighlightApplicationIcon(string iconName, bool highlight = true)

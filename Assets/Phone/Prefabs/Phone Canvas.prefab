@@ -9813,6 +9813,7 @@ MonoBehaviour:
   - {fileID: 4041220583101855598}
   - {fileID: 1439848864983701350}
   - {fileID: 5054614360009354902}
+  isPhoneVisible: 0
 --- !u!114 &5471268691532676566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9858,6 +9859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e7eaac95bc424ec8921c563fd1c5278, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageSequences: []
   npcMessageWindowPrefab: {fileID: 8034574192783351748, guid: 4e59535067c6b4aa5be15f8f72b4bca0,
     type: 3}
   dialogueBoxPrefab: {fileID: 8113403168654163628, guid: 0c9b0096456684152ae53357a4e73942,
@@ -9920,7 +9922,7 @@ MonoBehaviour:
   - name: About Idol Statue
     description: Ms Peyman was acting a bit strange when I talked about the statue...
       but she's always strange.
-    boolKey: EdithDay1StreetTalkedIdolStatueMainQuest
+    boolKey: EdithDay1StreetTalkedIdolStatueNote
     isActive: 0
   - name: Odd Letter
     description: There was an odd letter left on a table at Petal & Bacon. It mentions
