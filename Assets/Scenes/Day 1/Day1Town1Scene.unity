@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
+  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2266,6 +2266,7 @@ GameObject:
   - component: {fileID: 352982674}
   - component: {fileID: 352982676}
   - component: {fileID: 352982675}
+  - component: {fileID: 352982677}
   m_Layer: 8
   m_Name: Ivy Day 1 Town 1
   m_TagString: Untagged
@@ -2366,7 +2367,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 352982672}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -2379,6 +2380,27 @@ NavMeshAgent:
   m_BaseOffset: 4.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &352982677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352982672}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,6 +2750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 598218986}
   - component: {fileID: 598218987}
+  - component: {fileID: 598218988}
   m_Layer: 8
   m_Name: Avery Day 1 Town 1
   m_TagString: Untagged
@@ -2803,6 +2826,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &598218988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598218985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &615538892
 GameObject:
   m_ObjectHideFlags: 0
@@ -3053,6 +3097,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin Item
       objectReference: {fileID: 0}
+    - target: {fileID: 8331133788671685810, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3082,6 +3131,7 @@ GameObject:
   - component: {fileID: 710764504}
   - component: {fileID: 710764507}
   - component: {fileID: 710764506}
+  - component: {fileID: 710764508}
   m_Layer: 0
   m_Name: Charlie Day 1 Town 1
   m_TagString: Untagged
@@ -3194,6 +3244,27 @@ MonoBehaviour:
   targetPosition: {fileID: 47876635}
   spriteRenderer: {fileID: 710764504}
   boolName: 
+--- !u!65 &710764508
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710764502}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &739555947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3361,6 +3432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 772370161}
   - component: {fileID: 772370162}
+  - component: {fileID: 772370163}
   m_Layer: 0
   m_Name: Sadie Day 1 Town 1
   m_TagString: Untagged
@@ -3435,6 +3507,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &772370163
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772370160}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &774854385
 GameObject:
   m_ObjectHideFlags: 0
@@ -4997,6 +5090,7 @@ GameObject:
   - component: {fileID: 1243680018}
   - component: {fileID: 1243680020}
   - component: {fileID: 1243680019}
+  - component: {fileID: 1243680023}
   m_Layer: 0
   m_Name: Victor Day 1 Town 1
   m_TagString: Untagged
@@ -5043,7 +5137,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1243680017}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -5125,6 +5219,27 @@ Transform:
   - {fileID: 1323828708}
   m_Father: {fileID: 2087033386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1243680023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243680017}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1246354497
 GameObject:
   m_ObjectHideFlags: 0
@@ -6206,7 +6321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1451846209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6589,6 +6704,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Syringe Item
       objectReference: {fileID: 0}
+    - target: {fileID: 4305077482936987883, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6761,6 +6881,7 @@ GameObject:
   - component: {fileID: 1636231888}
   - component: {fileID: 1636231889}
   - component: {fileID: 1636231890}
+  - component: {fileID: 1636231891}
   m_Layer: 8
   m_Name: Sheriff Ian Day 1 Town 1
   m_TagString: Untagged
@@ -6861,7 +6982,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1636231886}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -6874,6 +6995,27 @@ NavMeshAgent:
   m_BaseOffset: 4.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1636231891
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636231886}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1653226365
 GameObject:
   m_ObjectHideFlags: 0
@@ -8176,6 +8318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1858768857}
   - component: {fileID: 1858768856}
+  - component: {fileID: 1858768858}
   m_Layer: 8
   m_Name: Adam Day 1 Town 1
   m_TagString: Untagged
@@ -8251,6 +8394,27 @@ Transform:
   - {fileID: 1202236944}
   m_Father: {fileID: 2087033386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1858768858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858768855}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1882703237
 GameObject:
   m_ObjectHideFlags: 0
@@ -8562,7 +8726,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2070730965
 Transform:
   m_ObjectHideFlags: 0
@@ -8608,7 +8772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2087033386
 Transform:
   m_ObjectHideFlags: 0
@@ -9044,6 +9208,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Letter from unknown
+      objectReference: {fileID: 0}
+    - target: {fileID: 206065847121833708, guid: 646105e90fe38405fbc92e5ce047100f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 206065847121833708, guid: 646105e90fe38405fbc92e5ce047100f,
         type: 3}

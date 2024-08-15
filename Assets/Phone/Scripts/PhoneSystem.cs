@@ -12,9 +12,11 @@ public class PhoneSystem : MonoBehaviour
     [SerializeField] private RawImage[] application; // Array of application RawImages
 
     private RectTransform phoneRectTransform;
-    private bool isPhoneVisible = false;
+    public bool isPhoneVisible = false;
     private Vector2 offScreenPosition;
     private Vector2 onScreenPosition;
+
+    private bool canTogglePhone = true;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class PhoneSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
+        if (canTogglePhone && Input.GetKeyDown(toggleKey))
         {
             isPhoneVisible = !isPhoneVisible;
 
@@ -64,13 +66,30 @@ public class PhoneSystem : MonoBehaviour
         SlidePhone();
     }
 
-    void SlidePhone()
+    public void SlidePhone()
     {
         if (phoneRectTransform != null)
         {
             Vector2 targetPosition = isPhoneVisible ? onScreenPosition : offScreenPosition;
             phoneRectTransform.anchoredPosition = Vector2.MoveTowards(phoneRectTransform.anchoredPosition, targetPosition, slideSpeed * Time.deltaTime);
         }
+    }
+
+    public bool IsPhoneVisible()
+    {
+        return isPhoneVisible;
+    }
+
+    public void DisablePhoneToggle()
+    {
+        // Prevent the phone from being closed during onboarding
+        canTogglePhone = false;
+    }
+
+    public void EnablePhoneToggle()
+    {
+        // Re-enable phone toggling after onboarding
+        canTogglePhone = true;
     }
 }
 

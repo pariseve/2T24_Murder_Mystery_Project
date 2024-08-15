@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 namespace DialogueEditor
 {
@@ -78,6 +79,8 @@ namespace DialogueEditor
 
         private bool canProcessClick = true;
         private Coroutine fadeCoroutine;
+
+        public event Action OnDialogueEnd;
 
         private void Awake()
         {
@@ -339,6 +342,7 @@ namespace DialogueEditor
                         childTransform.gameObject.SetActive(false);
                         canvasGroup.alpha = 0;  // Fully transparent
                         Debug.Log("Else dialogue finished scrolling");
+                        OnDialogueEnd?.Invoke();
                     }
                 }
             }

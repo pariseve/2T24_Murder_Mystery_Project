@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
+  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1367,6 +1367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 372784049}
   - component: {fileID: 372784048}
+  - component: {fileID: 372784050}
   m_Layer: 0
   m_Name: Raymond Day 1 Street
   m_TagString: Untagged
@@ -1441,6 +1442,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 88286062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &372784050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372784047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 2, z: 2}
+  m_Center: {x: 0, y: -3.5, z: 0}
 --- !u!1 &379952114
 GameObject:
   m_ObjectHideFlags: 0
@@ -7244,6 +7266,7 @@ GameObject:
   - component: {fileID: 2750249041153586808}
   - component: {fileID: 6367912355746906574}
   - component: {fileID: 6367912355746906575}
+  - component: {fileID: 6367912355746906576}
   m_Layer: 8
   m_Name: June Day 1 Street
   m_TagString: Untagged
@@ -7410,7 +7433,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4264711024700457318}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -7440,6 +7463,27 @@ MonoBehaviour:
   itemsToAdd: []
   itemsToRemove:
   - {fileID: 11400000, guid: a2fe1be392d482c428f689b0a2206a78, type: 2}
+--- !u!65 &6367912355746906576
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4264711024700457318}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6525154305638899123
 GameObject:
   m_ObjectHideFlags: 0
@@ -7450,6 +7494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5962945746958086228}
   - component: {fileID: 4793374126248292901}
+  - component: {fileID: 6525154305638899124}
   m_Layer: 8
   m_Name: Edith Day 1 Street
   m_TagString: Untagged
@@ -7457,6 +7502,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &6525154305638899124
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6525154305638899123}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9182607513510278292
 GameObject:
   m_ObjectHideFlags: 0

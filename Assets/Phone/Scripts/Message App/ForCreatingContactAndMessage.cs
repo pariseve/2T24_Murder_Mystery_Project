@@ -10,8 +10,19 @@ public class ForCreatingContactAndMessage : MonoBehaviour
     {
         if (MessageManager.Instance != null)
         {
-            // Assuming "parameters" is correctly formatted for ForCreateNPCMessage
             MessageManager.Instance.ForCreateNPCMessage(parameters);
+        }
+        else
+        {
+            Debug.LogError("MessageManager.Instance is null. Ensure MessageManager is set up correctly.");
+        }
+    }
+
+    public void MultipleNPCMessage(string parameters)
+    {
+        if (MessageManager.Instance != null)
+        {
+            MessageManager.Instance.ForCreateMultipleNPCMessages(parameters);
         }
         else
         {

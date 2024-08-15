@@ -829,6 +829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 491399265}
   - component: {fileID: 491399264}
+  - component: {fileID: 491399266}
   m_Layer: 0
   m_Name: Oliver Day 3 Town 2
   m_TagString: Untagged
@@ -903,6 +904,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &491399266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491399263}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &508699831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1067,6 +1089,7 @@ GameObject:
   - component: {fileID: 695164528}
   - component: {fileID: 695164530}
   - component: {fileID: 695164531}
+  - component: {fileID: 695164532}
   m_Layer: 8
   m_Name: Daniel Day 3 Town 2
   m_TagString: Untagged
@@ -1151,7 +1174,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 695164527}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -1180,6 +1203,27 @@ MonoBehaviour:
   targetPosition: {fileID: 1976046227}
   spriteRenderer: {fileID: 695164528}
   boolName: 
+--- !u!65 &695164532
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695164527}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &741419671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,6 +2399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1465872052}
   - component: {fileID: 1465872051}
+  - component: {fileID: 1465872053}
   m_Layer: 8
   m_Name: Adam Day 3 Town 2
   m_TagString: Untagged
@@ -2430,6 +2475,27 @@ Transform:
   - {fileID: 935342851}
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1465872053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465872050}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1470024915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3410,6 +3476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1989107109}
   - component: {fileID: 1989107108}
+  - component: {fileID: 1989107110}
   m_Layer: 0
   m_Name: Ian Day 3 Town 2
   m_TagString: Untagged
@@ -3484,6 +3551,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1989107110
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989107107}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1990735328
 GameObject:
   m_ObjectHideFlags: 0

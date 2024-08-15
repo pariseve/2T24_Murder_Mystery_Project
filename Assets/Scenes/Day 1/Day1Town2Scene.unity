@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
+  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4908,6 +4908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730319039}
   - component: {fileID: 1730319038}
+  - component: {fileID: 1730319040}
   m_Layer: 8
   m_Name: Sheriff Ian Day 1 Town 2
   m_TagString: Untagged
@@ -4983,6 +4984,27 @@ Transform:
   - {fileID: 1862489009}
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1730319040
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1730319037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1764387701
 GameObject:
   m_ObjectHideFlags: 0
@@ -6044,6 +6066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038098334}
   - component: {fileID: 2038098335}
+  - component: {fileID: 2038098336}
   m_Layer: 8
   m_Name: Scarlet Day 1 Town 2
   m_TagString: Untagged
@@ -6119,6 +6142,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2038098336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038098333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2076323935
 GameObject:
   m_ObjectHideFlags: 0
@@ -6350,6 +6394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1809387326642700379}
   - component: {fileID: 52261719148663789}
+  - component: {fileID: 1809387326642700380}
   m_Layer: 8
   m_Name: Natalie Day 1 Town 2
   m_TagString: Untagged
@@ -6401,7 +6446,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7225508960690248445}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -6460,6 +6505,27 @@ Transform:
   - {fileID: 1687652118210646660}
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1809387326642700380
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172390705189262279}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1957467357811276811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6485,6 +6551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7806708498054046717}
   - component: {fileID: 7313170327663676827}
+  - component: {fileID: 7806708498054046718}
   m_Layer: 8
   m_Name: Oliver Day 1 Town 2
   m_TagString: Untagged
@@ -6687,6 +6754,7 @@ GameObject:
   - component: {fileID: 3434875965225351433}
   - component: {fileID: 5613000241789576}
   - component: {fileID: 6332010633353976517}
+  - component: {fileID: 6332010633353976518}
   m_Layer: 8
   m_Name: Oscar Day 1 Town 2
   m_TagString: Untagged
@@ -6739,7 +6807,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 5292515851949354068}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -6752,6 +6820,27 @@ NavMeshAgent:
   m_BaseOffset: 4.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &6332010633353976518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292515851949354068}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &6597248682475630990
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6833,6 +6922,7 @@ GameObject:
   - component: {fileID: 6597248682475630990}
   - component: {fileID: 7225508960690248446}
   - component: {fileID: 1163386974066395979}
+  - component: {fileID: 7225508960690248447}
   m_Layer: 0
   m_Name: Ruby Day 1 Town 2
   m_TagString: Untagged
@@ -6856,6 +6946,27 @@ MonoBehaviour:
   targetPosition: {fileID: 181284445}
   spriteRenderer: {fileID: 6597248682475630990}
   boolName: 
+--- !u!65 &7225508960690248447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7225508960690248445}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &7313170327663676827
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6924,6 +7035,27 @@ Transform:
   - {fileID: 8974659757360512979}
   m_Father: {fileID: 173984927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7806708498054046718
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206463803404351107}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &8011756660384258908
 BoxCollider:
   m_ObjectHideFlags: 0

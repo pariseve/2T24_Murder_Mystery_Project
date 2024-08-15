@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DialogueEditor;
+using UnityEngine.EventSystems;
 
 public class OnClickDialogueTrigger : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class OnClickDialogueTrigger : MonoBehaviour
         // Check if the player has interacted with the object
         if (Input.GetKeyDown(startConversationKey))
         {
-            StartConversation();
+            if (!IsPointerOverUIElement()) // Only start conversation if the pointer is not over UI
+            {
+                StartConversation();
+            }
         }
     }
 
@@ -64,5 +68,41 @@ public class OnClickDialogueTrigger : MonoBehaviour
         {
             Debug.LogWarning("No object hit by the raycast.");
         }
+    }
+
+    private bool IsPointerOverUIElement()
+    {
+        // Get the current event system
+        EventSystem eventSystem = EventSystem.current;
+
+        // Get all the EventSystems in the scene, including those in DontDestroyOnLoad objects
+        EventSystem[] eventSystems = FindObjectsOfType<EventSystem>();
+
+        // Loop through each EventSystem to check if the pointer is over any UI elements
+        foreach (var es in eventSystems)
+        {
+            if (es.IsPointerOverGameObject())
+            {
+                // Check if the pointer is over a UI element
+                PointerEventData eventData = new PointerEventData(es)
+                {
+                    position = Input.mousePosition
+                };
+
+                List<RaycastResult> results = new List<RaycastResult>();
+                es.RaycastAll(eventData, results);
+
+                foreach (var result in results)
+                {
+                    // Check if the UI element is in front of the collider
+                    if (result.gameObject != null && result.gameObject.GetComponent<CanvasRenderer>() != null)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
