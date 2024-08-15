@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
+  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -154,7 +154,7 @@ Transform:
   m_GameObject: {fileID: 128071269}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35, y: 4, z: 10.1}
+  m_LocalPosition: {x: -27.39, y: 2.23, z: 5.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2542,7 +2542,7 @@ Transform:
   m_GameObject: {fileID: 1423981272}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.97, y: 6.49, z: 9.79}
+  m_LocalPosition: {x: -27.75, y: 2.46, z: 7.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2600,7 +2600,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 12, y: 5, z: 4}
+  m_Size: {x: 4, y: 5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1516403267
 GameObject:
@@ -2929,10 +2929,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 655914209857307053, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -79.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 655914209857307053, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479629389463969069, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042578921311780831, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 42.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5042578921311780831, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6389458811174441886, guid: 14d89ae3562878a41a6b6f06a222b1c6,
         type: 3}
       propertyPath: m_Name
       value: Railway Level Design
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690561010862390082, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 74.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731900437759939851, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6731900437759939851, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.28
       objectReference: {fileID: 0}
     - target: {fileID: 7348740427696425852, guid: 14d89ae3562878a41a6b6f06a222b1c6,
         type: 3}
@@ -2983,6 +3023,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7718199697055232934, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126404346526355124, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 8126404346526355124, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956260210216428121, guid: 14d89ae3562878a41a6b6f06a222b1c6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -73.51
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3821,7 +3881,7 @@ Transform:
   m_GameObject: {fileID: 4905152515710794954}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.89, y: 2.22, z: 3.3}
+  m_LocalPosition: {x: -23.8, y: 2.22, z: 3.3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
