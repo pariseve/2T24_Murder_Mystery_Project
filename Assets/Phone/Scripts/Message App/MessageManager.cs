@@ -766,6 +766,15 @@ public class MessageManager : MonoBehaviour
             Debug.LogError("ReminderManager.Instance is null.");
         }
 
+        if (NotesManager.Instance != null)
+        {
+            NotesManager.Instance.InstantiateNotes();
+        }
+        else
+        {
+            Debug.LogError("NotesManager.Instance is null.");
+        }
+
         Debug.Log("ProcessMessages coroutine finished for NPC: " + npcName);
         isProcessingMessages = false;
     }

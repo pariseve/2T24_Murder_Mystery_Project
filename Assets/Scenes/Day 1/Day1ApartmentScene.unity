@@ -476,56 +476,7 @@ MonoBehaviour:
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   Event:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 824097733}
-        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
-        m_MethodName: NPCMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Ivy|where r u ?????|
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 824097733}
-        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
-        m_MethodName: NPCMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Ivy|I'm waiting at urban goods|
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 824097733}
-        m_TargetAssemblyTypeName: ForCreatingContactAndMessage, Assembly-CSharp
-        m_MethodName: MultipleNPCMessage
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Ivy,Shift almost over,Stop shouting. I'll be there in
-            a sec.+Day1ApartmentMeetIvyMainQuest
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1270403232}
-        m_TargetAssemblyTypeName: ForBoolManager, Assembly-CSharp
-        m_MethodName: SetBoolVariable
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StartOnboarding
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   isDialogueActive: 0
 --- !u!1 &154204308
 GameObject:
@@ -1744,10 +1695,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentIDCounter: 6
-  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":4}],"EditorInfo":{"isRoot":true,"xPos":150.75,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"You
-    just got a new phone notification!","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Guide","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":151,"yPos":252},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"To
+  json: '{"Options":[],"Parameters":[],"SpeechNodes":[{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":4}],"EditorInfo":{"isRoot":true,"xPos":208.5,"yPos":22},"ID":0,"ParamActions":[],"TMPFontGUID":null,"Text":"You
+    just got a new phone notification! Everytime you get an alert on your phone,
+    you will receive a phone notification top right.","parentUIDs":[],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Guide","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[],"EditorInfo":{"isRoot":false,"xPos":208.75,"yPos":252},"ID":2,"ParamActions":[],"TMPFontGUID":null,"Text":"To
     get started, unlock your phone by holding down on the red circle and tap on the
-    message application.","parentUIDs":[4],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Guide","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":153,"yPos":120},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Your
+    message application.","parentUIDs":[4],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Guide","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0},{"Connections":[{"__type":"EditableSpeechConnection:#DialogueEditor","Conditions":[],"NodeUID":2}],"EditorInfo":{"isRoot":false,"xPos":210.75,"yPos":120},"ID":4,"ParamActions":[],"TMPFontGUID":null,"Text":"Your
     phone is your best friend and will help you get by in Maplewood.","parentUIDs":[0],"AdvanceDialogueAutomatically":false,"AudioGUID":null,"AutoAdvanceShouldDisplayOption":false,"IconGUID":null,"Name":"Guide","OptionUIDs":null,"SpeechUID":0,"TimeUntilAdvance":0,"Volume":0}]}'
   saveVersion: 110
   DefaultName: Guide
@@ -1762,7 +1714,19 @@ MonoBehaviour:
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   Event:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 901099776}
+        m_TargetAssemblyTypeName: DialogueTextManager, Assembly-CSharp
+        m_MethodName: SetTextColor
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: '#DE9521'
+          m_BoolArgument: 0
+        m_CallState: 2
   isDialogueActive: 0
 --- !u!1 &480483107
 GameObject:

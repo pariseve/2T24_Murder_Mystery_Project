@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
+  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5793,6 +5793,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1839810065}
   - component: {fileID: 1839810066}
+  - component: {fileID: 1839810067}
   m_Layer: 8
   m_Name: Natalie Day 1 Town 2
   m_TagString: Untagged
@@ -5868,6 +5869,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1839810067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839810064}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1857729728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7126,7 +7148,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3638712743843583759}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -7276,6 +7298,7 @@ GameObject:
   - component: {fileID: 3135374830122499785}
   - component: {fileID: 3613717749604429183}
   - component: {fileID: 7194732508898600807}
+  - component: {fileID: 7194732508898600808}
   m_Layer: 8
   m_Name: Sadie Day 2 Town 2
   m_TagString: Untagged
@@ -7348,6 +7371,7 @@ GameObject:
   - component: {fileID: 1943696521539600790}
   - component: {fileID: 5013577679748559798}
   - component: {fileID: 2287147404586267930}
+  - component: {fileID: 5013577679748559799}
   m_Layer: 8
   m_Name: Sheriff Ian Day 2 Town 2
   m_TagString: Untagged
@@ -7439,6 +7463,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainVirtualCamera: {fileID: 276874402}
   altVirtualCamera: {fileID: 1109614384}
+--- !u!65 &5013577679748559799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638712743843583759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &7194732508898600807
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7448,7 +7493,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3529518683865328981}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -7461,6 +7506,27 @@ NavMeshAgent:
   m_BaseOffset: 4.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &7194732508898600808
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3529518683865328981}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &7685713991693172604
 Transform:
   m_ObjectHideFlags: 0

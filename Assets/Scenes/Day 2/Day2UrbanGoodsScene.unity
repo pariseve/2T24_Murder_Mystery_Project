@@ -3076,6 +3076,7 @@ GameObject:
   - component: {fileID: 832292785}
   - component: {fileID: 832292784}
   - component: {fileID: 832292786}
+  - component: {fileID: 832292787}
   m_Layer: 8
   m_Name: Ivy Day 2 Urban Goods
   m_TagString: Untagged
@@ -3161,7 +3162,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 832292781}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 99
@@ -3205,6 +3206,27 @@ MonoBehaviour:
   stopDistance: 1
   spriteRenderer: {fileID: 832292782}
   boolName: IvyDay2UrbanGoodsWalkToOriginalLocation
+--- !u!65 &832292787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832292781}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &869738360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3386,6 +3408,7 @@ GameObject:
   - component: {fileID: 918858424}
   - component: {fileID: 918858420}
   - component: {fileID: 918858421}
+  - component: {fileID: 918858426}
   m_Layer: 8
   m_Name: Sheriff Ian Day 2 Urban Goods
   m_TagString: Untagged
@@ -3416,7 +3439,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 918858416}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 99
@@ -3531,6 +3554,27 @@ MonoBehaviour:
   targetPosition: {fileID: 2034176131}
   spriteRenderer: {fileID: 918858422}
   boolName: SheriffIanDay2UrbanGoodsDestroyInitial
+--- !u!65 &918858426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918858416}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &919617644
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9173,6 +9217,7 @@ GameObject:
   - component: {fileID: 1970403994}
   - component: {fileID: 1970403996}
   - component: {fileID: 1970403995}
+  - component: {fileID: 1970403997}
   m_Layer: 8
   m_Name: David Day 2 Urban Goods
   m_TagString: Untagged
@@ -9207,7 +9252,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1970403993}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 99
@@ -9272,6 +9317,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &1970403997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970403993}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1983339752
 GameObject:
   m_ObjectHideFlags: 0
@@ -10866,6 +10932,7 @@ GameObject:
   - component: {fileID: 988125099262291244}
   - component: {fileID: 8556941841934213331}
   - component: {fileID: 8556941841934213332}
+  - component: {fileID: 8556941841934213333}
   m_Layer: 8
   m_Name: Charlie Day 2 Urban Goods
   m_TagString: Untagged
@@ -11286,7 +11353,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1222498076573690294}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 99
@@ -11316,6 +11383,27 @@ MonoBehaviour:
   itemsToAdd: []
   itemsToRemove:
   - {fileID: 11400000, guid: 4140b7dcc1272af4294dbefbdfdf6db5, type: 2}
+--- !u!65 &8556941841934213333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222498076573690294}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8634792340370286004
 MonoBehaviour:
   m_ObjectHideFlags: 0

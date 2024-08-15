@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 119061058}
   - component: {fileID: 119061057}
   - component: {fileID: 119061056}
+  - component: {fileID: 119061060}
   m_Layer: 8
   m_Name: Sheriff Ian Day 2 Police Station
   m_TagString: Untagged
@@ -503,7 +504,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 119061054}
   m_Enabled: 1
   m_AgentTypeID: -334000983
-  m_Radius: 2
+  m_Radius: 1
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 99
@@ -599,6 +600,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &119061060
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119061054}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 10, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &183415975
 GameObject:
   m_ObjectHideFlags: 0
