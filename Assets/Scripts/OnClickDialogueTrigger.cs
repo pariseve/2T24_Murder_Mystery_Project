@@ -31,6 +31,13 @@ public class OnClickDialogueTrigger : MonoBehaviour
 
     private void StartConversation()
     {
+        // Check if DialoguePanel is active
+        if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
+            return;
+        }
+
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, Interactable))
@@ -41,20 +48,6 @@ public class OnClickDialogueTrigger : MonoBehaviour
             {
                 NPCConversation hitDialogue = clickedTrigger.dialogue;
                 Debug.Log($"Starting conversation with dialogue: {hitDialogue}");
-
-                // Check if DialoguePanel is active
-                if (ConversationManager.Instance.DialoguePanel.gameObject.activeInHierarchy)
-                {
-                    Debug.LogWarning("Cannot start a new conversation while the dialogue panel is active.");
-                    return;
-                }
-
-                // Disable player movement or any other setup needed before dialogue
-                PlayerController playerController = FindObjectOfType<PlayerController>();
-                if (playerController != null)
-                {
-                    playerController.DisableMovement();
-                }
 
                 // Start the conversation
                 ConversationManager.Instance.StartConversation(hitDialogue);
