@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
             { "Day2Dream", dreamTheme },
             { "Day3Dream", dreamTheme },
             { "StealthScene", stealth },
-            { "PartyScene", partyTheme },
+            { "MaplewoodParkScene", partyTheme },
             { "RyanDiscoveredScene", ryanDiscovered }
         };
     }
