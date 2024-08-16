@@ -5,7 +5,9 @@ using System.Collections.Generic;
 public class CursorChanger : MonoBehaviour
 {
     public Texture2D newCursorTexture; // Assign this in the inspector
+    public Texture2D pickUpCursorTex;
     public LayerMask layerToDetect;
+    public LayerMask pickUpLayer;
 
     private Vector2 hotSpot;
     private Vector2 defaultHotSpot = Vector2.zero;
@@ -47,6 +49,10 @@ public class CursorChanger : MonoBehaviour
         {
             // Change the cursor to the new texture when hovering over objects in the specified layer
             Cursor.SetCursor(newCursorTexture, hotSpot, CursorMode.Auto);
+        }
+        else if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, pickUpLayer))
+        {
+            Cursor.SetCursor(pickUpCursorTex, hotSpot, CursorMode.Auto);
         }
         else
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
+  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3206,7 +3206,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bc9dd9a03a51ad4aba7cdf75a44fd46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactPrompt: 
+  interactPrompt: 'Go to Town
+
+    [Space]'
 --- !u!1 &1014449512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7097,6 +7099,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 24.292
       objectReference: {fileID: 0}
+    - target: {fileID: 1833418949540096633, guid: 0524c59ad2dd3414fa9c7cd4d884cce7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3206282267000754526, guid: 0524c59ad2dd3414fa9c7cd4d884cce7,
         type: 3}
       propertyPath: m_Name
@@ -7105,7 +7112,7 @@ PrefabInstance:
     - target: {fileID: 3206282267000754526, guid: 0524c59ad2dd3414fa9c7cd4d884cce7,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3261002894693752845, guid: 0524c59ad2dd3414fa9c7cd4d884cce7,
         type: 3}
