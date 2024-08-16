@@ -740,7 +740,7 @@ public class MessageManager : MonoBehaviour
             yield return StartCoroutine(WaitForReplyButtonClick(npcName));
 
             // Trigger the OnReplyButtonClicked method directly from here after the button click is processed
-            OnReplyButtonClicked(npcName, currentMessage.playerReply);
+            // OnReplyButtonClicked(npcName, currentMessage.playerReply);
         }
 
         // Remove the coroutine from the dictionary when done
