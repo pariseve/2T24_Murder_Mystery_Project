@@ -801,9 +801,6 @@ public class MessageManager : MonoBehaviour
             yield break;
         }
 
-        // Remove any previously added listeners to avoid multiple callbacks
-        replyButton.onClick.RemoveAllListeners();
-
         // Wait until the reply button is clicked
         bool buttonClicked = false;
 

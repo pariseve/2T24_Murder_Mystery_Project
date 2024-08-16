@@ -20,6 +20,7 @@ public class ClearPlayerPrefs : MonoBehaviour
 
     public void DeleteAllPlayerPrefs()
     {
+        Debug.Log("clear all player prefs");
         // Retrieve the current volume settings
         float savedOverallVolume = PlayerPrefs.GetFloat("OverallVolume", PlayerPrefs.GetFloat("OverallVolume"));
         float savedSFXVolume = PlayerPrefs.GetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
