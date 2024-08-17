@@ -2148,7 +2148,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &5649209183726825487
 MonoBehaviour:
@@ -2220,7 +2220,7 @@ MonoBehaviour:
   boolName: Day2UrbanGoodsSetAlarmOff
   timeLimit: 15
   componentsToDisable:
-  - _InventoryManager
+  - _InventoryManager(Clone)
   - Phone Canvas
 --- !u!82 &8168873573435418256
 AudioSource:
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   - {fileID: 4110679394235740034}
   animationDuration: 0.5
   componentsToDisable:
-  - _InventoryManager
+  - _InventoryManager(Clone)
   - Phone Canvas
 --- !u!1 &8877971235609402068
 GameObject:

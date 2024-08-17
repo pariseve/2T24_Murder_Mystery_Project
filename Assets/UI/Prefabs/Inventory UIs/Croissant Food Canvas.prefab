@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 900}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 900, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6507211714180134957
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b05b6434114e4618a28ecd5bfe4586d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 44e9fd037959323409104303faba905b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -496,7 +496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015259, y: -237}
+  m_AnchoredPosition: {x: 0.000015259, y: -263.5}
   m_SizeDelta: {x: 277.0698, y: 67.8755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4715335788568238604
@@ -717,12 +717,12 @@ PrefabInstance:
     - target: {fileID: 6157729447667882995, guid: d5f7d90ca2c934762a85d155f95b788c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 375
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6157729447667882995, guid: d5f7d90ca2c934762a85d155f95b788c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 225
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6157729447667882995, guid: d5f7d90ca2c934762a85d155f95b788c,
         type: 3}

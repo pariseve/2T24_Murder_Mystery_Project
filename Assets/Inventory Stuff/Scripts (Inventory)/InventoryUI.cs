@@ -21,8 +21,8 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI examineDescriptionText;
     public Image examineImage;
     public RectTransform examineContentRectTransform;
-    private float defaultWidth = 400f; 
-    private float defaultHeight = 1f; 
+    private float defaultWidth = 400f;
+    private float defaultHeight = 1f;
 
 
     // Pickup Display variables
@@ -109,7 +109,7 @@ public class InventoryUI : MonoBehaviour
         if (pickupDisplayPanel != null)
         {
             pickupDisplayPanel.SetActive(true);
-            pickupText.text = "[i] Item obtained: " + item.itemName ;
+            pickupText.text = "[i] Item obtained: " + item.itemName;
             pickupItemImage.sprite = item.icon;
             LeanTween.scale(pickupDisplayPanel, new Vector2(1, 1), 1f).setEase(LeanTweenType.easeOutQuint);
 
@@ -213,31 +213,61 @@ public class InventoryUI : MonoBehaviour
 
     public void OpenUsableItemPanel(Item item)
     {
-
-        // Disable player movement or any other setup needed before dialogue
         PlayerController playerController = FindObjectOfType<PlayerController>();
-        if (playerController != null && currentUsableUIPanel != null)
-        {
-            playerController.DisableMovement();
-        }
 
         if (item != null && item.itemType == ItemType.Usable)
         {
+            // Destroy the current usable UI panel if it exists
             if (currentUsableUIPanel != null)
             {
                 Destroy(currentUsableUIPanel);
             }
 
+            // Instantiate the new usable UI panel
             if (item.interactionUIPrefab != null)
             {
                 currentUsableUIPanel = Instantiate(item.interactionUIPrefab);
                 StartCoroutine(AnimateUI(true));
-                Debug.Log("Usable item UI panel is open.");
+                StartCoroutine(CheckIfUsablePanelActive());
+
+                // Disable player movement if playerController and currentUsableUIPanel are valid
+                if (playerController != null && currentUsableUIPanel != null)
+                {
+                    playerController.DisableMovement();
+                }
             }
         }
-        if (!currentUsableUIPanel.activeSelf)
+        else
         {
-            if (playerController != null && currentUsableUIPanel != null)
+            // Enable movement if the item is not usable or null
+            if (playerController != null)
+            {
+                playerController.EnableMovement();
+            }
+        }
+
+        // Additional check (though this might be redundant if coroutine works as expected)
+        if (currentUsableUIPanel == null || !currentUsableUIPanel.activeInHierarchy)
+        {
+            if (playerController != null)
+            {
+                playerController.EnableMovement();
+            }
+        }
+    }
+
+    private IEnumerator CheckIfUsablePanelActive()
+    {
+        yield return new WaitForSeconds(0f); // Short delay to allow for any necessary initialization
+
+        PlayerController playerController = FindObjectOfType<PlayerController>();
+
+        // Check if the current UI panel is inactive or destroyed and enable movement if so
+        if (currentUsableUIPanel == null || !currentUsableUIPanel.activeInHierarchy)
+        {
+            Debug.Log("Enabled movement because usable panel is not active");
+
+            if (playerController != null)
             {
                 playerController.EnableMovement();
             }
@@ -274,9 +304,9 @@ public class InventoryUI : MonoBehaviour
             Debug.Log("Animating Parent Object to scale down.");
             LeanTween.scale(parentObject, Vector3.zero, animationDuration).setEaseInBounce().setOnComplete(() =>
             {
-                    parentObject.SetActive(false);
-                    Debug.Log("Scale down animation completed.");
-                });
+                parentObject.SetActive(false);
+                Debug.Log("Scale down animation completed.");
+            });
         }
 
         yield return new WaitForSeconds(animationDuration);
@@ -284,12 +314,19 @@ public class InventoryUI : MonoBehaviour
 
     public void CloseUsableItemPanel()
     {
-            if (currentUsableUIPanel != null)
-            {
-                Destroy(currentUsableUIPanel);
-            }
+        PlayerController playerController = FindObjectOfType<PlayerController>();
 
+        if (currentUsableUIPanel != null)
+        {
+            Destroy(currentUsableUIPanel);
+        }
+
+        // Enable movement if the UI panel has been destroyed or does not exist
+        if (playerController != null)
+        {
+            playerController.EnableMovement();
         }
     }
+}
 
 

@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8622738569713484822}
   m_Layer: 5
-  m_Name: Parent
+  m_Name: Parent Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 80505c2fb45634d21879de9b6f003d83, type: 2}
   - {fileID: 11400000, guid: b597d70df32494307aca667eba9e1e97, type: 2}
   gameObjectsToDisable:
-  - _InventoryManager
+  - _InventoryManager(Clone)
   - Phone Canvas
 --- !u!1 &2720653005417180495
 GameObject:

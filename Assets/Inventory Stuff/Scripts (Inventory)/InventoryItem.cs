@@ -18,6 +18,8 @@ public class InventoryItem : MonoBehaviour
     public GameObject interactPanel_2;
     public bool isInteractOpen = false;
 
+    private GameObject currentUsableUIPanel;
+
     public void InitialiseItem(Item newItem)
     {
         // Sets the inventory item's Item scriptable object to the passed in parameter
@@ -97,21 +99,17 @@ public class InventoryItem : MonoBehaviour
 
     public void CallOpenUsableItemPanel()
     {
-        // Disable player movement or any other setup needed before dialogue
-        PlayerController playerController = FindObjectOfType<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.DisableMovement();
-        }
-        // Close the interaction panel
-        if (isInteractOpen)
-        {
-            InventoryUI.instance.UpdateCurrentInventoryItem(null);
-            CloseInteractionPanel();
-        }
-        // Call the InventoryUI function to open the using item panel
-        InventoryUI.instance.OpenUsableItemPanel(item);
-    }
+                // Close the interaction panel
+                if (isInteractOpen)
+                {
+                    InventoryUI.instance.UpdateCurrentInventoryItem(null);
+                    CloseInteractionPanel();
+                }
+                // Call the InventoryUI function to open the using item panel
+                InventoryUI.instance.OpenUsableItemPanel(item);
+            }
+        
+    
 
     public bool HasItem()
     {

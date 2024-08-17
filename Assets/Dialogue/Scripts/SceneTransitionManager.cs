@@ -147,6 +147,7 @@ public class SceneTransitionManager : MonoBehaviour
 
         // Fade out the image to reveal the main menu
         yield return StartCoroutine(FadeImage(false));
+        Destroy(gameObject);
     }
 
     private IEnumerator FadeImage(bool fadeIn)

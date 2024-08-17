@@ -12,6 +12,11 @@ public class ObjectClickDialogue : MonoBehaviour
 
     private CameraZoom cameraZoom;
 
+    private void Awake()
+    {
+        DisableAllColliders();
+    }
+
     private void Start()
     {
         cameraZoom = FindObjectOfType<CameraZoom>();
