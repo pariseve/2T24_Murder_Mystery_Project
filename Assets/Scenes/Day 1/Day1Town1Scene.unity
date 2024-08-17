@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.50283957, g: 0.45939714, b: 0.34465757, a: 1}
+  m_IndirectSpecularColor: {r: 0.503407, g: 0.45985276, b: 0.3431742, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3037,6 +3037,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1451846210}
     m_Modifications:
+    - target: {fileID: 478507579006238978, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5739176731176207074, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3100,7 +3105,7 @@ PrefabInstance:
     - target: {fileID: 8331133788671685810, guid: fa61bf135fcf4fa4c9e535a9fc7c5c95,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6699,6 +6704,11 @@ PrefabInstance:
       propertyPath: uniqueID
       value: 04
       objectReference: {fileID: 0}
+    - target: {fileID: 1865209166714224958, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4305077482936987883, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
         type: 3}
       propertyPath: m_Name
@@ -6707,7 +6717,7 @@ PrefabInstance:
     - target: {fileID: 4305077482936987883, guid: f3a19253dc2ee1d4a9efaacf3d41c57e,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9212,12 +9222,17 @@ PrefabInstance:
     - target: {fileID: 206065847121833708, guid: 646105e90fe38405fbc92e5ce047100f,
         type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 206065847121833708, guid: 646105e90fe38405fbc92e5ce047100f,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832574789561180108, guid: 646105e90fe38405fbc92e5ce047100f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7188516336254737228, guid: 646105e90fe38405fbc92e5ce047100f,
         type: 3}

@@ -53,11 +53,11 @@ public class InventoryItem : MonoBehaviour
         
         if (item != null)
         {
-            if (item.itemType == ItemType.Evidence || item.itemType == ItemType.Collectable)
+            if (item.itemType == ItemType.Evidence || item.itemType == ItemType.Collectable || item.itemType == ItemType.Exchangable)
             {
                 interactPanel_1.SetActive(true);
             }
-            else if (item.itemType == ItemType.Usable || item.itemType == ItemType.Exchangable)
+            else if (item.itemType == ItemType.Usable)
             {
                 interactPanel_2.SetActive(true);
             }
