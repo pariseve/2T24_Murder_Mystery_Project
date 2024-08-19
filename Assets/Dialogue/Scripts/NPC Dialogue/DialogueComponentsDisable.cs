@@ -39,7 +39,6 @@ public class DialogueComponentsDisable : MonoBehaviour
         {
             Debug.LogWarning("Dialogue panel is active. Disabling components.");
             ToggleComponents(false);
-            InventoryUI.instance.CloseUsableItemPanel();
         }
         else
         {

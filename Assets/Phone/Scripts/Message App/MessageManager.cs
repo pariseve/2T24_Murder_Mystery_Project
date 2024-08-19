@@ -592,6 +592,10 @@ public class MessageManager : MonoBehaviour
             CreateNPCMessage(npcName, message, playerReply, true);
             SetMessageUnread(npcName);
 
+            var chatHistoryTuple = FindChatHistoryContent(npcName);
+            ScrollRect scrollRect = chatHistoryTuple.Item2;
+            UpdateScrollbarPosition(scrollRect);
+
             // Remove the previous playerReply for this NPC, if it exists
             if (lastPlayerReplies.ContainsKey(npcName))
             {
@@ -674,15 +678,9 @@ public class MessageManager : MonoBehaviour
 
                     npcMessageQueues[npcName].Enqueue(messageDataObj);
 
-                    // Clear the existing boolName for this NPC and store the new one
-                    if (npcBoolNames.ContainsKey(npcName))
-                    {
-                        npcBoolNames.Remove(npcName);
-                        Debug.Log($"Cleared existing boolName for NPC: {npcName}");
-                    }
-
+                    // Update or set the boolName for this NPC
                     npcBoolNames[npcName] = boolName;
-                    Debug.Log($"Stored new boolName '{boolName}' for NPC: {npcName}");
+                    Debug.Log($"Stored boolName '{boolName}' for NPC: {npcName}");
                 }
                 else
                 {
@@ -696,131 +694,159 @@ public class MessageManager : MonoBehaviour
         {
             string boolNameForNPC = npcBoolNames.ContainsKey(npcName) ? npcBoolNames[npcName] : null;
             Debug.Log("Starting ProcessMessages coroutine for NPC: " + npcName + " with boolName: " + boolNameForNPC);
-            StartCoroutine(ProcessMessages(npcName, boolNameForNPC));
+
+            // Ensure there?s no active coroutine for this NPC already
+            if (!npcCoroutines.ContainsKey(npcName))
+            {
+                var coroutine = StartCoroutine(ProcessMessages(npcName, boolNameForNPC));
+                npcCoroutines[npcName] = coroutine;
+            }
+            else
+            {
+                Debug.LogWarning($"Coroutine for NPC {npcName} is already running.");
+            }
+        }
+    }
+
+    public void ListActiveNPCCoroutines()
+    {
+        Debug.Log("Listing active NPC coroutines:");
+
+        if (npcCoroutines.Count == 0)
+        {
+            Debug.Log("No active NPC coroutines.");
+        }
+        else
+        {
+            foreach (var npcName in npcCoroutines.Keys)
+            {
+                Debug.Log($"Active coroutine for NPC: {npcName}");
+            }
         }
     }
 
     private IEnumerator ProcessMessages(string npcName, string boolName)
     {
         Debug.Log("ProcessMessages coroutine started for NPC: " + npcName);
-        isProcessingMessages = true;
 
         if (!npcMessageQueues.ContainsKey(npcName))
         {
             Debug.LogWarning("No messages found for NPC: " + npcName);
-            isProcessingMessages = false;
+            if (npcCoroutines.ContainsKey(npcName))
+            {
+                npcCoroutines.Remove(npcName);
+                Debug.Log($"Removed coroutine entry for NPC (no messages): {npcName}");
+            }
             yield break;
         }
 
         Queue<MessageData> queue = npcMessageQueues[npcName];
 
-        // Ensure the UI is set up properly for the NPC
+        // Deactivate all chat histories
+        foreach (var instance in messageChatInstances)
+        {
+            if (instance.Key != npcName) // Leave the current NPC's chat history if already open
+            {
+                instance.Value.SetActive(false);
+            }
+        }
+
+        // Open the chat with the NPC, if it's not already open
         OpenChatWithNPC(npcName);
 
         while (queue.Count > 0)
         {
             MessageData currentMessage = queue.Dequeue();
             Debug.Log($"Dequeuing message - NPC: {npcName}, Message: {currentMessage.message}, PlayerReply: {currentMessage.playerReply}");
+
+            // Create and show NPC message
             CreateNPCMessage(npcName, currentMessage.message, currentMessage.playerReply, false);
             SetMessageUnread(npcName);
 
-            // Remove the previous playerReply for this NPC, if it exists
-            if (lastPlayerReplies.ContainsKey(npcName))
-            {
-                lastPlayerReplies.Remove(npcName);
-            }
+            var chatHistoryTuple = FindChatHistoryContent(npcName);
+            ScrollRect scrollRect = chatHistoryTuple.Item2;
+            UpdateScrollbarPosition(scrollRect);
 
-            // Store the last playerReply for this NPC
+            // Store the last player reply for this NPC
             lastPlayerReplies[npcName] = currentMessage.playerReply;
 
-            // Display the reply button
+            // Show the reply button and wait for it to be clicked
             ShowReplyButton(npcName);
-
-            // Wait for the reply button click to process the next message
             yield return StartCoroutine(WaitForReplyButtonClick(npcName));
-
-            // Trigger the OnReplyButtonClicked method directly from here after the button click is processed
-            // OnReplyButtonClicked(npcName, currentMessage.playerReply);
         }
 
-        // Remove the coroutine from the dictionary when done
+        // Ensure removal of the coroutine from the dictionary
         if (npcCoroutines.ContainsKey(npcName))
         {
             npcCoroutines.Remove(npcName);
+            Debug.Log($"Removed coroutine entry for NPC: {npcName}");
         }
 
-        // Set the bool variable after processing all messages
-        if (boolName != null)
+        if (npcMessageQueues.ContainsKey(npcName))
+        {
+            npcMessageQueues.Remove(npcName);
+            Debug.Log($"Removed message queue entry for NPC: {npcName}");
+        }
+
+        if (npcBoolNames.ContainsKey(npcName))
+        {
+            npcBoolNames.Remove(npcName);
+            Debug.Log($"Removed boolName entry for NPC: {npcName}");
+        }
+
+        // Set the boolean variable after processing all messages
+        if (!string.IsNullOrEmpty(boolName))
         {
             Debug.Log($"Setting bool variable {boolName} for NPC: {npcName}");
             SetBoolVariable(boolName);
         }
-        else
-        {
-            Debug.LogWarning($"No boolName provided for NPC: {npcName}");
-        }
 
-        if (RemindersManager.Instance != null)
-        {
-            RemindersManager.Instance.InstantiateReminders();
-        }
-        else
-        {
-            Debug.LogError("ReminderManager.Instance is null.");
-        }
-
-        if (NotesManager.Instance != null)
-        {
-            NotesManager.Instance.InstantiateNotes();
-        }
-        else
-        {
-            Debug.LogError("NotesManager.Instance is null.");
-        }
+        // Update reminders and notes
+        RemindersManager.Instance?.InstantiateReminders();
+        NotesManager.Instance?.InstantiateNotes();
 
         Debug.Log("ProcessMessages coroutine finished for NPC: " + npcName);
-        isProcessingMessages = false;
     }
 
     private IEnumerator WaitForReplyButtonClick(string npcName)
+{
+    Debug.Log("Waiting for reply button click for NPC: " + npcName);
+
+    if (!messageChatInstances.ContainsKey(npcName))
     {
-        Debug.Log("Waiting for reply button click for NPC: " + npcName);
-
-        if (!messageChatInstances.ContainsKey(npcName))
-        {
-            Debug.LogError("No message chat UI instance found for NPC: " + npcName);
-            yield break;
-        }
-
-        GameObject messageChatUI = messageChatInstances[npcName];
-        Button replyButton = messageChatUI.transform.Find("Reply Image/ReplyButton").GetComponent<Button>();
-
-        if (replyButton == null)
-        {
-            Debug.LogError("Reply Button not found for NPC: " + npcName);
-            yield break;
-        }
-
-        // Wait until the reply button is clicked
-        bool buttonClicked = false;
-
-        void OnClick()
-        {
-            Debug.Log("Reply button clicked for NPC: " + npcName);
-            buttonClicked = true;
-        }
-
-        // Add the new listener
-        replyButton.onClick.AddListener(OnClick);
-
-        // Wait until the button is clicked
-        while (!buttonClicked)
-        {
-            yield return null; // Wait until the button is clicked
-        }
-
-        Debug.Log("Reply button click processed for NPC: " + npcName);
+        Debug.LogError("No message chat UI instance found for NPC: " + npcName);
+        yield break;
     }
+
+    GameObject messageChatUI = messageChatInstances[npcName];
+    Button replyButton = messageChatUI.transform.Find("Reply Image/ReplyButton").GetComponent<Button>();
+
+    if (replyButton == null)
+    {
+        Debug.LogError("Reply Button not found for NPC: " + npcName);
+        yield break;
+    }
+
+    bool buttonClicked = false;
+
+    void OnClick()
+    {
+        Debug.Log("Reply button clicked for NPC: " + npcName);
+        buttonClicked = true;
+    }
+
+    replyButton.onClick.AddListener(OnClick);
+
+    while (!buttonClicked)
+    {
+        yield return null; // Wait for the next frame
+    }
+
+    replyButton.onClick.RemoveListener(OnClick);
+
+    Debug.Log("Reply button click processed for NPC: " + npcName);
+}
+
 
     private void SetMessageUnread(string npcName)
     {
