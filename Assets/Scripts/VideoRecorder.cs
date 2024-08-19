@@ -43,7 +43,7 @@ public class CameraPathController : MonoBehaviour
         // Exit play mode once the final point is reached
         if (Application.isEditor)
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            // UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
