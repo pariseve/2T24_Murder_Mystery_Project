@@ -32,6 +32,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip footstep4;
     public AudioClip crow;
 
+    [Header("----- Music Fade Settings -----")]
+    [SerializeField] private float fadeDuration = 0.5f;
+
+
 
     public static AudioManager Instance { get; private set; }
 
@@ -89,9 +93,7 @@ public class AudioManager : MonoBehaviour
             { "Day1Dream", dreamTheme },
             { "Day2Dream", dreamTheme },
             { "Day3Dream", dreamTheme },
-            { "StealthScene", stealth },
             { "MaplewoodParkScene", partyTheme },
-            { "RyanDiscoveredScene", ryanDiscovered }
         };
     }
 
@@ -109,7 +111,12 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (sceneMusicMap.TryGetValue(scene.name, out AudioClip musicClip))
+        // Check if a specific context needs to override the scene music
+        if (CurrentContext != null)
+        {
+            PlayMusicByContext(CurrentContext);
+        }
+        else if (sceneMusicMap.TryGetValue(scene.name, out AudioClip musicClip))
         {
             PlayMusic(musicClip);
         }
@@ -119,14 +126,50 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
     public void PlayMusic(AudioClip clip)
     {
         if (musicSource.clip != clip)
         {
-            musicSource.clip = clip;
-            musicSource.Play();
+            StartCoroutine(TransitionMusic(clip));
         }
     }
+
+    public void PlayMusicByContext(string context)
+    {
+        AudioClip clip = null;
+
+        // Determine the appropriate music clip based on the context
+        switch (context)
+        {
+            case "Stealth":
+                clip = stealth;
+                break;
+            case "Ryan Discovered":
+                clip = ryanDiscovered;
+                break;
+            default:
+                Debug.LogWarning($"No music assigned for context: {context}");
+                return;
+        }
+
+        if (clip != null)
+        {
+            PlayMusic(clip);
+        }
+    }
+
+
+    private IEnumerator TransitionMusic(AudioClip newClip)
+    {
+        if (musicSource.isPlaying)
+        {
+            yield return StartCoroutine(FadeOutMusic(musicSource));
+        }
+
+        yield return StartCoroutine(FadeInMusic(musicSource, newClip));
+    }
+
 
     public void PlaySFX(SFXContext context)
     {
@@ -170,11 +213,67 @@ public class AudioManager : MonoBehaviour
         isPlayingSFX = false;
     }
 
+    // Assuming you have a method to get the player's volume setting
+    private float GetPlayerVolume()
+    {
+        // Replace this with your actual volume retrieval logic
+        return PlayerPrefs.GetFloat("OverallVolume", 1.0f); // Default to 1.0 if not set
+    }
 
+    private IEnumerator FadeOutMusic(AudioSource audioSource)
+    {
+        float startVolume = audioSource.volume;
+        float targetVolume = 0;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < fadeDuration)
+        {
+            float volume = Mathf.Lerp(startVolume, targetVolume, timeElapsed / fadeDuration);
+            audioSource.volume = volume * GetPlayerVolume();
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.volume = 0;
+        audioSource.Stop();
+    }
+
+    private IEnumerator FadeInMusic(AudioSource audioSource, AudioClip newClip)
+    {
+        audioSource.clip = newClip;
+        audioSource.volume = 0;
+        audioSource.Play();
+
+        float timeElapsed = 0f;
+        float targetVolume = GetPlayerVolume(); // Use player's volume setting
+
+        while (timeElapsed < fadeDuration)
+        {
+            float volume = Mathf.Lerp(0, targetVolume, timeElapsed / fadeDuration);
+            audioSource.volume = volume;
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        audioSource.volume = targetVolume;
+    }
 
     public void ClearSFX()
     {
         SFXSource.Stop();
+    }
+
+    private string CurrentContext { get; set; }
+
+    public void SetContext(string context)
+    {
+        CurrentContext = context;
+        PlayMusicByContext(context);
+    }
+
+    public void ClearContext()
+    {
+        CurrentContext = null;
     }
 
 
