@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3248,7 +3248,8 @@ MonoBehaviour:
   interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
     type: 3}
   conversationTriggeredKey: DavidDay1UrbanGoodsStartDialogue
-  requiredBoolNamesTrue: []
+  requiredBoolNamesTrue:
+  - Day1ApartmentMeetIvyMainQuest
   requiredBoolNamesFalse:
   - IvyDay1UrbanGoodsRumourMainQuest
 --- !u!65 &1299368752
@@ -3289,8 +3290,7 @@ MonoBehaviour:
   interactTextPrefab: {fileID: 2927843432873035901, guid: eaf35d83dd49746909d5f177e05e3f4b,
     type: 3}
   conversationTriggeredKey: DavidDay1UrbanGoodsShopDialogue
-  requiredBoolNamesTrue:
-  - Day1ApartmentMeetIvyMainQuest
+  requiredBoolNamesTrue: []
   requiredBoolNamesFalse: []
 --- !u!1 &1301219320
 GameObject:
